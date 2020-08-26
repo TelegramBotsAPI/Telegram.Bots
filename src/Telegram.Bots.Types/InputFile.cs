@@ -9,9 +9,6 @@ namespace Telegram.Bots.Types
 
     public Stream Data { get; }
 
-    public InputFile(Stream data)
-    {
-      Data = data;
-    }
+    public InputFile(Stream data) => Data = data;
   }
 }
