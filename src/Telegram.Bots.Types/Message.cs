@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Telegram.Bots.Types
 {
   public abstract class Message
@@ -29,5 +31,12 @@ namespace Telegram.Bots.Types
     public long? EditDate { get; set; }
 
     public string? AuthorSignature { get; set; }
+  }
+
+  public sealed class TextMessage : Message
+  {
+    public string Text { get; set; } = null!;
+
+    public IReadOnlyList<MessageEntity>? Entities { get; set; }
   }
 }
