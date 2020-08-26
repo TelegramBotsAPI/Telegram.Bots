@@ -84,7 +84,11 @@ namespace Telegram.Bots.Json
       {
         ContractResolver = new ContractResolver { NamingStrategy = strategy },
         NullValueHandling = NullValueHandling.Ignore,
-        Converters = { new StringEnumConverter(strategy) }
+        Converters =
+        {
+          new StringEnumConverter(strategy),
+          new MessageConverter()
+        }
       };
     }
   }
