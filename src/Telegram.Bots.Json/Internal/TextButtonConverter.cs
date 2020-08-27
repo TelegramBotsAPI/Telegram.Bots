@@ -18,7 +18,6 @@ namespace Telegram.Bots.Json.Internal
       Type objectType,
       TextButton? existingValue,
       bool hasExistingValue,
-      JsonSerializer serializer) =>
-      throw new NotImplementedException();
+      JsonSerializer serializer) => throw new NotImplementedException();
   }
 }
