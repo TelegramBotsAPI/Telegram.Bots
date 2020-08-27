@@ -22,9 +22,9 @@ namespace Telegram.Bots.Json.Tests.Units
     [MemberData(nameof(DeserializationData))]
     public void CallbackQueryDeserializesCorrectly((string, Type) tuple)
     {
-      var (data, type) = tuple;
+      var (value, type) = tuple;
 
-      Assert.IsAssignableFrom(type, _serializer.Deserialize<CallbackQuery>(data));
+      Assert.IsAssignableFrom(type, _serializer.Deserialize<CallbackQuery>(value));
     }
   }
 }
