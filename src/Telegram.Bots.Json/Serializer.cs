@@ -92,7 +92,8 @@ namespace Telegram.Bots.Json
           new ChatMemberConverter(),
           new InlineKeyboardButtonConverter(),
           new InputFileConverter(),
-          new MessageConverter()
+          new MessageConverter(),
+          new PollConverter()
         }
       };
     }
