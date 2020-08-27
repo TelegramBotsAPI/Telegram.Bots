@@ -16,7 +16,6 @@ namespace Telegram.Bots.Json.Internal
       Type objectType,
       InputFile? existingValue,
       bool hasExistingValue,
-      JsonSerializer serializer) =>
-      throw new NotImplementedException();
+      JsonSerializer serializer) => throw new NotImplementedException();
   }
 }
