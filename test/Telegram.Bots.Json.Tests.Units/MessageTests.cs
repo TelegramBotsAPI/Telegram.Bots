@@ -13,7 +13,37 @@ namespace Telegram.Bots.Json.Tests.Units
     public static TheoryData<(string, Type)> DeserializationData => new TheoryData<(string, Type)>
     {
       (@"{""message_id"":1,""text"":""""}", typeof(Message)),
-      (@"{""text"":""""}", typeof(TextMessage))
+      (@"{""animation"":{},""document"":{}}", typeof(AnimationMessage)),
+      (@"{""location"":{},""venue"":{}}", typeof(VenueMessage)),
+      (@"{""text"":""""}", typeof(TextMessage)),
+      (@"{""audio"":{}}", typeof(AudioMessage)),
+      (@"{""document"":{}}", typeof(DocumentMessage)),
+      (@"{""photo"":[]}", typeof(PhotoMessage)),
+      (@"{""sticker"":{}}", typeof(StickerMessage)),
+      (@"{""video"":{}}", typeof(VideoMessage)),
+      (@"{""video_note"":{}}", typeof(VideoNoteMessage)),
+      (@"{""voice"":{}}", typeof(VoiceMessage)),
+      (@"{""contact"":{}}", typeof(ContactMessage)),
+      (@"{""dice"":{}}", typeof(DiceMessage)),
+      (@"{""game"":{}}", typeof(GameMessage)),
+      (@"{""poll"":{""type"":""regular""}}", typeof(PollMessage)),
+      (@"{""location"":{}}", typeof(LocationMessage)),
+      (@"{""new_chat_members"":[]}", typeof(NewChatMembersMessage)),
+      (@"{""left_chat_member"":{}}", typeof(LeftChatMemberMessage)),
+      (@"{""new_chat_title"":""""}", typeof(NewChatTitleMessage)),
+      (@"{""new_chat_photo"":[]}", typeof(NewChatPhotoMessage)),
+      (@"{""delete_chat_photo"":true}", typeof(DeleteChatPhotoMessage)),
+      (@"{""group_chat_created"":true}", typeof(GroupChatCreatedMessage)),
+      (@"{""supergroup_chat_created"":true}", typeof(SupergroupChatCreatedMessage)),
+      (@"{""channel_chat_created"":true}", typeof(ChannelChatCreatedMessage)),
+      (@"{""migrate_to_chat_id"":1}", typeof(MigrateToChatMessage)),
+      (@"{""migrate_from_chat_id"":1}", typeof(MigrateFromChatMessage)),
+      (@"{""pinned_message"":{}}", typeof(PinnedMessage)),
+      (@"{""invoice"":{}}", typeof(InvoiceMessage)),
+      (@"{""successful_payment"":{}}", typeof(SuccessfulPaymentMessage)),
+      (@"{""connected_website"":""""}", typeof(ConnectedWebsiteMessage)),
+      (@"{""passport_data"":{}}", typeof(PassportDataMessage)),
+      (@"{""reply_markup"":{}}", typeof(ReplyMarkupMessage))
     };
 
     [Theory(DisplayName = "Message deserializes correctly")]
