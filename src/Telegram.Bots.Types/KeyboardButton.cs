@@ -8,16 +8,16 @@ namespace Telegram.Bots.Types
 
     public static implicit operator KeyboardButton(string text) => ToKeyboardButton(text);
 
-    public static KeyboardButton ToKeyboardButton(string text) => new Button(text);
+    public static KeyboardButton ToKeyboardButton(string text) => new TextButton(text);
   }
 
-  public sealed class Button : KeyboardButton
+  public sealed class TextButton : KeyboardButton
   {
-    public Button(string text) : base(text) { }
+    public TextButton(string text) : base(text) { }
 
-    public static implicit operator Button(string text) => ToButton(text);
+    public static implicit operator TextButton(string text) => ToTextButton(text);
 
-    public static Button ToButton(string text) => new Button(text);
+    public static TextButton ToTextButton(string text) => new TextButton(text);
   }
 
   public sealed class RequestContactButton : KeyboardButton

@@ -4,19 +4,19 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Json.Internal
 {
-  internal sealed class ButtonConverter : JsonConverter<Button>
+  internal sealed class TextButtonConverter : JsonConverter<TextButton>
   {
     public override bool CanRead => false;
 
-    public override void WriteJson(JsonWriter writer, Button? value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, TextButton? value, JsonSerializer serializer)
     {
       if (value != null) writer.WriteValue(value.Text);
     }
 
-    public override Button ReadJson(
+    public override TextButton ReadJson(
       JsonReader reader,
       Type objectType,
-      Button? existingValue,
+      TextButton? existingValue,
       bool hasExistingValue,
       JsonSerializer serializer) =>
       throw new NotImplementedException();
