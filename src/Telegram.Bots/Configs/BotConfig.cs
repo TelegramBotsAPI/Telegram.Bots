@@ -13,7 +13,7 @@ namespace Telegram.Bots.Configs
 
     public int HandlerLifetime { get; set; } = 600;
 
-    public IEnumerable<int> WaitsBeforeRetry { get; set; } = new[] {1, 2, 5};
+    public IEnumerable<int> WaitsBeforeRetry { get; set; } = new[] { 1, 2, 5 };
 
     public int EventsAllowedBeforeBreaking { get; set; } = 3;
 
