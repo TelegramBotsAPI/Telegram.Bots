@@ -73,6 +73,15 @@ namespace Telegram.Bots.Json.Tests.Units
       (@"""passport_data"":{", new PassportDataMessage { PassportData = new PassportData() }),
       (@"""reply_markup"":{",
         new ReplyMarkupMessage { ReplyMarkup = new InlineKeyboardMarkup(null!) }),
+      (@"""file_id"":""", new PassportFile { Id = "" }),
+      (@"""file_unique_id"":""", new PassportFile { UniqueId = "" }),
+      (@"""file_size"":1", new PassportFile { Size = 1 }),
+      (@"""file_date"":1", new PassportFile { Date = 1 }),
+      (@"""field_name"":""", new DataFieldError { Name = "" }),
+      (@"""data_hash"":""", new DataFieldError { Hash = "" }),
+      (@"""element_hash"":""", new UnspecifiedError { Hash = "" }),
+      (@"""file_hash"":""", new FrontSideError { Hash = "" }),
+      (@"""file_hashes"":[", new FilesError { Hashes = new List<string>() }),
       (@"""photos"":[", new UserProfilePhotos { PhotoSets = new List<Photo[]>() })
     };
 
