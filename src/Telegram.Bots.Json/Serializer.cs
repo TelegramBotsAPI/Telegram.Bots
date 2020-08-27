@@ -90,7 +90,7 @@ namespace Telegram.Bots.Json
           new ButtonConverter(),
           new CallbackQueryConverter(),
           new ChatMemberConverter(),
-          new InlineKeyboardButtonConverter(),
+          new InlineButtonConverter(),
           new InputFileConverter(),
           new MessageConverter(),
           new PollConverter(),

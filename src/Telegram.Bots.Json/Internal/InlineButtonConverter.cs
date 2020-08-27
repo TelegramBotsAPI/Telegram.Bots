@@ -7,9 +7,9 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Json.Internal
 {
-  using static InlineKeyboardButtonSchema;
+  using static InlineButtonSchema;
 
-  internal sealed class InlineKeyboardButtonConverter : JsonConverter
+  internal sealed class InlineButtonConverter : JsonConverter
   {
     private static readonly HashSet<string> ButtonTypes = new HashSet<string>
     {
@@ -52,10 +52,10 @@ namespace Telegram.Bots.Json.Internal
       T Get<T>() => data.ToObject<T>(serializer)!;
     }
 
-    public override bool CanConvert(Type objectType) => objectType == typeof(InlineKeyboardButton);
+    public override bool CanConvert(Type objectType) => objectType == typeof(InlineButton);
   }
 
-  internal static class InlineKeyboardButtonSchema
+  internal static class InlineButtonSchema
   {
     public const string Url = "url";
     public const string LoginUrl = "login_url";

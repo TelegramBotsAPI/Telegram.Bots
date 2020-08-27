@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace Telegram.Bots.Types
 {
   using Keyboard = IEnumerable<KeyboardButton[]>;
-  using InlineKeyboard = IEnumerable<InlineKeyboardButton[]>;
+  using InlineKeyboard = IEnumerable<InlineButton[]>;
 
   public abstract class ReplyMarkup { }
 

@@ -33,7 +33,7 @@ namespace Telegram.Bots.Json.Tests.Units
       (@"""file_path"":""", new FileInfo { Path = "" }),
       (@"""resize_keyboard"":true", new KeyboardMarkup(null!) { Resize = true }),
       (@"""one_time_keyboard"":true", new KeyboardMarkup(null!) { OneTime = true }),
-      (@"""inline_keyboard"":[", new InlineKeyboardMarkup(new List<InlineKeyboardButton[]>())),
+      (@"""inline_keyboard"":[", new InlineKeyboardMarkup(new List<InlineButton[]>())),
       (@"""callback_data"":""", new CallbackDataButton("", "")),
       (@"""switch_inline_query"":""", new SwitchInlineQueryButton("", "")),
       (@"""switch_inline_query_current_chat"":""",
