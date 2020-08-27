@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telegram.Bots.Http", "src\T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telegram.Bots", "src\Telegram.Bots\Telegram.Bots.csproj", "{5845D2DA-7480-4E64-9FA5-798C45C4957B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telegram.Bots.Extensions.AspNetCore", "src\Telegram.Bots.Extensions.AspNetCore\Telegram.Bots.Extensions.AspNetCore.csproj", "{7CB506F0-8DE8-451C-99FD-C7D9E1E4CBB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,7 @@ Global
 		{A7A456AC-E6A3-4590-B6D3-C962DA3EA145} = {3DA363CF-6110-42B2-B8C9-B8379A589121}
 		{FE4FD593-A8F6-4666-BB99-0FAA473A83F5} = {3DA363CF-6110-42B2-B8C9-B8379A589121}
 		{5845D2DA-7480-4E64-9FA5-798C45C4957B} = {3DA363CF-6110-42B2-B8C9-B8379A589121}
+		{7CB506F0-8DE8-451C-99FD-C7D9E1E4CBB6} = {3DA363CF-6110-42B2-B8C9-B8379A589121}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B05BED33-C143-4269-B6C4-3B5EB76A9D17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -61,5 +64,9 @@ Global
 		{5845D2DA-7480-4E64-9FA5-798C45C4957B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5845D2DA-7480-4E64-9FA5-798C45C4957B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5845D2DA-7480-4E64-9FA5-798C45C4957B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CB506F0-8DE8-451C-99FD-C7D9E1E4CBB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CB506F0-8DE8-451C-99FD-C7D9E1E4CBB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CB506F0-8DE8-451C-99FD-C7D9E1E4CBB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CB506F0-8DE8-451C-99FD-C7D9E1E4CBB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
