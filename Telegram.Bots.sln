@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{5DF269F2-6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telegram.Bots.Json.Tests.Units", "test\Telegram.Bots.Json.Tests.Units\Telegram.Bots.Json.Tests.Units.csproj", "{21000F42-49E8-4112-9BA9-E016700E54C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telegram.Bots.Requests", "src\Telegram.Bots.Requests\Telegram.Bots.Requests.csproj", "{A7A456AC-E6A3-4590-B6D3-C962DA3EA145}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,7 @@ Global
 		{BE6EBD57-1286-4CE1-A504-D04400AD9CC7} = {3DA363CF-6110-42B2-B8C9-B8379A589121}
 		{371025E0-7160-49B5-AF13-861DC0555E4F} = {3DA363CF-6110-42B2-B8C9-B8379A589121}
 		{21000F42-49E8-4112-9BA9-E016700E54C1} = {5DF269F2-6727-4CC1-B495-BA5DF298CA89}
+		{A7A456AC-E6A3-4590-B6D3-C962DA3EA145} = {3DA363CF-6110-42B2-B8C9-B8379A589121}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B05BED33-C143-4269-B6C4-3B5EB76A9D17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -40,5 +43,9 @@ Global
 		{21000F42-49E8-4112-9BA9-E016700E54C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21000F42-49E8-4112-9BA9-E016700E54C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21000F42-49E8-4112-9BA9-E016700E54C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7A456AC-E6A3-4590-B6D3-C962DA3EA145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7A456AC-E6A3-4590-B6D3-C962DA3EA145}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7A456AC-E6A3-4590-B6D3-C962DA3EA145}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7A456AC-E6A3-4590-B6D3-C962DA3EA145}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
