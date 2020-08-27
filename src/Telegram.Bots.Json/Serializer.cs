@@ -88,6 +88,7 @@ namespace Telegram.Bots.Json
         {
           new StringEnumConverter(strategy),
           new CallbackQueryConverter(),
+          new ChatMemberConverter(),
           new InlineKeyboardButtonConverter(),
           new InputFileConverter(),
           new MessageConverter()
