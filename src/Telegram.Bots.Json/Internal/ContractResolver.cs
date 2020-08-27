@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Telegram.Bots.Types;
 using Telegram.Bots.Types.Games;
+using Telegram.Bots.Types.Passport;
 
 namespace Telegram.Bots.Json.Internal
 {
@@ -65,6 +66,22 @@ namespace Telegram.Bots.Json.Internal
         { typeof(MigrateFromChatMessage), new Data { { "chat_id", "migrate_from_chat_id" } } },
         { typeof(SuccessfulPaymentMessage), new Data { { "payment", "successful_payment" } } },
         { typeof(ConnectedWebsiteMessage), new Data { { "website", "connected_website" } } },
+        {
+          typeof(PassportFile),
+          new Data
+          {
+            { "id", "file_id" },
+            { "unique_id", "file_unique_id" },
+            { "size", "file_size" },
+            { "date", "file_date" }
+          }
+        },
+        {
+          typeof(DataFieldError), new Data { { "name", "field_name" }, { "hash", "data_hash" } }
+        },
+        { typeof(DocumentError), new Data { { "hash", "file_hash" } } },
+        { typeof(DocumentsError), new Data { { "hashes", "file_hashes" } } },
+        { typeof(UnspecifiedError), new Data { { "hash", "element_hash" } } },
         { typeof(UserProfilePhotos), new Data { { "photo_sets", "photos" } } }
       };
 
