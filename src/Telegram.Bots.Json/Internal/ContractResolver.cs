@@ -48,6 +48,23 @@ namespace Telegram.Bots.Json.Internal
         { typeof(CallbackGameButton), new Data { { "game", "callback_game" } } },
         { typeof(Game), new Data { { "photo_set", "photo" } } },
         { typeof(Message), new Data { { "id", "message_id" } } },
+        { typeof(NewChatMembersMessage), new Data { { "members", "new_chat_members" } } },
+        { typeof(LeftChatMemberMessage), new Data { { "member", "left_chat_member" } } },
+        { typeof(NewChatTitleMessage), new Data { { "title", "new_chat_title" } } },
+        { typeof(NewChatPhotoMessage), new Data { { "photo_set", "new_chat_photo" } } },
+        { typeof(PhotoMessage), new Data { { "photo_set", "photo" } } },
+        { typeof(PinnedMessage), new Data { { "pinned", "pinned_message" } } },
+        { typeof(DeleteChatPhotoMessage), new Data { { "deleted", "delete_chat_photo" } } },
+        { typeof(GroupChatCreatedMessage), new Data { { "created", "group_chat_created" } } },
+        {
+          typeof(SupergroupChatCreatedMessage),
+          new Data { { "created", "supergroup_chat_created" } }
+        },
+        { typeof(ChannelChatCreatedMessage), new Data { { "created", "channel_chat_created" } } },
+        { typeof(MigrateToChatMessage), new Data { { "chat_id", "migrate_to_chat_id" } } },
+        { typeof(MigrateFromChatMessage), new Data { { "chat_id", "migrate_from_chat_id" } } },
+        { typeof(SuccessfulPaymentMessage), new Data { { "payment", "successful_payment" } } },
+        { typeof(ConnectedWebsiteMessage), new Data { { "website", "connected_website" } } },
         { typeof(UserProfilePhotos), new Data { { "photo_sets", "photos" } } }
       };
 
