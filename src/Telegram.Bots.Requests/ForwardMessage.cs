@@ -29,21 +29,24 @@ namespace Telegram.Bots.Requests
       base(chatId, fromChatId, messageId) { }
   }
 
-  public sealed class ForwardMessageToUsername : ForwardMessage<string, long>
+  public sealed class ForwardMessageViaUsername : ForwardMessage<string, long>
   {
-    public ForwardMessageToUsername(string username, long fromChatId, int messageId) :
+    public ForwardMessageViaUsername(string username, long fromChatId, int messageId) :
       base(username, fromChatId, messageId) { }
   }
 
-  public sealed class ForwardMessageFromUsername : ForwardMessage<long, string>
+  namespace Usernames
   {
-    public ForwardMessageFromUsername(long chatId, string fromUsername, int messageId) :
-      base(chatId, fromUsername, messageId) { }
-  }
+    public sealed class ForwardMessage : ForwardMessage<string, string>
+    {
+      public ForwardMessage(string username, string fromUsername, int messageId) :
+        base(username, fromUsername, messageId) { }
+    }
 
-  public sealed class ForwardMessageBetweenUsernames : ForwardMessage<string, string>
-  {
-    public ForwardMessageBetweenUsernames(string username, string fromUsername, int messageId) :
-      base(username, fromUsername, messageId) { }
+    public sealed class ForwardMessageViaId : ForwardMessage<long, string>
+    {
+      public ForwardMessageViaId(long chatId, string fromUsername, int messageId) :
+        base(chatId, fromUsername, messageId) { }
+    }
   }
 }
