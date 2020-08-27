@@ -7,7 +7,7 @@ namespace Telegram.Bots.Json.Tests.Units
 {
   public sealed class InputFileTests : IClassFixture<Serializer>
   {
-    private static readonly InputFile File = new InputFile(Stream.Null);
+    private static readonly InputFile File = Stream.Null;
 
     private readonly Serializer _serializer;
 
