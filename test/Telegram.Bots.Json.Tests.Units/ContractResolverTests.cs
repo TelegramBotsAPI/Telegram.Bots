@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Telegram.Bots.Types;
 using Telegram.Bots.Types.Games;
+using Telegram.Bots.Types.Inline;
 using Telegram.Bots.Types.Passport;
 using Telegram.Bots.Types.Payments;
 using Telegram.Bots.Types.Stickers;
@@ -82,6 +83,19 @@ namespace Telegram.Bots.Json.Tests.Units
       (@"""element_hash"":""", new UnspecifiedError { Hash = "" }),
       (@"""file_hash"":""", new FrontSideError { Hash = "" }),
       (@"""file_hashes"":[", new FilesError { Hashes = new List<string>() }),
+      (@"""update_id"":1", new MessageUpdate { Id = 1, Data = new TextMessage() }),
+      (@"""message"":{", new MessageUpdate { Data = new TextMessage() }),
+      (@"""edited_message"":{", new EditedMessageUpdate { Data = new TextMessage() }),
+      (@"""channel_post"":{", new ChannelPostUpdate { Data = new TextMessage() }),
+      (@"""edited_channel_post"":{", new EditedChannelPostUpdate { Data = new TextMessage() }),
+      (@"""inline_query"":{", new InlineQueryUpdate { Data = new InlineQuery() }),
+      (@"""chosen_inline_result"":{",
+        new ChosenInlineResultUpdate { Data = new ChosenInlineResult() }),
+      (@"""callback_query"":{", new CallbackQueryUpdate { Data = new MessageCallbackQuery() }),
+      (@"""shipping_query"":{", new ShippingQueryUpdate { Data = new ShippingQuery() }),
+      (@"""pre_checkout_query"":{", new PreCheckoutQueryUpdate { Data = new PreCheckoutQuery() }),
+      (@"""poll"":{", new PollUpdate { Data = new RegularPoll() }),
+      (@"""poll_answer"":{", new PollAnswerUpdate { Data = new PollAnswer() }),
       (@"""photos"":[", new UserProfilePhotos { PhotoSets = new List<Photo[]>() })
     };
 
