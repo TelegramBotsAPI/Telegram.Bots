@@ -33,8 +33,11 @@ namespace Telegram.Bots.Requests
     public SendText(long chatId, string text) : base(chatId, text) { }
   }
 
-  public sealed class SendTextToUsername : SendText<string>
+  namespace Usernames
   {
-    public SendTextToUsername(string username, string text) : base(username, text) { }
+    public sealed class SendText : SendText<string>
+    {
+      public SendText(string username, string text) : base(username, text) { }
+    }
   }
 }
