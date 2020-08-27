@@ -30,26 +30,6 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public sealed class SendCachedPhoto : SendPhoto<long, string>
-  {
-    public SendCachedPhoto(long chatId, string photo) : base(chatId, photo) { }
-  }
-
-  public sealed class SendCachedPhotoToUsername : SendPhoto<string, string>
-  {
-    public SendCachedPhotoToUsername(string username, string photo) : base(username, photo) { }
-  }
-
-  public sealed class SendPhotoUrl : SendPhoto<long, Uri>
-  {
-    public SendPhotoUrl(long chatId, Uri photo) : base(chatId, photo) { }
-  }
-
-  public sealed class SendPhotoUrlToUsername : SendPhoto<string, Uri>
-  {
-    public SendPhotoUrlToUsername(string username, Uri photo) : base(username, photo) { }
-  }
-
   public abstract class SendPhotoFile<TChatId> : SendPhoto<TChatId, InputFile>, IUploadable
   {
     protected SendPhotoFile(TChatId chatId, InputFile photo) : base(chatId, photo) { }
@@ -57,13 +37,36 @@ namespace Telegram.Bots.Requests
     public IEnumerable<InputFile?> GetFiles() => new[] { Photo };
   }
 
+  public sealed class SendCachedPhoto : SendPhoto<long, string>
+  {
+    public SendCachedPhoto(long chatId, string photo) : base(chatId, photo) { }
+  }
+
+  public sealed class SendPhotoUrl : SendPhoto<long, Uri>
+  {
+    public SendPhotoUrl(long chatId, Uri photo) : base(chatId, photo) { }
+  }
+
   public sealed class SendPhotoFile : SendPhotoFile<long>
   {
     public SendPhotoFile(long chatId, InputFile photo) : base(chatId, photo) { }
   }
 
-  public sealed class SendPhotoFileToUsername : SendPhotoFile<string>
+  namespace Usernames
   {
-    public SendPhotoFileToUsername(string username, InputFile photo) : base(username, photo) { }
+    public sealed class SendCachedPhoto : SendPhoto<string, string>
+    {
+      public SendCachedPhoto(string username, string photo) : base(username, photo) { }
+    }
+
+    public sealed class SendPhotoUrl : SendPhoto<string, Uri>
+    {
+      public SendPhotoUrl(string username, Uri photo) : base(username, photo) { }
+    }
+
+    public sealed class SendPhotoFile : SendPhotoFile<string>
+    {
+      public SendPhotoFile(string username, InputFile photo) : base(username, photo) { }
+    }
   }
 }
