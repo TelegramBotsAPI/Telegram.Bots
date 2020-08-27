@@ -82,6 +82,18 @@ namespace Telegram.Bots.Json.Internal
         { typeof(DocumentError), new Data { { "hash", "file_hash" } } },
         { typeof(DocumentsError), new Data { { "hashes", "file_hashes" } } },
         { typeof(UnspecifiedError), new Data { { "hash", "element_hash" } } },
+        { typeof(Update), new Data { { "id", "update_id" } } },
+        { typeof(MessageUpdate), new Data { { "data", "message" } } },
+        { typeof(EditedMessageUpdate), new Data { { "data", "edited_message" } } },
+        { typeof(ChannelPostUpdate), new Data { { "data", "channel_post" } } },
+        { typeof(EditedChannelPostUpdate), new Data { { "data", "edited_channel_post" } } },
+        { typeof(InlineQueryUpdate), new Data { { "data", "inline_query" } } },
+        { typeof(ChosenInlineResultUpdate), new Data { { "data", "chosen_inline_result" } } },
+        { typeof(CallbackQueryUpdate), new Data { { "data", "callback_query" } } },
+        { typeof(ShippingQueryUpdate), new Data { { "data", "shipping_query" } } },
+        { typeof(PreCheckoutQueryUpdate), new Data { { "data", "pre_checkout_query" } } },
+        { typeof(PollUpdate), new Data { { "data", "poll" } } },
+        { typeof(PollAnswerUpdate), new Data { { "data", "poll_answer" } } },
         { typeof(UserProfilePhotos), new Data { { "photo_sets", "photos" } } }
       };
 
