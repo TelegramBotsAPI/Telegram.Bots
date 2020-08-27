@@ -43,6 +43,15 @@ namespace Telegram.Bots.Json
         new DataProperty(property.Name, property.Value.ToString()));
     }
 
+    public static void Modify(JsonSerializerSettings settings)
+    {
+      if (settings is null) throw new ArgumentNullException(nameof(settings));
+
+      settings.ContractResolver = Settings.ContractResolver;
+      settings.NullValueHandling = Settings.NullValueHandling;
+      settings.Converters = Settings.Converters;
+    }
+
     private void Serialize<T>(T value, TextWriter textWriter, Styling styling = Styling.None)
     {
       JsonTextWriter? writer = null;
