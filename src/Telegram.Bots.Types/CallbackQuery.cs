@@ -16,21 +16,21 @@ namespace Telegram.Bots.Types
     public string Data { get; set; } = null!;
   }
 
-  public class GameCallbackQuery : CallbackQuery
+  public sealed class GameCallbackQuery : CallbackQuery
   {
     public Message Message { get; set; } = null!;
 
     public string ShortName { get; set; } = null!;
   }
 
-  public class InlineMessageCallbackQuery : CallbackQuery
+  public sealed class InlineMessageCallbackQuery : CallbackQuery
   {
     public string MessageId { get; set; } = null!;
 
     public string Data { get; set; } = null!;
   }
 
-  public class InlineGameCallbackQuery : CallbackQuery
+  public sealed class InlineGameCallbackQuery : CallbackQuery
   {
     public string MessageId { get; set; } = null!;
 
