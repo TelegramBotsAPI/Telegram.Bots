@@ -54,9 +54,15 @@ namespace Telegram.Bots.Http
           ? new Response<T>(_serializer.Deserialize<Success<T>>(httpContent).Result)
           : new Response<T>(_serializer.Deserialize<Failure>(httpContent));
       }
+      catch (TaskCanceledException)
+      {
+        return new Response<T>(Canceled);
+      }
       catch (OperationCanceledException)
       {
-        return new Response<T>(Timeout);
+        return token.IsCancellationRequested
+          ? new Response<T>(Canceled)
+          : new Response<T>(TimedOut);
       }
       finally
       {
@@ -125,8 +131,11 @@ namespace Telegram.Bots.Http
     private static readonly MediaTypeHeaderValue Stream =
       MediaTypeHeaderValue.Parse("application/octet-stream");
 
-    private static readonly Failure Timeout =
-      new Failure { Description = "Timeout", ErrorCode = 408 };
+    private static readonly Failure TimedOut =
+      new Failure { Description = "Timed Out", ErrorCode = 408 };
+
+    private static readonly Failure Canceled =
+      new Failure { Description = "Canceled", ErrorCode = 408 };
 
     private static readonly Response<FileInfo> NotFound =
       new Response<FileInfo>(new Failure { Description = "Not Found", ErrorCode = 404 });
