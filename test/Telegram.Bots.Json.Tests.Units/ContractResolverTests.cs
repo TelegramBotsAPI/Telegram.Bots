@@ -40,6 +40,8 @@ namespace Telegram.Bots.Json.Tests.Units
         new SwitchInlineQueryCurrentChatButton("", "")),
       (@"""callback_game"":{", new CallbackGameButton("")),
       (@"""photo"":[", new Game { PhotoSet = new List<Photo>() }),
+      (@"""inline_message_id"":""", new ChosenInlineResult { MessageId = "" }),
+      (@"""message_text"":""", new TextContent { Text = "" }),
       (@"""message_id"":1", new TextMessage { Id = 1 }),
       (@"""animation"":{", new AnimationMessage { Animation = new Animation() }),
       (@"""venue"":{", new VenueMessage { Venue = new Venue() }),
