@@ -17,7 +17,7 @@ namespace Telegram.Bots.Types
 
   public sealed class ChatInfo : Chat
   {
-    public ChatPhoto? ChatPhoto { get; set; }
+    public ChatPhoto? Photo { get; set; }
 
     public string? Description { get; set; }
 
