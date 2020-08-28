@@ -46,8 +46,8 @@ namespace Telegram.Bots.Requests
   {
     public sealed class EditLiveLocation : EditLiveLocation<string>
     {
-      public EditLiveLocation(string chatId, int messageId, double latitude, double longitude) :
-        base(chatId, messageId, latitude, longitude) { }
+      public EditLiveLocation(string username, int messageId, double latitude, double longitude) :
+        base(username, messageId, latitude, longitude) { }
     }
   }
 
