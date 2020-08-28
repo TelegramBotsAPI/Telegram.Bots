@@ -6,8 +6,8 @@ namespace Telegram.Bots.Requests
   {
     public string Id { get; }
 
-    public GetFile(string id) => Id = id;
-
     public string Method { get; } = "getFile";
+
+    public GetFile(string id) => Id = id;
   }
 }
