@@ -7,8 +7,6 @@ namespace Telegram.Bots.Extensions.Polling.Configs
   {
     public int Limit { get; set; } = 100;
 
-    public int Interval { get; set; } = 10;
-
     public int Timeout { get; set; } = 60;
 
     public IEnumerable<UpdateType>? AllowedUpdates { get; set; }

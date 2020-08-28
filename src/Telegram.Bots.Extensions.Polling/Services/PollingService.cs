@@ -27,7 +27,6 @@ namespace Telegram.Bots.Extensions.Polling.Services
       var offset = 0;
       while (!token.IsCancellationRequested)
       {
-        var wait = true;
         IServiceScope? scope = null;
         try
         {
@@ -53,7 +52,6 @@ namespace Telegram.Bots.Extensions.Polling.Services
               await Task.WhenAll(tasks).ConfigureAwait(false);
 
               offset = updates[^1].Id + 1;
-              wait = false;
             }
           }
         }
@@ -61,10 +59,6 @@ namespace Telegram.Bots.Extensions.Polling.Services
         {
           scope?.Dispose();
         }
-
-        if (!wait) continue;
-
-        await Task.Delay(TimeSpan.FromSeconds(_config.Interval), token).ConfigureAwait(false);
       }
     }
   }
