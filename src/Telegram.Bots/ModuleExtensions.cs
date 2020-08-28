@@ -16,31 +16,29 @@ namespace Telegram.Bots
 
   public static class ModuleExtensions
   {
-    public static IServices AddBotClient(this IServices services, string token) =>
+    public static IHttpClientBuilder AddBotClient(this IServices services, string token) =>
       services.AddBotClient(new BotConfig { Token = token });
 
-    public static IServices AddBotClient(this IServices services, IConfiguration config)
+    public static IHttpClientBuilder AddBotClient(this IServices services, IConfiguration config)
     {
       if (config is null) throw new ArgumentNullException(nameof(config));
 
       return services.AddBotClient(config.GetSection("Bot").Get<BotConfig>());
     }
 
-    public static IServices AddBotClient(this IServices services, BotConfig config)
+    public static IHttpClientBuilder AddBotClient(this IServices services, BotConfig config)
     {
       if (config is null) throw new ArgumentNullException(nameof(config));
 
       services.AddSingleton<IBotConfig>(config).AddSingleton<ISerializer, Serializer>();
 
-      services.AddHttpClient<IBotClient, BotClient>(client =>
+      return services.AddHttpClient<IBotClient, BotClient>(client =>
         {
           client.BaseAddress = config.BaseAddress;
           client.Timeout = TimeSpan.FromSeconds(config.Timeout);
         })
         .SetHandlerLifetime(TimeSpan.FromSeconds(config.HandlerLifetime))
         .AddPolicyHandler(GetPolicy());
-
-      return services;
 
       AsyncPolicyWrap<HttpResponseMessage> GetPolicy()
       {
