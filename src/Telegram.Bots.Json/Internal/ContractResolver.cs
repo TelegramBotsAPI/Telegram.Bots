@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Telegram.Bots.Types;
 using Telegram.Bots.Types.Games;
+using Telegram.Bots.Types.Inline;
 using Telegram.Bots.Types.Passport;
 
 namespace Telegram.Bots.Json.Internal
@@ -48,6 +49,8 @@ namespace Telegram.Bots.Json.Internal
         },
         { typeof(CallbackGameButton), new Data { { "game", "callback_game" } } },
         { typeof(Game), new Data { { "photo_set", "photo" } } },
+        { typeof(ChosenInlineResult), new Data { { "message_id", "inline_message_id" } } },
+        { typeof(TextContent), new Data { { "text", "message_text" } } },
         { typeof(Message), new Data { { "id", "message_id" } } },
         { typeof(NewChatMembersMessage), new Data { { "members", "new_chat_members" } } },
         { typeof(LeftChatMemberMessage), new Data { { "member", "left_chat_member" } } },
