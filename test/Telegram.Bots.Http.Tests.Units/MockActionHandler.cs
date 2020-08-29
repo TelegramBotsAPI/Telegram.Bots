@@ -7,7 +7,7 @@ namespace Telegram.Bots.Http.Tests.Units
 {
   using HttpAction = Func<HttpRequestMessage, HttpResponseMessage>;
 
-  public class MockActionHandler : DelegatingHandler
+  public sealed class MockActionHandler : DelegatingHandler
   {
     private readonly HttpAction _action;
 

@@ -9,7 +9,7 @@ using Xunit;
 
 namespace Telegram.Bots.Http.Tests.Units
 {
-  public class BotClientTests
+  public sealed class BotClientTests
   {
     [Fact(DisplayName = "BotClient returns Result Response on Success")]
     public async Task BotClientReturnsResultResponseOnSuccess()

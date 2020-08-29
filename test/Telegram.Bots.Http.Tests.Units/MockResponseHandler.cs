@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Telegram.Bots.Http.Tests.Units
 {
-  public class MockResponseHandler : DelegatingHandler
+  public sealed class MockResponseHandler : DelegatingHandler
   {
     private readonly HttpStatusCode _statusCode;
     private readonly string _content;
