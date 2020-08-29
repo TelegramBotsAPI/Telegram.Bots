@@ -3,10 +3,22 @@ using System.Collections.Generic;
 using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Telegram.Bots.Requests;
+using Telegram.Bots.Requests.Games;
+using Telegram.Bots.Requests.Inline;
+using Telegram.Bots.Requests.Payments;
+using Telegram.Bots.Requests.Stickers;
 using Telegram.Bots.Types;
 using Telegram.Bots.Types.Games;
 using Telegram.Bots.Types.Inline;
 using Telegram.Bots.Types.Passport;
+using EditCaption = Telegram.Bots.Requests.Inline.EditCaption;
+using EditLiveLocation = Telegram.Bots.Requests.Inline.EditLiveLocation;
+using EditReplyMarkup = Telegram.Bots.Requests.Inline.EditReplyMarkup;
+using EditText = Telegram.Bots.Requests.Inline.EditText;
+using GetGameHighScores = Telegram.Bots.Requests.Games.Inline.GetGameHighScores;
+using SetGameScore = Telegram.Bots.Requests.Games.Inline.SetGameScore;
+using StopLiveLocation = Telegram.Bots.Requests.Inline.StopLiveLocation;
 
 namespace Telegram.Bots.Json.Internal
 {
@@ -97,7 +109,34 @@ namespace Telegram.Bots.Json.Internal
         { typeof(PreCheckoutQueryUpdate), new Data { { "data", "pre_checkout_query" } } },
         { typeof(PollUpdate), new Data { { "data", "poll" } } },
         { typeof(PollAnswerUpdate), new Data { { "data", "poll_answer" } } },
-        { typeof(UserProfilePhotos), new Data { { "photo_sets", "photos" } } }
+        { typeof(UserProfilePhotos), new Data { { "photo_sets", "photos" } } },
+        { typeof(AnswerCallbackQuery), new Data { { "query_id", "callback_query_id" } } },
+        { typeof(EditCaption), new Data { { "message_id", "inline_message_id" } } },
+        { typeof(EditLiveLocation), new Data { { "message_id", "inline_message_id" } } },
+        { typeof(EditMedia<string>), new Data { { "message_id", "inline_message_id" } } },
+        { typeof(EditMedia<Uri>), new Data { { "message_id", "inline_message_id" } } },
+        { typeof(EditReplyMarkup), new Data { { "message_id", "inline_message_id" } } },
+        { typeof(EditText), new Data { { "message_id", "inline_message_id" } } },
+        { typeof(StopLiveLocation), new Data { { "message_id", "inline_message_id" } } },
+        { typeof(AnswerInlineQuery), new Data { { "query_id", "inline_query_id" } } },
+        { typeof(GetGameHighScores), new Data { { "message_id", "inline_message_id" } } },
+        { typeof(SendGame), new Data { { "short_name", "game_short_name" } } },
+        { typeof(SetGameScoreBase), new Data { { "disable_edit", "disable_edit_message" } } },
+        { typeof(SetGameScore), new Data { { "message_id", "inline_message_id" } } },
+        { typeof(AnswerPreCheckoutQuery), new Data { { "query_id", "pre_checkout_query_id" } } },
+        { typeof(AnswerShippingQuery), new Data { { "query_id", "shipping_query_id" } } },
+        { typeof(SendInvoice), new Data { { "photo", "photo_url" } } },
+        { typeof(AddStickerToSet<string>), new Data { { "sticker", "png_sticker" } } },
+        { typeof(AddStickerToSet<Uri>), new Data { { "sticker", "png_sticker" } } },
+        { typeof(AddStickerToSet<InputFile>), new Data { { "sticker", "png_sticker" } } },
+        { typeof(AddAnimatedStickerToSet<InputFile>), new Data { { "sticker", "tgs_sticker" } } },
+        { typeof(CreateNewStickerSet<string>), new Data { { "sticker", "png_sticker" } } },
+        { typeof(CreateNewStickerSet<Uri>), new Data { { "sticker", "png_sticker" } } },
+        { typeof(CreateNewStickerSet<InputFile>), new Data { { "sticker", "png_sticker" } } },
+        {
+          typeof(CreateNewAnimatedStickerSet<InputFile>), new Data { { "sticker", "tgs_sticker" } }
+        },
+        { typeof(UploadStickerFile), new Data { { "sticker", "png_sticker" } } }
       };
 
     protected override JsonProperty CreateProperty(
