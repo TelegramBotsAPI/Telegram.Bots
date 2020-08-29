@@ -5,7 +5,7 @@ using Telegram.Bots.Types.Stickers;
 
 namespace Telegram.Bots.Requests.Stickers
 {
-  public abstract class AddStickerToSet : IRequest<bool>, IUserTargetable
+  public abstract class AddStickerToSetBase : IRequest<bool>, IUserTargetable
   {
     public int UserId { get; }
 
@@ -17,7 +17,7 @@ namespace Telegram.Bots.Requests.Stickers
 
     public string Method { get; } = "addStickerToSet";
 
-    protected AddStickerToSet(int userId, string name, string emojis)
+    protected AddStickerToSetBase(int userId, string name, string emojis)
     {
       UserId = userId;
       Name = name;
@@ -25,45 +25,50 @@ namespace Telegram.Bots.Requests.Stickers
     }
   }
 
-  public abstract class AddPngStickerToSet<TPngSticker> : AddStickerToSet
+  public abstract class AddStickerToSet<TPngSticker> : AddStickerToSetBase
   {
     public TPngSticker Sticker { get; }
 
-    protected AddPngStickerToSet(int userId, string name, string emojis, TPngSticker sticker) :
+    protected AddStickerToSet(int userId, string name, string emojis, TPngSticker sticker) :
       base(userId, name, emojis) => Sticker = sticker;
   }
 
-  public sealed class AddPngStickerToSetViaCache : AddPngStickerToSet<string>
+  public sealed class AddStickerToSetViaCache : AddStickerToSet<string>
   {
-    public AddPngStickerToSetViaCache(int userId, string name, string emojis, string sticker) :
+    public AddStickerToSetViaCache(int userId, string name, string emojis, string sticker) :
       base(userId, name, emojis, sticker) { }
   }
 
-  public sealed class AddPngStickerToSetViaUrl : AddPngStickerToSet<Uri>
+  public sealed class AddStickerToSetViaUrl : AddStickerToSet<Uri>
   {
-    public AddPngStickerToSetViaUrl(int userId, string name, string emojis, Uri sticker) :
+    public AddStickerToSetViaUrl(int userId, string name, string emojis, Uri sticker) :
       base(userId, name, emojis, sticker) { }
   }
 
-  public sealed class AddPngStickerToSetViaFile : AddPngStickerToSet<InputFile>, IUploadable
+  public sealed class AddStickerToSetViaFile : AddStickerToSet<InputFile>, IUploadable
   {
-    public AddPngStickerToSetViaFile(int userId, string name, string emojis, InputFile sticker) :
+    public AddStickerToSetViaFile(int userId, string name, string emojis, InputFile sticker) :
       base(userId, name, emojis, sticker) { }
 
     public IEnumerable<InputFile?> GetFiles() => new[] { Sticker };
   }
 
-  public abstract class AddTgsStickerToSet<TTgsSticker> : AddStickerToSet
+  public abstract class AddAnimatedStickerToSet<TTgsSticker> : AddStickerToSetBase
   {
     public TTgsSticker Sticker { get; }
 
-    protected AddTgsStickerToSet(int userId, string name, string emojis, TTgsSticker sticker) :
+    protected AddAnimatedStickerToSet(int userId, string name, string emojis, TTgsSticker sticker) :
       base(userId, name, emojis) => Sticker = sticker;
   }
 
-  public sealed class AddTgsStickerToSetViaFile : AddTgsStickerToSet<InputFile>, IUploadable
+  public sealed class AddAnimatedStickerToSetViaFile : AddAnimatedStickerToSet<InputFile>,
+    IUploadable
   {
-    public AddTgsStickerToSetViaFile(int userId, string name, string emojis, InputFile sticker) :
+    public AddAnimatedStickerToSetViaFile(
+      int userId,
+      string name,
+      string emojis,
+      InputFile sticker) :
       base(userId, name, emojis, sticker) { }
 
     public IEnumerable<InputFile?> GetFiles() => new[] { Sticker };
