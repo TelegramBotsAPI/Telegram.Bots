@@ -5,7 +5,7 @@ using Telegram.Bots.Types.Stickers;
 
 namespace Telegram.Bots.Requests.Stickers
 {
-  public abstract class CreateNewStickerSet : IRequest<bool>, IUserTargetable
+  public abstract class CreateNewStickerSetBase : IRequest<bool>, IUserTargetable
   {
     public int UserId { get; }
 
@@ -21,7 +21,7 @@ namespace Telegram.Bots.Requests.Stickers
 
     public string Method { get; } = "createNewStickerSet";
 
-    protected CreateNewStickerSet(int userId, string name, string title, string emojis)
+    protected CreateNewStickerSetBase(int userId, string name, string title, string emojis)
     {
       UserId = userId;
       Name = name;
@@ -30,11 +30,11 @@ namespace Telegram.Bots.Requests.Stickers
     }
   }
 
-  public abstract class CreateNewPngStickerSet<TPngSticker> : CreateNewStickerSet
+  public abstract class CreateNewStickerSet<TPngSticker> : CreateNewStickerSetBase
   {
     public TPngSticker Sticker { get; }
 
-    protected CreateNewPngStickerSet(
+    protected CreateNewStickerSet(
       int userId,
       string name,
       string title,
@@ -42,9 +42,9 @@ namespace Telegram.Bots.Requests.Stickers
       TPngSticker sticker) : base(userId, name, title, emojis) => Sticker = sticker;
   }
 
-  public sealed class CreateNewPngStickerSetViaCache : CreateNewPngStickerSet<string>
+  public sealed class CreateNewStickerSetViaCache : CreateNewStickerSet<string>
   {
-    public CreateNewPngStickerSetViaCache(
+    public CreateNewStickerSetViaCache(
       int userId,
       string name,
       string title,
@@ -52,9 +52,9 @@ namespace Telegram.Bots.Requests.Stickers
       string sticker) : base(userId, name, title, emojis, sticker) { }
   }
 
-  public sealed class CreateNewPngStickerSetViaUrl : CreateNewPngStickerSet<Uri>
+  public sealed class CreateNewStickerSetViaUrl : CreateNewStickerSet<Uri>
   {
-    public CreateNewPngStickerSetViaUrl(
+    public CreateNewStickerSetViaUrl(
       int userId,
       string name,
       string title,
@@ -62,9 +62,9 @@ namespace Telegram.Bots.Requests.Stickers
       Uri sticker) : base(userId, name, title, emojis, sticker) { }
   }
 
-  public sealed class CreateNewPngStickerSetViaFile : CreateNewPngStickerSet<InputFile>, IUploadable
+  public sealed class CreateNewStickerSetViaFile : CreateNewStickerSet<InputFile>, IUploadable
   {
-    public CreateNewPngStickerSetViaFile(
+    public CreateNewStickerSetViaFile(
       int userId,
       string name,
       string title,
@@ -74,11 +74,11 @@ namespace Telegram.Bots.Requests.Stickers
     public IEnumerable<InputFile?> GetFiles() => new[] { Sticker };
   }
 
-  public abstract class CreateNewTgsStickerSet<TTgsSticker> : CreateNewStickerSet
+  public abstract class CreateNewAnimatedStickerSet<TTgsSticker> : CreateNewStickerSetBase
   {
     public TTgsSticker Sticker { get; }
 
-    protected CreateNewTgsStickerSet(
+    protected CreateNewAnimatedStickerSet(
       int userId,
       string name,
       string title,
@@ -86,9 +86,10 @@ namespace Telegram.Bots.Requests.Stickers
       TTgsSticker sticker) : base(userId, name, title, emojis) => Sticker = sticker;
   }
 
-  public sealed class CreateNewTgsStickerSetViaFile : CreateNewTgsStickerSet<InputFile>, IUploadable
+  public sealed class CreateNewAnimatedStickerSetViaFile : CreateNewAnimatedStickerSet<InputFile>,
+    IUploadable
   {
-    public CreateNewTgsStickerSetViaFile(
+    public CreateNewAnimatedStickerSetViaFile(
       int userId,
       string name,
       string title,
