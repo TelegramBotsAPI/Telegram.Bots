@@ -1,5 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using Telegram.Bots.Requests;
+using Telegram.Bots.Requests.Games;
+using Telegram.Bots.Requests.Inline;
+using Telegram.Bots.Requests.Payments;
+using Telegram.Bots.Requests.Stickers;
 using Telegram.Bots.Types;
 using Telegram.Bots.Types.Games;
 using Telegram.Bots.Types.Inline;
@@ -7,11 +13,22 @@ using Telegram.Bots.Types.Passport;
 using Telegram.Bots.Types.Payments;
 using Telegram.Bots.Types.Stickers;
 using Xunit;
+using EditCaption = Telegram.Bots.Requests.Inline.EditCaption;
+using EditLiveLocation = Telegram.Bots.Requests.Inline.EditLiveLocation;
+using EditMediaViaCache = Telegram.Bots.Requests.Inline.EditMediaViaCache;
+using EditMediaViaUrl = Telegram.Bots.Requests.Inline.EditMediaViaUrl;
+using EditReplyMarkup = Telegram.Bots.Requests.Inline.EditReplyMarkup;
+using EditText = Telegram.Bots.Requests.Inline.EditText;
+using FileInfo = Telegram.Bots.Types.FileInfo;
+using GetInlineGameHighScores = Telegram.Bots.Requests.Games.Inline.GetGameHighScores;
+using SetInlineGameScore = Telegram.Bots.Requests.Games.Inline.SetGameScore;
+using StopLiveLocation = Telegram.Bots.Requests.Inline.StopLiveLocation;
 
 namespace Telegram.Bots.Json.Tests.Units
 {
   public sealed class ContractResolverTests : IClassFixture<Serializer>
   {
+    private static readonly InputFile File = Stream.Null;
     private static readonly Uri Uri = new Uri("https://example.com");
 
     private readonly Serializer _serializer;
@@ -97,7 +114,34 @@ namespace Telegram.Bots.Json.Tests.Units
       (@"""pre_checkout_query"":{", new PreCheckoutQueryUpdate { Data = new PreCheckoutQuery() }),
       (@"""poll"":{", new PollUpdate { Data = new RegularPoll() }),
       (@"""poll_answer"":{", new PollAnswerUpdate { Data = new PollAnswer() }),
-      (@"""photos"":[", new UserProfilePhotos { PhotoSets = new List<Photo[]>() })
+      (@"""photos"":[", new UserProfilePhotos { PhotoSets = new List<Photo[]>() }),
+      (@"""callback_query_id"":""", new AnswerCallbackQuery("", "")),
+      (@"""inline_message_id"":""", new EditCaption("")),
+      (@"""inline_message_id"":""", new EditLiveLocation("", 0, 0)),
+      (@"""inline_message_id"":""", new EditMediaViaCache("", new CachedPhoto(""))),
+      (@"""inline_message_id"":""", new EditMediaViaUrl("", new PhotoUrl(Uri))),
+      (@"""inline_message_id"":""", new EditLiveLocation("", 0, 0)),
+      (@"""inline_message_id"":""", new EditReplyMarkup("")),
+      (@"""inline_message_id"":""", new EditText("", "")),
+      (@"""inline_message_id"":""", new StopLiveLocation("")),
+      (@"""inline_query_id"":""", new AnswerInlineQuery("", new List<InlineResult>())),
+      (@"""inline_message_id"":""", new GetInlineGameHighScores("", 1)),
+      (@"""game_short_name"":""", new SendGame(1, "")),
+      (@"""inline_message_id"":""", new SetInlineGameScore("", 1, 1)),
+      (@"""disable_edit_message"":true", new SetGameScore(1, 1, 1, 1) { DisableEdit = true }),
+      (@"""pre_checkout_query_id"":""", new AnswerPreCheckoutQuery("", "")),
+      (@"""shipping_query_id"":""", new AnswerShippingQuery("", "")),
+      (@"""photo_url"":""",
+        new SendInvoice(1, "", "", "", "", "", "", new LabeledPrice[1]) { Photo = Uri }),
+      (@"""png_sticker"":""", new AddStickerToSetViaCache(1, "", "", "")),
+      (@"""png_sticker"":""", new AddStickerToSetViaUrl(1, "", "", Uri)),
+      (@"""png_sticker"":""attach://", new AddStickerToSetViaFile(1, "", "", File)),
+      (@"""tgs_sticker"":""attach://", new AddAnimatedStickerToSetViaFile(1, "", "", File)),
+      (@"""png_sticker"":""", new CreateNewStickerSetViaCache(0, "", "", "", "")),
+      (@"""png_sticker"":""", new CreateNewStickerSetViaUrl(0, "", "", "", Uri)),
+      (@"""png_sticker"":""attach://", new CreateNewStickerSetViaFile(0, "", "", "", File)),
+      (@"""tgs_sticker"":""attach://", new CreateNewAnimatedStickerSetViaFile(0, "", "", "", File)),
+      (@"""png_sticker"":""", new UploadStickerFile(1, Stream.Null))
     };
 
     [Theory(DisplayName = "ContractResolver resolves properties correctly")]
