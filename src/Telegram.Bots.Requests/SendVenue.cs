@@ -53,11 +53,11 @@ namespace Telegram.Bots.Requests
     public sealed class SendVenue : SendVenue<string>
     {
       public SendVenue(
-        string chatId,
+        string username,
         double latitude,
         double longitude,
         string title,
-        string address) : base(chatId, latitude, longitude, title, address) { }
+        string address) : base(username, latitude, longitude, title, address) { }
     }
   }
 }
