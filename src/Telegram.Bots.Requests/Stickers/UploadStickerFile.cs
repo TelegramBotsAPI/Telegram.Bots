@@ -3,7 +3,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests.Stickers
 {
-  public sealed class UploadPngStickerFile : IRequest<FileInfo>, IUserTargetable, IUploadable
+  public sealed class UploadStickerFile : IRequest<FileInfo>, IUserTargetable, IUploadable
   {
     public int UserId { get; }
 
@@ -11,7 +11,7 @@ namespace Telegram.Bots.Requests.Stickers
 
     public string Method { get; } = "uploadStickerFile";
 
-    public UploadPngStickerFile(int userId, InputFile sticker)
+    public UploadStickerFile(int userId, InputFile sticker)
     {
       UserId = userId;
       Sticker = sticker;
