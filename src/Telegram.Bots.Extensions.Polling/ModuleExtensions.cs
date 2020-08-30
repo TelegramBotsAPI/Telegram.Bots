@@ -12,16 +12,20 @@ namespace Telegram.Bots.Extensions.Polling
 
   public static class ModuleExtensions
   {
-    public static IServices AddPolling(this IServices services, IConfiguration? config = null)
+    public static IServices AddPolling<T>(this IServices services, IConfiguration? config = null)
+      where T : class, IUpdateHandler
     {
       var pollingConfig = config is null
         ? new PollingConfig()
         : config.GetSection("Polling").Get<PollingConfig>();
 
-      return services.AddPolling(pollingConfig);
+      return services.AddPolling<T>(pollingConfig);
     }
 
-    public static IServices AddPolling(this IServices services, PollingConfig config) =>
-      services.AddSingleton(config).AddHostedService<PollingService>();
+    public static IServices AddPolling<T>(this IServices services, PollingConfig config)
+      where T : class, IUpdateHandler => services
+      .AddSingleton(config)
+      .AddSingleton<IUpdateHandler, T>()
+      .AddHostedService<PollingService>();
   }
 }
