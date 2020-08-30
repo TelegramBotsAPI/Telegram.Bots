@@ -43,14 +43,14 @@ namespace Telegram.Bots.Types
 
   public sealed class RequestRegularPollButton : Button
   {
-    public ButtonPollType? RequestPoll { get; } = PollType.Regular;
+    public ButtonPollType? RequestPoll { get; } = new ButtonPollType(PollType.Regular);
 
     public RequestRegularPollButton(string text) : base(text) { }
   }
 
   public sealed class RequestQuizPollButton : Button
   {
-    public ButtonPollType? RequestPoll { get; } = PollType.Quiz;
+    public ButtonPollType? RequestPoll { get; } = new ButtonPollType(PollType.Quiz);
 
     public RequestQuizPollButton(string text) : base(text) { }
   }

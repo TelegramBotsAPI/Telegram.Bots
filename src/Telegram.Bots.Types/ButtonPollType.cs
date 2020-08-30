@@ -16,10 +16,6 @@ namespace Telegram.Bots.Types
 
     public override int GetHashCode() => Type.GetHashCode();
 
-    public static implicit operator ButtonPollType(PollType type) => ToButtonPollType(type);
-
-    public static ButtonPollType ToButtonPollType(PollType type) => new ButtonPollType(type);
-
     public static bool operator ==(ButtonPollType left, ButtonPollType right) => left.Equals(right);
 
     public static bool operator !=(ButtonPollType left, ButtonPollType right) => !(left == right);
