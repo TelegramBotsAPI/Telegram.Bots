@@ -57,6 +57,56 @@ namespace Telegram.Bots.Json.Internal
         { typeof(CallbackGameButton), new Data { { "game", "callback_game" } } },
         { typeof(Game), new Data { { "photo_set", "photo" } } },
         { typeof(ChosenInlineResult), new Data { { "message_id", "inline_message_id" } } },
+        { typeof(ReplaceableResult), new Data { { "content", "input_message_content" } } },
+        { typeof(InlineArticle), new Data { { "thumb", "thumb_url" } } },
+        { typeof(InlineAudio<string>), new Data { { "audio", "audio_file_id" } } },
+        { typeof(InlineAudio<Uri>), new Data { { "audio", "audio_url" } } },
+        { typeof(InlineAudio), new Data { { "duration", "audio_duration" } } },
+        { typeof(InlineContact), new Data { { "thumb", "thumb_url" } } },
+        { typeof(InlineDocument<string>), new Data { { "document", "document_file_id" } } },
+        { typeof(InlineDocument<Uri>), new Data { { "document", "document_url" } } },
+        { typeof(InlineDocument), new Data { { "thumb", "thumb_url" } } },
+        { typeof(InlineGame), new Data { { "short_name", "game_short_name" } } },
+        { typeof(InlineGif<string>), new Data { { "gif", "gif_file_id" } } },
+        { typeof(InlineGif<Uri>), new Data { { "gif", "gif_url" } } },
+        {
+          typeof(InlineGif), new Data
+          {
+            { "width", "gif_width" }, { "height", "gif_height" },
+            { "duration", "gif_duration" }, { "thumb", "thumb_url" }
+          }
+        },
+        { typeof(InlineLocation), new Data { { "thumb", "thumb_url" } } },
+        { typeof(InlineMpeg4Gif<string>), new Data { { "mpeg4", "mpeg4_file_id" } } },
+        { typeof(InlineMpeg4Gif<Uri>), new Data { { "mpeg4", "mpeg4_url" } } },
+        {
+          typeof(InlineMpeg4Gif), new Data
+          {
+            { "width", "mpeg4_width" }, { "height", "mpeg4_height" },
+            { "duration", "mpeg4_duration" }, { "thumb", "thumb_url" }
+          }
+        },
+        { typeof(InlinePhoto<string>), new Data { { "photo", "photo_file_id" } } },
+        { typeof(InlinePhoto<Uri>), new Data { { "photo", "photo_url" } } },
+        {
+          typeof(InlinePhoto), new Data
+            { { "width", "photo_width" }, { "height", "photo_height" }, { "thumb", "thumb_url" } }
+        },
+        { typeof(InlineSticker<string>), new Data { { "sticker", "sticker_file_id" } } },
+        { typeof(InlineVenue), new Data { { "thumb", "thumb_url" } } },
+        { typeof(InlineVideo<string>), new Data { { "video", "video_file_id" } } },
+        { typeof(InlineVideo<Uri>), new Data { { "video", "video_url" } } },
+        {
+          typeof(InlineVideo),
+          new Data
+          {
+            { "width", "video_width" }, { "height", "video_height" },
+            { "duration", "video_duration" }, { "thumb", "thumb_url" }
+          }
+        },
+        { typeof(InlineVoice<string>), new Data { { "voice", "voice_file_id" } } },
+        { typeof(InlineVoice<Uri>), new Data { { "voice", "voice_url" } } },
+        { typeof(InlineVoice), new Data { { "duration", "voice_duration" } } },
         { typeof(TextContent), new Data { { "text", "message_text" } } },
         { typeof(Message), new Data { { "id", "message_id" } } },
         { typeof(NewChatMembersMessage), new Data { { "members", "new_chat_members" } } },
