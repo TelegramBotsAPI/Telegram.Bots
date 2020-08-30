@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telegram.Bots.Types.Tests.U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telegram.Bots.Http.Tests.Units", "test\Telegram.Bots.Http.Tests.Units\Telegram.Bots.Http.Tests.Units.csproj", "{D3B0E5DD-0F09-4408-920D-C360E332D0AF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{66BB6398-96BC-4CD5-B1E6-382E6A715B40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
