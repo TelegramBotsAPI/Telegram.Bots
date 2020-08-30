@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020 Aman Agnihotri
 
+using System;
 using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests.Admins
@@ -13,7 +14,7 @@ namespace Telegram.Bots.Requests.Admins
 
     public ChatPermissions Permissions { get; }
 
-    public long? UntilDate { get; set; }
+    public DateTime? UntilDate { get; set; }
 
     public string Method { get; } = "restrictChatMember";
 

@@ -16,7 +16,7 @@ namespace Telegram.Bots.Types
 
     public User? From { get; set; }
 
-    public long Date { get; set; }
+    public DateTime Date { get; set; } = DateTime.UnixEpoch;
 
     public Chat Chat { get; set; } = null!;
 
@@ -30,13 +30,13 @@ namespace Telegram.Bots.Types
 
     public string? ForwardSenderName { get; set; }
 
-    public long? ForwardDate { get; set; }
+    public DateTime? ForwardDate { get; set; }
 
     public Message? ReplyToMessage { get; set; }
 
     public User? ViaBot { get; set; }
 
-    public long? EditDate { get; set; }
+    public DateTime? EditDate { get; set; }
 
     public string? AuthorSignature { get; set; }
 

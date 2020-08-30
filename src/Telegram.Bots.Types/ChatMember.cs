@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020 Aman Agnihotri
 
+using System;
+
 namespace Telegram.Bots.Types
 {
   using Status = ChatMemberStatus;
@@ -54,7 +56,7 @@ namespace Telegram.Bots.Types
   {
     public override Status Status { get; } = Status.Restricted;
 
-    public long UntilDate { get; set; }
+    public DateTime UntilDate { get; set; }
 
     public bool CanChangeInfo { get; set; }
 
@@ -79,7 +81,7 @@ namespace Telegram.Bots.Types
   {
     public override Status Status { get; } = Status.Kicked;
 
-    public long UntilDate { get; set; }
+    public DateTime UntilDate { get; set; }
   }
 
   public sealed class LeftMember : ChatMember

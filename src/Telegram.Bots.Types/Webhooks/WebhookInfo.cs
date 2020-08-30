@@ -14,7 +14,7 @@ namespace Telegram.Bots.Types.Webhooks
 
     public uint PendingUpdateCount { get; set; }
 
-    public long? LastErrorDate { get; set; }
+    public DateTime? LastErrorDate { get; set; }
 
     public string? LastErrorMessage { get; set; }
 

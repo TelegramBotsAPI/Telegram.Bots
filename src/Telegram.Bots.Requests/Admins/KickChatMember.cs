@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020 Aman Agnihotri
 
+using System;
+
 namespace Telegram.Bots.Requests.Admins
 {
   public abstract class KickChatMember<TChatId> : IRequest<bool>, IChatMemberTargetable<TChatId>
@@ -9,7 +11,7 @@ namespace Telegram.Bots.Requests.Admins
 
     public int UserId { get; }
 
-    public long? UntilDate { get; set; }
+    public DateTime? UntilDate { get; set; }
 
     public string Method { get; } = "kickChatMember";
 

@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020 Aman Agnihotri
 
+using System;
 using System.Collections.Generic;
 
 namespace Telegram.Bots.Types
@@ -23,7 +24,7 @@ namespace Telegram.Bots.Types
 
     public int? OpenPeriod { get; set; }
 
-    public long? CloseDate { get; set; }
+    public DateTime? CloseDate { get; set; }
   }
 
   public sealed class RegularPoll : Poll

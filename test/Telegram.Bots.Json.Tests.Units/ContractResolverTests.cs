@@ -137,7 +137,7 @@ namespace Telegram.Bots.Json.Tests.Units
       (@"""file_id"":""", new PassportFile { Id = "" }),
       (@"""file_unique_id"":""", new PassportFile { UniqueId = "" }),
       (@"""file_size"":1", new PassportFile { Size = 1 }),
-      (@"""file_date"":1", new PassportFile { Date = 1 }),
+      (@"""file_date"":0", new PassportFile { Date = DateTime.UnixEpoch }),
       (@"""field_name"":""", new DataFieldError { Name = "" }),
       (@"""data_hash"":""", new DataFieldError { Hash = "" }),
       (@"""element_hash"":""", new UnspecifiedError { Hash = "" }),
