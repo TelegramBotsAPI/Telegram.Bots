@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: LGPL-3.0-or-later
+// Copyright © 2020 Aman Agnihotri
+
 using Xunit;
 
 namespace Telegram.Bots.Types.Tests.Units
