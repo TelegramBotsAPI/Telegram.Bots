@@ -4,45 +4,67 @@ namespace Telegram.Bots.Types.Inline
 
   public sealed class ContactContent : InputContent
   {
-    public string PhoneNumber { get; set; } = null!;
+    public string PhoneNumber { get; }
 
-    public string FirstName { get; set; } = null!;
+    public string FirstName { get; }
 
-    public string? LastName { get; set; } = null!;
+    public string? LastName { get; set; }
 
     public string? Vcard { get; set; }
+
+    public ContactContent(string phoneNumber, string firstName)
+    {
+      PhoneNumber = phoneNumber;
+      FirstName = firstName;
+    }
   }
 
   public sealed class LocationContent : InputContent
   {
-    public double Latitude { get; set; }
+    public double Latitude { get; }
 
-    public double Longitude { get; set; }
+    public double Longitude { get; }
 
     public int? LivePeriod { get; set; }
+
+    public LocationContent(double latitude, double longitude)
+    {
+      Latitude = latitude;
+      Longitude = longitude;
+    }
   }
 
   public sealed class TextContent : InputContent
   {
-    public string Text { get; set; } = null!;
+    public string Text { get; }
 
     public ParseMode? ParseMode { get; set; }
 
     public bool? DisableWebPagePreview { get; set; }
+
+    public TextContent(string text) => Text = text;
   }
 
   public sealed class VenueContent : InputContent
   {
-    public double Latitude { get; set; }
+    public string Title { get; }
 
-    public double Longitude { get; set; }
+    public string Address { get; }
 
-    public string Title { get; set; } = null!;
+    public double Latitude { get; }
 
-    public string Address { get; set; } = null!;
+    public double Longitude { get; }
 
     public string? FoursquareId { get; set; }
 
     public string? FoursquareType { get; set; }
+
+    public VenueContent(string title, string address, double latitude, double longitude)
+    {
+      Title = title;
+      Address = address;
+      Latitude = latitude;
+      Longitude = longitude;
+    }
   }
 }
