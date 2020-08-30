@@ -90,8 +90,6 @@ namespace Telegram.Bots.Json.Tests.Units
         new SuccessfulPaymentMessage { Payment = new SuccessfulPayment() }),
       (@"""connected_website"":""", new ConnectedWebsiteMessage { Website = Uri }),
       (@"""passport_data"":{", new PassportDataMessage { PassportData = new PassportData() }),
-      (@"""reply_markup"":{",
-        new ReplyMarkupMessage { ReplyMarkup = new InlineKeyboardMarkup(null!) }),
       (@"""file_id"":""", new PassportFile { Id = "" }),
       (@"""file_unique_id"":""", new PassportFile { UniqueId = "" }),
       (@"""file_size"":1", new PassportFile { Size = 1 }),

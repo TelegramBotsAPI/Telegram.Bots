@@ -42,8 +42,7 @@ namespace Telegram.Bots.Json.Internal
       Invoice,
       SuccessfulPayment,
       ConnectedWebsite,
-      PassportData,
-      ReplyMarkup
+      PassportData
     };
 
     public override bool CanWrite => false;
@@ -99,7 +98,6 @@ namespace Telegram.Bots.Json.Internal
         SuccessfulPayment => Get<SuccessfulPaymentMessage>(),
         ConnectedWebsite => Get<ConnectedWebsiteMessage>(),
         PassportData => Get<PassportDataMessage>(),
-        ReplyMarkup => Get<ReplyMarkupMessage>(),
         _ => null
       };
 
@@ -141,6 +139,5 @@ namespace Telegram.Bots.Json.Internal
     public const string SuccessfulPayment = "successful_payment";
     public const string ConnectedWebsite = "connected_website";
     public const string PassportData = "passport_data";
-    public const string ReplyMarkup = "reply_markup";
   }
 }

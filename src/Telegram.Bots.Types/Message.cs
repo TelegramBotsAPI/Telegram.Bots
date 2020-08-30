@@ -36,6 +36,8 @@ namespace Telegram.Bots.Types
     public long? EditDate { get; set; }
 
     public string? AuthorSignature { get; set; }
+
+    public InlineKeyboardMarkup? ReplyMarkup { get; set; }
   }
 
   public abstract class CaptionableMessage : Message
@@ -204,10 +206,5 @@ namespace Telegram.Bots.Types
   public sealed class PassportDataMessage : Message
   {
     public PassportData PassportData { get; set; } = null!;
-  }
-
-  public sealed class ReplyMarkupMessage : Message
-  {
-    public InlineKeyboardMarkup ReplyMarkup { get; set; } = null!;
   }
 }

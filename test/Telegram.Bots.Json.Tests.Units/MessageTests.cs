@@ -42,8 +42,7 @@ namespace Telegram.Bots.Json.Tests.Units
       (@"{""invoice"":{}}", typeof(InvoiceMessage)),
       (@"{""successful_payment"":{}}", typeof(SuccessfulPaymentMessage)),
       (@"{""connected_website"":""""}", typeof(ConnectedWebsiteMessage)),
-      (@"{""passport_data"":{}}", typeof(PassportDataMessage)),
-      (@"{""reply_markup"":{}}", typeof(ReplyMarkupMessage))
+      (@"{""passport_data"":{}}", typeof(PassportDataMessage))
     };
 
     [Theory(DisplayName = "Message deserializes correctly")]
