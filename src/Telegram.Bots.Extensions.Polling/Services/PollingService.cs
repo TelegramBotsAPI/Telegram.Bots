@@ -27,6 +27,9 @@ namespace Telegram.Bots.Extensions.Polling.Services
 
     protected override async Task ExecuteAsync(CancellationToken token)
     {
+      if (!await IsValid(token).ConfigureAwait(false))
+        throw new ArgumentException("Invalid Bot Token");
+
       var offset = 0;
       while (!token.IsCancellationRequested)
       {
@@ -62,6 +65,26 @@ namespace Telegram.Bots.Extensions.Polling.Services
         {
           scope?.Dispose();
         }
+      }
+    }
+
+    private async Task<bool> IsValid(CancellationToken token)
+    {
+      IServiceScope? scope = null;
+      try
+      {
+        scope = _provider.CreateScope();
+        {
+          var bot = scope.ServiceProvider.GetRequiredService<IBotClient>();
+
+          var response = await bot.HandleAsync(new GetMe(), token).ConfigureAwait(false);
+
+          return response.Ok;
+        }
+      }
+      finally
+      {
+        scope?.Dispose();
       }
     }
   }
