@@ -31,9 +31,7 @@ namespace Telegram.Bots.Json.Internal
       {
         { typeof(Animation), new Data { { "name", "file_name" } } },
         { typeof(GameCallbackQuery), new Data { { "short_name", "game_short_name" } } },
-        {
-          typeof(InlineMessageCallbackQuery), new Data { { "message_id", "inline_message_id" } }
-        },
+        { typeof(InlineMessageCallbackQuery), new Data { { "message_id", "inline_message_id" } } },
         {
           typeof(InlineGameCallbackQuery),
           new Data { { "message_id", "inline_message_id" }, { "short_name", "game_short_name" } }
@@ -41,11 +39,8 @@ namespace Telegram.Bots.Json.Internal
         { typeof(ChatInfo), new Data { { "pinned", "pinned_message" } } },
         { typeof(Document), new Data { { "name", "file_name" } } },
         {
-          typeof(File),
-          new Data
-          {
-            { "id", "file_id" }, { "unique_id", "file_unique_id" }, { "size", "file_size" }
-          }
+          typeof(File), new Data
+            { { "id", "file_id" }, { "unique_id", "file_unique_id" }, { "size", "file_size" } }
         },
         { typeof(FileInfo), new Data { { "path", "file_path" } } },
         {
@@ -85,10 +80,8 @@ namespace Telegram.Bots.Json.Internal
           typeof(PassportFile),
           new Data
           {
-            { "id", "file_id" },
-            { "unique_id", "file_unique_id" },
-            { "size", "file_size" },
-            { "date", "file_date" }
+            { "id", "file_id" }, { "unique_id", "file_unique_id" },
+            { "size", "file_size" }, { "date", "file_date" }
           }
         },
         {
