@@ -13,6 +13,10 @@ using Telegram.Bots.Types.Passport;
 using Telegram.Bots.Types.Payments;
 using Telegram.Bots.Types.Stickers;
 using Xunit;
+using GetInlineGameHighScores = Telegram.Bots.Requests.Games.Inline.GetGameHighScores;
+using SetInlineGameScore = Telegram.Bots.Requests.Games.Inline.SetGameScore;
+using static Telegram.Bots.Types.Inline.DocumentMimeType;
+using static Telegram.Bots.Types.Inline.VideoMimeType;
 using EditCaption = Telegram.Bots.Requests.Inline.EditCaption;
 using EditLiveLocation = Telegram.Bots.Requests.Inline.EditLiveLocation;
 using EditMediaViaCache = Telegram.Bots.Requests.Inline.EditMediaViaCache;
@@ -20,8 +24,6 @@ using EditMediaViaUrl = Telegram.Bots.Requests.Inline.EditMediaViaUrl;
 using EditReplyMarkup = Telegram.Bots.Requests.Inline.EditReplyMarkup;
 using EditText = Telegram.Bots.Requests.Inline.EditText;
 using FileInfo = Telegram.Bots.Types.FileInfo;
-using GetInlineGameHighScores = Telegram.Bots.Requests.Games.Inline.GetGameHighScores;
-using SetInlineGameScore = Telegram.Bots.Requests.Games.Inline.SetGameScore;
 using StopLiveLocation = Telegram.Bots.Requests.Inline.StopLiveLocation;
 
 namespace Telegram.Bots.Json.Tests.Units
@@ -57,7 +59,46 @@ namespace Telegram.Bots.Json.Tests.Units
       (@"""callback_game"":{", new CallbackGameButton("")),
       (@"""photo"":[", new Game { PhotoSet = new List<Photo>() }),
       (@"""inline_message_id"":""", new ChosenInlineResult { MessageId = "" }),
-      (@"""message_text"":""", new TextContent { Text = "" }),
+      (@"""input_message_content"":{", new InlineArticle("", "") { Content = new TextContent("") }),
+      (@"""thumb_url"":""", new InlineArticle("", "") { Thumb = Uri }),
+      (@"""audio_file_id"":""", new InlineCachedAudio("", "")),
+      (@"""audio_url"":""", new InlineAudio("", "", Uri)),
+      (@"""audio_duration"":10", new InlineAudio("", "", Uri) { Duration = 10 }),
+      (@"""thumb_url"":""", new InlineContact("", "", "") { Thumb = Uri }),
+      (@"""document_file_id"":""", new InlineCachedDocument("", "", "")),
+      (@"""document_url"":""", new InlineDocument("", "", Uri, Pdf)),
+      (@"""thumb_url"":""", new InlineDocument("", "", Uri, Zip) { Thumb = Uri }),
+      (@"""game_short_name"":""", new InlineGame("", "")),
+      (@"""gif_file_id"":""", new InlineCachedGif("", "")),
+      (@"""gif_url"":""", new InlineGif("", Uri, Uri)),
+      (@"""gif_width"":1", new InlineGif("", Uri, Uri) { Width = 1 }),
+      (@"""gif_height"":1", new InlineGif("", Uri, Uri) { Height = 1 }),
+      (@"""gif_duration"":1", new InlineGif("", Uri, Uri) { Duration = 1 }),
+      (@"""thumb_url"":""", new InlineGif("", Uri, Uri)),
+      (@"""thumb_url"":""", new InlineLocation("", "", 1, 1) { Thumb = Uri }),
+      (@"""mpeg4_file_id"":""", new InlineCachedMpeg4Gif("", "")),
+      (@"""mpeg4_url"":""", new InlineMpeg4Gif("", Uri, Uri)),
+      (@"""mpeg4_width"":1", new InlineMpeg4Gif("", Uri, Uri) { Width = 1 }),
+      (@"""mpeg4_height"":1", new InlineMpeg4Gif("", Uri, Uri) { Height = 1 }),
+      (@"""mpeg4_duration"":1", new InlineMpeg4Gif("", Uri, Uri) { Duration = 1 }),
+      (@"""thumb_url"":""", new InlineMpeg4Gif("", Uri, Uri)),
+      (@"""photo_file_id"":""", new InlineCachedPhoto("", "")),
+      (@"""photo_url"":""", new InlinePhoto("", Uri, Uri)),
+      (@"""thumb_url"":""", new InlinePhoto("", Uri, Uri)),
+      (@"""photo_width"":1", new InlinePhoto("", Uri, Uri) { Width = 1 }),
+      (@"""photo_height"":1", new InlinePhoto("", Uri, Uri) { Height = 1 }),
+      (@"""sticker_file_id"":""", new InlineCachedSticker("", "")),
+      (@"""thumb_url"":""", new InlineVenue("", "", "", 1, 1) { Thumb = Uri }),
+      (@"""video_file_id"":""", new InlineCachedVideo("", "", "")),
+      (@"""video_url"":""", new InlineVideo("", "", Uri, Html, Uri)),
+      (@"""thumb_url"":""", new InlineVideo("", "", Uri, Html, Uri)),
+      (@"""video_width"":1", new InlineVideo("", "", Uri, Html, Uri) { Width = 1 }),
+      (@"""video_height"":1", new InlineVideo("", "", Uri, Html, Uri) { Height = 1 }),
+      (@"""video_duration"":1", new InlineVideo("", "", Uri, Html, Uri) { Duration = 1 }),
+      (@"""voice_file_id"":""", new InlineCachedVoice("", "", "")),
+      (@"""voice_url"":""", new InlineVoice("", "", Uri)),
+      (@"""voice_duration"":10", new InlineVoice("", "", Uri) { Duration = 10 }),
+      (@"""message_text"":""", new TextContent("")),
       (@"""message_id"":1", new TextMessage { Id = 1 }),
       (@"""animation"":{", new AnimationMessage { Animation = new Animation() }),
       (@"""venue"":{", new VenueMessage { Venue = new Venue() }),
