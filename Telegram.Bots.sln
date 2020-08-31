@@ -14,10 +14,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telegram.Bots.Types.Tests.U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telegram.Bots.Http.Tests.Units", "test\Telegram.Bots.Http.Tests.Units\Telegram.Bots.Http.Tests.Units.csproj", "{D3B0E5DD-0F09-4408-920D-C360E332D0AF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{66BB6398-96BC-4CD5-B1E6-382E6A715B40}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telegram.Bots.Echo.Polling", "samples\Telegram.Bots.Echo.Polling\Telegram.Bots.Echo.Polling.csproj", "{C75D96A7-BA0B-4031-8482-FA192ECE5AB7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,7 +25,6 @@ Global
 		{729D06D6-E899-4D45-A604-4656A40647FC} = {3DA363CF-6110-42B2-B8C9-B8379A589121}
 		{578DFFAF-D5BA-4F42-9188-F568701AAE03} = {5DF269F2-6727-4CC1-B495-BA5DF298CA89}
 		{D3B0E5DD-0F09-4408-920D-C360E332D0AF} = {5DF269F2-6727-4CC1-B495-BA5DF298CA89}
-		{C75D96A7-BA0B-4031-8482-FA192ECE5AB7} = {66BB6398-96BC-4CD5-B1E6-382E6A715B40}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{21000F42-49E8-4112-9BA9-E016700E54C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -52,9 +47,5 @@ Global
 		{D3B0E5DD-0F09-4408-920D-C360E332D0AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3B0E5DD-0F09-4408-920D-C360E332D0AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3B0E5DD-0F09-4408-920D-C360E332D0AF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C75D96A7-BA0B-4031-8482-FA192ECE5AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C75D96A7-BA0B-4031-8482-FA192ECE5AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C75D96A7-BA0B-4031-8482-FA192ECE5AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C75D96A7-BA0B-4031-8482-FA192ECE5AB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
