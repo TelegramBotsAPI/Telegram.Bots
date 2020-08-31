@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Telegram.Bots.Abstractions\Telegram.Bots.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Telegram.Bots\Telegram.Bots.csproj" />
   </ItemGroup>
 
   <ItemGroup>
