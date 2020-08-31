@@ -21,7 +21,7 @@ namespace Telegram.Bots.Echo.Polling
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddBotClient(_configuration.GetValue<string>("Bot:Token"));
-      services.AddPolling<EchoService>();
+      services.AddPolling<EchoService>(_configuration);
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

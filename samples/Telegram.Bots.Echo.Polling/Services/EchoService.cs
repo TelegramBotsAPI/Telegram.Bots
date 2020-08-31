@@ -19,11 +19,15 @@ namespace Telegram.Bots.Echo.Polling.Services
       return update switch
       {
         MessageUpdate u when u.Data is TextMessage message => EchoText(message),
+        EditedMessageUpdate u when u.Data is TextMessage message => EchoText(message, true),
         _ => Task.CompletedTask
       };
 
-      Task EchoText(TextMessage message) =>
-        bot.HandleAsync(new SendText(message.Chat.Id, message.Text), token);
+      Task EchoText(TextMessage message, bool reply = false) =>
+        bot.HandleAsync(new SendText(message.Chat.Id, message.Text)
+        {
+          ReplyToMessageId = reply ? message.Id : default
+        }, token);
     }
   }
 }
