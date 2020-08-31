@@ -9,10 +9,10 @@
     <Title>Telegram.Bots</Title>
     <Description>A .NET Core wrapper for the Telegram Bot API</Description>
     <Copyright>Copyright © 2020 Aman Agnihotri</Copyright>
-    <PackageVersion>1.0.1</PackageVersion>
+    <PackageVersion>1.0.3</PackageVersion>
     <PackageProjectUrl>https://github.com/TelegramBotsAPI/Telegram.Bots</PackageProjectUrl>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
-    <Icon>../docs/icon.png</Icon>
+    <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/TelegramBotsAPI/Telegram.Bots.git</RepositoryUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageTags>Telegram;Bot;API;Payments;Inline;Games</PackageTags>
@@ -20,6 +20,13 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../../docs/icon.png">
+      <Pack>true</Pack>
+      <PackagePath>/</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
