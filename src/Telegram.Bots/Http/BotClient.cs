@@ -116,12 +116,13 @@ namespace Telegram.Bots.Http
         using var httpResponse = await _client.SendAsync(httpRequest, ResponseHeadersRead, token)
           .ConfigureAwait(false);
 
-        var httpContent = await httpResponse.Content.ReadAsStreamAsync().ConfigureAwait(false);
+        await using var httpContent = await httpResponse.Content.ReadAsStreamAsync()
+          .ConfigureAwait(false);
 
         if (!httpResponse.IsSuccessStatusCode)
           return new Response<FileInfo>(_serializer.Deserialize<Failure>(httpContent));
 
-        await httpResponse.Content.CopyToAsync(destination).ConfigureAwait(false);
+        await httpContent.CopyToAsync(destination, token).ConfigureAwait(false);
       }
       finally
       {
