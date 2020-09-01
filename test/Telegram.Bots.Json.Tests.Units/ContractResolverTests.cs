@@ -165,6 +165,7 @@ namespace Telegram.Bots.Json.Tests.Units
       (@"""inline_message_id"":""", new EditLiveLocation("", 0, 0)),
       (@"""inline_message_id"":""", new EditReplyMarkup("")),
       (@"""inline_message_id"":""", new EditText("", "")),
+      (@"""file_id"":""", new GetFile("")),
       (@"""inline_message_id"":""", new StopLiveLocation("")),
       (@"""inline_query_id"":""", new AnswerInlineQuery("", new List<InlineResult>())),
       (@"""inline_message_id"":""", new GetInlineGameHighScores("", 1)),
