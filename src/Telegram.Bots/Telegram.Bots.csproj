@@ -9,7 +9,7 @@
     <Title>Telegram.Bots</Title>
     <Description>A .NET Core wrapper for the Telegram Bot API</Description>
     <Copyright>Copyright © 2020 Aman Agnihotri</Copyright>
-    <PackageVersion>1.0.4</PackageVersion>
+    <PackageVersion>1.0.5</PackageVersion>
     <PackageProjectUrl>https://github.com/TelegramBotsAPI/Telegram.Bots</PackageProjectUrl>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageIcon>icon.png</PackageIcon>
