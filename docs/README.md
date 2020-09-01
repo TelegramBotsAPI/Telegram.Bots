@@ -1,5 +1,5 @@
 # Telegram.Bots
-> A .NET Core wrapper for the Telegram Bot API.
+> A .NET Standard wrapper for the Telegram Bot API.
 
 ### Overview
 
@@ -52,7 +52,7 @@ else
 
 ### License
 
-Telegram.Bots is a .NET Core wrapper for the Telegram Bot API.  
+Telegram.Bots is a .NET Standard wrapper for the Telegram Bot API.  
 Copyright © 2020  Aman Agnihotri (amanagnihotri@pm.me)
 
 Telegram.Bots is free software: you can redistribute it and/or modify
