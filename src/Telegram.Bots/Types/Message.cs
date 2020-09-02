@@ -50,9 +50,9 @@ namespace Telegram.Bots.Types
     public IReadOnlyList<MessageEntity>? CaptionEntities { get; set; }
   }
 
-  public abstract class InputMediaMessage : CaptionableMessage { }
+  public abstract class MediaMessage : CaptionableMessage { }
 
-  public abstract class InputMediaGroupMessage : InputMediaMessage
+  public abstract class MediaGroupMessage : MediaMessage
   {
     public string? MediaGroupId { get; set; }
   }
@@ -66,22 +66,22 @@ namespace Telegram.Bots.Types
     public IReadOnlyList<MessageEntity>? Entities { get; set; }
   }
 
-  public sealed class AnimationMessage : InputMediaMessage
+  public sealed class AnimationMessage : MediaMessage
   {
     public Animation Animation { get; set; } = null!;
   }
 
-  public sealed class AudioMessage : InputMediaMessage
+  public sealed class AudioMessage : MediaMessage
   {
     public Audio Audio { get; set; } = null!;
   }
 
-  public sealed class DocumentMessage : InputMediaMessage
+  public sealed class DocumentMessage : MediaMessage
   {
     public Document Document { get; set; } = null!;
   }
 
-  public sealed class PhotoMessage : InputMediaGroupMessage
+  public sealed class PhotoMessage : MediaGroupMessage
   {
     public IReadOnlyList<Photo> PhotoSet { get; set; } = null!;
   }
@@ -91,7 +91,7 @@ namespace Telegram.Bots.Types
     public Sticker Sticker { get; set; } = null!;
   }
 
-  public sealed class VideoMessage : InputMediaGroupMessage
+  public sealed class VideoMessage : MediaGroupMessage
   {
     public Video Video { get; set; } = null!;
   }

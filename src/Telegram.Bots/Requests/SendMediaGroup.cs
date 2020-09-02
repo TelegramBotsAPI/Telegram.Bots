@@ -9,7 +9,7 @@ namespace Telegram.Bots.Requests
 {
   using IGroupableMediaList = IEnumerable<IGroupableMedia>;
 
-  public abstract class SendMediaGroup<TChatId> : IRequest<IReadOnlyList<InputMediaGroupMessage>>,
+  public abstract class SendMediaGroup<TChatId> : IRequest<IReadOnlyList<MediaGroupMessage>>,
     IChatTargetable<TChatId>, INotifiable, IReplyable, IUploadable
   {
     public TChatId ChatId { get; }

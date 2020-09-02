@@ -111,7 +111,7 @@ var request = new SendMediaGroup(chatId: 123456789, new List<IGroupableMedia>
   DisableNotification = true
 };
 
-Response<IReadOnlyList<InputMediaGroupMessage>> response = await bot.HandleAsync(request);
+Response<IReadOnlyList<MediaGroupMessage>> response = await bot.HandleAsync(request);
 ```
 
 ### Download a File

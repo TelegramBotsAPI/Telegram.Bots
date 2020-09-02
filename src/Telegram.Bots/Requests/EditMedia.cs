@@ -6,7 +6,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  using Result = Either<bool, InputMediaMessage>;
+  using Result = Either<bool, MediaMessage>;
 
   public abstract class EditMediaBase<TMedia> : IRequest<Result>, IInlineMarkupable
   {
