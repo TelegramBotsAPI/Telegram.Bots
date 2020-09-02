@@ -20,7 +20,7 @@ IServiceProvider provider = new ServiceCollection()
 IBotClient bot = provider.GetRequiredService<IBotClient>();
 ```
 
-#### Send a "Hello, World!" Text via Chat Id
+#### Send a Text via Chat Id
 
 ```c#
 using Telegram.Bots.Requests;
@@ -44,7 +44,7 @@ else
 }
 ```
 
-#### Send a "Hello, World!" Text via Chat Username
+#### Send a Text via Chat Username
 
 ```c#
 using Telegram.Bots.Requests.Usernames;
