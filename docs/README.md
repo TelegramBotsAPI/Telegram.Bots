@@ -7,34 +7,28 @@
 
 ### Getting Started
 
-#### Configuring the Bot Client
+#### Configure the Bot Client
 ```c#
 using Microsoft.Extensions.DependencyInjection;
 using Telegram.Bots;
 
-...
-
-IServiceCollection services = new ServiceCollection();
-
-services.AddBotClient("<bot-token>");
-
-IServiceProvider provider = services.BuildServiceProvider();
+IServiceProvider provider = new ServiceCollection()
+  .AddBotClient("<bot-token>")
+  .Services
+  .BuildServiceProvider();
 
 IBotClient bot = provider.GetRequiredService<IBotClient>();
 ```
 
-#### Sending a "Hello, World!" Text
+#### Send a "Hello, World!" Text via Chat Id
 
 ```c#
 using Telegram.Bots.Requests;
 using Telegram.Bots.Types;
 
-...
+var request = new SendText(chatId: 123456789, text: "Hello, World!");
 
-Response<TextMessage> response = await bot.HandleAsync(new SendText(
-  chatId: 1234567890,
-  text: "Hello, World!"
-));
+Response<TextMessage> response = await bot.HandleAsync(request);
 
 if (response.Ok)
 {
@@ -48,6 +42,87 @@ else
 
   ...
 }
+```
+
+#### Send a "Hello, World!" Text via Chat Username
+
+```c#
+using Telegram.Bots.Requests.Usernames;
+using Telegram.Bots.Types;
+
+var request = new SendText(username: "@chat", text: "Hello, World!");
+
+Response<TextMessage> response = await bot.HandleAsync(request);
+```
+
+#### Send an Audio File via Chat Id
+
+```c#
+using Telegram.Bots.Requests;
+using Telegram.Bots.Types;
+using File = System.IO.File;
+
+await using FileStream audioStream = File.OpenRead("/path/to/audio.mp3");
+
+var request = new SendAudioFile(chatId: 123456789, audio: audioStream)
+{
+  Title = "Title",
+  Performer = "Performer",
+  Duration = 120
+};
+
+Response<AudioMessage> response = await bot.HandleAsync(request);
+```
+
+#### Send a Cached Video via Chat Username
+
+```c#
+using Telegram.Bots.Requests.Usernames;
+using Telegram.Bots.Types;
+
+var request = new SendCachedVideo(username: "@chat", video: "<file-id>")
+{
+  Caption = "Caption"
+};
+
+Response<VideoMessage> response = await bot.HandleAsync(request);
+```
+
+### Send a Media Group via Chat Id
+
+```c#
+using Telegram.Bots.Requests;
+using Telegram.Bots.Types;
+using File = System.IO.File;
+
+await using var audioStream = File.OpenRead("path/to/audio.mp3");
+await using var videoStream = File.OpenRead("path/to/video.mp4");
+
+var request = new SendMediaGroup(chatId: 123456789, new List<IGroupableMedia>
+{
+  new CachedPhoto("<photo-file-id>"),
+  new CachedVideo("<video-file-id>"),
+  new PhotoUrl(new Uri("https://example.com/image.png")),
+  new VideoUrl(new Uri("https://example.com/video.mp4")),
+  new PhotoFile(audioStream),
+  new VideoFile(videoStream)
+})
+{
+  DisableNotification = true
+};
+
+Response<IReadOnlyList<InputMediaGroupMessage>> response = await bot.HandleAsync(request);
+```
+
+### Download a File
+
+```c#
+using Telegram.Bots.Types;
+using File = System.IO.File;
+
+await using var stream = File.OpenWrite("path/to/file.extension");
+
+Response<FileInfo> response = await bot.HandleAsync("<file-id>", stream);
 ```
 
 ### License
