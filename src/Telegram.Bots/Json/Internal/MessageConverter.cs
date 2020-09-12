@@ -107,7 +107,11 @@ namespace Telegram.Bots.Json.Internal
       T Get<T>() => data.ToObject<T>(serializer)!;
     }
 
-    public override bool CanConvert(Type objectType) => objectType == typeof(Message);
+    public override bool CanConvert(Type objectType) =>
+      objectType == typeof(Message) ||
+      objectType == typeof(MediaGroupMessage) ||
+      objectType == typeof(MediaMessage) ||
+      objectType == typeof(CaptionableMessage);
   }
 
   internal static class MessageSchema
