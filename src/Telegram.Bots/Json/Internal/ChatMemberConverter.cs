@@ -9,7 +9,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Json.Internal
 {
-  using static ChatMemberStatus;
+  using static ChatMemberSchema;
 
   internal sealed class ChatMemberConverter : JsonConverter
   {
@@ -45,7 +45,7 @@ namespace Telegram.Bots.Json.Internal
     public override bool CanConvert(Type objectType) => objectType == typeof(ChatMember);
   }
 
-  internal static class ChatMemberStatus
+  internal static class ChatMemberSchema
   {
     public const string Status = "status";
     public const string Creator = "creator";
