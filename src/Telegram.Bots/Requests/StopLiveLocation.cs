@@ -5,9 +5,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  using Result = Either<bool, LocationMessage>;
-
-  public abstract class StopLiveLocationBase : IRequest<Result>, IInlineMarkupable
+  public abstract class StopLiveLocationBase : IRequest<LocationMessage>, IInlineMarkupable
   {
     public InlineKeyboardMarkup? ReplyMarkup { get; set; }
 

@@ -5,9 +5,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  using Result = Either<bool, PollMessage>;
-
-  public abstract class StopPollBase : IRequest<Result>, IInlineMarkupable
+  public abstract class StopPollBase : IRequest<PollMessage>, IInlineMarkupable
   {
     public InlineKeyboardMarkup? ReplyMarkup { get; set; }
 

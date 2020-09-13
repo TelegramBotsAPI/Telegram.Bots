@@ -5,9 +5,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  using Result = Either<bool, LocationMessage>;
-
-  public abstract class EditLiveLocationBase : IRequest<Result>, IInlineMarkupable
+  public abstract class EditLiveLocationBase : IRequest<LocationMessage>, IInlineMarkupable
   {
     public double Latitude { get; }
 

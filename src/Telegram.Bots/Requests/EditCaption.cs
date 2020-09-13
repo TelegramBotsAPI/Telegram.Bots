@@ -5,9 +5,8 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  using Result = Either<bool, CaptionableMessage>;
-
-  public abstract class EditCaptionBase : IRequest<Result>, ICaptionable, IInlineMarkupable
+  public abstract class EditCaptionBase : IRequest<CaptionableMessage>, ICaptionable,
+    IInlineMarkupable
   {
     public string? Caption { get; set; }
 

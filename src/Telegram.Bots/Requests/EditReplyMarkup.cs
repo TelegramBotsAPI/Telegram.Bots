@@ -5,9 +5,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  using Result = Either<bool, Message>;
-
-  public abstract class EditReplyMarkupBase : IRequest<Result>, IInlineMarkupable
+  public abstract class EditReplyMarkupBase : IRequest<Message>, IInlineMarkupable
   {
     public InlineKeyboardMarkup? ReplyMarkup { get; set; }
 

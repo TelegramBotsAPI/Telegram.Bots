@@ -5,9 +5,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests.Games
 {
-  using Result = Either<bool, GameMessage>;
-
-  public abstract class SetGameScoreBase : IRequest<Result>, IUserTargetable
+  public abstract class SetGameScoreBase : IRequest<GameMessage>, IUserTargetable
   {
     public int UserId { get; }
 
