@@ -33,6 +33,8 @@ namespace Telegram.Bots.Json.Internal
       new Dictionary<Type, IReadOnlyDictionary<string, string>>
       {
         { typeof(Animation), new Data { { "name", "file_name" } } },
+        { typeof(Audio), new Data { { "name", "file_name" } } },
+        { typeof(Video), new Data { { "name", "file_name" } } },
         { typeof(GameCallbackQuery), new Data { { "short_name", "game_short_name" } } },
         { typeof(InlineMessageCallbackQuery), new Data { { "message_id", "inline_message_id" } } },
         {
