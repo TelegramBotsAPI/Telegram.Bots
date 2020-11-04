@@ -19,6 +19,8 @@ namespace Telegram.Bots.Requests.Webhooks
 
     public IEnumerable<UpdateType>? AllowedUpdates { get; set; }
 
+    public bool? DropPendingUpdates { get; set; }
+
     public string Method { get; } = "setWebhook";
 
     public SetWebhook(Uri? url = default) => Url = url;

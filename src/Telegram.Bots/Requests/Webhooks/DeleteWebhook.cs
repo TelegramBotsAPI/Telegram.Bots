@@ -5,6 +5,8 @@ namespace Telegram.Bots.Requests.Webhooks
 {
   public sealed class DeleteWebhook : IRequest<bool>
   {
+    public bool? DropPendingUpdates { get; set; }
+
     public string Method { get; } = "deleteWebhook";
   }
 }
