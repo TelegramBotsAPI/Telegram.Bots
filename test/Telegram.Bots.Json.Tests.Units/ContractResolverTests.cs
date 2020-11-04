@@ -49,6 +49,8 @@ namespace Telegram.Bots.Json.Tests.Units
       (@"""game_short_name"":""", new InlineGameCallbackQuery { ShortName = "" }),
       (@"""pinned_message"":{", new ChatInfo { Pinned = new TextMessage { Text = "" } }),
       (@"""file_name"":""", new Document { Name = "" }),
+      (@"""file_name"":""", new Audio { Name = "" }),
+      (@"""file_name"":""", new Video { Name = "" }),
       (@"""file_id"":""", new Audio { Id = "" }),
       (@"""file_unique_id"":""", new Photo { UniqueId = "" }),
       (@"""file_size"":1", new Video { Size = 1 }),
