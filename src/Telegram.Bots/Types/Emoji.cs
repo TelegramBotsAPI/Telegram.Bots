@@ -9,6 +9,8 @@ namespace Telegram.Bots.Types
   {
     [EnumMember(Value = "🎲")] Dice,
     [EnumMember(Value = "🎯")] Dart,
-    [EnumMember(Value = "🏀")] Basketball
+    [EnumMember(Value = "🏀")] Basketball,
+    [EnumMember(Value = "⚽")] Football,
+    [EnumMember(Value = "🎰")] SlotMachine
   }
 }
