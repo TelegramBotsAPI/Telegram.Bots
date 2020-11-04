@@ -11,6 +11,8 @@ namespace Telegram.Bots.Types
 
     public string? Title { get; set; }
 
+    public string? Name { get; set; }
+
     public string? MimeType { get; set; }
 
     public Photo? Thumb { get; set; }
