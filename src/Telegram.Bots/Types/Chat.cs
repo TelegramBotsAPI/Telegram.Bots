@@ -22,6 +22,8 @@ namespace Telegram.Bots.Types
   {
     public ChatPhoto? Photo { get; set; }
 
+    public string? Bio { get; set; }
+
     public string? Description { get; set; }
 
     public string? InviteLink { get; set; }
@@ -35,5 +37,9 @@ namespace Telegram.Bots.Types
     public string? StickerSetName { get; set; }
 
     public bool CanSetStickerSet { get; set; }
+
+    public long? LinkedChatId { get; set; }
+
+    public ChatLocation? Location { get; set; }
   }
 }
