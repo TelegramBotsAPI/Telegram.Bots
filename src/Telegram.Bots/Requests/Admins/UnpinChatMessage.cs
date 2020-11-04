@@ -7,6 +7,8 @@ namespace Telegram.Bots.Requests.Admins
   {
     public TChatId ChatId { get; }
 
+    public int MessageId { get; set; }
+
     public string Method { get; } = "unpinChatMessage";
 
     protected UnpinChatMessage(TChatId chatId) => ChatId = chatId;
