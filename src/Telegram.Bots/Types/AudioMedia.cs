@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Telegram.Bots.Types
 {
-  public abstract class AudioMedia<TMedia> : InputMedia<TMedia>
+  public abstract class AudioMedia<TMedia> : InputMedia<TMedia>, IGroupableMedia
   {
     public override InputMediaType Type { get; } = InputMediaType.Audio;
 
