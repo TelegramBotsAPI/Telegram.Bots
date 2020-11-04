@@ -35,6 +35,8 @@ namespace Telegram.Bots.Types
 
     public InputFile? Thumb { get; set; }
 
+    public bool? DisableContentTypeDetection { get; set; }
+
     public VideoFile(InputFile file) : base(file) { }
 
     public IEnumerable<InputFile?> GetFiles() => new[] { Media, Thumb };

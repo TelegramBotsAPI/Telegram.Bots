@@ -37,6 +37,8 @@ namespace Telegram.Bots.Requests
   {
     public InputFile? Thumb { get; set; }
 
+    public bool? DisableContentTypeDetection { get; set; }
+
     protected SendDocumentFile(TChatId chatId, InputFile document) : base(chatId, document) { }
 
     public IEnumerable<InputFile?> GetFiles() => new[] { Document, Thumb };

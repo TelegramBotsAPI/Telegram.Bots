@@ -27,6 +27,8 @@ namespace Telegram.Bots.Types
   {
     public PhotoFile(InputFile file) : base(file) { }
 
+    public bool? DisableContentTypeDetection { get; set; }
+
     public IEnumerable<InputFile?> GetFiles() => new[] { Media };
   }
 }

@@ -33,6 +33,8 @@ namespace Telegram.Bots.Types
 
     public InputFile? Thumb { get; set; }
 
+    public bool? DisableContentTypeDetection { get; set; }
+
     public AudioFile(InputFile file) : base(file) { }
 
     public IEnumerable<InputFile?> GetFiles() => new[] { Media, Thumb };

@@ -14,6 +14,8 @@ namespace Telegram.Bots.Types
 
   public interface IUploadableMedia : IInputMedia
   {
+    bool? DisableContentTypeDetection { get; set; }
+
     IEnumerable<InputFile?> GetFiles();
   }
 
