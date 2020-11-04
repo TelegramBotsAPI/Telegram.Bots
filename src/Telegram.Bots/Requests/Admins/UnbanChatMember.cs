@@ -9,6 +9,8 @@ namespace Telegram.Bots.Requests.Admins
 
     public int UserId { get; }
 
+    public bool? OnlyIfBanned { get; set; }
+
     public string Method { get; } = "unbanChatMember";
 
     protected UnbanChatMember(TChatId chatId, int userId)
