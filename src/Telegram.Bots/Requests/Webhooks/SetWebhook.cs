@@ -13,6 +13,8 @@ namespace Telegram.Bots.Requests.Webhooks
 
     public InputFile? Certificate { get; set; }
 
+    public string? IpAddress { get; set; }
+
     public uint? MaxConnections { get; set; }
 
     public IEnumerable<UpdateType>? AllowedUpdates { get; set; }
