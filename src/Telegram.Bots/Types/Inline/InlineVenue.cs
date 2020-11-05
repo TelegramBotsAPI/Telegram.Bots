@@ -21,6 +21,10 @@ namespace Telegram.Bots.Types.Inline
 
     public string? FoursquareType { get; set; }
 
+    public string? GooglePlaceId { get; set; }
+
+    public string? GooglePlaceType { get; set; }
+
     public Uri? Thumb { get; set; }
 
     public int? ThumbWidth { get; set; }

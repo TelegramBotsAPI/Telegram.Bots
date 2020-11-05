@@ -22,6 +22,10 @@ namespace Telegram.Bots.Requests
 
     public string? FoursquareType { get; set; }
 
+    public string? GooglePlaceId { get; set; }
+
+    public string? GooglePlaceType { get; set; }
+
     public bool? DisableNotification { get; set; }
 
     public int? ReplyToMessageId { get; set; }

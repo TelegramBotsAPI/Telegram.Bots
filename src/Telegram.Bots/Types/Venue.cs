@@ -14,5 +14,9 @@ namespace Telegram.Bots.Types
     public string? FoursquareId { get; set; }
 
     public string? FoursquareType { get; set; }
+
+    public string? GooglePlaceId { get; set; }
+
+    public string? GooglePlaceType { get; set; }
   }
 }

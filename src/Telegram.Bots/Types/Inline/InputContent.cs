@@ -68,6 +68,10 @@ namespace Telegram.Bots.Types.Inline
 
     public string? FoursquareType { get; set; }
 
+    public string? GooglePlaceId { get; set; }
+
+    public string? GooglePlaceType { get; set; }
+
     public VenueContent(string title, string address, double latitude, double longitude)
     {
       Title = title;
