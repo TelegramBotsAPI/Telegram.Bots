@@ -216,4 +216,9 @@ namespace Telegram.Bots.Types
   {
     public PassportData PassportData { get; set; } = null!;
   }
+
+  public sealed class ProximityAlertTriggeredMessage : ServiceMessage
+  {
+    public ProximityAlertTriggered ProximityAlertTriggered { get; set; } = null!;
+  }
 }
