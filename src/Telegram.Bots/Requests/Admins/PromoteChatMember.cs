@@ -9,6 +9,8 @@ namespace Telegram.Bots.Requests.Admins
 
     public int UserId { get; }
 
+    public bool? IsAnonymous { get; set; }
+
     public bool? CanChangeInfo { get; set; }
 
     public bool? CanPostMessages { get; set; }

@@ -17,6 +17,8 @@ namespace Telegram.Bots.Types
   public abstract class PrivilegedMember : ChatMember
   {
     public string? CustomTitle { get; set; }
+
+    public bool? IsAnonymous { get; set; }
   }
 
   public sealed class Creator : PrivilegedMember
