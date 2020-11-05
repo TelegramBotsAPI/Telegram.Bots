@@ -11,6 +11,8 @@ namespace Telegram.Bots.Requests
 
     public double Longitude { get; }
 
+    public uint? Heading { get; set; }
+
     public InlineKeyboardMarkup? ReplyMarkup { get; set; }
 
     public string Method { get; } = "editMessageLiveLocation";

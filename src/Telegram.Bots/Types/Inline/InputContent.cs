@@ -30,6 +30,8 @@ namespace Telegram.Bots.Types.Inline
 
     public int? LivePeriod { get; set; }
 
+    public uint? Heading { get; set; }
+
     public LocationContent(double latitude, double longitude)
     {
       Latitude = latitude;

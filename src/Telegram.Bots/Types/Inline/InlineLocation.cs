@@ -17,6 +17,8 @@ namespace Telegram.Bots.Types.Inline
 
     public int? LivePeriod { get; set; }
 
+    public uint? Heading { get; set; }
+
     public Uri? Thumb { get; set; }
 
     public int? ThumbWidth { get; set; }

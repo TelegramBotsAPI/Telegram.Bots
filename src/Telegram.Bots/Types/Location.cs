@@ -10,5 +10,7 @@ namespace Telegram.Bots.Types
     public double Longitude { get; set; }
 
     public int? LivePeriod { get; set; }
+
+    public uint? Heading { get; set; }
   }
 }
