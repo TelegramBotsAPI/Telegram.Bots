@@ -15,6 +15,8 @@ namespace Telegram.Bots.Types.Inline
 
     public double Longitude { get; }
 
+    public double? HorizontalAccuracy { get; set; }
+
     public int? LivePeriod { get; set; }
 
     public uint? Heading { get; set; }

@@ -11,6 +11,8 @@ namespace Telegram.Bots.Requests
 
     public double Longitude { get; }
 
+    public double? HorizontalAccuracy { get; set; }
+
     public uint? Heading { get; set; }
 
     public uint? ProximityAlertRadius { get; set; }
