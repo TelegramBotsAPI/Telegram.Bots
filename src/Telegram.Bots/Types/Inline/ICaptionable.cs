@@ -2,9 +2,8 @@
 // Copyright © 2020 Aman Agnihotri
 
 using System.Collections.Generic;
-using Telegram.Bots.Types;
 
-namespace Telegram.Bots.Requests
+namespace Telegram.Bots.Types.Inline
 {
   public interface ICaptionable
   {

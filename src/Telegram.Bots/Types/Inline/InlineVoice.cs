@@ -2,10 +2,11 @@
 // Copyright © 2020 Aman Agnihotri
 
 using System;
+using System.Collections.Generic;
 
 namespace Telegram.Bots.Types.Inline
 {
-  public abstract class InlineVoice<TVoice> : ReplaceableResult
+  public abstract class InlineVoice<TVoice> : ReplaceableResult, ICaptionable
   {
     public override ResultType Type { get; } = ResultType.Voice;
 
@@ -16,6 +17,8 @@ namespace Telegram.Bots.Types.Inline
     public string? Caption { get; set; }
 
     public ParseMode? ParseMode { get; set; }
+
+    public IEnumerable<MessageEntity>? CaptionEntities { get; set; }
 
     protected InlineVoice(string id, string title, TVoice voice) : base(id)
     {

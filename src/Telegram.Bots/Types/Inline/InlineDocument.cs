@@ -2,11 +2,12 @@
 // Copyright © 2020 Aman Agnihotri
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace Telegram.Bots.Types.Inline
 {
-  public abstract class InlineDocument<TDocument> : ReplaceableResult
+  public abstract class InlineDocument<TDocument> : ReplaceableResult, ICaptionable
   {
     public override ResultType Type { get; } = ResultType.Document;
 
@@ -19,6 +20,8 @@ namespace Telegram.Bots.Types.Inline
     public string? Caption { get; set; }
 
     public ParseMode? ParseMode { get; set; }
+
+    public IEnumerable<MessageEntity>? CaptionEntities { get; set; }
 
     protected InlineDocument(string id, string title, TDocument document) : base(id)
     {

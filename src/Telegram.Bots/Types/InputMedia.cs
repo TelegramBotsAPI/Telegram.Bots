@@ -29,6 +29,8 @@ namespace Telegram.Bots.Types
 
     public ParseMode? ParseMode { get; set; }
 
+    public IEnumerable<MessageEntity>? CaptionEntities { get; set; }
+
     protected InputMedia(TMedia media) => Media = media;
   }
 }

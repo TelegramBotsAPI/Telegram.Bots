@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020 Aman Agnihotri
 
+using System.Collections.Generic;
 using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
@@ -11,6 +12,8 @@ namespace Telegram.Bots.Requests
     public string? Caption { get; set; }
 
     public ParseMode? ParseMode { get; set; }
+
+    public IEnumerable<MessageEntity>? CaptionEntities { get; set; }
 
     public InlineKeyboardMarkup? ReplyMarkup { get; set; }
 

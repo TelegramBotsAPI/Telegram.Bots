@@ -2,10 +2,11 @@
 // Copyright © 2020 Aman Agnihotri
 
 using System;
+using System.Collections.Generic;
 
 namespace Telegram.Bots.Types.Inline
 {
-  public abstract class InlinePhoto<TPhoto> : ReplaceableResult
+  public abstract class InlinePhoto<TPhoto> : ReplaceableResult, ICaptionable
   {
     public override ResultType Type { get; } = ResultType.Photo;
 
@@ -18,6 +19,8 @@ namespace Telegram.Bots.Types.Inline
     public string? Caption { get; set; }
 
     public ParseMode? ParseMode { get; set; }
+
+    public IEnumerable<MessageEntity>? CaptionEntities { get; set; }
 
     protected InlinePhoto(string id, TPhoto photo) : base(id) => Photo = photo;
   }

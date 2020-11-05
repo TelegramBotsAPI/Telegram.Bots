@@ -2,11 +2,12 @@
 // Copyright © 2020 Aman Agnihotri
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace Telegram.Bots.Types.Inline
 {
-  public abstract class InlineVideo<TVideo> : ReplaceableResult
+  public abstract class InlineVideo<TVideo> : ReplaceableResult, ICaptionable
   {
     public override ResultType Type { get; } = ResultType.Video;
 
@@ -19,6 +20,8 @@ namespace Telegram.Bots.Types.Inline
     public string? Caption { get; set; }
 
     public ParseMode? ParseMode { get; set; }
+
+    public IEnumerable<MessageEntity>? CaptionEntities { get; set; }
 
     protected InlineVideo(string id, string title, TVideo video) : base(id)
     {

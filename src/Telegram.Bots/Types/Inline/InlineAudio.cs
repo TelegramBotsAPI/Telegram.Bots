@@ -2,10 +2,11 @@
 // Copyright © 2020 Aman Agnihotri
 
 using System;
+using System.Collections.Generic;
 
 namespace Telegram.Bots.Types.Inline
 {
-  public abstract class InlineAudio<TAudio> : ReplaceableResult
+  public abstract class InlineAudio<TAudio> : ReplaceableResult, ICaptionable
   {
     public override ResultType Type { get; } = ResultType.Audio;
 
@@ -14,6 +15,8 @@ namespace Telegram.Bots.Types.Inline
     public string? Caption { get; set; }
 
     public ParseMode? ParseMode { get; set; }
+
+    public IEnumerable<MessageEntity>? CaptionEntities { get; set; }
 
     protected InlineAudio(string id, TAudio audio) : base(id) => Audio = audio;
   }

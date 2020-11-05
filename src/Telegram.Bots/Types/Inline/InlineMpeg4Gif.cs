@@ -2,10 +2,11 @@
 // Copyright © 2020 Aman Agnihotri
 
 using System;
+using System.Collections.Generic;
 
 namespace Telegram.Bots.Types.Inline
 {
-  public abstract class InlineMpeg4Gif<TMpeg4> : ReplaceableResult
+  public abstract class InlineMpeg4Gif<TMpeg4> : ReplaceableResult, ICaptionable
   {
     public override ResultType Type { get; } = ResultType.Mpeg4Gif;
 
@@ -16,6 +17,8 @@ namespace Telegram.Bots.Types.Inline
     public string? Caption { get; set; }
 
     public ParseMode? ParseMode { get; set; }
+
+    public IEnumerable<MessageEntity>? CaptionEntities { get; set; }
 
     protected InlineMpeg4Gif(string id, TMpeg4 mpeg4) : base(id) => Mpeg4 = mpeg4;
   }

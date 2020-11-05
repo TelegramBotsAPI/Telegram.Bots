@@ -18,6 +18,8 @@ namespace Telegram.Bots.Requests
 
     public ParseMode? ParseMode { get; set; }
 
+    public IEnumerable<MessageEntity>? CaptionEntities { get; set; }
+
     public bool? DisableNotification { get; set; }
 
     public int? ReplyToMessageId { get; set; }

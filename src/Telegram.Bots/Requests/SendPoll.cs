@@ -82,6 +82,8 @@ namespace Telegram.Bots.Requests
 
     public ParseMode? ExplanationParseMode { get; set; }
 
+    public IEnumerable<MessageEntity>? ExplanationEntities { get; set; }
+
     protected SendQuizPoll(
       TChatId chatId,
       string question,
