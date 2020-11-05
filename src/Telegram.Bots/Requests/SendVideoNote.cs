@@ -18,6 +18,8 @@ namespace Telegram.Bots.Requests
 
     public int? ReplyToMessageId { get; set; }
 
+    public bool? AllowSendingWithoutReply { get; set; }
+
     public ReplyMarkup? ReplyMarkup { get; set; }
 
     public string Method { get; } = "sendVideoNote";

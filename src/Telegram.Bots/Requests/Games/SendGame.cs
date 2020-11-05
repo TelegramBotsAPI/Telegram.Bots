@@ -16,6 +16,8 @@ namespace Telegram.Bots.Requests.Games
 
     public int? ReplyToMessageId { get; set; }
 
+    public bool? AllowSendingWithoutReply { get; set; }
+
     public InlineKeyboardMarkup? ReplyMarkup { get; set; }
 
     public string Method { get; } = "sendGame";

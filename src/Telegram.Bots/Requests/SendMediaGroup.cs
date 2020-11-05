@@ -20,6 +20,8 @@ namespace Telegram.Bots.Requests
 
     public int? ReplyToMessageId { get; set; }
 
+    public bool? AllowSendingWithoutReply { get; set; }
+
     public string Method { get; } = "sendMediaGroup";
 
     protected SendMediaGroup(TChatId chatId, IEnumerable<IGroupableMedia> media)
