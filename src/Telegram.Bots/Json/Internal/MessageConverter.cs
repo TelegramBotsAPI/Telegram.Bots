@@ -45,7 +45,8 @@ namespace Telegram.Bots.Json.Internal
       Invoice,
       SuccessfulPayment,
       ConnectedWebsite,
-      PassportData
+      PassportData,
+      ProximityAlertTriggered
     };
 
     public override bool CanWrite => false;
@@ -101,6 +102,7 @@ namespace Telegram.Bots.Json.Internal
         SuccessfulPayment => Get<SuccessfulPaymentMessage>(),
         ConnectedWebsite => Get<ConnectedWebsiteMessage>(),
         PassportData => Get<PassportDataMessage>(),
+        ProximityAlertTriggered => Get<ProximityAlertTriggeredMessage>(),
         _ => null
       };
 
@@ -146,5 +148,6 @@ namespace Telegram.Bots.Json.Internal
     public const string SuccessfulPayment = "successful_payment";
     public const string ConnectedWebsite = "connected_website";
     public const string PassportData = "passport_data";
+    public const string ProximityAlertTriggered = "proximity_alert_triggered";
   }
 }
