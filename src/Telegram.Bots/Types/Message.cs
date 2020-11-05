@@ -16,6 +16,8 @@ namespace Telegram.Bots.Types
 
     public User? From { get; set; }
 
+    public Chat? SenderChat { get; set; }
+
     public DateTime Date { get; set; } = DateTime.UnixEpoch;
 
     public Chat Chat { get; set; } = null!;
@@ -41,6 +43,10 @@ namespace Telegram.Bots.Types
     public string? AuthorSignature { get; set; }
 
     public InlineKeyboardMarkup? ReplyMarkup { get; set; }
+
+    public bool IsAutomaticallyForwarded => From?.Id == 777000;
+
+    public bool IsFromAnonymousGroupAdmin => From?.Id == 1087968824;
   }
 
   public abstract class CaptionableMessage : Message
