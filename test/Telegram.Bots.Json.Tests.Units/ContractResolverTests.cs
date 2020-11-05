@@ -136,6 +136,9 @@ namespace Telegram.Bots.Json.Tests.Units
         new SuccessfulPaymentMessage { Payment = new SuccessfulPayment() }),
       (@"""connected_website"":""", new ConnectedWebsiteMessage { Website = Uri }),
       (@"""passport_data"":{", new PassportDataMessage { PassportData = new PassportData() }),
+      (@"""proximity_alert_triggered"":{",
+        new ProximityAlertTriggeredMessage
+          { ProximityAlertTriggered = new ProximityAlertTriggered() }),
       (@"""file_id"":""", new PassportFile { Id = "" }),
       (@"""file_unique_id"":""", new PassportFile { UniqueId = "" }),
       (@"""file_size"":1", new PassportFile { Size = 1 }),
