@@ -3,7 +3,8 @@
 
 ### Overview
 
-- Fully supports Bot API 4.9.
+- Fully supports Bot API 5.0.
+- Targets .NET Standard 2.1.
 
 ### Getting Started
 
