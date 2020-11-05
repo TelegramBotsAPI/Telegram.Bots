@@ -19,6 +19,8 @@ namespace Telegram.Bots.Types.Inline
 
     public uint? Heading { get; set; }
 
+    public uint? ProximityAlertRadius { get; set; }
+
     public Uri? Thumb { get; set; }
 
     public int? ThumbWidth { get; set; }

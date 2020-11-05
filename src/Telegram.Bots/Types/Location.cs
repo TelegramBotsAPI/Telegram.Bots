@@ -12,5 +12,7 @@ namespace Telegram.Bots.Types
     public int? LivePeriod { get; set; }
 
     public uint? Heading { get; set; }
+
+    public uint? ProximityAlertRadius { get; set; }
   }
 }

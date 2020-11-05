@@ -32,6 +32,8 @@ namespace Telegram.Bots.Types.Inline
 
     public uint? Heading { get; set; }
 
+    public uint? ProximityAlertRadius { get; set; }
+
     public LocationContent(double latitude, double longitude)
     {
       Latitude = latitude;

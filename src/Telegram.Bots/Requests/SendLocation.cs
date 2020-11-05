@@ -18,6 +18,8 @@ namespace Telegram.Bots.Requests
 
     public uint? Heading { get; set; }
 
+    public uint? ProximityAlertRadius { get; set; }
+
     public bool? DisableNotification { get; set; }
 
     public int? ReplyToMessageId { get; set; }
