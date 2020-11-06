@@ -5,14 +5,14 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract class StopLiveLocationBase : IRequest<LocationMessage>, IInlineMarkupable
+  public abstract class StopLiveLocationBase<TResult> : IRequest<TResult>, IInlineMarkupable
   {
     public InlineKeyboardMarkup? ReplyMarkup { get; set; }
 
     public string Method { get; } = "stopMessageLiveLocation";
   }
 
-  public abstract class StopLiveLocation<TChatId> : StopLiveLocationBase,
+  public abstract class StopLiveLocation<TChatId> : StopLiveLocationBase<LocationMessage>,
     IChatMessageTargetable<TChatId>
   {
     public TChatId ChatId { get; }
@@ -41,7 +41,7 @@ namespace Telegram.Bots.Requests
 
   namespace Inline
   {
-    public sealed class StopLiveLocation : StopLiveLocationBase, IInlineMessageTargetable
+    public sealed class StopLiveLocation : StopLiveLocationBase<bool>, IInlineMessageTargetable
     {
       public string MessageId { get; }
 

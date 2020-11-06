@@ -5,14 +5,14 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract class EditReplyMarkupBase : IRequest<Message>, IInlineMarkupable
+  public abstract class EditReplyMarkupBase<TResult> : IRequest<TResult>, IInlineMarkupable
   {
     public InlineKeyboardMarkup? ReplyMarkup { get; set; }
 
     public string Method { get; } = "editMessageReplyMarkup";
   }
 
-  public abstract class EditReplyMarkup<TChatId> : EditReplyMarkupBase,
+  public abstract class EditReplyMarkup<TChatId> : EditReplyMarkupBase<Message>,
     IChatMessageTargetable<TChatId>
   {
     public TChatId ChatId { get; }
@@ -41,7 +41,7 @@ namespace Telegram.Bots.Requests
 
   namespace Inline
   {
-    public sealed class EditReplyMarkup : EditReplyMarkupBase, IInlineMessageTargetable
+    public sealed class EditReplyMarkup : EditReplyMarkupBase<bool>, IInlineMessageTargetable
     {
       public string MessageId { get; }
 

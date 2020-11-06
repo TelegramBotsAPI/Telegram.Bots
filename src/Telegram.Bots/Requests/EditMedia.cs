@@ -6,7 +6,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract class EditMediaBase<TMedia> : IRequest<MediaMessage>, IInlineMarkupable
+  public abstract class EditMediaBase<TMedia, TResult> : IRequest<TResult>, IInlineMarkupable
   {
     public InputMedia<TMedia> Media { get; }
 
@@ -17,7 +17,7 @@ namespace Telegram.Bots.Requests
     protected EditMediaBase(InputMedia<TMedia> media) => Media = media;
   }
 
-  public abstract class EditMedia<TChatId, TMedia> : EditMediaBase<TMedia>,
+  public abstract class EditMedia<TChatId, TMedia> : EditMediaBase<TMedia, MediaMessage>,
     IChatMessageTargetable<TChatId>
   {
     public TChatId ChatId { get; }
@@ -72,7 +72,7 @@ namespace Telegram.Bots.Requests
 
   namespace Inline
   {
-    public abstract class EditMedia<TMedia> : EditMediaBase<TMedia>,
+    public abstract class EditMedia<TMedia> : EditMediaBase<TMedia, bool>,
       IInlineMessageTargetable
     {
       public string MessageId { get; }

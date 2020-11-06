@@ -6,7 +6,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract class EditTextBase : IRequest<TextMessage>, IInlineMarkupable
+  public abstract class EditTextBase<TResult> : IRequest<TResult>, IInlineMarkupable
   {
     public string Text { get; }
 
@@ -23,7 +23,8 @@ namespace Telegram.Bots.Requests
     protected EditTextBase(string text) => Text = text;
   }
 
-  public abstract class EditText<TChatId> : EditTextBase, IChatMessageTargetable<TChatId>
+  public abstract class EditText<TChatId> : EditTextBase<TextMessage>,
+    IChatMessageTargetable<TChatId>
   {
     public TChatId ChatId { get; }
 
@@ -52,7 +53,7 @@ namespace Telegram.Bots.Requests
 
   namespace Inline
   {
-    public sealed class EditText : EditTextBase, IInlineMessageTargetable
+    public sealed class EditText : EditTextBase<bool>, IInlineMessageTargetable
     {
       public string MessageId { get; }
 

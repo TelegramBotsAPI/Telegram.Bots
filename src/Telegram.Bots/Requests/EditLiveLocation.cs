@@ -5,7 +5,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract class EditLiveLocationBase : IRequest<LocationMessage>, IInlineMarkupable
+  public abstract class EditLiveLocationBase<TResult> : IRequest<TResult>, IInlineMarkupable
   {
     public double Latitude { get; }
 
@@ -28,7 +28,7 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public abstract class EditLiveLocation<TChatId> : EditLiveLocationBase,
+  public abstract class EditLiveLocation<TChatId> : EditLiveLocationBase<LocationMessage>,
     IChatMessageTargetable<TChatId>
   {
     public TChatId ChatId { get; }
@@ -60,7 +60,7 @@ namespace Telegram.Bots.Requests
 
   namespace Inline
   {
-    public sealed class EditLiveLocation : EditLiveLocationBase, IInlineMessageTargetable
+    public sealed class EditLiveLocation : EditLiveLocationBase<bool>, IInlineMessageTargetable
     {
       public string MessageId { get; }
 
