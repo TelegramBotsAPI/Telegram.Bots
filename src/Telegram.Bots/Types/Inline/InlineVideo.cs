@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace Telegram.Bots.Types.Inline
 {
-  public abstract class InlineVideo<TVideo> : ReplaceableResult, ICaptionable
+  public abstract record InlineVideo<TVideo> : ReplaceableResult, ICaptionable
   {
     public override ResultType Type { get; } = ResultType.Video;
 
@@ -15,13 +15,13 @@ namespace Telegram.Bots.Types.Inline
 
     public string Title { get; }
 
-    public string? Description { get; set; }
+    public string? Description { get; init; }
 
-    public string? Caption { get; set; }
+    public string? Caption { get; init; }
 
-    public ParseMode? ParseMode { get; set; }
+    public ParseMode? ParseMode { get; init; }
 
-    public IEnumerable<MessageEntity>? CaptionEntities { get; set; }
+    public IEnumerable<MessageEntity>? CaptionEntities { get; init; }
 
     protected InlineVideo(string id, string title, TVideo video) : base(id)
     {
@@ -30,17 +30,17 @@ namespace Telegram.Bots.Types.Inline
     }
   }
 
-  public sealed class InlineVideo : InlineVideo<Uri>
+  public sealed record InlineVideo : InlineVideo<Uri>
   {
     public VideoMimeType MimeType { get; }
 
     public Uri Thumb { get; }
 
-    public int? Width { get; set; }
+    public int? Width { get; init; }
 
-    public int? Height { get; set; }
+    public int? Height { get; init; }
 
-    public int? Duration { get; set; }
+    public int? Duration { get; init; }
 
     public InlineVideo(string id, string title, Uri video, VideoMimeType mimeType, Uri thumb) :
       base(id, title, video)
@@ -50,7 +50,7 @@ namespace Telegram.Bots.Types.Inline
     }
   }
 
-  public sealed class InlineCachedVideo : InlineVideo<string>
+  public sealed record InlineCachedVideo : InlineVideo<string>
   {
     public InlineCachedVideo(string id, string title, string video) : base(id, title, video) { }
   }

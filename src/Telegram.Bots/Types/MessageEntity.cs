@@ -5,18 +5,18 @@ using System;
 
 namespace Telegram.Bots.Types
 {
-  public sealed class MessageEntity
+  public sealed record MessageEntity
   {
-    public MessageEntityType Type { get; set; }
+    public MessageEntityType Type { get; init; }
 
-    public uint Offset { get; set; }
+    public uint Offset { get; init; }
 
-    public uint Length { get; set; }
+    public uint Length { get; init; }
 
-    public Uri? Url { get; set; }
+    public Uri? Url { get; init; }
 
-    public User? User { get; set; }
+    public User? User { get; init; }
 
-    public string? Language { get; set; }
+    public string? Language { get; init; }
   }
 }

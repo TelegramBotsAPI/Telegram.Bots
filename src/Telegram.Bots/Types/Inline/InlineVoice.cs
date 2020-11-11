@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Telegram.Bots.Types.Inline
 {
-  public abstract class InlineVoice<TVoice> : ReplaceableResult, ICaptionable
+  public abstract record InlineVoice<TVoice> : ReplaceableResult, ICaptionable
   {
     public override ResultType Type { get; } = ResultType.Voice;
 
@@ -14,11 +14,11 @@ namespace Telegram.Bots.Types.Inline
 
     public TVoice Voice { get; }
 
-    public string? Caption { get; set; }
+    public string? Caption { get; init; }
 
-    public ParseMode? ParseMode { get; set; }
+    public ParseMode? ParseMode { get; init; }
 
-    public IEnumerable<MessageEntity>? CaptionEntities { get; set; }
+    public IEnumerable<MessageEntity>? CaptionEntities { get; init; }
 
     protected InlineVoice(string id, string title, TVoice voice) : base(id)
     {
@@ -27,14 +27,14 @@ namespace Telegram.Bots.Types.Inline
     }
   }
 
-  public sealed class InlineVoice : InlineVoice<Uri>
+  public sealed record InlineVoice : InlineVoice<Uri>
   {
-    public int? Duration { get; set; }
+    public int? Duration { get; init; }
 
     public InlineVoice(string id, string title, Uri voice) : base(id, title, voice) { }
   }
 
-  public sealed class InlineCachedVoice : InlineVoice<string>
+  public sealed record InlineCachedVoice : InlineVoice<string>
   {
     public InlineCachedVoice(string id, string title, string voice) : base(id, title, voice) { }
   }

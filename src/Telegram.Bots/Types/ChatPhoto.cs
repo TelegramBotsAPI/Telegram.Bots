@@ -3,14 +3,14 @@
 
 namespace Telegram.Bots.Types
 {
-  public sealed class ChatPhoto
+  public sealed record ChatPhoto
   {
-    public string SmallFileId { get; set; } = null!;
+    public string SmallFileId { get; init; } = null!;
 
-    public string SmallFileUniqueId { get; set; } = null!;
+    public string SmallFileUniqueId { get; init; } = null!;
 
-    public string BigFileId { get; set; } = null!;
+    public string BigFileId { get; init; } = null!;
 
-    public string BigFileUniqueId { get; set; } = null!;
+    public string BigFileUniqueId { get; init; } = null!;
   }
 }

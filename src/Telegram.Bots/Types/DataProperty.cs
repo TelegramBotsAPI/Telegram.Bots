@@ -3,7 +3,7 @@
 
 namespace Telegram.Bots.Types
 {
-  public sealed class DataProperty
+  public sealed record DataProperty
   {
     public string Name { get; }
 

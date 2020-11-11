@@ -5,15 +5,15 @@ using System;
 
 namespace Telegram.Bots.Types
 {
-  public sealed class LoginUrl
+  public sealed record LoginUrl
   {
     public Uri Url { get; }
 
-    public string? ForwardText { get; set; }
+    public string? ForwardText { get; init; }
 
-    public string? BotUsername { get; set; }
+    public string? BotUsername { get; init; }
 
-    public bool? RequestWriteAccess { get; set; }
+    public bool? RequestWriteAccess { get; init; }
 
     public LoginUrl(Uri url) => Url = url;
   }

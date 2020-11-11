@@ -5,23 +5,23 @@ using System;
 
 namespace Telegram.Bots.Types.Inline
 {
-  public sealed class InlineArticle : ReplaceableResult, IThumbable
+  public sealed record InlineArticle : ReplaceableResult, IThumbable
   {
     public override ResultType Type { get; } = ResultType.Article;
 
     public string Title { get; }
 
-    public Uri? Url { get; set; }
+    public Uri? Url { get; init; }
 
-    public bool? HideUrl { get; set; }
+    public bool? HideUrl { get; init; }
 
-    public string? Description { get; set; }
+    public string? Description { get; init; }
 
-    public Uri? Thumb { get; set; }
+    public Uri? Thumb { get; init; }
 
-    public int? ThumbWidth { get; set; }
+    public int? ThumbWidth { get; init; }
 
-    public int? ThumbHeight { get; set; }
+    public int? ThumbHeight { get; init; }
 
     public InlineArticle(string id, string title) : base(id) => Title = title;
   }

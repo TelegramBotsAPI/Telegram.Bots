@@ -5,10 +5,10 @@ using System.Collections.Generic;
 
 namespace Telegram.Bots.Types.Passport
 {
-  public sealed class PassportData
+  public sealed record PassportData
   {
-    public IReadOnlyList<EncryptedElement> Data { get; set; } = null!;
+    public IReadOnlyList<EncryptedElement> Data { get; init; } = null!;
 
-    public EncryptedCredentials Credentials { get; set; } = null!;
+    public EncryptedCredentials Credentials { get; init; } = null!;
   }
 }

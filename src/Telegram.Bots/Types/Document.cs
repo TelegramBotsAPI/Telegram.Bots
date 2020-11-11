@@ -3,12 +3,12 @@
 
 namespace Telegram.Bots.Types
 {
-  public sealed class Document : File
+  public sealed record Document : File
   {
-    public Photo? Thumb { get; set; }
+    public Photo? Thumb { get; init; }
 
-    public string? Name { get; set; }
+    public string? Name { get; init; }
 
-    public string? MimeType { get; set; }
+    public string? MimeType { get; init; }
   }
 }

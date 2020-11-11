@@ -3,17 +3,17 @@
 
 namespace Telegram.Bots.Types
 {
-  public abstract class File
+  public abstract record File
   {
-    public string Id { get; set; } = null!;
+    public string Id { get; init; } = null!;
 
-    public string UniqueId { get; set; } = null!;
+    public string UniqueId { get; init; } = null!;
 
-    public int? Size { get; set; }
+    public int? Size { get; init; }
   }
 
-  public sealed class FileInfo : File
+  public sealed record FileInfo : File
   {
-    public string? Path { get; set; }
+    public string? Path { get; init; }
   }
 }

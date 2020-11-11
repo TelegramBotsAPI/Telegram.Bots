@@ -5,17 +5,17 @@ using System.Collections.Generic;
 
 namespace Telegram.Bots.Types.Inline
 {
-  public abstract class InputContent { }
+  public abstract record InputContent { }
 
-  public sealed class ContactContent : InputContent
+  public sealed record ContactContent : InputContent
   {
     public string PhoneNumber { get; }
 
     public string FirstName { get; }
 
-    public string? LastName { get; set; }
+    public string? LastName { get; init; }
 
-    public string? Vcard { get; set; }
+    public string? Vcard { get; init; }
 
     public ContactContent(string phoneNumber, string firstName)
     {
@@ -24,19 +24,19 @@ namespace Telegram.Bots.Types.Inline
     }
   }
 
-  public sealed class LocationContent : InputContent
+  public sealed record LocationContent : InputContent
   {
     public double Latitude { get; }
 
     public double Longitude { get; }
 
-    public double? HorizontalAccuracy { get; set; }
+    public double? HorizontalAccuracy { get; init; }
 
-    public int? LivePeriod { get; set; }
+    public int? LivePeriod { get; init; }
 
-    public uint? Heading { get; set; }
+    public uint? Heading { get; init; }
 
-    public uint? ProximityAlertRadius { get; set; }
+    public uint? ProximityAlertRadius { get; init; }
 
     public LocationContent(double latitude, double longitude)
     {
@@ -45,20 +45,20 @@ namespace Telegram.Bots.Types.Inline
     }
   }
 
-  public sealed class TextContent : InputContent
+  public sealed record TextContent : InputContent
   {
     public string Text { get; }
 
-    public ParseMode? ParseMode { get; set; }
+    public ParseMode? ParseMode { get; init; }
 
-    public IEnumerable<MessageEntity>? Entities { get; set; }
+    public IEnumerable<MessageEntity>? Entities { get; init; }
 
-    public bool? DisableWebPagePreview { get; set; }
+    public bool? DisableWebPagePreview { get; init; }
 
     public TextContent(string text) => Text = text;
   }
 
-  public sealed class VenueContent : InputContent
+  public sealed record VenueContent : InputContent
   {
     public string Title { get; }
 
@@ -68,13 +68,13 @@ namespace Telegram.Bots.Types.Inline
 
     public double Longitude { get; }
 
-    public string? FoursquareId { get; set; }
+    public string? FoursquareId { get; init; }
 
-    public string? FoursquareType { get; set; }
+    public string? FoursquareType { get; init; }
 
-    public string? GooglePlaceId { get; set; }
+    public string? GooglePlaceId { get; init; }
 
-    public string? GooglePlaceType { get; set; }
+    public string? GooglePlaceType { get; init; }
 
     public VenueContent(string title, string address, double latitude, double longitude)
     {

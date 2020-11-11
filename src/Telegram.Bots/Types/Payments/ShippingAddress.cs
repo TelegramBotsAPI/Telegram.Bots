@@ -3,18 +3,18 @@
 
 namespace Telegram.Bots.Types.Payments
 {
-  public sealed class ShippingAddress
+  public sealed record ShippingAddress
   {
-    public string CountryCode { get; set; } = null!;
+    public string CountryCode { get; init; } = null!;
 
-    public string State { get; set; } = null!;
+    public string State { get; init; } = null!;
 
-    public string City { get; set; } = null!;
+    public string City { get; init; } = null!;
 
-    public string StreetLine1 { get; set; } = null!;
+    public string StreetLine1 { get; init; } = null!;
 
-    public string StreetLine2 { get; set; } = null!;
+    public string StreetLine2 { get; init; } = null!;
 
-    public string PostCode { get; set; } = null!;
+    public string PostCode { get; init; } = null!;
   }
 }

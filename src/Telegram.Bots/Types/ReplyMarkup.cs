@@ -8,39 +8,39 @@ namespace Telegram.Bots.Types
   using Keyboard = IEnumerable<Button[]>;
   using InlineKeyboard = IEnumerable<InlineButton[]>;
 
-  public abstract class ReplyMarkup { }
+  public abstract record ReplyMarkup { }
 
-  public sealed class KeyboardMarkup : ReplyMarkup
+  public sealed record KeyboardMarkup : ReplyMarkup
   {
     public Keyboard Keyboard { get; }
 
-    public bool? Resize { get; set; }
+    public bool? Resize { get; init; }
 
-    public bool? OneTime { get; set; }
+    public bool? OneTime { get; init; }
 
-    public bool? Selective { get; set; }
+    public bool? Selective { get; init; }
 
     public KeyboardMarkup(Keyboard keyboard) => Keyboard = keyboard;
   }
 
-  public sealed class InlineKeyboardMarkup : ReplyMarkup
+  public sealed record InlineKeyboardMarkup : ReplyMarkup
   {
     public InlineKeyboard Keyboard { get; }
 
     public InlineKeyboardMarkup(InlineKeyboard keyboard) => Keyboard = keyboard;
   }
 
-  public sealed class ForceReplyMarkup : ReplyMarkup
+  public sealed record ForceReplyMarkup : ReplyMarkup
   {
     public bool ForceReply { get; } = true;
 
-    public bool? Selective { get; set; }
+    public bool? Selective { get; init; }
   }
 
-  public sealed class RemoveMarkup : ReplyMarkup
+  public sealed record RemoveMarkup : ReplyMarkup
   {
     public bool RemoveKeyboard { get; } = true;
 
-    public bool? Selective { get; set; }
+    public bool? Selective { get; init; }
   }
 }

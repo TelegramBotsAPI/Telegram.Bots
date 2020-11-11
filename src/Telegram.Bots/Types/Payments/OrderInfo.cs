@@ -3,14 +3,14 @@
 
 namespace Telegram.Bots.Types.Payments
 {
-  public sealed class OrderInfo
+  public sealed record OrderInfo
   {
-    public string? Name { get; set; }
+    public string? Name { get; init; }
 
-    public string? PhoneNumber { get; set; }
+    public string? PhoneNumber { get; init; }
 
-    public string? Email { get; set; }
+    public string? Email { get; init; }
 
-    public ShippingAddress? ShippingAddress { get; set; }
+    public ShippingAddress? ShippingAddress { get; init; }
   }
 }

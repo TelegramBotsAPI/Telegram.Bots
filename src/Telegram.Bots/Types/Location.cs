@@ -3,18 +3,18 @@
 
 namespace Telegram.Bots.Types
 {
-  public sealed class Location
+  public sealed record Location
   {
-    public double Latitude { get; set; }
+    public double Latitude { get; init; }
 
-    public double Longitude { get; set; }
+    public double Longitude { get; init; }
 
-    public double? HorizontalAccuracy { get; set; }
+    public double? HorizontalAccuracy { get; init; }
 
-    public int? LivePeriod { get; set; }
+    public int? LivePeriod { get; init; }
 
-    public uint? Heading { get; set; }
+    public uint? Heading { get; init; }
 
-    public uint? ProximityAlertRadius { get; set; }
+    public uint? ProximityAlertRadius { get; init; }
   }
 }

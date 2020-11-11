@@ -3,27 +3,27 @@
 
 namespace Telegram.Bots.Types
 {
-  public class User
+  public record User
   {
-    public int Id { get; set; }
+    public int Id { get; init; }
 
-    public bool IsBot { get; set; }
+    public bool IsBot { get; init; }
 
-    public string FirstName { get; set; } = null!;
+    public string FirstName { get; init; } = null!;
 
-    public string? LastName { get; set; }
+    public string? LastName { get; init; }
 
-    public string? Username { get; set; }
+    public string? Username { get; init; }
 
-    public string? LanguageCode { get; set; }
+    public string? LanguageCode { get; init; }
   }
 
-  public sealed class MyBot : User
+  public sealed record MyBot : User
   {
-    public bool CanJoinGroups { get; set; }
+    public bool CanJoinGroups { get; init; }
 
-    public bool CanReadAllGroupMessages { get; set; }
+    public bool CanReadAllGroupMessages { get; init; }
 
-    public bool SupportsInlineQueries { get; set; }
+    public bool SupportsInlineQueries { get; init; }
   }
 }

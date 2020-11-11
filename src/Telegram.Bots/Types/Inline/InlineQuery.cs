@@ -3,16 +3,16 @@
 
 namespace Telegram.Bots.Types.Inline
 {
-  public sealed class InlineQuery
+  public sealed record InlineQuery
   {
-    public string Id { get; set; } = null!;
+    public string Id { get; init; } = null!;
 
-    public User From { get; set; } = null!;
+    public User From { get; init; } = null!;
 
-    public Location? Location { get; set; }
+    public Location? Location { get; init; }
 
-    public string Query { get; set; } = null!;
+    public string Query { get; init; } = null!;
 
-    public string Offset { get; set; } = null!;
+    public string Offset { get; init; } = null!;
   }
 }

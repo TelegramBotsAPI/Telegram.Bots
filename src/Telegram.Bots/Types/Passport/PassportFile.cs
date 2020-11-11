@@ -5,14 +5,14 @@ using System;
 
 namespace Telegram.Bots.Types.Passport
 {
-  public sealed class PassportFile
+  public sealed record PassportFile
   {
-    public string Id { get; set; } = null!;
+    public string Id { get; init; } = null!;
 
-    public string UniqueId { get; set; } = null!;
+    public string UniqueId { get; init; } = null!;
 
-    public uint Size { get; set; }
+    public uint Size { get; init; }
 
-    public DateTime Date { get; set; } = DateTime.UnixEpoch;
+    public DateTime Date { get; init; } = DateTime.UnixEpoch;
   }
 }

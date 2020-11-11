@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Telegram.Bots.Types
 {
-  public sealed class InputFile
+  public sealed record InputFile
   {
     public string Id { get; } = Guid.NewGuid().ToString();
 

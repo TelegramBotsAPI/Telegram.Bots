@@ -5,7 +5,7 @@ using System;
 
 namespace Telegram.Bots.Types.Inline
 {
-  public sealed class InlineVenue : ReplaceableResult, IThumbable
+  public sealed record InlineVenue : ReplaceableResult, IThumbable
   {
     public override ResultType Type { get; } = ResultType.Venue;
 
@@ -17,19 +17,19 @@ namespace Telegram.Bots.Types.Inline
 
     public double Longitude { get; }
 
-    public string? FoursquareId { get; set; }
+    public string? FoursquareId { get; init; }
 
-    public string? FoursquareType { get; set; }
+    public string? FoursquareType { get; init; }
 
-    public string? GooglePlaceId { get; set; }
+    public string? GooglePlaceId { get; init; }
 
-    public string? GooglePlaceType { get; set; }
+    public string? GooglePlaceType { get; init; }
 
-    public Uri? Thumb { get; set; }
+    public Uri? Thumb { get; init; }
 
-    public int? ThumbWidth { get; set; }
+    public int? ThumbWidth { get; init; }
 
-    public int? ThumbHeight { get; set; }
+    public int? ThumbHeight { get; init; }
 
     public InlineVenue(string id, string title, string address, double latitude, double longitude) :
       base(id)

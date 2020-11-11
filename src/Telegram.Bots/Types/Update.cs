@@ -6,63 +6,63 @@ using Telegram.Bots.Types.Payments;
 
 namespace Telegram.Bots.Types
 {
-  public abstract class Update
+  public abstract record Update
   {
-    public int Id { get; set; }
+    public int Id { get; init; }
   }
 
-  public sealed class MessageUpdate : Update
+  public sealed record MessageUpdate : Update
   {
-    public Message Data { get; set; } = null!;
+    public Message Data { get; init; } = null!;
   }
 
-  public sealed class EditedMessageUpdate : Update
+  public sealed record EditedMessageUpdate : Update
   {
-    public Message Data { get; set; } = null!;
+    public Message Data { get; init; } = null!;
   }
 
-  public sealed class ChannelPostUpdate : Update
+  public sealed record ChannelPostUpdate : Update
   {
-    public Message Data { get; set; } = null!;
+    public Message Data { get; init; } = null!;
   }
 
-  public sealed class EditedChannelPostUpdate : Update
+  public sealed record EditedChannelPostUpdate : Update
   {
-    public Message Data { get; set; } = null!;
+    public Message Data { get; init; } = null!;
   }
 
-  public sealed class InlineQueryUpdate : Update
+  public sealed record InlineQueryUpdate : Update
   {
-    public InlineQuery Data { get; set; } = null!;
+    public InlineQuery Data { get; init; } = null!;
   }
 
-  public sealed class ChosenInlineResultUpdate : Update
+  public sealed record ChosenInlineResultUpdate : Update
   {
-    public ChosenInlineResult Data { get; set; } = null!;
+    public ChosenInlineResult Data { get; init; } = null!;
   }
 
-  public sealed class CallbackQueryUpdate : Update
+  public sealed record CallbackQueryUpdate : Update
   {
-    public CallbackQuery Data { get; set; } = null!;
+    public CallbackQuery Data { get; init; } = null!;
   }
 
-  public sealed class ShippingQueryUpdate : Update
+  public sealed record ShippingQueryUpdate : Update
   {
-    public ShippingQuery Data { get; set; } = null!;
+    public ShippingQuery Data { get; init; } = null!;
   }
 
-  public sealed class PreCheckoutQueryUpdate : Update
+  public sealed record PreCheckoutQueryUpdate : Update
   {
-    public PreCheckoutQuery Data { get; set; } = null!;
+    public PreCheckoutQuery Data { get; init; } = null!;
   }
 
-  public sealed class PollUpdate : Update
+  public sealed record PollUpdate : Update
   {
-    public Poll Data { get; set; } = null!;
+    public Poll Data { get; init; } = null!;
   }
 
-  public sealed class PollAnswerUpdate : Update
+  public sealed record PollAnswerUpdate : Update
   {
-    public PollAnswer Data { get; set; } = null!;
+    public PollAnswer Data { get; init; } = null!;
   }
 }

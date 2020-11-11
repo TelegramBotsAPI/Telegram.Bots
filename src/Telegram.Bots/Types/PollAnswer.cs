@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 namespace Telegram.Bots.Types
 {
-  public sealed class PollAnswer
+  public sealed record PollAnswer
   {
-    public string PollId { get; set; } = null!;
+    public string PollId { get; init; } = null!;
 
-    public User User { get; set; } = null!;
+    public User User { get; init; } = null!;
 
-    public IReadOnlyList<uint> OptionIds { get; set; } = null!;
+    public IReadOnlyList<uint> OptionIds { get; init; } = null!;
   }
 }

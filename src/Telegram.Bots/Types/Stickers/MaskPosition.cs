@@ -3,14 +3,14 @@
 
 namespace Telegram.Bots.Types.Stickers
 {
-  public sealed class MaskPosition
+  public sealed record MaskPosition
   {
-    public MaskPositionPoint Point { get; set; }
+    public MaskPositionPoint Point { get; init; }
 
-    public float XShift { get; set; }
+    public float XShift { get; init; }
 
-    public float YShift { get; set; }
+    public float YShift { get; init; }
 
-    public float Scale { get; set; }
+    public float Scale { get; init; }
   }
 }

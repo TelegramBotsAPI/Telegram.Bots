@@ -5,7 +5,7 @@ using System;
 
 namespace Telegram.Bots.Types.Inline
 {
-  public sealed class InlineContact : ReplaceableResult, IThumbable
+  public sealed record InlineContact : ReplaceableResult, IThumbable
   {
     public override ResultType Type { get; } = ResultType.Contact;
 
@@ -13,15 +13,15 @@ namespace Telegram.Bots.Types.Inline
 
     public string FirstName { get; }
 
-    public string? LastName { get; set; }
+    public string? LastName { get; init; }
 
-    public string? Vcard { get; set; }
+    public string? Vcard { get; init; }
 
-    public Uri? Thumb { get; set; }
+    public Uri? Thumb { get; init; }
 
-    public int? ThumbWidth { get; set; }
+    public int? ThumbWidth { get; init; }
 
-    public int? ThumbHeight { get; set; }
+    public int? ThumbHeight { get; init; }
 
     public InlineContact(string id, string phoneNumber, string firstName) : base(id)
     {

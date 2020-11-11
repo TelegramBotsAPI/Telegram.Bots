@@ -3,20 +3,20 @@
 
 namespace Telegram.Bots.Types.Payments
 {
-  public sealed class SuccessfulPayment
+  public sealed record SuccessfulPayment
   {
-    public string Currency { get; set; } = null!;
+    public string Currency { get; init; } = null!;
 
-    public int TotalAmount { get; set; }
+    public int TotalAmount { get; init; }
 
-    public string InvoicePayload { get; set; } = null!;
+    public string InvoicePayload { get; init; } = null!;
 
-    public string? ShippingOptionId { get; set; }
+    public string? ShippingOptionId { get; init; }
 
-    public OrderInfo? OrderInfo { get; set; }
+    public OrderInfo? OrderInfo { get; init; }
 
-    public string TelegramPaymentChargeId { get; set; } = null!;
+    public string TelegramPaymentChargeId { get; init; } = null!;
 
-    public string ProviderPaymentChargeId { get; set; } = null!;
+    public string ProviderPaymentChargeId { get; init; } = null!;
   }
 }

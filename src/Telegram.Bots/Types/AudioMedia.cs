@@ -6,34 +6,34 @@ using System.Collections.Generic;
 
 namespace Telegram.Bots.Types
 {
-  public abstract class AudioMedia<TMedia> : InputMedia<TMedia>, IGroupableMedia
+  public abstract record AudioMedia<TMedia> : InputMedia<TMedia>, IGroupableMedia
   {
     public override InputMediaType Type { get; } = InputMediaType.Audio;
 
     protected AudioMedia(TMedia media) : base(media) { }
   }
 
-  public sealed class CachedAudio : AudioMedia<string>
+  public sealed record CachedAudio : AudioMedia<string>
   {
     public CachedAudio(string fileId) : base(fileId) { }
   }
 
-  public sealed class AudioUrl : AudioMedia<Uri>
+  public sealed record AudioUrl : AudioMedia<Uri>
   {
     public AudioUrl(Uri url) : base(url) { }
   }
 
-  public sealed class AudioFile : AudioMedia<InputFile>, IUploadableMedia
+  public sealed record AudioFile : AudioMedia<InputFile>, IUploadableMedia
   {
-    public int? Duration { get; set; }
+    public int? Duration { get; init; }
 
-    public string? Performer { get; set; }
+    public string? Performer { get; init; }
 
-    public string? Title { get; set; }
+    public string? Title { get; init; }
 
-    public InputFile? Thumb { get; set; }
+    public InputFile? Thumb { get; init; }
 
-    public bool? DisableContentTypeDetection { get; set; }
+    public bool? DisableContentTypeDetection { get; init; }
 
     public AudioFile(InputFile file) : base(file) { }
 

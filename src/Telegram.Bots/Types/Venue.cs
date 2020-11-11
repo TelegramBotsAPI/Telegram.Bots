@@ -3,20 +3,20 @@
 
 namespace Telegram.Bots.Types
 {
-  public sealed class Venue
+  public sealed record Venue
   {
-    public string Title { get; set; } = null!;
+    public string Title { get; init; } = null!;
 
-    public string Address { get; set; } = null!;
+    public string Address { get; init; } = null!;
 
-    public Location Location { get; set; } = null!;
+    public Location Location { get; init; } = null!;
 
-    public string? FoursquareId { get; set; }
+    public string? FoursquareId { get; init; }
 
-    public string? FoursquareType { get; set; }
+    public string? FoursquareType { get; init; }
 
-    public string? GooglePlaceId { get; set; }
+    public string? GooglePlaceId { get; init; }
 
-    public string? GooglePlaceType { get; set; }
+    public string? GooglePlaceType { get; init; }
   }
 }

@@ -5,7 +5,7 @@ using System;
 
 namespace Telegram.Bots.Types.Inline
 {
-  public sealed class InlineLocation : ReplaceableResult, IThumbable
+  public sealed record InlineLocation : ReplaceableResult, IThumbable
   {
     public override ResultType Type { get; } = ResultType.Location;
 
@@ -15,19 +15,19 @@ namespace Telegram.Bots.Types.Inline
 
     public double Longitude { get; }
 
-    public double? HorizontalAccuracy { get; set; }
+    public double? HorizontalAccuracy { get; init; }
 
-    public int? LivePeriod { get; set; }
+    public int? LivePeriod { get; init; }
 
-    public uint? Heading { get; set; }
+    public uint? Heading { get; init; }
 
-    public uint? ProximityAlertRadius { get; set; }
+    public uint? ProximityAlertRadius { get; init; }
 
-    public Uri? Thumb { get; set; }
+    public Uri? Thumb { get; init; }
 
-    public int? ThumbWidth { get; set; }
+    public int? ThumbWidth { get; init; }
 
-    public int? ThumbHeight { get; set; }
+    public int? ThumbHeight { get; init; }
 
     public InlineLocation(string id, string title, double latitude, double longitude) : base(id)
     {

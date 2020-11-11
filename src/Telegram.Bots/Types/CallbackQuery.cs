@@ -3,40 +3,40 @@
 
 namespace Telegram.Bots.Types
 {
-  public abstract class CallbackQuery
+  public abstract record CallbackQuery
   {
-    public string Id { get; set; } = null!;
+    public string Id { get; init; } = null!;
 
-    public User From { get; set; } = null!;
+    public User From { get; init; } = null!;
 
-    public string ChatInstance { get; set; } = null!;
+    public string ChatInstance { get; init; } = null!;
   }
 
-  public sealed class MessageCallbackQuery : CallbackQuery
+  public sealed record MessageCallbackQuery : CallbackQuery
   {
-    public Message Message { get; set; } = null!;
+    public Message Message { get; init; } = null!;
 
-    public string Data { get; set; } = null!;
+    public string Data { get; init; } = null!;
   }
 
-  public sealed class GameCallbackQuery : CallbackQuery
+  public sealed record GameCallbackQuery : CallbackQuery
   {
-    public Message Message { get; set; } = null!;
+    public Message Message { get; init; } = null!;
 
-    public string ShortName { get; set; } = null!;
+    public string ShortName { get; init; } = null!;
   }
 
-  public sealed class InlineMessageCallbackQuery : CallbackQuery
+  public sealed record InlineMessageCallbackQuery : CallbackQuery
   {
-    public string MessageId { get; set; } = null!;
+    public string MessageId { get; init; } = null!;
 
-    public string Data { get; set; } = null!;
+    public string Data { get; init; } = null!;
   }
 
-  public sealed class InlineGameCallbackQuery : CallbackQuery
+  public sealed record InlineGameCallbackQuery : CallbackQuery
   {
-    public string MessageId { get; set; } = null!;
+    public string MessageId { get; init; } = null!;
 
-    public string ShortName { get; set; } = null!;
+    public string ShortName { get; init; } = null!;
   }
 }

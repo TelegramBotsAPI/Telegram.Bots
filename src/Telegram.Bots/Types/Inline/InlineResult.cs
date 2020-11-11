@@ -3,20 +3,20 @@
 
 namespace Telegram.Bots.Types.Inline
 {
-  public abstract class InlineResult
+  public abstract record InlineResult
   {
     public abstract ResultType Type { get; }
 
     public string Id { get; }
 
-    public InlineKeyboardMarkup? ReplyMarkup { get; set; }
+    public InlineKeyboardMarkup? ReplyMarkup { get; init; }
 
     protected InlineResult(string id) => Id = id;
   }
 
-  public abstract class ReplaceableResult : InlineResult
+  public abstract record ReplaceableResult : InlineResult
   {
-    public InputContent? Content { get; set; }
+    public InputContent? Content { get; init; }
 
     protected ReplaceableResult(string id) : base(id) { }
   }

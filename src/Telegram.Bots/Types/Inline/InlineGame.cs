@@ -3,7 +3,7 @@
 
 namespace Telegram.Bots.Types.Inline
 {
-  public sealed class InlineGame : InlineResult
+  public sealed record InlineGame : InlineResult
   {
     public override ResultType Type { get; } = ResultType.Game;
 

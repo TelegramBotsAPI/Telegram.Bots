@@ -3,10 +3,10 @@
 
 namespace Telegram.Bots.Types.Payments
 {
-  public sealed class LabeledPrice
+  public sealed record LabeledPrice
   {
-    public string Label { get; set; } = null!;
+    public string Label { get; init; } = null!;
 
-    public int Amount { get; set; }
+    public int Amount { get; init; }
   }
 }

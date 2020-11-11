@@ -6,28 +6,28 @@ using System.Collections.Generic;
 
 namespace Telegram.Bots.Types
 {
-  public abstract class DocumentMedia<TMedia> : InputMedia<TMedia>, IGroupableMedia
+  public abstract record DocumentMedia<TMedia> : InputMedia<TMedia>, IGroupableMedia
   {
     public override InputMediaType Type { get; } = InputMediaType.Document;
 
     protected DocumentMedia(TMedia media) : base(media) { }
   }
 
-  public sealed class CachedDocument : DocumentMedia<string>
+  public sealed record CachedDocument : DocumentMedia<string>
   {
     public CachedDocument(string fileId) : base(fileId) { }
   }
 
-  public sealed class DocumentUrl : DocumentMedia<Uri>
+  public sealed record DocumentUrl : DocumentMedia<Uri>
   {
     public DocumentUrl(Uri url) : base(url) { }
   }
 
-  public sealed class DocumentFile : DocumentMedia<InputFile>, IUploadableMedia
+  public sealed record DocumentFile : DocumentMedia<InputFile>, IUploadableMedia
   {
-    public InputFile? Thumb { get; set; }
+    public InputFile? Thumb { get; init; }
 
-    public bool? DisableContentTypeDetection { get; set; }
+    public bool? DisableContentTypeDetection { get; init; }
 
     public DocumentFile(InputFile file) : base(file) { }
 

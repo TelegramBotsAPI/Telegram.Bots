@@ -5,10 +5,10 @@ using System.Collections.Generic;
 
 namespace Telegram.Bots.Types
 {
-  public sealed class UserProfilePhotos
+  public sealed record UserProfilePhotos
   {
-    public int TotalCount { get; set; }
+    public int TotalCount { get; init; }
 
-    public IReadOnlyList<IReadOnlyList<Photo>> PhotoSets { get; set; } = null!;
+    public IReadOnlyList<IReadOnlyList<Photo>> PhotoSets { get; init; } = null!;
   }
 }

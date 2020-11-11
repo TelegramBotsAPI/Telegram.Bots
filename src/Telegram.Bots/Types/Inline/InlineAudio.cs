@@ -6,33 +6,33 @@ using System.Collections.Generic;
 
 namespace Telegram.Bots.Types.Inline
 {
-  public abstract class InlineAudio<TAudio> : ReplaceableResult, ICaptionable
+  public abstract record InlineAudio<TAudio> : ReplaceableResult, ICaptionable
   {
     public override ResultType Type { get; } = ResultType.Audio;
 
     public TAudio Audio { get; }
 
-    public string? Caption { get; set; }
+    public string? Caption { get; init; }
 
-    public ParseMode? ParseMode { get; set; }
+    public ParseMode? ParseMode { get; init; }
 
-    public IEnumerable<MessageEntity>? CaptionEntities { get; set; }
+    public IEnumerable<MessageEntity>? CaptionEntities { get; init; }
 
     protected InlineAudio(string id, TAudio audio) : base(id) => Audio = audio;
   }
 
-  public sealed class InlineAudio : InlineAudio<Uri>
+  public sealed record InlineAudio : InlineAudio<Uri>
   {
     public string Title { get; }
 
-    public string? Performer { get; set; }
+    public string? Performer { get; init; }
 
-    public int? Duration { get; set; }
+    public int? Duration { get; init; }
 
     public InlineAudio(string id, string title, Uri audio) : base(id, audio) => Title = title;
   }
 
-  public sealed class InlineCachedAudio : InlineAudio<string>
+  public sealed record InlineCachedAudio : InlineAudio<string>
   {
     public InlineCachedAudio(string id, string audio) : base(id, audio) { }
   }

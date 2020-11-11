@@ -3,22 +3,22 @@
 
 namespace Telegram.Bots.Types
 {
-  public sealed class ChatPermissions
+  public sealed record ChatPermissions
   {
-    public bool? CanSendMessages { get; set; }
+    public bool? CanSendMessages { get; init; }
 
-    public bool? CanSendMediaMessages { get; set; }
+    public bool? CanSendMediaMessages { get; init; }
 
-    public bool? CanSendPolls { get; set; }
+    public bool? CanSendPolls { get; init; }
 
-    public bool? CanSendOtherMessages { get; set; }
+    public bool? CanSendOtherMessages { get; init; }
 
-    public bool? CanAddWebPagePreviews { get; set; }
+    public bool? CanAddWebPagePreviews { get; init; }
 
-    public bool? CanChangeInfo { get; set; }
+    public bool? CanChangeInfo { get; init; }
 
-    public bool? CanInviteUsers { get; set; }
+    public bool? CanInviteUsers { get; init; }
 
-    public bool? CanPinMessages { get; set; }
+    public bool? CanPinMessages { get; init; }
   }
 }

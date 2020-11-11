@@ -3,12 +3,12 @@
 
 namespace Telegram.Bots.Types
 {
-  public sealed class VideoNote : File
+  public sealed record VideoNote : File
   {
-    public int Length { get; set; }
+    public int Length { get; init; }
 
-    public int Duration { get; set; }
+    public int Duration { get; init; }
 
-    public Photo? Thumb { get; set; }
+    public Photo? Thumb { get; init; }
   }
 }

@@ -3,12 +3,12 @@
 
 namespace Telegram.Bots.Types.Passport
 {
-  public sealed class EncryptedCredentials
+  public sealed record EncryptedCredentials
   {
-    public string Data { get; set; } = null!;
+    public string Data { get; init; } = null!;
 
-    public string Hash { get; set; } = null!;
+    public string Hash { get; init; } = null!;
 
-    public string Secret { get; set; } = null!;
+    public string Secret { get; init; } = null!;
   }
 }

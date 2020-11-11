@@ -3,7 +3,7 @@
 
 namespace Telegram.Bots.Types
 {
-  public sealed class Response<TResult>
+  public sealed record Response<TResult>
   {
     public TResult Result { get; } = default!;
 
@@ -20,26 +20,26 @@ namespace Telegram.Bots.Types
     public Response(Failure failure) => Failure = failure;
   }
 
-  public sealed class Success<TResult>
+  public sealed record Success<TResult>
   {
     public TResult Result { get; }
 
     public Success(TResult result) => Result = result;
   }
 
-  public sealed class Failure
+  public sealed record Failure
   {
-    public string? Description { get; set; }
+    public string? Description { get; init; }
 
-    public int? ErrorCode { get; set; }
+    public int? ErrorCode { get; init; }
 
-    public ResponseParameters? Parameters { get; set; }
+    public ResponseParameters? Parameters { get; init; }
   }
 
-  public sealed class ResponseParameters
+  public sealed record ResponseParameters
   {
-    public long? MigrateToChatId { get; set; }
+    public long? MigrateToChatId { get; init; }
 
-    public int? RetryAfter { get; set; }
+    public int? RetryAfter { get; init; }
   }
 }
