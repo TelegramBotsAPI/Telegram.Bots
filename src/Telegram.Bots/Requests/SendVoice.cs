@@ -7,26 +7,26 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract class SendVoice<TChatId, TVoice> : IRequest<VoiceMessage>,
+  public abstract record SendVoice<TChatId, TVoice> : IRequest<VoiceMessage>,
     IChatTargetable<TChatId>, ICaptionable, INotifiable, IReplyable, IMarkupable
   {
     public TChatId ChatId { get; }
 
     public TVoice Voice { get; }
 
-    public string? Caption { get; set; }
+    public string? Caption { get; init; }
 
-    public ParseMode? ParseMode { get; set; }
+    public ParseMode? ParseMode { get; init; }
 
-    public IEnumerable<MessageEntity>? CaptionEntities { get; set; }
+    public IEnumerable<MessageEntity>? CaptionEntities { get; init; }
 
-    public bool? DisableNotification { get; set; }
+    public bool? DisableNotification { get; init; }
 
-    public int? ReplyToMessageId { get; set; }
+    public int? ReplyToMessageId { get; init; }
 
-    public bool? AllowSendingWithoutReply { get; set; }
+    public bool? AllowSendingWithoutReply { get; init; }
 
-    public ReplyMarkup? ReplyMarkup { get; set; }
+    public ReplyMarkup? ReplyMarkup { get; init; }
 
     public string Method { get; } = "sendVoice";
 
@@ -37,43 +37,43 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public abstract class SendVoiceFile<TChatId> : SendVoice<TChatId, InputFile>, IUploadable
+  public abstract record SendVoiceFile<TChatId> : SendVoice<TChatId, InputFile>, IUploadable
   {
-    public int? Duration { get; set; }
+    public int? Duration { get; init; }
 
     protected SendVoiceFile(TChatId chatId, InputFile voice) : base(chatId, voice) { }
 
     public IEnumerable<InputFile?> GetFiles() => new[] { Voice };
   }
 
-  public sealed class SendCachedVoice : SendVoice<long, string>
+  public sealed record SendCachedVoice : SendVoice<long, string>
   {
     public SendCachedVoice(long chatId, string voice) : base(chatId, voice) { }
   }
 
-  public sealed class SendVoiceUrl : SendVoice<long, Uri>
+  public sealed record SendVoiceUrl : SendVoice<long, Uri>
   {
     public SendVoiceUrl(long chatId, Uri voice) : base(chatId, voice) { }
   }
 
-  public sealed class SendVoiceFile : SendVoiceFile<long>
+  public sealed record SendVoiceFile : SendVoiceFile<long>
   {
     public SendVoiceFile(long chatId, InputFile voice) : base(chatId, voice) { }
   }
 
   namespace Usernames
   {
-    public sealed class SendCachedVoice : SendVoice<string, string>
+    public sealed record SendCachedVoice : SendVoice<string, string>
     {
       public SendCachedVoice(string username, string voice) : base(username, voice) { }
     }
 
-    public sealed class SendVoiceUrl : SendVoice<string, Uri>
+    public sealed record SendVoiceUrl : SendVoice<string, Uri>
     {
       public SendVoiceUrl(string username, Uri voice) : base(username, voice) { }
     }
 
-    public sealed class SendVoiceFile : SendVoiceFile<string>
+    public sealed record SendVoiceFile : SendVoiceFile<string>
     {
       public SendVoiceFile(string username, InputFile voice) : base(username, voice) { }
     }

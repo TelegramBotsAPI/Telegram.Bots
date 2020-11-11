@@ -7,6 +7,6 @@ namespace Telegram.Bots.Requests
 {
   public interface IInlineMarkupable
   {
-    InlineKeyboardMarkup? ReplyMarkup { get; set; }
+    InlineKeyboardMarkup? ReplyMarkup { get; init; }
   }
 }

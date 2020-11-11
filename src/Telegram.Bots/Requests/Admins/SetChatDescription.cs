@@ -3,7 +3,7 @@
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract class SetChatDescription<TChatId> : IRequest<bool>, IChatTargetable<TChatId>
+  public abstract record SetChatDescription<TChatId> : IRequest<bool>, IChatTargetable<TChatId>
   {
     public TChatId ChatId { get; }
 
@@ -18,14 +18,14 @@ namespace Telegram.Bots.Requests.Admins
     }
   }
 
-  public sealed class SetChatDescription : SetChatDescription<long>
+  public sealed record SetChatDescription : SetChatDescription<long>
   {
     public SetChatDescription(long chatId, string description) : base(chatId, description) { }
   }
 
   namespace Usernames
   {
-    public sealed class SetChatDescription : SetChatDescription<string>
+    public sealed record SetChatDescription : SetChatDescription<string>
     {
       public SetChatDescription(string username, string description) :
         base(username, description) { }

@@ -7,7 +7,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests.Stickers
 {
-  public abstract class SetStickerSetThumb<TThumb> : IRequest<bool>
+  public abstract record SetStickerSetThumb<TThumb> : IRequest<bool>
   {
     public string Name { get; }
 
@@ -22,17 +22,17 @@ namespace Telegram.Bots.Requests.Stickers
     }
   }
 
-  public sealed class SetStickerSetThumbViaUrl : SetStickerSetThumb<Uri?>
+  public sealed record SetStickerSetThumbViaUrl : SetStickerSetThumb<Uri?>
   {
     public SetStickerSetThumbViaUrl(string name, Uri? thumb = default) : base(name, thumb) { }
   }
 
-  public sealed class SetStickerSetThumbViaCache : SetStickerSetThumb<string?>
+  public sealed record SetStickerSetThumbViaCache : SetStickerSetThumb<string?>
   {
     public SetStickerSetThumbViaCache(string name, string? thumb = default) : base(name, thumb) { }
   }
 
-  public sealed class SetStickerSetThumbViaFile : SetStickerSetThumb<InputFile?>, IUploadable
+  public sealed record SetStickerSetThumbViaFile : SetStickerSetThumb<InputFile?>, IUploadable
   {
     public SetStickerSetThumbViaFile(string name, InputFile? thumb = default) :
       base(name, thumb) { }

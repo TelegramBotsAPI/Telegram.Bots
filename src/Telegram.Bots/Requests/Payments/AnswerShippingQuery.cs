@@ -6,7 +6,7 @@ using Telegram.Bots.Types.Payments;
 
 namespace Telegram.Bots.Requests.Payments
 {
-  public sealed class AnswerShippingQuery : IRequest<bool>
+  public sealed record AnswerShippingQuery : IRequest<bool>
   {
     public string QueryId { get; }
 

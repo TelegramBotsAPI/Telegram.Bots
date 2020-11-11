@@ -3,7 +3,7 @@
 
 namespace Telegram.Bots.Requests.Payments
 {
-  public sealed class AnswerPreCheckoutQuery : IRequest<bool>
+  public sealed record AnswerPreCheckoutQuery : IRequest<bool>
   {
     public string QueryId { get; }
 

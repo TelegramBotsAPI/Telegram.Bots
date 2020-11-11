@@ -5,7 +5,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public sealed class GetFile : IRequest<FileInfo>
+  public sealed record GetFile : IRequest<FileInfo>
   {
     public string Id { get; }
 

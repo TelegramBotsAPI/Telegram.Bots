@@ -5,13 +5,13 @@ using System;
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract class KickChatMember<TChatId> : IRequest<bool>, IChatMemberTargetable<TChatId>
+  public abstract record KickChatMember<TChatId> : IRequest<bool>, IChatMemberTargetable<TChatId>
   {
     public TChatId ChatId { get; }
 
     public int UserId { get; }
 
-    public DateTime? UntilDate { get; set; }
+    public DateTime? UntilDate { get; init; }
 
     public string Method { get; } = "kickChatMember";
 
@@ -22,14 +22,14 @@ namespace Telegram.Bots.Requests.Admins
     }
   }
 
-  public sealed class KickChatMember : KickChatMember<long>
+  public sealed record KickChatMember : KickChatMember<long>
   {
     public KickChatMember(long chatId, int userId) : base(chatId, userId) { }
   }
 
   namespace Usernames
   {
-    public sealed class KickChatMember : KickChatMember<string>
+    public sealed record KickChatMember : KickChatMember<string>
     {
       public KickChatMember(string username, int userId) : base(username, userId) { }
     }

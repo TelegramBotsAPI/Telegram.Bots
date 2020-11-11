@@ -6,7 +6,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests.Stickers
 {
-  public sealed class UploadStickerFile : IRequest<FileInfo>, IUserTargetable, IUploadable
+  public sealed record UploadStickerFile : IRequest<FileInfo>, IUserTargetable, IUploadable
   {
     public int UserId { get; }
 

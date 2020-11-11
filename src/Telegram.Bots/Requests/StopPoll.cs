@@ -5,14 +5,14 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract class StopPollBase : IRequest<PollMessage>, IInlineMarkupable
+  public abstract record StopPollBase : IRequest<PollMessage>, IInlineMarkupable
   {
-    public InlineKeyboardMarkup? ReplyMarkup { get; set; }
+    public InlineKeyboardMarkup? ReplyMarkup { get; init; }
 
     public string Method { get; } = "stopPoll";
   }
 
-  public abstract class StopPoll<TChatId> : StopPollBase, IChatMessageTargetable<TChatId>
+  public abstract record StopPoll<TChatId> : StopPollBase, IChatMessageTargetable<TChatId>
   {
     public TChatId ChatId { get; }
 
@@ -25,14 +25,14 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public sealed class StopPoll : StopPoll<long>
+  public sealed record StopPoll : StopPoll<long>
   {
     public StopPoll(long chatId, int messageId) : base(chatId, messageId) { }
   }
 
   namespace Usernames
   {
-    public sealed class StopPoll : StopPoll<string>
+    public sealed record StopPoll : StopPoll<string>
     {
       public StopPoll(string username, int messageId) : base(username, messageId) { }
     }

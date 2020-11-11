@@ -7,19 +7,19 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests.Webhooks
 {
-  public sealed class SetWebhook : IRequest<bool>, IUploadable
+  public sealed record SetWebhook : IRequest<bool>, IUploadable
   {
     public Uri? Url { get; }
 
-    public InputFile? Certificate { get; set; }
+    public InputFile? Certificate { get; init; }
 
-    public string? IpAddress { get; set; }
+    public string? IpAddress { get; init; }
 
-    public uint? MaxConnections { get; set; }
+    public uint? MaxConnections { get; init; }
 
-    public IEnumerable<UpdateType>? AllowedUpdates { get; set; }
+    public IEnumerable<UpdateType>? AllowedUpdates { get; init; }
 
-    public bool? DropPendingUpdates { get; set; }
+    public bool? DropPendingUpdates { get; init; }
 
     public string Method { get; } = "setWebhook";
 

@@ -8,7 +8,7 @@ using Telegram.Bots.Types.Payments;
 
 namespace Telegram.Bots.Requests.Payments
 {
-  public sealed class SendInvoice : IRequest<InvoiceMessage>, IChatTargetable<long>
+  public sealed record SendInvoice : IRequest<InvoiceMessage>, IChatTargetable<long>
   {
     public long ChatId { get; }
 
@@ -26,35 +26,35 @@ namespace Telegram.Bots.Requests.Payments
 
     public IEnumerable<LabeledPrice> Prices { get; }
 
-    public string? ProviderData { get; set; }
+    public string? ProviderData { get; init; }
 
-    public Uri? Photo { get; set; }
+    public Uri? Photo { get; init; }
 
-    public int? PhotoSize { get; set; }
+    public int? PhotoSize { get; init; }
 
-    public int? PhotoWidth { get; set; }
+    public int? PhotoWidth { get; init; }
 
-    public int? PhotoHeight { get; set; }
+    public int? PhotoHeight { get; init; }
 
-    public bool? NeedName { get; set; }
+    public bool? NeedName { get; init; }
 
-    public bool? NeedPhoneNumber { get; set; }
+    public bool? NeedPhoneNumber { get; init; }
 
-    public bool? NeedEmail { get; set; }
+    public bool? NeedEmail { get; init; }
 
-    public bool? NeedShippingAddress { get; set; }
+    public bool? NeedShippingAddress { get; init; }
 
-    public bool? SendPhoneNumberToProvider { get; set; }
+    public bool? SendPhoneNumberToProvider { get; init; }
 
-    public bool? SendEmailToProvider { get; set; }
+    public bool? SendEmailToProvider { get; init; }
 
-    public bool? IsFlexible { get; set; }
+    public bool? IsFlexible { get; init; }
 
-    public bool? DisableNotification { get; set; }
+    public bool? DisableNotification { get; init; }
 
-    public int? ReplyToMessageId { get; set; }
+    public int? ReplyToMessageId { get; init; }
 
-    public InlineKeyboardMarkup? ReplyMarkup { get; set; }
+    public InlineKeyboardMarkup? ReplyMarkup { get; init; }
 
     public string Method { get; } = "sendInvoice";
 

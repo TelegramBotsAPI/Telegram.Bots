@@ -6,21 +6,21 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract class EditCaptionBase<TResult> : IRequest<TResult>, ICaptionable,
+  public abstract record EditCaptionBase<TResult> : IRequest<TResult>, ICaptionable,
     IInlineMarkupable
   {
-    public string? Caption { get; set; }
+    public string? Caption { get; init; }
 
-    public ParseMode? ParseMode { get; set; }
+    public ParseMode? ParseMode { get; init; }
 
-    public IEnumerable<MessageEntity>? CaptionEntities { get; set; }
+    public IEnumerable<MessageEntity>? CaptionEntities { get; init; }
 
-    public InlineKeyboardMarkup? ReplyMarkup { get; set; }
+    public InlineKeyboardMarkup? ReplyMarkup { get; init; }
 
     public string Method { get; } = "editMessageCaption";
   }
 
-  public abstract class EditCaption<TChatId> : EditCaptionBase<CaptionableMessage>,
+  public abstract record EditCaption<TChatId> : EditCaptionBase<CaptionableMessage>,
     IChatMessageTargetable<TChatId>
   {
     public TChatId ChatId { get; }
@@ -34,14 +34,14 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public sealed class EditCaption : EditCaption<long>
+  public sealed record EditCaption : EditCaption<long>
   {
     public EditCaption(long chatId, int messageId) : base(chatId, messageId) { }
   }
 
   namespace Usernames
   {
-    public sealed class EditCaption : EditCaption<string>
+    public sealed record EditCaption : EditCaption<string>
     {
       public EditCaption(string username, int messageId) : base(username, messageId) { }
     }
@@ -49,7 +49,7 @@ namespace Telegram.Bots.Requests
 
   namespace Inline
   {
-    public sealed class EditCaption : EditCaptionBase<bool>, IInlineMessageTargetable
+    public sealed record EditCaption : EditCaptionBase<bool>, IInlineMessageTargetable
     {
       public string MessageId { get; }
 

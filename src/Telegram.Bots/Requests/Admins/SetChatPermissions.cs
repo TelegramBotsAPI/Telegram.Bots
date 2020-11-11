@@ -5,7 +5,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract class SetChatPermissions<TChatId> : IRequest<bool>, IChatTargetable<TChatId>
+  public abstract record SetChatPermissions<TChatId> : IRequest<bool>, IChatTargetable<TChatId>
   {
     public TChatId ChatId { get; }
 
@@ -20,7 +20,7 @@ namespace Telegram.Bots.Requests.Admins
     }
   }
 
-  public sealed class SetChatPermissions : SetChatPermissions<long>
+  public sealed record SetChatPermissions : SetChatPermissions<long>
   {
     public SetChatPermissions(long chatId, ChatPermissions permissions) :
       base(chatId, permissions) { }
@@ -28,7 +28,7 @@ namespace Telegram.Bots.Requests.Admins
 
   namespace Usernames
   {
-    public sealed class SetChatPermissions : SetChatPermissions<string>
+    public sealed record SetChatPermissions : SetChatPermissions<string>
     {
       public SetChatPermissions(string username, ChatPermissions permissions) :
         base(username, permissions) { }

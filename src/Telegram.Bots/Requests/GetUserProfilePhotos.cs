@@ -5,7 +5,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public sealed class GetUserProfilePhotos : IRequest<UserProfilePhotos>, IUserTargetable
+  public sealed record GetUserProfilePhotos : IRequest<UserProfilePhotos>, IUserTargetable
   {
     public int UserId { get; }
 

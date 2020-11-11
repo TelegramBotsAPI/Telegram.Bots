@@ -3,7 +3,7 @@
 
 namespace Telegram.Bots.Requests
 {
-  public sealed class LogOut : IRequest<bool>
+  public sealed record LogOut : IRequest<bool>
   {
     public string Method { get; } = "logOut";
   }

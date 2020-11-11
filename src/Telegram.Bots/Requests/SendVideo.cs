@@ -7,26 +7,26 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract class SendVideo<TChatId, TVideo> : IRequest<VideoMessage>,
+  public abstract record SendVideo<TChatId, TVideo> : IRequest<VideoMessage>,
     IChatTargetable<TChatId>, ICaptionable, INotifiable, IReplyable, IMarkupable
   {
     public TChatId ChatId { get; }
 
     public TVideo Video { get; }
 
-    public string? Caption { get; set; }
+    public string? Caption { get; init; }
 
-    public ParseMode? ParseMode { get; set; }
+    public ParseMode? ParseMode { get; init; }
 
-    public IEnumerable<MessageEntity>? CaptionEntities { get; set; }
+    public IEnumerable<MessageEntity>? CaptionEntities { get; init; }
 
-    public bool? DisableNotification { get; set; }
+    public bool? DisableNotification { get; init; }
 
-    public int? ReplyToMessageId { get; set; }
+    public int? ReplyToMessageId { get; init; }
 
-    public bool? AllowSendingWithoutReply { get; set; }
+    public bool? AllowSendingWithoutReply { get; init; }
 
-    public ReplyMarkup? ReplyMarkup { get; set; }
+    public ReplyMarkup? ReplyMarkup { get; init; }
 
     public string Method { get; } = "sendVideo";
 
@@ -37,51 +37,51 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public abstract class SendVideoFile<TChatId> : SendVideo<TChatId, InputFile>, IUploadable
+  public abstract record SendVideoFile<TChatId> : SendVideo<TChatId, InputFile>, IUploadable
   {
-    public bool? SupportsStreaming { get; set; }
+    public bool? SupportsStreaming { get; init; }
 
-    public int? Duration { get; set; }
+    public int? Duration { get; init; }
 
-    public int? Width { get; set; }
+    public int? Width { get; init; }
 
-    public int? Height { get; set; }
+    public int? Height { get; init; }
 
-    public InputFile? Thumb { get; set; }
+    public InputFile? Thumb { get; init; }
 
     protected SendVideoFile(TChatId chatId, InputFile video) : base(chatId, video) { }
 
     public IEnumerable<InputFile?> GetFiles() => new[] { Video, Thumb };
   }
 
-  public sealed class SendCachedVideo : SendVideo<long, string>
+  public sealed record SendCachedVideo : SendVideo<long, string>
   {
     public SendCachedVideo(long chatId, string video) : base(chatId, video) { }
   }
 
-  public sealed class SendVideoUrl : SendVideo<long, Uri>
+  public sealed record SendVideoUrl : SendVideo<long, Uri>
   {
     public SendVideoUrl(long chatId, Uri video) : base(chatId, video) { }
   }
 
-  public sealed class SendVideoFile : SendVideoFile<long>
+  public sealed record SendVideoFile : SendVideoFile<long>
   {
     public SendVideoFile(long chatId, InputFile video) : base(chatId, video) { }
   }
 
   namespace Usernames
   {
-    public sealed class SendCachedVideo : SendVideo<string, string>
+    public sealed record SendCachedVideo : SendVideo<string, string>
     {
       public SendCachedVideo(string username, string video) : base(username, video) { }
     }
 
-    public sealed class SendVideoUrl : SendVideo<string, Uri>
+    public sealed record SendVideoUrl : SendVideo<string, Uri>
     {
       public SendVideoUrl(string username, Uri video) : base(username, video) { }
     }
 
-    public sealed class SendVideoFile : SendVideoFile<string>
+    public sealed record SendVideoFile : SendVideoFile<string>
     {
       public SendVideoFile(string username, InputFile video) : base(username, video) { }
     }

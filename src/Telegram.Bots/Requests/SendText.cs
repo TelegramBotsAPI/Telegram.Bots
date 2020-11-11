@@ -6,26 +6,26 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract class SendText<TChatId> : IRequest<TextMessage>, IChatTargetable<TChatId>,
+  public abstract record SendText<TChatId> : IRequest<TextMessage>, IChatTargetable<TChatId>,
     INotifiable, IReplyable, IMarkupable
   {
     public TChatId ChatId { get; }
 
     public string Text { get; }
 
-    public ParseMode? ParseMode { get; set; }
+    public ParseMode? ParseMode { get; init; }
 
-    public IEnumerable<MessageEntity>? Entities { get; set; }
+    public IEnumerable<MessageEntity>? Entities { get; init; }
 
-    public bool? DisableWebPagePreview { get; set; }
+    public bool? DisableWebPagePreview { get; init; }
 
-    public bool? DisableNotification { get; set; }
+    public bool? DisableNotification { get; init; }
 
-    public int? ReplyToMessageId { get; set; }
+    public int? ReplyToMessageId { get; init; }
 
-    public bool? AllowSendingWithoutReply { get; set; }
+    public bool? AllowSendingWithoutReply { get; init; }
 
-    public ReplyMarkup? ReplyMarkup { get; set; }
+    public ReplyMarkup? ReplyMarkup { get; init; }
 
     public string Method { get; } = "sendMessage";
 
@@ -36,14 +36,14 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public sealed class SendText : SendText<long>
+  public sealed record SendText : SendText<long>
   {
     public SendText(long chatId, string text) : base(chatId, text) { }
   }
 
   namespace Usernames
   {
-    public sealed class SendText : SendText<string>
+    public sealed record SendText : SendText<string>
     {
       public SendText(string username, string text) : base(username, text) { }
     }

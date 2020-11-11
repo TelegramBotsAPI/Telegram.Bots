@@ -3,7 +3,7 @@
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract class ExportChatInviteLink<TChatId> : IRequest<string>, IChatTargetable<TChatId>
+  public abstract record ExportChatInviteLink<TChatId> : IRequest<string>, IChatTargetable<TChatId>
   {
     public TChatId ChatId { get; }
 
@@ -12,14 +12,14 @@ namespace Telegram.Bots.Requests.Admins
     protected ExportChatInviteLink(TChatId chatId) => ChatId = chatId;
   }
 
-  public sealed class ExportChatInviteLink : ExportChatInviteLink<long>
+  public sealed record ExportChatInviteLink : ExportChatInviteLink<long>
   {
     public ExportChatInviteLink(long chatId) : base(chatId) { }
   }
 
   namespace Usernames
   {
-    public sealed class ExportChatInviteLink : ExportChatInviteLink<string>
+    public sealed record ExportChatInviteLink : ExportChatInviteLink<string>
     {
       public ExportChatInviteLink(string username) : base(username) { }
     }

@@ -5,7 +5,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract class SendContact<TChatId> : IRequest<LocationMessage>,
+  public abstract record SendContact<TChatId> : IRequest<LocationMessage>,
     IChatTargetable<TChatId>, INotifiable, IReplyable, IMarkupable
   {
     public TChatId ChatId { get; }
@@ -14,17 +14,17 @@ namespace Telegram.Bots.Requests
 
     public string FirstName { get; }
 
-    public string? LastName { get; set; }
+    public string? LastName { get; init; }
 
-    public string? Vcard { get; set; }
+    public string? Vcard { get; init; }
 
-    public bool? DisableNotification { get; set; }
+    public bool? DisableNotification { get; init; }
 
-    public int? ReplyToMessageId { get; set; }
+    public int? ReplyToMessageId { get; init; }
 
-    public bool? AllowSendingWithoutReply { get; set; }
+    public bool? AllowSendingWithoutReply { get; init; }
 
-    public ReplyMarkup? ReplyMarkup { get; set; }
+    public ReplyMarkup? ReplyMarkup { get; init; }
 
     public string Method { get; } = "sendContact";
 
@@ -36,7 +36,7 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public sealed class SendContact : SendContact<long>
+  public sealed record SendContact : SendContact<long>
   {
     public SendContact(long chatId, string phoneNumber, string firstName) :
       base(chatId, phoneNumber, firstName) { }
@@ -44,7 +44,7 @@ namespace Telegram.Bots.Requests
 
   namespace Usernames
   {
-    public sealed class SendContact : SendContact<string>
+    public sealed record SendContact : SendContact<string>
     {
       public SendContact(string username, string phoneNumber, string firstName) :
         base(username, phoneNumber, firstName) { }

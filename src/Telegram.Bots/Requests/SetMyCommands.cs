@@ -6,7 +6,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public sealed class SetMyCommands : IRequest<bool>
+  public sealed record SetMyCommands : IRequest<bool>
   {
     public IEnumerable<BotCommand> Commands { get; }
 

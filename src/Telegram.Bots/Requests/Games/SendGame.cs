@@ -5,20 +5,20 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests.Games
 {
-  public sealed class SendGame : IRequest<GameMessage>,
+  public sealed record SendGame : IRequest<GameMessage>,
     IChatTargetable<long>, INotifiable, IReplyable, IInlineMarkupable
   {
     public long ChatId { get; }
 
     public string ShortName { get; }
 
-    public bool? DisableNotification { get; set; }
+    public bool? DisableNotification { get; init; }
 
-    public int? ReplyToMessageId { get; set; }
+    public int? ReplyToMessageId { get; init; }
 
-    public bool? AllowSendingWithoutReply { get; set; }
+    public bool? AllowSendingWithoutReply { get; init; }
 
-    public InlineKeyboardMarkup? ReplyMarkup { get; set; }
+    public InlineKeyboardMarkup? ReplyMarkup { get; init; }
 
     public string Method { get; } = "sendGame";
 

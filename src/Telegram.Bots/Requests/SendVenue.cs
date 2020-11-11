@@ -5,7 +5,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract class SendVenue<TChatId> : IRequest<LocationMessage>,
+  public abstract record SendVenue<TChatId> : IRequest<LocationMessage>,
     IChatTargetable<TChatId>, INotifiable, IReplyable, IMarkupable
   {
     public TChatId ChatId { get; }
@@ -18,21 +18,21 @@ namespace Telegram.Bots.Requests
 
     public string Address { get; }
 
-    public string? FoursquareId { get; set; }
+    public string? FoursquareId { get; init; }
 
-    public string? FoursquareType { get; set; }
+    public string? FoursquareType { get; init; }
 
-    public string? GooglePlaceId { get; set; }
+    public string? GooglePlaceId { get; init; }
 
-    public string? GooglePlaceType { get; set; }
+    public string? GooglePlaceType { get; init; }
 
-    public bool? DisableNotification { get; set; }
+    public bool? DisableNotification { get; init; }
 
-    public int? ReplyToMessageId { get; set; }
+    public int? ReplyToMessageId { get; init; }
 
-    public bool? AllowSendingWithoutReply { get; set; }
+    public bool? AllowSendingWithoutReply { get; init; }
 
-    public ReplyMarkup? ReplyMarkup { get; set; }
+    public ReplyMarkup? ReplyMarkup { get; init; }
 
     public string Method { get; } = "sendVenue";
 
@@ -51,7 +51,7 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public sealed class SendVenue : SendVenue<long>
+  public sealed record SendVenue : SendVenue<long>
   {
     public SendVenue(long chatId, double latitude, double longitude, string title, string address) :
       base(chatId, latitude, longitude, title, address) { }
@@ -59,7 +59,7 @@ namespace Telegram.Bots.Requests
 
   namespace Usernames
   {
-    public sealed class SendVenue : SendVenue<string>
+    public sealed record SendVenue : SendVenue<string>
     {
       public SendVenue(
         string username,

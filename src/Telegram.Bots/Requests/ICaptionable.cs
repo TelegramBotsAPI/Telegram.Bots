@@ -8,10 +8,10 @@ namespace Telegram.Bots.Requests
 {
   public interface ICaptionable
   {
-    string? Caption { get; set; }
+    string? Caption { get; init; }
 
-    ParseMode? ParseMode { get; set; }
+    ParseMode? ParseMode { get; init; }
 
-    IEnumerable<MessageEntity>? CaptionEntities { get; set; }
+    IEnumerable<MessageEntity>? CaptionEntities { get; init; }
   }
 }

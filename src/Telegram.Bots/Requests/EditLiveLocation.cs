@@ -5,19 +5,19 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract class EditLiveLocationBase<TResult> : IRequest<TResult>, IInlineMarkupable
+  public abstract record EditLiveLocationBase<TResult> : IRequest<TResult>, IInlineMarkupable
   {
     public double Latitude { get; }
 
     public double Longitude { get; }
 
-    public double? HorizontalAccuracy { get; set; }
+    public double? HorizontalAccuracy { get; init; }
 
-    public uint? Heading { get; set; }
+    public uint? Heading { get; init; }
 
-    public uint? ProximityAlertRadius { get; set; }
+    public uint? ProximityAlertRadius { get; init; }
 
-    public InlineKeyboardMarkup? ReplyMarkup { get; set; }
+    public InlineKeyboardMarkup? ReplyMarkup { get; init; }
 
     public string Method { get; } = "editMessageLiveLocation";
 
@@ -28,7 +28,7 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public abstract class EditLiveLocation<TChatId> : EditLiveLocationBase<LocationMessage>,
+  public abstract record EditLiveLocation<TChatId> : EditLiveLocationBase<LocationMessage>,
     IChatMessageTargetable<TChatId>
   {
     public TChatId ChatId { get; }
@@ -43,7 +43,7 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public sealed class EditLiveLocation : EditLiveLocation<long>
+  public sealed record EditLiveLocation : EditLiveLocation<long>
   {
     public EditLiveLocation(long chatId, int messageId, double latitude, double longitude) :
       base(chatId, messageId, latitude, longitude) { }
@@ -51,7 +51,7 @@ namespace Telegram.Bots.Requests
 
   namespace Usernames
   {
-    public sealed class EditLiveLocation : EditLiveLocation<string>
+    public sealed record EditLiveLocation : EditLiveLocation<string>
     {
       public EditLiveLocation(string username, int messageId, double latitude, double longitude) :
         base(username, messageId, latitude, longitude) { }
@@ -60,7 +60,7 @@ namespace Telegram.Bots.Requests
 
   namespace Inline
   {
-    public sealed class EditLiveLocation : EditLiveLocationBase<bool>, IInlineMessageTargetable
+    public sealed record EditLiveLocation : EditLiveLocationBase<bool>, IInlineMessageTargetable
     {
       public string MessageId { get; }
 

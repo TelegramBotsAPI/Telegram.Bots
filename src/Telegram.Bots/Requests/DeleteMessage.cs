@@ -3,7 +3,7 @@
 
 namespace Telegram.Bots.Requests
 {
-  public abstract class DeleteMessage<TChatId> : IRequest<bool>, IChatMessageTargetable<TChatId>
+  public abstract record DeleteMessage<TChatId> : IRequest<bool>, IChatMessageTargetable<TChatId>
   {
     public TChatId ChatId { get; }
 
@@ -18,14 +18,14 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public sealed class DeleteMessage : DeleteMessage<long>
+  public sealed record DeleteMessage : DeleteMessage<long>
   {
     public DeleteMessage(long chatId, int messageId) : base(chatId, messageId) { }
   }
 
   namespace Usernames
   {
-    public sealed class DeleteMessage : DeleteMessage<string>
+    public sealed record DeleteMessage : DeleteMessage<string>
     {
       public DeleteMessage(string username, int messageId) : base(username, messageId) { }
     }

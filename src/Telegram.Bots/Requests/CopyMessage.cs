@@ -6,7 +6,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract class CopyMessage<TChatId, TFromChatId> : IRequest<Message>,
+  public abstract record CopyMessage<TChatId, TFromChatId> : IRequest<Message>,
     IChatMessageTargetable<TChatId>, ICaptionable, INotifiable, IReplyable, IMarkupable
   {
     public TChatId ChatId { get; }
@@ -15,19 +15,19 @@ namespace Telegram.Bots.Requests
 
     public int MessageId { get; }
 
-    public string? Caption { get; set; }
+    public string? Caption { get; init; }
 
-    public ParseMode? ParseMode { get; set; }
+    public ParseMode? ParseMode { get; init; }
 
-    public IEnumerable<MessageEntity>? CaptionEntities { get; set; }
+    public IEnumerable<MessageEntity>? CaptionEntities { get; init; }
 
-    public bool? DisableNotification { get; set; }
+    public bool? DisableNotification { get; init; }
 
-    public int? ReplyToMessageId { get; set; }
+    public int? ReplyToMessageId { get; init; }
 
-    public bool? AllowSendingWithoutReply { get; set; }
+    public bool? AllowSendingWithoutReply { get; init; }
 
-    public ReplyMarkup? ReplyMarkup { get; set; }
+    public ReplyMarkup? ReplyMarkup { get; init; }
 
     public string Method { get; } = "copyMessage";
 
@@ -39,13 +39,13 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public sealed class CopyMessage : CopyMessage<long, long>
+  public sealed record CopyMessage : CopyMessage<long, long>
   {
     public CopyMessage(long chatId, long fromChatId, int messageId) :
       base(chatId, fromChatId, messageId) { }
   }
 
-  public sealed class CopyMessageViaUsername : CopyMessage<string, long>
+  public sealed record CopyMessageViaUsername : CopyMessage<string, long>
   {
     public CopyMessageViaUsername(string username, long fromChatId, int messageId) :
       base(username, fromChatId, messageId) { }
@@ -53,13 +53,13 @@ namespace Telegram.Bots.Requests
 
   namespace Usernames
   {
-    public sealed class CopyMessage : CopyMessage<string, string>
+    public sealed record CopyMessage : CopyMessage<string, string>
     {
       public CopyMessage(string username, string fromUsername, int messageId) :
         base(username, fromUsername, messageId) { }
     }
 
-    public sealed class CopyMessageViaId : CopyMessage<long, string>
+    public sealed record CopyMessageViaId : CopyMessage<long, string>
     {
       public CopyMessageViaId(long chatId, string fromUsername, int messageId) :
         base(chatId, fromUsername, messageId) { }

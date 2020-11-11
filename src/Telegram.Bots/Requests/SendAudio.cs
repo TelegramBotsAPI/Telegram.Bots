@@ -7,26 +7,26 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract class SendAudio<TChatId, TAudio> : IRequest<AudioMessage>,
+  public abstract record SendAudio<TChatId, TAudio> : IRequest<AudioMessage>,
     IChatTargetable<TChatId>, ICaptionable, INotifiable, IReplyable, IMarkupable
   {
     public TChatId ChatId { get; }
 
     public TAudio Audio { get; }
 
-    public string? Caption { get; set; }
+    public string? Caption { get; init; }
 
-    public ParseMode? ParseMode { get; set; }
+    public ParseMode? ParseMode { get; init; }
 
-    public IEnumerable<MessageEntity>? CaptionEntities { get; set; }
+    public IEnumerable<MessageEntity>? CaptionEntities { get; init; }
 
-    public bool? DisableNotification { get; set; }
+    public bool? DisableNotification { get; init; }
 
-    public int? ReplyToMessageId { get; set; }
+    public int? ReplyToMessageId { get; init; }
 
-    public bool? AllowSendingWithoutReply { get; set; }
+    public bool? AllowSendingWithoutReply { get; init; }
 
-    public ReplyMarkup? ReplyMarkup { get; set; }
+    public ReplyMarkup? ReplyMarkup { get; init; }
 
     public string Method { get; } = "sendAudio";
 
@@ -37,49 +37,49 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public abstract class SendAudioFile<TChatId> : SendAudio<TChatId, InputFile>, IUploadable
+  public abstract record SendAudioFile<TChatId> : SendAudio<TChatId, InputFile>, IUploadable
   {
-    public int? Duration { get; set; }
+    public int? Duration { get; init; }
 
-    public string? Performer { get; set; }
+    public string? Performer { get; init; }
 
-    public string? Title { get; set; }
+    public string? Title { get; init; }
 
-    public InputFile? Thumb { get; set; }
+    public InputFile? Thumb { get; init; }
 
     protected SendAudioFile(TChatId chatId, InputFile audio) : base(chatId, audio) { }
 
     public IEnumerable<InputFile?> GetFiles() => new[] { Audio, Thumb };
   }
 
-  public sealed class SendCachedAudio : SendAudio<long, string>
+  public sealed record SendCachedAudio : SendAudio<long, string>
   {
     public SendCachedAudio(long chatId, string audio) : base(chatId, audio) { }
   }
 
-  public sealed class SendAudioUrl : SendAudio<long, Uri>
+  public sealed record SendAudioUrl : SendAudio<long, Uri>
   {
     public SendAudioUrl(long chatId, Uri audio) : base(chatId, audio) { }
   }
 
-  public sealed class SendAudioFile : SendAudioFile<long>
+  public sealed record SendAudioFile : SendAudioFile<long>
   {
     public SendAudioFile(long chatId, InputFile audio) : base(chatId, audio) { }
   }
 
   namespace Usernames
   {
-    public sealed class SendCachedAudio : SendAudio<string, string>
+    public sealed record SendCachedAudio : SendAudio<string, string>
     {
       public SendCachedAudio(string username, string audio) : base(username, audio) { }
     }
 
-    public sealed class SendAudioUrl : SendAudio<string, Uri>
+    public sealed record SendAudioUrl : SendAudio<string, Uri>
     {
       public SendAudioUrl(string username, Uri audio) : base(username, audio) { }
     }
 
-    public sealed class SendAudioFile : SendAudioFile<string>
+    public sealed record SendAudioFile : SendAudioFile<string>
     {
       public SendAudioFile(string username, InputFile audio) : base(username, audio) { }
     }

@@ -6,7 +6,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract class SetChatPhoto<TChatId> : IRequest<bool>, IChatTargetable<TChatId>,
+  public abstract record SetChatPhoto<TChatId> : IRequest<bool>, IChatTargetable<TChatId>,
     IUploadable
   {
     public TChatId ChatId { get; }
@@ -24,14 +24,14 @@ namespace Telegram.Bots.Requests.Admins
     public IEnumerable<InputFile?> GetFiles() => new[] { Photo };
   }
 
-  public sealed class SetChatPhoto : SetChatPhoto<long>
+  public sealed record SetChatPhoto : SetChatPhoto<long>
   {
     public SetChatPhoto(long chatId, InputFile photo) : base(chatId, photo) { }
   }
 
   namespace Usernames
   {
-    public sealed class SetChatPhoto : SetChatPhoto<string>
+    public sealed record SetChatPhoto : SetChatPhoto<string>
     {
       public SetChatPhoto(string username, InputFile photo) : base(username, photo) { }
     }

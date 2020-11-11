@@ -3,13 +3,13 @@
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract class UnbanChatMember<TChatId> : IRequest<bool>, IChatMemberTargetable<TChatId>
+  public abstract record UnbanChatMember<TChatId> : IRequest<bool>, IChatMemberTargetable<TChatId>
   {
     public TChatId ChatId { get; }
 
     public int UserId { get; }
 
-    public bool? OnlyIfBanned { get; set; }
+    public bool? OnlyIfBanned { get; init; }
 
     public string Method { get; } = "unbanChatMember";
 
@@ -20,14 +20,14 @@ namespace Telegram.Bots.Requests.Admins
     }
   }
 
-  public sealed class UnbanChatMember : UnbanChatMember<long>
+  public sealed record UnbanChatMember : UnbanChatMember<long>
   {
     public UnbanChatMember(long chatId, int userId) : base(chatId, userId) { }
   }
 
   namespace Usernames
   {
-    public sealed class UnbanChatMember : UnbanChatMember<string>
+    public sealed record UnbanChatMember : UnbanChatMember<string>
     {
       public UnbanChatMember(string username, int userId) : base(username, userId) { }
     }

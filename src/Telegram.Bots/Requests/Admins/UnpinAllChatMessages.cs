@@ -3,7 +3,7 @@
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract class UnpinAllChatMessages<TChatId> : IRequest<bool>, IChatTargetable<TChatId>
+  public abstract record UnpinAllChatMessages<TChatId> : IRequest<bool>, IChatTargetable<TChatId>
   {
     public TChatId ChatId { get; }
 
@@ -12,14 +12,14 @@ namespace Telegram.Bots.Requests.Admins
     protected UnpinAllChatMessages(TChatId chatId) => ChatId = chatId;
   }
 
-  public sealed class UnpinAllChatMessages : UnpinAllChatMessages<long>
+  public sealed record UnpinAllChatMessages : UnpinAllChatMessages<long>
   {
     public UnpinAllChatMessages(long chatId) : base(chatId) { }
   }
 
   namespace Usernames
   {
-    public sealed class UnpinAllChatMessages : UnpinAllChatMessages<string>
+    public sealed record UnpinAllChatMessages : UnpinAllChatMessages<string>
     {
       public UnpinAllChatMessages(string username) : base(username) { }
     }

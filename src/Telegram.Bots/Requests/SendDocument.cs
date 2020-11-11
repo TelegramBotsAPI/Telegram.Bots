@@ -7,26 +7,26 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract class SendDocument<TChatId, TDocument> : IRequest<DocumentMessage>,
+  public abstract record SendDocument<TChatId, TDocument> : IRequest<DocumentMessage>,
     IChatTargetable<TChatId>, ICaptionable, INotifiable, IReplyable, IMarkupable
   {
     public TChatId ChatId { get; }
 
     public TDocument Document { get; }
 
-    public string? Caption { get; set; }
+    public string? Caption { get; init; }
 
-    public ParseMode? ParseMode { get; set; }
+    public ParseMode? ParseMode { get; init; }
 
-    public IEnumerable<MessageEntity>? CaptionEntities { get; set; }
+    public IEnumerable<MessageEntity>? CaptionEntities { get; init; }
 
-    public bool? DisableNotification { get; set; }
+    public bool? DisableNotification { get; init; }
 
-    public int? ReplyToMessageId { get; set; }
+    public int? ReplyToMessageId { get; init; }
 
-    public bool? AllowSendingWithoutReply { get; set; }
+    public bool? AllowSendingWithoutReply { get; init; }
 
-    public ReplyMarkup? ReplyMarkup { get; set; }
+    public ReplyMarkup? ReplyMarkup { get; init; }
 
     public string Method { get; } = "sendDocument";
 
@@ -37,45 +37,45 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public abstract class SendDocumentFile<TChatId> : SendDocument<TChatId, InputFile>, IUploadable
+  public abstract record SendDocumentFile<TChatId> : SendDocument<TChatId, InputFile>, IUploadable
   {
-    public InputFile? Thumb { get; set; }
+    public InputFile? Thumb { get; init; }
 
-    public bool? DisableContentTypeDetection { get; set; }
+    public bool? DisableContentTypeDetection { get; init; }
 
     protected SendDocumentFile(TChatId chatId, InputFile document) : base(chatId, document) { }
 
     public IEnumerable<InputFile?> GetFiles() => new[] { Document, Thumb };
   }
 
-  public sealed class SendCachedDocument : SendDocument<long, string>
+  public sealed record SendCachedDocument : SendDocument<long, string>
   {
     public SendCachedDocument(long chatId, string document) : base(chatId, document) { }
   }
 
-  public sealed class SendDocumentUrl : SendDocument<long, Uri>
+  public sealed record SendDocumentUrl : SendDocument<long, Uri>
   {
     public SendDocumentUrl(long chatId, Uri document) : base(chatId, document) { }
   }
 
-  public sealed class SendDocumentFile : SendDocumentFile<long>
+  public sealed record SendDocumentFile : SendDocumentFile<long>
   {
     public SendDocumentFile(long chatId, InputFile document) : base(chatId, document) { }
   }
 
   namespace Usernames
   {
-    public sealed class SendCachedDocument : SendDocument<string, string>
+    public sealed record SendCachedDocument : SendDocument<string, string>
     {
       public SendCachedDocument(string username, string document) : base(username, document) { }
     }
 
-    public sealed class SendDocumentUrl : SendDocument<string, Uri>
+    public sealed record SendDocumentUrl : SendDocument<string, Uri>
     {
       public SendDocumentUrl(string username, Uri document) : base(username, document) { }
     }
 
-    public sealed class SendDocumentFile : SendDocumentFile<string>
+    public sealed record SendDocumentFile : SendDocumentFile<string>
     {
       public SendDocumentFile(string username, InputFile document) : base(username, document) { }
     }

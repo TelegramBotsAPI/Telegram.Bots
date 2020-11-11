@@ -6,15 +6,15 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public sealed class GetUpdates : IRequest<IReadOnlyList<Update>>
+  public sealed record GetUpdates : IRequest<IReadOnlyList<Update>>
   {
-    public int? Offset { get; set; }
+    public int? Offset { get; init; }
 
-    public int? Limit { get; set; }
+    public int? Limit { get; init; }
 
-    public int? Timeout { get; set; }
+    public int? Timeout { get; init; }
 
-    public IEnumerable<UpdateType>? AllowedUpdates { get; set; }
+    public IEnumerable<UpdateType>? AllowedUpdates { get; init; }
 
     public string Method { get; } = "getUpdates";
   }

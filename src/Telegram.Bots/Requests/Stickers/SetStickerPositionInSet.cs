@@ -3,7 +3,7 @@
 
 namespace Telegram.Bots.Requests.Stickers
 {
-  public sealed class SetStickerPositionInSet : IRequest<bool>
+  public sealed record SetStickerPositionInSet : IRequest<bool>
   {
     public string Sticker { get; }
 

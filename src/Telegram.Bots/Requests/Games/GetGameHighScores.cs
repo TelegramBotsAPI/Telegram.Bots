@@ -6,7 +6,7 @@ using Telegram.Bots.Types.Games;
 
 namespace Telegram.Bots.Requests.Games
 {
-  public abstract class GetGameHighScoresBase : IRequest<IReadOnlyList<GameHighScore>>,
+  public abstract record GetGameHighScoresBase : IRequest<IReadOnlyList<GameHighScore>>,
     IUserTargetable
   {
     public int UserId { get; }
@@ -16,7 +16,7 @@ namespace Telegram.Bots.Requests.Games
     protected GetGameHighScoresBase(int userId) => UserId = userId;
   }
 
-  public abstract class GetGameHighScores<TChatId> : GetGameHighScoresBase,
+  public abstract record GetGameHighScores<TChatId> : GetGameHighScoresBase,
     IChatMessageTargetable<TChatId>
   {
     public TChatId ChatId { get; }
@@ -30,7 +30,7 @@ namespace Telegram.Bots.Requests.Games
     }
   }
 
-  public sealed class GetGameHighScores : GetGameHighScores<long>
+  public sealed record GetGameHighScores : GetGameHighScores<long>
   {
     public GetGameHighScores(long chatId, int messageId, int userId) :
       base(chatId, messageId, userId) { }
@@ -38,7 +38,7 @@ namespace Telegram.Bots.Requests.Games
 
   namespace Inline
   {
-    public sealed class GetGameHighScores : GetGameHighScoresBase, IInlineMessageTargetable
+    public sealed record GetGameHighScores : GetGameHighScoresBase, IInlineMessageTargetable
     {
       public string MessageId { get; }
 

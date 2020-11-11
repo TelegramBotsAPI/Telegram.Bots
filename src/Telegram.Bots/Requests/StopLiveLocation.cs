@@ -5,14 +5,14 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract class StopLiveLocationBase<TResult> : IRequest<TResult>, IInlineMarkupable
+  public abstract record StopLiveLocationBase<TResult> : IRequest<TResult>, IInlineMarkupable
   {
-    public InlineKeyboardMarkup? ReplyMarkup { get; set; }
+    public InlineKeyboardMarkup? ReplyMarkup { get; init; }
 
     public string Method { get; } = "stopMessageLiveLocation";
   }
 
-  public abstract class StopLiveLocation<TChatId> : StopLiveLocationBase<LocationMessage>,
+  public abstract record StopLiveLocation<TChatId> : StopLiveLocationBase<LocationMessage>,
     IChatMessageTargetable<TChatId>
   {
     public TChatId ChatId { get; }
@@ -26,14 +26,14 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public sealed class StopLiveLocation : StopLiveLocation<long>
+  public sealed record StopLiveLocation : StopLiveLocation<long>
   {
     public StopLiveLocation(long chatId, int messageId) : base(chatId, messageId) { }
   }
 
   namespace Usernames
   {
-    public sealed class StopLiveLocation : StopLiveLocation<string>
+    public sealed record StopLiveLocation : StopLiveLocation<string>
     {
       public StopLiveLocation(string username, int messageId) : base(username, messageId) { }
     }
@@ -41,7 +41,7 @@ namespace Telegram.Bots.Requests
 
   namespace Inline
   {
-    public sealed class StopLiveLocation : StopLiveLocationBase<bool>, IInlineMessageTargetable
+    public sealed record StopLiveLocation : StopLiveLocationBase<bool>, IInlineMessageTargetable
     {
       public string MessageId { get; }
 

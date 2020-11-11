@@ -3,7 +3,7 @@
 
 namespace Telegram.Bots.Requests
 {
-  public sealed class Close : IRequest<bool>
+  public sealed record Close : IRequest<bool>
   {
     public string Method { get; } = "close";
   }
