@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using Xunit;
 
@@ -9,8 +9,8 @@ namespace Telegram.Bots.Json.Tests.Units
   {
     private const string Json = @"{""file_id"":1,""first_name"":""Some"",""is_bot"":true}";
 
-    private static readonly SnakeClass Value =
-      new SnakeClass { FileId = 1, FirstName = "Some", IsBot = true };
+    private static readonly SnakeData Value =
+      new() { FileId = 1, FirstName = "Some", IsBot = true };
 
     private readonly Serializer _serializer;
 
@@ -23,7 +23,7 @@ namespace Telegram.Bots.Json.Tests.Units
     [Fact(DisplayName = "Deserialization uses snake_case naming strategy")]
     public void DeserializationUsesSnakeCaseNamingStrategy()
     {
-      var value = _serializer.Deserialize<SnakeClass>(Json);
+      var value = _serializer.Deserialize<SnakeData>(Json);
 
       Assert.Equal(Value.FileId, value.FileId);
       Assert.Equal(Value.FirstName, value.FirstName);
@@ -35,20 +35,20 @@ namespace Telegram.Bots.Json.Tests.Units
     {
       const string json = @"{""fileId"":1,""firstName"":""Some"",""isBot"":true}";
 
-      var value = _serializer.Deserialize<SnakeClass>(json);
+      var value = _serializer.Deserialize<SnakeData>(json);
 
       Assert.Equal(default, value.FileId);
       Assert.Equal(default, value.FirstName);
       Assert.Equal(default, value.IsBot);
     }
 
-    private class SnakeClass
+    private sealed record SnakeData
     {
-      public int FileId { get; set; }
+      public int FileId { get; init; }
 
-      public string FirstName { get; set; } = null!;
+      public string FirstName { get; init; } = null!;
 
-      public bool IsBot { get; set; }
+      public bool IsBot { get; init; }
     }
   }
 }

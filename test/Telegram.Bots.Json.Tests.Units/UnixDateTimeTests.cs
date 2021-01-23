@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System;
 using Xunit;
@@ -12,7 +12,7 @@ namespace Telegram.Bots.Json.Tests.Units
 
     private const string Json = @"{""unix_date"":749008680,""date"":749008680}";
 
-    private static readonly UnixDateTimeClass Value = new UnixDateTimeClass
+    private static readonly UnixDateTimeData Value = new()
     {
       UnixDate = 749008680L,
       Date = new DateTime(1993, 9, 26, 1, 58, 0, DateTimeKind.Utc)
@@ -27,17 +27,17 @@ namespace Telegram.Bots.Json.Tests.Units
     [Fact(DisplayName = "Deserialization converts integer-based unix value to DateTime")]
     public void DeserializationConvertsUnixValueToDateTime()
     {
-      var value = _serializer.Deserialize<UnixDateTimeClass>(Json);
+      var value = _serializer.Deserialize<UnixDateTimeData>(Json);
 
       Assert.Equal(Value.UnixDate, value.UnixDate);
       Assert.Equal(Value.Date, value.Date);
     }
 
-    private class UnixDateTimeClass
+    private sealed record UnixDateTimeData
     {
-      public long UnixDate { get; set; }
+      public long UnixDate { get; init; }
 
-      public DateTime Date { get; set; }
+      public DateTime Date { get; init; }
     }
   }
 }

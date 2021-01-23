@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using Xunit;
 
@@ -13,14 +13,14 @@ namespace Telegram.Bots.Json.Tests.Units
 
     [Fact(DisplayName = "Serialization ignores null values")]
     public void SerializationIgnoresNullValues() =>
-      Assert.Equal("{}", _serializer.Serialize(new NullClass()));
+      Assert.Equal("{}", _serializer.Serialize(new NullData()));
 
     [Fact(DisplayName = "Serialization does not ignore non-null values")]
     public void SerializationDoesNotIgnoreNonNullValues()
     {
       const string json = @"{""file_id"":0,""first_name"":"""",""is_bot"":false}";
 
-      var value = new NullClass { FileId = 0, FirstName = "", IsBot = false };
+      var value = new NullData { FileId = 0, FirstName = "", IsBot = false };
 
       Assert.Equal(json, _serializer.Serialize(value));
     }
@@ -28,20 +28,20 @@ namespace Telegram.Bots.Json.Tests.Units
     [Fact(DisplayName = "Deserialization retains null values")]
     public void DeserializationRetainsNullValues()
     {
-      NullClass value = _serializer.Deserialize<NullClass>("{}");
+      NullData value = _serializer.Deserialize<NullData>("{}");
 
       Assert.Null(value.FileId);
       Assert.Null(value.FirstName);
       Assert.Null(value.IsBot);
     }
 
-    private class NullClass
+    private sealed record NullData
     {
-      public int? FileId { get; set; }
+      public int? FileId { get; init; }
 
-      public string? FirstName { get; set; }
+      public string? FirstName { get; init; }
 
-      public bool? IsBot { get; set; }
+      public bool? IsBot { get; init; }
     }
   }
 }

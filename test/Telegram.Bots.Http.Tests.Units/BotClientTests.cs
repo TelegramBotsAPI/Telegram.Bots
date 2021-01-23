@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System;
 using System.Net;
@@ -143,7 +143,7 @@ namespace Telegram.Bots.Http.Tests.Units
       return services.BuildServiceProvider().GetRequiredService<IBotClient>();
     }
 
-    private class Test : IRequest<bool>
+    private sealed record Test : IRequest<bool>
     {
       public string Method { get; } = "test";
     }
