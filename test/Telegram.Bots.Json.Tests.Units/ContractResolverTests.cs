@@ -34,13 +34,13 @@ namespace Telegram.Bots.Json.Tests.Units
   public sealed class ContractResolverTests : IClassFixture<Serializer>
   {
     private static readonly InputFile File = Stream.Null;
-    private static readonly Uri Uri = new Uri("https://example.com");
+    private static readonly Uri Uri = new("https://example.com");
 
     private readonly Serializer _serializer;
 
     public ContractResolverTests(Serializer serializer) => _serializer = serializer;
 
-    public static TheoryData<(string, object)> SerializationData => new TheoryData<(string, object)>
+    public static TheoryData<(string, object)> SerializationData => new()
     {
       (@"""file_name"":""", new Animation { Name = "" }),
       (@"""game_short_name"":""", new GameCallbackQuery { ShortName = "" }),

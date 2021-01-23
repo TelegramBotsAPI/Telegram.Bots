@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System;
 using System.IO;
@@ -136,12 +136,12 @@ namespace Telegram.Bots.Http
       MediaTypeHeaderValue.Parse("application/octet-stream");
 
     private static readonly Failure TimedOut =
-      new Failure { Description = "Timed Out", ErrorCode = 408 };
+      new() { Description = "Timed Out", ErrorCode = 408 };
 
     private static readonly Failure Canceled =
-      new Failure { Description = "Canceled", ErrorCode = 408 };
+      new() { Description = "Canceled", ErrorCode = 408 };
 
     private static readonly Response<FileInfo> NotFound =
-      new Response<FileInfo>(new Failure { Description = "Not Found", ErrorCode = 404 });
+      new(new Failure { Description = "Not Found", ErrorCode = 404 });
   }
 }

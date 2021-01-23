@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace Telegram.Bots.Json.Internal
 
   internal sealed class InlineButtonConverter : JsonConverter
   {
-    private static readonly HashSet<string> ButtonTypes = new HashSet<string>
+    private static readonly HashSet<string> ButtonTypes = new()
     {
       Url,
       LoginUrl,

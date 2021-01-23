@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System;
 using Telegram.Bots.Types;
@@ -13,7 +13,7 @@ namespace Telegram.Bots.Json.Tests.Units
 
     public UpdateTests(Serializer serializer) => _serializer = serializer;
 
-    public static TheoryData<(string, Type)> DeserializationData => new TheoryData<(string, Type)>
+    public static TheoryData<(string, Type)> DeserializationData => new()
     {
       (@"{""update_id"":1,""message"":{}}", typeof(Update)),
       (@"{""message"":{}}", typeof(MessageUpdate)),

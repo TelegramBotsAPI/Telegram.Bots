@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System;
 
@@ -7,7 +7,7 @@ namespace Telegram.Bots.Types
 {
   public readonly struct ButtonPollType : IEquatable<ButtonPollType>
   {
-    public static readonly ButtonPollType AnyPoll = new ButtonPollType(null);
+    public static readonly ButtonPollType AnyPoll = new(null);
 
     public PollType? Type { get; }
 

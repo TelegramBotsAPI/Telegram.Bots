@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 namespace Telegram.Bots.Types
 {
@@ -20,7 +20,7 @@ namespace Telegram.Bots.Types
 
     public static implicit operator TextButton(string text) => ToTextButton(text);
 
-    public static TextButton ToTextButton(string text) => new TextButton(text);
+    public static TextButton ToTextButton(string text) => new(text);
   }
 
   public sealed record RequestContactButton : Button
