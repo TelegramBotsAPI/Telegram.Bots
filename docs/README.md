@@ -1,7 +1,7 @@
 # Telegram.Bots
 > A .NET 5 wrapper for the Telegram Bot API 5.0.
 
-![Status][1] ![Nuget][2] ![Downloads][3] ![License][4] 
+![Status][1] [![Nuget][2]][5] [![Downloads][3]][5] ![License][4]
 
 ### Usage
 
@@ -225,7 +225,7 @@ Response<FileInfo> response = await bot.HandleAsync("<file-id>", stream);
 
 ### License
 
-Telegram.Bots is a .NET Standard wrapper for the Telegram Bot API.  
+Telegram.Bots is a .NET 5 wrapper for the Telegram Bot API 5.0.  
 Copyright © 2020-2021  Aman Agnihotri (amanagnihotri@pm.me)
 
 Telegram.Bots is free software: you can redistribute it and/or modify
@@ -247,3 +247,4 @@ along with Telegram.Bots.  If not, see [GNU Licenses](https://www.gnu.org/licens
 [2]: https://img.shields.io/nuget/v/Telegram.Bots?style=for-the-badge
 [3]: https://img.shields.io/nuget/dt/Telegram.Bots?style=for-the-badge
 [4]: https://img.shields.io/github/license/TelegramBotsAPI/Telegram.Bots?style=for-the-badge
+[5]: https://www.nuget.org/packages/Telegram.Bots/
