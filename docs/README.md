@@ -129,7 +129,7 @@ Response<FileInfo> response = await bot.HandleAsync("<file-id>", stream);
 ### License
 
 Telegram.Bots is a .NET Standard wrapper for the Telegram Bot API.  
-Copyright © 2020  Aman Agnihotri (amanagnihotri@pm.me)
+Copyright © 2020-2021  Aman Agnihotri (amanagnihotri@pm.me)
 
 Telegram.Bots is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published
