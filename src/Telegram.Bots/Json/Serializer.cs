@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System;
 using System.Collections.Generic;
@@ -58,6 +58,7 @@ namespace Telegram.Bots.Json
     private void Serialize<T>(T value, TextWriter textWriter, Styling styling = Styling.None)
     {
       JsonTextWriter? writer = null;
+
       try
       {
         writer = new JsonTextWriter(textWriter)
@@ -76,6 +77,7 @@ namespace Telegram.Bots.Json
     private T Deserialize<T>(TextReader textReader)
     {
       JsonTextReader? reader = null;
+
       try
       {
         reader = new JsonTextReader(textReader);

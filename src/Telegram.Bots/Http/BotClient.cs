@@ -35,6 +35,7 @@ namespace Telegram.Bots.Http
       if (request is null) throw new ArgumentNullException(nameof(request));
 
       HttpRequestMessage? httpRequest = null;
+
       try
       {
         httpRequest = new HttpRequestMessage
@@ -77,15 +78,11 @@ namespace Telegram.Bots.Http
         var content = new MultipartFormDataContent();
 
         foreach (var property in _serializer.GetProperties(data))
-        {
           content.Add(new StringContent(property.Value), property.Name);
-        }
 
         foreach (var file in data.GetFiles().Where(file => file != null))
-        {
           content.Add(new StreamContent(file!.Data)
             { Headers = { ContentType = Stream } }, file.Id, file.Id);
-        }
 
         return content;
       };
@@ -105,6 +102,7 @@ namespace Telegram.Bots.Http
       if (string.IsNullOrEmpty(path)) return NotFound;
 
       HttpRequestMessage? httpRequest = null;
+
       try
       {
         httpRequest = new HttpRequestMessage

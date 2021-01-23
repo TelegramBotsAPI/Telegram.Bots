@@ -18,6 +18,7 @@ namespace Telegram.Bots.Http.Tests.Units
     public async Task BotClientReturnsResultResponseOnSuccess()
     {
       DelegatingHandler? handler = null;
+
       try
       {
         handler = new MockResponseHandler(HttpStatusCode.OK, @"{""result"":true}");
@@ -40,6 +41,7 @@ namespace Telegram.Bots.Http.Tests.Units
     public async Task BotClientReturnsTimedOutResponseOnTimeout()
     {
       DelegatingHandler? handler = null;
+
       try
       {
         handler = new MockActionHandler(_ => throw new OperationCanceledException());
@@ -65,6 +67,7 @@ namespace Telegram.Bots.Http.Tests.Units
     public async Task BotClientReturnsCanceledResponseOnTokenCancellation()
     {
       CancellationTokenSource? source = null;
+
       try
       {
         var bot = CreateClient();
@@ -92,6 +95,7 @@ namespace Telegram.Bots.Http.Tests.Units
     public async Task BotClientReturnsCanceledResponseOnTaskCanceledException()
     {
       DelegatingHandler? handler = null;
+
       try
       {
         handler = new MockActionHandler(_ => throw new TaskCanceledException());
@@ -117,6 +121,7 @@ namespace Telegram.Bots.Http.Tests.Units
     public async Task BotClientThrowsOnAnyOtherException()
     {
       DelegatingHandler? handler = null;
+
       try
       {
         handler = new MockActionHandler(_ => throw new Exception());

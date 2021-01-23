@@ -6,7 +6,8 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract record RestrictChatMember<TChatId> : IRequest<bool>, IChatMemberTargetable<TChatId>
+  public abstract record RestrictChatMember<TChatId> : IRequest<bool>,
+    IChatMemberTargetable<TChatId>
   {
     public TChatId ChatId { get; }
 
