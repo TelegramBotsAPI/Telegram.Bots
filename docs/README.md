@@ -1,15 +1,13 @@
 # Telegram.Bots
-> A .NET Standard wrapper for the Telegram Bot API.
+> A .NET 5 wrapper for the Telegram Bot API 5.0.
 
-### Overview
+![Status][1] ![Nuget][2] ![Downloads][3] ![License][4] 
 
-- Fully supports Bot API 5.0.
-- Targets .NET Standard 2.1.
-
-### Getting Started
+### Usage
 
 #### Configure the Bot Client
 ```c#
+using System;
 using Microsoft.Extensions.DependencyInjection;
 using Telegram.Bots;
 
@@ -21,13 +19,43 @@ IServiceProvider provider = new ServiceCollection()
 IBotClient bot = provider.GetRequiredService<IBotClient>();
 ```
 
-#### Send a Text via Chat Id
+#### Get Bot Information
 
-```c#
+```cs
 using Telegram.Bots.Requests;
 using Telegram.Bots.Types;
 
-var request = new SendText(chatId: 123456789, text: "Hello, World!");
+// ...
+
+GetMe request = new();
+
+Response<MyBot> response = await bot.HandleAsync(request);
+
+if (response.Ok)
+{
+  MyBot myBot = response.Result;
+
+  Console.WriteLine(myBot.Id);
+  Console.WriteLine(myBot.FirstName);
+  Console.WriteLine(myBot.Username);
+}
+else
+{
+  Failure failure = response.Failure;
+
+  Console.WriteLine(failure.Description);
+}
+```
+
+#### Send a Text via Chat Id
+
+```cs
+using Telegram.Bots.Requests;
+using Telegram.Bots.Types;
+
+// ...
+
+SendText request = new(chatId: 123456789, text: "Hello!");
 
 Response<TextMessage> response = await bot.HandleAsync(request);
 
@@ -35,44 +63,75 @@ if (response.Ok)
 {
   TextMessage message = response.Result;
 
-  ...
+  Console.WriteLine(message.Id);
+  Console.WriteLine(message.Text);
+  Console.WriteLine(message.Date.ToString("G"));
 }
 else
 {
   Failure failure = response.Failure;
 
-  ...
+  Console.WriteLine(failure.Description);
 }
 ```
 
 #### Send a Text via Chat Username
 
-```c#
+```cs
 using Telegram.Bots.Requests.Usernames;
 using Telegram.Bots.Types;
 
-var request = new SendText(username: "@chat", text: "Hello, World!");
+// ...
+
+SendText request = new(username: "@chat", text: "Hello!");
 
 Response<TextMessage> response = await bot.HandleAsync(request);
+
+if (response.Ok)
+{
+  TextMessage message = response.Result;
+
+  // ...
+}
+else
+{
+  Failure failure = response.Failure;
+
+  // ...
+}
+
 ```
 
 #### Send an Audio File via Chat Id
 
-```c#
+```cs
 using Telegram.Bots.Requests;
 using Telegram.Bots.Types;
-using File = System.IO.File;
 
-await using FileStream audioStream = File.OpenRead("/path/to/audio.mp3");
+// ...
 
-var request = new SendAudioFile(chatId: 123456789, audio: audioStream)
-{
-  Title = "Title",
-  Performer = "Performer",
-  Duration = 120
-};
+await using var audioStream = System.IO.File.OpenRead("/path/to/audio.mp3");
+
+SendAudioFile request = new(chatId: 123456789, audio: audioStream);
 
 Response<AudioMessage> response = await bot.HandleAsync(request);
+
+if (response.Ok)
+{
+  AudioMessage message = response.Result;
+
+  Console.WriteLine(message.Id);
+  Console.WriteLine(message.Audio.Id);
+  Console.WriteLine(message.Audio.Title);
+  Console.WriteLine(message.Audio.Performer);
+  Console.WriteLine(message.Audio.Duration);
+}
+else
+{
+  Failure failure = response.Failure;
+
+  Console.WriteLine(failure.Description);
+}
 ```
 
 #### Send a Cached Video via Chat Username
@@ -81,12 +140,30 @@ Response<AudioMessage> response = await bot.HandleAsync(request);
 using Telegram.Bots.Requests.Usernames;
 using Telegram.Bots.Types;
 
-var request = new SendCachedVideo(username: "@chat", video: "<file-id>")
+// ...
+
+SendCachedVideo request = new(username: "@chat", video: "<file-id>")
 {
-  Caption = "Caption"
+  Caption = "New Caption"
 };
 
 Response<VideoMessage> response = await bot.HandleAsync(request);
+
+if (response.Ok)
+{
+  VideoMessage message = response.Result;
+
+  Console.WriteLine(message.Id);
+  Console.WriteLine(message.Video.Id);
+  Console.WriteLine(message.Video.Name);
+  Console.WriteLine(message.Caption);
+}
+else
+{
+  Failure failure = response.Failure;
+
+  Console.WriteLine(failure.Description);
+}
 ```
 
 #### Send a Media Group via Chat Id
@@ -94,10 +171,9 @@ Response<VideoMessage> response = await bot.HandleAsync(request);
 ```c#
 using Telegram.Bots.Requests;
 using Telegram.Bots.Types;
-using File = System.IO.File;
 
-await using var audioStream = File.OpenRead("path/to/audio.mp3");
-await using var videoStream = File.OpenRead("path/to/video.mp4");
+await using var audioStream = System.IO.File.OpenRead("path/to/audio.mp3");
+await using var videoStream = System.IO.File.OpenRead("path/to/video.mp4");
 
 var request = new SendMediaGroup(chatId: 123456789, new List<IGroupableMedia>
 {
@@ -113,15 +189,36 @@ var request = new SendMediaGroup(chatId: 123456789, new List<IGroupableMedia>
 };
 
 Response<IReadOnlyList<MediaGroupMessage>> response = await bot.HandleAsync(request);
+
+if (response.Ok)
+{
+  foreach (var mediaGroupMessage in response.Result)
+  {
+    switch (mediaGroupMessage)
+    {
+      case PhotoMessage message:
+        Console.WriteLine(message.PhotoSet.Count);
+        break;
+      case VideoMessage message:
+        Console.WriteLine(message.Video.Name);
+        break;
+    }
+  }
+}
+else
+{
+  Failure failure = response.Failure;
+
+  Console.WriteLine(failure.Description);
+}
 ```
 
 #### Download a File
 
 ```c#
 using Telegram.Bots.Types;
-using File = System.IO.File;
 
-await using var stream = File.OpenWrite("path/to/file.extension");
+await using var stream = System.IO.File.OpenWrite("path/to/file.extension");
 
 Response<FileInfo> response = await bot.HandleAsync("<file-id>", stream);
 ```
@@ -145,3 +242,8 @@ You should have received a copy of the GNU Lesser General Public License
 along with Telegram.Bots.  If not, see [GNU Licenses](https://www.gnu.org/licenses/).
 
 ---
+
+[1]: https://img.shields.io/github/workflow/status/TelegramBotsAPI/Telegram.Bots/.NET%205?style=for-the-badge
+[2]: https://img.shields.io/nuget/v/Telegram.Bots?style=for-the-badge
+[3]: https://img.shields.io/nuget/dt/Telegram.Bots?style=for-the-badge
+[4]: https://img.shields.io/github/license/TelegramBotsAPI/Telegram.Bots?style=for-the-badge
