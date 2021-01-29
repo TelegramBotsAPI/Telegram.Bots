@@ -172,16 +172,16 @@ else
 using Telegram.Bots.Requests;
 using Telegram.Bots.Types;
 
-await using var audioStream = System.IO.File.OpenRead("path/to/audio.mp3");
+await using var photoStream = System.IO.File.OpenRead("path/to/photo.png");
 await using var videoStream = System.IO.File.OpenRead("path/to/video.mp4");
 
 var request = new SendMediaGroup(chatId: 123456789, new List<IGroupableMedia>
 {
   new CachedPhoto("<photo-file-id>"),
   new CachedVideo("<video-file-id>"),
-  new PhotoUrl(new Uri("https://example.com/image.png")),
+  new PhotoUrl(new Uri("https://example.com/photo.png")),
   new VideoUrl(new Uri("https://example.com/video.mp4")),
-  new PhotoFile(audioStream),
+  new PhotoFile(photoStream),
   new VideoFile(videoStream)
 })
 {
