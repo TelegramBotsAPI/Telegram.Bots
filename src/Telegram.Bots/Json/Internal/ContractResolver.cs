@@ -113,6 +113,7 @@ namespace Telegram.Bots.Json.Internal
         { typeof(InlineVoice<Uri>), new Data { { "voice", "voice_url" } } },
         { typeof(InlineVoice), new Data { { "duration", "voice_duration" } } },
         { typeof(TextContent), new Data { { "text", "message_text" } } },
+        { typeof(MessageId), new Data { { "id", "message_id" } } },
         { typeof(Message), new Data { { "id", "message_id" } } },
         { typeof(NewChatMembersMessage), new Data { { "members", "new_chat_members" } } },
         { typeof(LeftChatMemberMessage), new Data { { "member", "left_chat_member" } } },

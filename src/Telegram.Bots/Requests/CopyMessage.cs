@@ -6,7 +6,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract record CopyMessage<TChatId, TFromChatId> : IRequest<Message>,
+  public abstract record CopyMessage<TChatId, TFromChatId> : IRequest<MessageId>,
     IChatMessageTargetable<TChatId>, ICaptionable, INotifiable, IReplyable, IMarkupable
   {
     public TChatId ChatId { get; }
