@@ -22,11 +22,11 @@ namespace Telegram.Bots.Json
 
     private readonly JsonSerializer _serializer = JsonSerializer.Create(Settings);
 
-    public string Serialize<T>(T value, Styling styling = Styling.None)
+    public string Serialize<T>(T value)
     {
       var builder = new StringBuilder(256);
 
-      Serialize(value, new StringWriter(builder, CultureInfo.InvariantCulture), styling);
+      Serialize(value, new StringWriter(builder, CultureInfo.InvariantCulture));
 
       return builder.ToString();
     }
@@ -55,16 +55,13 @@ namespace Telegram.Bots.Json
       settings.Converters = Settings.Converters;
     }
 
-    private void Serialize<T>(T value, TextWriter textWriter, Styling styling = Styling.None)
+    private void Serialize<T>(T value, TextWriter textWriter)
     {
       JsonTextWriter? writer = null;
 
       try
       {
-        writer = new JsonTextWriter(textWriter)
-        {
-          Formatting = styling == Styling.None ? Formatting.None : Formatting.Indented
-        };
+        writer = new JsonTextWriter(textWriter);
 
         _serializer.Serialize(writer, value);
       }
