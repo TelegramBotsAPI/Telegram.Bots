@@ -104,6 +104,7 @@ namespace Telegram.Bots.Json.Tests.Units
       (@"""voice_url"":""", new InlineVoice("", "", Uri)),
       (@"""voice_duration"":10", new InlineVoice("", "", Uri) { Duration = 10 }),
       (@"""message_text"":""", new TextContent("")),
+      (@"""message_id"":1", new MessageId(1)),
       (@"""message_id"":1", new TextMessage { Id = 1 }),
       (@"""animation"":{", new AnimationMessage { Animation = new Animation() }),
       (@"""venue"":{", new VenueMessage { Venue = new Venue() }),
