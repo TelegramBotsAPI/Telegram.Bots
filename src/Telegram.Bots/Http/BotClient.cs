@@ -38,10 +38,10 @@ namespace Telegram.Bots.Http
 
       try
       {
-        httpRequest = new HttpRequestMessage
+        httpRequest = new()
         {
           Method = HttpMethod.Post,
-          RequestUri = new Uri($"/bot{_config.Token}/{request.Method}", UriKind.Relative),
+          RequestUri = new($"/bot{_config.Token}/{request.Method}", UriKind.Relative),
           Content = request switch
           {
             IUploadable data when data.HasFiles() => GetMultipartCreator()(data),
@@ -55,18 +55,16 @@ namespace Telegram.Bots.Http
         var httpContent = await httpResponse.Content.ReadAsStreamAsync(token).ConfigureAwait(false);
 
         return httpResponse.IsSuccessStatusCode
-          ? new Response<T>(_serializer.Deserialize<Success<T>>(httpContent).Result)
-          : new Response<T>(_serializer.Deserialize<Failure>(httpContent));
+          ? new(_serializer.Deserialize<Success<T>>(httpContent).Result)
+          : new(_serializer.Deserialize<Failure>(httpContent));
       }
       catch (TaskCanceledException)
       {
-        return new Response<T>(Canceled);
+        return new(Canceled);
       }
       catch (OperationCanceledException)
       {
-        return token.IsCancellationRequested
-          ? new Response<T>(Canceled)
-          : new Response<T>(TimedOut);
+        return token.IsCancellationRequested ? new(Canceled) : new(TimedOut);
       }
       finally
       {
@@ -105,10 +103,10 @@ namespace Telegram.Bots.Http
 
       try
       {
-        httpRequest = new HttpRequestMessage
+        httpRequest = new()
         {
           Method = HttpMethod.Get,
-          RequestUri = new Uri($"/file/bot{_config.Token}/{path}", UriKind.Relative)
+          RequestUri = new($"/file/bot{_config.Token}/{path}", UriKind.Relative)
         };
 
         using var httpResponse = await _client.SendAsync(httpRequest, ResponseHeadersRead, token)
@@ -118,7 +116,7 @@ namespace Telegram.Bots.Http
           .ConfigureAwait(false);
 
         if (!httpResponse.IsSuccessStatusCode)
-          return new Response<FileInfo>(_serializer.Deserialize<Failure>(httpContent));
+          return new(_serializer.Deserialize<Failure>(httpContent));
 
         await httpContent.CopyToAsync(destination, token).ConfigureAwait(false);
       }
