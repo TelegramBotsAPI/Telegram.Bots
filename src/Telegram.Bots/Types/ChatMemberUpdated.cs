@@ -11,7 +11,7 @@ namespace Telegram.Bots.Types
 
     public User From { get; init; }
 
-    public DateTime Date { get; init; }
+    public DateTime Date { get; init; } = DateTime.UnixEpoch;
 
     public ChatMember OldChatMember { get; init; }
 
