@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System;
 
@@ -12,6 +12,8 @@ namespace Telegram.Bots.Requests.Admins
     public int UserId { get; }
 
     public DateTime? UntilDate { get; init; }
+
+    public bool? RevokeMessages { get; init; }
 
     public string Method { get; } = "kickChatMember";
 
