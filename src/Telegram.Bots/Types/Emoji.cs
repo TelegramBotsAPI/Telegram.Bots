@@ -13,6 +13,9 @@ namespace Telegram.Bots.Types
     [EnumMember(Value = "🎯")]
     Dart,
 
+    [EnumMember(Value = "🎳")]
+    Bowling,
+
     [EnumMember(Value = "🏀")]
     Basketball,
 
