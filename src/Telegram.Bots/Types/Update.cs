@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using Telegram.Bots.Types.Inline;
 using Telegram.Bots.Types.Payments;
@@ -64,5 +64,15 @@ namespace Telegram.Bots.Types
   public sealed record PollAnswerUpdate : Update
   {
     public PollAnswer Data { get; init; } = null!;
+  }
+
+  public sealed record MyChatMemberUpdate : Update
+  {
+    public ChatMemberUpdated Data { get; init; } = null!;
+  }
+
+  public sealed record ChatMemberUpdate : Update
+  {
+    public ChatMemberUpdated Data { get; init; } = null!;
   }
 }
