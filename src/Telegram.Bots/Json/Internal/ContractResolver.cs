@@ -158,6 +158,8 @@ namespace Telegram.Bots.Json.Internal
         {typeof(PreCheckoutQueryUpdate), new Data {{"data", "pre_checkout_query"}}},
         {typeof(PollUpdate), new Data {{"data", "poll"}}},
         {typeof(PollAnswerUpdate), new Data {{"data", "poll_answer"}}},
+        {typeof(MyChatMemberUpdate), new Data {{"data", "my_chat_member"}}},
+        {typeof(ChatMemberUpdate), new Data {{"data", "chat_member"}}},
         {typeof(UserProfilePhotos), new Data {{"photo_sets", "photos"}}},
         {typeof(AnswerCallbackQuery), new Data {{"query_id", "callback_query_id"}}},
         {typeof(EditCaption), new Data {{"message_id", "inline_message_id"}}},
