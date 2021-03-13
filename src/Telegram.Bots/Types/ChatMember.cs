@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System;
 
@@ -18,7 +18,7 @@ namespace Telegram.Bots.Types
   {
     public string? CustomTitle { get; init; }
 
-    public bool? IsAnonymous { get; init; }
+    public bool IsAnonymous { get; init; }
   }
 
   public sealed record Creator : PrivilegedMember
@@ -32,9 +32,9 @@ namespace Telegram.Bots.Types
 
     public bool CanBeEdited { get; init; }
 
-    public bool? CanPostMessages { get; init; }
+    public bool CanPostMessages { get; init; }
 
-    public bool? CanEditMessages { get; init; }
+    public bool CanEditMessages { get; init; }
 
     public bool CanDeleteMessages { get; init; }
 
@@ -46,7 +46,7 @@ namespace Telegram.Bots.Types
 
     public bool CanInviteUsers { get; init; }
 
-    public bool? CanPinMessages { get; init; }
+    public bool CanPinMessages { get; init; }
   }
 
   public sealed record NormalMember : ChatMember
@@ -64,7 +64,7 @@ namespace Telegram.Bots.Types
 
     public bool CanInviteUsers { get; init; }
 
-    public bool? CanPinMessages { get; init; }
+    public bool CanPinMessages { get; init; }
 
     public bool IsMember { get; init; }
 
