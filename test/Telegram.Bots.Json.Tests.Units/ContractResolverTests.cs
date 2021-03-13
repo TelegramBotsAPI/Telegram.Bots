@@ -162,6 +162,8 @@ namespace Telegram.Bots.Json.Tests.Units
       (@"""pre_checkout_query"":{", new PreCheckoutQueryUpdate {Data = new PreCheckoutQuery()}),
       (@"""poll"":{", new PollUpdate {Data = new RegularPoll()}),
       (@"""poll_answer"":{", new PollAnswerUpdate {Data = new PollAnswer()}),
+      (@"""my_chat_member"":{", new MyChatMemberUpdate {Data = new ChatMemberUpdated()}),
+      (@"""chat_member"":{", new ChatMemberUpdate {Data = new ChatMemberUpdated()}),
       (@"""photos"":[", new UserProfilePhotos {PhotoSets = new List<Photo[]>()}),
       (@"""callback_query_id"":""", new AnswerCallbackQuery("", "")),
       (@"""inline_message_id"":""", new EditCaption("")),
