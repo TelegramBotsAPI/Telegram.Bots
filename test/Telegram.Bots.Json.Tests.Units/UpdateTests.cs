@@ -26,7 +26,9 @@ namespace Telegram.Bots.Json.Tests.Units
       (@"{""shipping_query"":{}}", typeof(ShippingQueryUpdate)),
       (@"{""pre_checkout_query"":{}}", typeof(PreCheckoutQueryUpdate)),
       (@"{""poll"":{""type"":""regular""}}", typeof(PollUpdate)),
-      (@"{""poll_answer"":{}}", typeof(PollAnswerUpdate))
+      (@"{""poll_answer"":{}}", typeof(PollAnswerUpdate)),
+      (@"{""my_chat_member"":{}}", typeof(MyChatMemberUpdate)),
+      (@"{""chat_member"":{}}", typeof(ChatMemberUpdate))
     };
 
     [Theory(DisplayName = "Update deserializes correctly")]
