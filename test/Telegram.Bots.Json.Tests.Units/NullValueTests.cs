@@ -20,7 +20,7 @@ namespace Telegram.Bots.Json.Tests.Units
     {
       const string json = @"{""file_id"":0,""first_name"":"""",""is_bot"":false}";
 
-      var value = new NullData { FileId = 0, FirstName = "", IsBot = false };
+      var value = new NullData {FileId = 0, FirstName = "", IsBot = false};
 
       Assert.Equal(json, _serializer.Serialize(value));
     }

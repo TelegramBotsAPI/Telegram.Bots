@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System;
 using System.Collections.Generic;
@@ -35,7 +35,7 @@ namespace Telegram.Bots.Requests.Stickers
   {
     protected SendStickerFile(TChatId chatId, InputFile sticker) : base(chatId, sticker) { }
 
-    public IEnumerable<InputFile?> GetFiles() => new[] { Sticker };
+    public IEnumerable<InputFile?> GetFiles() => new[] {Sticker};
   }
 
   public sealed record SendCachedSticker : SendSticker<long, string>

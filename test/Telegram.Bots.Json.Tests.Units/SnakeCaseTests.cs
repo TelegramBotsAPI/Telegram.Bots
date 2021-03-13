@@ -10,7 +10,7 @@ namespace Telegram.Bots.Json.Tests.Units
     private const string Json = @"{""file_id"":1,""first_name"":""Some"",""is_bot"":true}";
 
     private static readonly SnakeData Value =
-      new() { FileId = 1, FirstName = "Some", IsBot = true };
+      new() {FileId = 1, FirstName = "Some", IsBot = true};
 
     private readonly Serializer _serializer;
 

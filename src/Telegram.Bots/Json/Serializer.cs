@@ -93,7 +93,7 @@ namespace Telegram.Bots.Json
 
       return new JsonSerializerSettings
       {
-        ContractResolver = new ContractResolver { NamingStrategy = strategy },
+        ContractResolver = new ContractResolver {NamingStrategy = strategy},
         NullValueHandling = NullValueHandling.Ignore,
         Converters =
         {

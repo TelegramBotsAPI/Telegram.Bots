@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System;
 using System.Collections.Generic;
@@ -53,7 +53,7 @@ namespace Telegram.Bots.Requests.Stickers
     public AddStickerToSetViaFile(int userId, string name, string emojis, InputFile sticker) :
       base(userId, name, emojis, sticker) { }
 
-    public IEnumerable<InputFile?> GetFiles() => new[] { Sticker };
+    public IEnumerable<InputFile?> GetFiles() => new[] {Sticker};
   }
 
   public abstract record AddAnimatedStickerToSet<TTgsSticker> : AddStickerToSetBase
@@ -74,6 +74,6 @@ namespace Telegram.Bots.Requests.Stickers
       InputFile sticker) :
       base(userId, name, emojis, sticker) { }
 
-    public IEnumerable<InputFile?> GetFiles() => new[] { Sticker };
+    public IEnumerable<InputFile?> GetFiles() => new[] {Sticker};
   }
 }

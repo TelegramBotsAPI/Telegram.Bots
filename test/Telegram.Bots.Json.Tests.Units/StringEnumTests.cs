@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -12,7 +12,7 @@ namespace Telegram.Bots.Json.Tests.Units
     private const string Json = @"[""test_enum"",""another""]";
 
     private static readonly IEnumerable<MyEnum> Values =
-      new List<MyEnum> { MyEnum.TestEnum, MyEnum.Another };
+      new List<MyEnum> {MyEnum.TestEnum, MyEnum.Another};
 
     private readonly Serializer _serializer;
 
@@ -38,7 +38,9 @@ namespace Telegram.Bots.Json.Tests.Units
     {
       TestEnum,
       Another,
-      [EnumMember(Value = "🎲")] Dice
+
+      [EnumMember(Value = "🎲")]
+      Dice
     }
   }
 }

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System.Collections.Generic;
 using Telegram.Bots.Types;
@@ -20,6 +20,6 @@ namespace Telegram.Bots.Requests.Stickers
       Sticker = sticker;
     }
 
-    public IEnumerable<InputFile?> GetFiles() => new[] { Sticker };
+    public IEnumerable<InputFile?> GetFiles() => new[] {Sticker};
   }
 }

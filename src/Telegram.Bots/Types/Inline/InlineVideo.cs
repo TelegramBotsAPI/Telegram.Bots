@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System;
 using System.Collections.Generic;
@@ -57,7 +57,10 @@ namespace Telegram.Bots.Types.Inline
 
   public enum VideoMimeType
   {
-    [EnumMember(Value = "text/html")] Html,
-    [EnumMember(Value = "video/mp4")] Video
+    [EnumMember(Value = "text/html")]
+    Html,
+
+    [EnumMember(Value = "video/mp4")]
+    Video
   }
 }

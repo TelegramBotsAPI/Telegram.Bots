@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System;
 using System.Collections.Generic;
@@ -25,6 +25,6 @@ namespace Telegram.Bots.Requests.Webhooks
 
     public SetWebhook(Uri? url = default) => Url = url;
 
-    public IEnumerable<InputFile?> GetFiles() => new[] { Certificate };
+    public IEnumerable<InputFile?> GetFiles() => new[] {Certificate};
   }
 }

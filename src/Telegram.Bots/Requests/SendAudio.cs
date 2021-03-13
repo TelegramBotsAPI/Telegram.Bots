@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System;
 using System.Collections.Generic;
@@ -49,7 +49,7 @@ namespace Telegram.Bots.Requests
 
     protected SendAudioFile(TChatId chatId, InputFile audio) : base(chatId, audio) { }
 
-    public IEnumerable<InputFile?> GetFiles() => new[] { Audio, Thumb };
+    public IEnumerable<InputFile?> GetFiles() => new[] {Audio, Thumb};
   }
 
   public sealed record SendCachedAudio : SendAudio<long, string>

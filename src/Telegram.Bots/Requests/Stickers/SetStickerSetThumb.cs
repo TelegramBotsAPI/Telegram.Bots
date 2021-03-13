@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System;
 using System.Collections.Generic;
@@ -37,6 +37,6 @@ namespace Telegram.Bots.Requests.Stickers
     public SetStickerSetThumbViaFile(string name, InputFile? thumb = default) :
       base(name, thumb) { }
 
-    public IEnumerable<InputFile?> GetFiles() => new[] { Thumb };
+    public IEnumerable<InputFile?> GetFiles() => new[] {Thumb};
   }
 }

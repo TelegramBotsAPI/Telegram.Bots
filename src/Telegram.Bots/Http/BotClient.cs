@@ -80,7 +80,7 @@ namespace Telegram.Bots.Http
 
         foreach (var file in data.GetFiles().Where(file => file != null))
           content.Add(new StreamContent(file!.Data)
-            { Headers = { ContentType = Stream } }, file.Id, file.Id);
+            {Headers = {ContentType = Stream}}, file.Id, file.Id);
 
         return content;
       };
@@ -132,12 +132,12 @@ namespace Telegram.Bots.Http
       MediaTypeHeaderValue.Parse("application/octet-stream");
 
     private static readonly Failure TimedOut =
-      new() { Description = "Timed Out", ErrorCode = 408 };
+      new() {Description = "Timed Out", ErrorCode = 408};
 
     private static readonly Failure Canceled =
-      new() { Description = "Canceled", ErrorCode = 408 };
+      new() {Description = "Canceled", ErrorCode = 408};
 
     private static readonly Response<FileInfo> NotFound =
-      new(new Failure { Description = "Not Found", ErrorCode = 404 });
+      new(new Failure {Description = "Not Found", ErrorCode = 404});
   }
 }

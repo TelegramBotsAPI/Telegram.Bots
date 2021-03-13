@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using Xunit;
 
@@ -20,7 +20,7 @@ namespace Telegram.Bots.Types.Tests.Units
     [Fact(DisplayName = "Failure Response has Ok as False and Result Value as Default")]
     public void FailureResponseHasOkAsFalseAndResultValueAsDefault()
     {
-      var response = new Response<int>(new Failure { Description = "Timeout", ErrorCode = 408 });
+      var response = new Response<int>(new Failure {Description = "Timeout", ErrorCode = 408});
 
       Assert.False(response.Ok);
       Assert.Equal(default, response.Result);
