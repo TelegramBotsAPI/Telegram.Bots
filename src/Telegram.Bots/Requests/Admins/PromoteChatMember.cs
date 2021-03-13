@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 namespace Telegram.Bots.Requests.Admins
 {
@@ -10,6 +10,8 @@ namespace Telegram.Bots.Requests.Admins
     public int UserId { get; }
 
     public bool? IsAnonymous { get; init; }
+
+    public bool? CanManageChat { get; init; }
 
     public bool? CanChangeInfo { get; init; }
 

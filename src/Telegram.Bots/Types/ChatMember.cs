@@ -32,6 +32,8 @@ namespace Telegram.Bots.Types
 
     public bool CanBeEdited { get; init; }
 
+    public bool CanManageChat { get; init; }
+
     public bool CanPostMessages { get; init; }
 
     public bool CanEditMessages { get; init; }
