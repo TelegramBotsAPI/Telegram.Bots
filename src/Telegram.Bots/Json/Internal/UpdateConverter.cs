@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System;
 using System.Linq;
@@ -41,6 +41,8 @@ namespace Telegram.Bots.Json.Internal
         PreCheckoutQuery => Get<PreCheckoutQueryUpdate>(),
         Poll => Get<PollUpdate>(),
         PollAnswer => Get<PollAnswerUpdate>(),
+        MyChatMember => Get<MyChatMemberUpdate>(),
+        ChatMember => Get<ChatMemberUpdate>(),
         _ => null
       };
 
@@ -64,5 +66,7 @@ namespace Telegram.Bots.Json.Internal
     public const string PreCheckoutQuery = "pre_checkout_query";
     public const string Poll = "poll";
     public const string PollAnswer = "poll_answer";
+    public const string MyChatMember = "my_chat_member";
+    public const string ChatMember = "chat_member";
   }
 }
