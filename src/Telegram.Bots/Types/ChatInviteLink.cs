@@ -7,9 +7,9 @@ namespace Telegram.Bots.Types
 {
   public sealed record ChatInviteLink
   {
-    public string InviteLink { get; init; }
+    public string InviteLink { get; init; } = null!;
 
-    public User Creator { get; init; }
+    public User Creator { get; init; } = null!;
 
     public bool IsPrimary { get; init; }
 
