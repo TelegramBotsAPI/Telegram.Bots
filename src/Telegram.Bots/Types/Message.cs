@@ -182,6 +182,11 @@ namespace Telegram.Bots.Types
     public bool Created { get; init; }
   }
 
+  public sealed record AutoDeleteTimerChangedMessage : ServiceMessage
+  {
+    public int AutoDeleteTime { get; init; }
+  }
+
   public sealed record MigrateToChatMessage : Message
   {
     public long ChatId { get; init; }

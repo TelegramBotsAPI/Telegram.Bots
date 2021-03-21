@@ -39,6 +39,7 @@ namespace Telegram.Bots.Json.Internal
       GroupChatCreated,
       SupergroupChatCreated,
       ChannelChatCreated,
+      AutoDeleteTimerChanged,
       MigrateToChatId,
       MigrateFromChatId,
       PinnedMessage,
@@ -95,6 +96,7 @@ namespace Telegram.Bots.Json.Internal
         GroupChatCreated => Get<GroupChatCreatedMessage>(),
         SupergroupChatCreated => Get<SupergroupChatCreatedMessage>(),
         ChannelChatCreated => Get<ChannelChatCreatedMessage>(),
+        AutoDeleteTimerChanged => Get<AutoDeleteTimerChangedMessage>(),
         MigrateToChatId => Get<MigrateToChatMessage>(),
         MigrateFromChatId => Get<MigrateFromChatMessage>(),
         PinnedMessage => Get<PinnedMessage>(),
@@ -141,6 +143,7 @@ namespace Telegram.Bots.Json.Internal
     public const string GroupChatCreated = "group_chat_created";
     public const string SupergroupChatCreated = "supergroup_chat_created";
     public const string ChannelChatCreated = "channel_chat_created";
+    public const string AutoDeleteTimerChanged = "message_auto_delete_timer_changed";
     public const string MigrateToChatId = "migrate_to_chat_id";
     public const string MigrateFromChatId = "migrate_from_chat_id";
     public const string PinnedMessage = "pinned_message";

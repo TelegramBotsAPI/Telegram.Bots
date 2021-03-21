@@ -128,6 +128,10 @@ namespace Telegram.Bots.Json.Internal
           new Data {{"created", "supergroup_chat_created"}}
         },
         {typeof(ChannelChatCreatedMessage), new Data {{"created", "channel_chat_created"}}},
+        {
+          typeof(AutoDeleteTimerChangedMessage),
+          new Data {{"auto_delete_time", "message_auto_delete_time"}}
+        },
         {typeof(MigrateToChatMessage), new Data {{"chat_id", "migrate_to_chat_id"}}},
         {typeof(MigrateFromChatMessage), new Data {{"chat_id", "migrate_from_chat_id"}}},
         {typeof(SuccessfulPaymentMessage), new Data {{"payment", "successful_payment"}}},
