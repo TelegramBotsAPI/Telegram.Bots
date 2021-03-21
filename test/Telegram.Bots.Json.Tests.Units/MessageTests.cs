@@ -47,7 +47,10 @@ namespace Telegram.Bots.Json.Tests.Units
       (@"{""successful_payment"":{}}", typeof(SuccessfulPaymentMessage)),
       (@"{""connected_website"":""""}", typeof(ConnectedWebsiteMessage)),
       (@"{""passport_data"":{}}", typeof(PassportDataMessage)),
-      (@"{""proximity_alert_triggered"":{}}", typeof(ProximityAlertTriggeredMessage))
+      (@"{""proximity_alert_triggered"":{}}", typeof(ProximityAlertTriggeredMessage)),
+      (@"{""voice_chat_started"":{}}", typeof(VoiceChatStartedMessage)),
+      (@"{""voice_chat_ended"":{}}", typeof(VoiceChatEndedMessage)),
+      (@"{""voice_chat_participants_invited"":{}}", typeof(VoiceChatParticipantsInvitedMessage))
     };
 
     [Theory(DisplayName = "Message deserializes correctly")]
