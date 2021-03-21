@@ -129,6 +129,7 @@ namespace Telegram.Bots.Json.Tests.Units
       (@"""group_chat_created"":true", new GroupChatCreatedMessage {Created = true}),
       (@"""supergroup_chat_created"":true", new SupergroupChatCreatedMessage {Created = true}),
       (@"""channel_chat_created"":true", new ChannelChatCreatedMessage {Created = true}),
+      (@"""message_auto_delete_time"":1", new AutoDeleteTimerChangedMessage {AutoDeleteTime = 1}),
       (@"""migrate_to_chat_id"":1", new MigrateToChatMessage {ChatId = 1}),
       (@"""migrate_from_chat_id"":1", new MigrateFromChatMessage {ChatId = 1}),
       (@"""pinned_message"":{", new PinnedMessage {Pinned = new TextMessage()}),

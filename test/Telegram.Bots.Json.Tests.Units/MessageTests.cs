@@ -39,6 +39,7 @@ namespace Telegram.Bots.Json.Tests.Units
       (@"{""group_chat_created"":true}", typeof(GroupChatCreatedMessage)),
       (@"{""supergroup_chat_created"":true}", typeof(SupergroupChatCreatedMessage)),
       (@"{""channel_chat_created"":true}", typeof(ChannelChatCreatedMessage)),
+      (@"{""message_auto_delete_timer_changed"":{}}", typeof(AutoDeleteTimerChangedMessage)),
       (@"{""migrate_to_chat_id"":1}", typeof(MigrateToChatMessage)),
       (@"{""migrate_from_chat_id"":1}", typeof(MigrateFromChatMessage)),
       (@"{""pinned_message"":{}}", typeof(PinnedMessage)),
