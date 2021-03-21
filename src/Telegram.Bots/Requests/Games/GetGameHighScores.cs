@@ -9,11 +9,11 @@ namespace Telegram.Bots.Requests.Games
   public abstract record GetGameHighScoresBase : IRequest<IReadOnlyList<GameHighScore>>,
     IUserTargetable
   {
-    public int UserId { get; }
+    public long UserId { get; }
 
     public string Method { get; } = "getGameHighScores";
 
-    protected GetGameHighScoresBase(int userId) => UserId = userId;
+    protected GetGameHighScoresBase(long userId) => UserId = userId;
   }
 
   public abstract record GetGameHighScores<TChatId> : GetGameHighScoresBase,
@@ -23,7 +23,7 @@ namespace Telegram.Bots.Requests.Games
 
     public int MessageId { get; }
 
-    protected GetGameHighScores(TChatId chatId, int messageId, int userId) : base(userId)
+    protected GetGameHighScores(TChatId chatId, int messageId, long userId) : base(userId)
     {
       ChatId = chatId;
       MessageId = messageId;
@@ -32,7 +32,7 @@ namespace Telegram.Bots.Requests.Games
 
   public sealed record GetGameHighScores : GetGameHighScores<long>
   {
-    public GetGameHighScores(long chatId, int messageId, int userId) :
+    public GetGameHighScores(long chatId, int messageId, long userId) :
       base(chatId, messageId, userId) { }
   }
 
@@ -42,7 +42,7 @@ namespace Telegram.Bots.Requests.Games
     {
       public string MessageId { get; }
 
-      public GetGameHighScores(string messageId, int userId) : base(userId) =>
+      public GetGameHighScores(string messageId, long userId) : base(userId) =>
         MessageId = messageId;
     }
   }

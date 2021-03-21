@@ -10,7 +10,7 @@ namespace Telegram.Bots.Requests.Stickers
 {
   public abstract record AddStickerToSetBase : IRequest<bool>, IUserTargetable
   {
-    public int UserId { get; }
+    public long UserId { get; }
 
     public string Name { get; }
 
@@ -20,7 +20,7 @@ namespace Telegram.Bots.Requests.Stickers
 
     public string Method { get; } = "addStickerToSet";
 
-    protected AddStickerToSetBase(int userId, string name, string emojis)
+    protected AddStickerToSetBase(long userId, string name, string emojis)
     {
       UserId = userId;
       Name = name;
@@ -32,25 +32,25 @@ namespace Telegram.Bots.Requests.Stickers
   {
     public TPngSticker Sticker { get; }
 
-    protected AddStickerToSet(int userId, string name, string emojis, TPngSticker sticker) :
+    protected AddStickerToSet(long userId, string name, string emojis, TPngSticker sticker) :
       base(userId, name, emojis) => Sticker = sticker;
   }
 
   public sealed record AddStickerToSetViaCache : AddStickerToSet<string>
   {
-    public AddStickerToSetViaCache(int userId, string name, string emojis, string sticker) :
+    public AddStickerToSetViaCache(long userId, string name, string emojis, string sticker) :
       base(userId, name, emojis, sticker) { }
   }
 
   public sealed record AddStickerToSetViaUrl : AddStickerToSet<Uri>
   {
-    public AddStickerToSetViaUrl(int userId, string name, string emojis, Uri sticker) :
+    public AddStickerToSetViaUrl(long userId, string name, string emojis, Uri sticker) :
       base(userId, name, emojis, sticker) { }
   }
 
   public sealed record AddStickerToSetViaFile : AddStickerToSet<InputFile>, IUploadable
   {
-    public AddStickerToSetViaFile(int userId, string name, string emojis, InputFile sticker) :
+    public AddStickerToSetViaFile(long userId, string name, string emojis, InputFile sticker) :
       base(userId, name, emojis, sticker) { }
 
     public IEnumerable<InputFile?> GetFiles() => new[] {Sticker};
@@ -60,7 +60,11 @@ namespace Telegram.Bots.Requests.Stickers
   {
     public TTgsSticker Sticker { get; }
 
-    protected AddAnimatedStickerToSet(int userId, string name, string emojis, TTgsSticker sticker) :
+    protected AddAnimatedStickerToSet(
+      long userId,
+      string name,
+      string emojis,
+      TTgsSticker sticker) :
       base(userId, name, emojis) => Sticker = sticker;
   }
 
@@ -68,7 +72,7 @@ namespace Telegram.Bots.Requests.Stickers
     IUploadable
   {
     public AddAnimatedStickerToSetViaFile(
-      int userId,
+      long userId,
       string name,
       string emojis,
       InputFile sticker) :

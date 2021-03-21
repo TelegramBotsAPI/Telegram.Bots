@@ -7,7 +7,7 @@ namespace Telegram.Bots.Requests.Games
 {
   public abstract record SetGameScoreBase : IRequest<GameMessage>, IUserTargetable
   {
-    public int UserId { get; }
+    public long UserId { get; }
 
     public uint Score { get; }
 
@@ -17,7 +17,7 @@ namespace Telegram.Bots.Requests.Games
 
     public string Method { get; } = "setGameScore";
 
-    protected SetGameScoreBase(int userId, uint score)
+    protected SetGameScoreBase(long userId, uint score)
     {
       UserId = userId;
       Score = score;
@@ -30,7 +30,7 @@ namespace Telegram.Bots.Requests.Games
 
     public int MessageId { get; }
 
-    protected SetGameScore(TChatId chatId, int messageId, int userId, uint score) :
+    protected SetGameScore(TChatId chatId, int messageId, long userId, uint score) :
       base(userId, score)
     {
       ChatId = chatId;
@@ -40,7 +40,7 @@ namespace Telegram.Bots.Requests.Games
 
   public sealed record SetGameScore : SetGameScore<long>
   {
-    public SetGameScore(long chatId, int messageId, int userId, uint score) :
+    public SetGameScore(long chatId, int messageId, long userId, uint score) :
       base(chatId, messageId, userId, score) { }
   }
 
@@ -50,7 +50,7 @@ namespace Telegram.Bots.Requests.Games
     {
       public string MessageId { get; }
 
-      public SetGameScore(string messageId, int userId, uint score) : base(userId, score) =>
+      public SetGameScore(string messageId, long userId, uint score) : base(userId, score) =>
         MessageId = messageId;
     }
   }

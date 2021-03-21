@@ -8,13 +8,13 @@ namespace Telegram.Bots.Requests.Admins
   {
     public TChatId ChatId { get; }
 
-    public int UserId { get; }
+    public long UserId { get; }
 
     public string CustomTitle { get; }
 
     public string Method { get; } = "setChatAdministratorCustomTitle";
 
-    protected SetChatAdminCustomTitle(TChatId chatId, int userId, string customTitle)
+    protected SetChatAdminCustomTitle(TChatId chatId, long userId, string customTitle)
     {
       ChatId = chatId;
       UserId = userId;
@@ -24,7 +24,7 @@ namespace Telegram.Bots.Requests.Admins
 
   public sealed record SetChatAdminCustomTitle : SetChatAdminCustomTitle<long>
   {
-    public SetChatAdminCustomTitle(long chatId, int userId, string customTitle) :
+    public SetChatAdminCustomTitle(long chatId, long userId, string customTitle) :
       base(chatId, userId, customTitle) { }
   }
 
@@ -32,7 +32,7 @@ namespace Telegram.Bots.Requests.Admins
   {
     public sealed record SetChatAdminCustomTitle : SetChatAdminCustomTitle<string>
     {
-      public SetChatAdminCustomTitle(string username, int userId, string customTitle) :
+      public SetChatAdminCustomTitle(string username, long userId, string customTitle) :
         base(username, userId, customTitle) { }
     }
   }

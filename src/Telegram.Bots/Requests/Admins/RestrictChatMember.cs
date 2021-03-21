@@ -11,7 +11,7 @@ namespace Telegram.Bots.Requests.Admins
   {
     public TChatId ChatId { get; }
 
-    public int UserId { get; }
+    public long UserId { get; }
 
     public ChatPermissions Permissions { get; }
 
@@ -19,7 +19,7 @@ namespace Telegram.Bots.Requests.Admins
 
     public string Method { get; } = "restrictChatMember";
 
-    protected RestrictChatMember(TChatId chatId, int userId, ChatPermissions permissions)
+    protected RestrictChatMember(TChatId chatId, long userId, ChatPermissions permissions)
     {
       ChatId = chatId;
       UserId = userId;
@@ -29,7 +29,7 @@ namespace Telegram.Bots.Requests.Admins
 
   public sealed record RestrictChatMember : RestrictChatMember<long>
   {
-    public RestrictChatMember(long chatId, int userId, ChatPermissions permissions) :
+    public RestrictChatMember(long chatId, long userId, ChatPermissions permissions) :
       base(chatId, userId, permissions) { }
   }
 
@@ -37,7 +37,7 @@ namespace Telegram.Bots.Requests.Admins
   {
     public sealed record RestrictChatMember : RestrictChatMember<string>
     {
-      public RestrictChatMember(string username, int userId, ChatPermissions permissions) :
+      public RestrictChatMember(string username, long userId, ChatPermissions permissions) :
         base(username, userId, permissions) { }
     }
   }

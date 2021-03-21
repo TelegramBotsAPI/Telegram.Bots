@@ -10,11 +10,11 @@ namespace Telegram.Bots.Requests
   {
     public TChatId ChatId { get; }
 
-    public int UserId { get; }
+    public long UserId { get; }
 
     public string Method { get; } = "getChatMember";
 
-    protected GetChatMember(TChatId chatId, int userId)
+    protected GetChatMember(TChatId chatId, long userId)
     {
       ChatId = chatId;
       UserId = userId;
@@ -23,14 +23,14 @@ namespace Telegram.Bots.Requests
 
   public sealed record GetChatMember : GetChatMember<long>
   {
-    public GetChatMember(long chatId, int userId) : base(chatId, userId) { }
+    public GetChatMember(long chatId, long userId) : base(chatId, userId) { }
   }
 
   namespace Usernames
   {
     public sealed record GetChatMember : GetChatMember<string>
     {
-      public GetChatMember(string username, int userId) : base(username, userId) { }
+      public GetChatMember(string username, long userId) : base(username, userId) { }
     }
   }
 }

@@ -8,13 +8,13 @@ namespace Telegram.Bots.Requests.Stickers
 {
   public sealed record UploadStickerFile : IRequest<FileInfo>, IUserTargetable, IUploadable
   {
-    public int UserId { get; }
+    public long UserId { get; }
 
     public InputFile Sticker { get; }
 
     public string Method { get; } = "uploadStickerFile";
 
-    public UploadStickerFile(int userId, InputFile sticker)
+    public UploadStickerFile(long userId, InputFile sticker)
     {
       UserId = userId;
       Sticker = sticker;

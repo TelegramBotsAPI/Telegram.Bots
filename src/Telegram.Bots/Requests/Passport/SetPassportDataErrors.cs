@@ -8,13 +8,13 @@ namespace Telegram.Bots.Requests.Passport
 {
   public sealed record SetPassportDataErrors : IRequest<bool>, IUserTargetable
   {
-    public int UserId { get; }
+    public long UserId { get; }
 
     public IEnumerable<ElementError> Errors { get; }
 
     public string Method { get; } = "setPassportDataErrors";
 
-    public SetPassportDataErrors(int userId, IEnumerable<ElementError> errors)
+    public SetPassportDataErrors(long userId, IEnumerable<ElementError> errors)
     {
       UserId = userId;
       Errors = errors;

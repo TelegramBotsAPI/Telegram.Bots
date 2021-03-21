@@ -7,7 +7,7 @@ namespace Telegram.Bots.Requests
 {
   public sealed record GetUserProfilePhotos : IRequest<UserProfilePhotos>, IUserTargetable
   {
-    public int UserId { get; }
+    public long UserId { get; }
 
     public uint Offset { get; }
 
@@ -15,7 +15,7 @@ namespace Telegram.Bots.Requests
 
     public string Method { get; } = "getUserProfilePhotos";
 
-    public GetUserProfilePhotos(int userId, uint offset, uint limit)
+    public GetUserProfilePhotos(long userId, uint offset, uint limit)
     {
       UserId = userId;
       Offset = offset;

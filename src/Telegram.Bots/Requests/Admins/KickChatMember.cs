@@ -9,7 +9,7 @@ namespace Telegram.Bots.Requests.Admins
   {
     public TChatId ChatId { get; }
 
-    public int UserId { get; }
+    public long UserId { get; }
 
     public DateTime? UntilDate { get; init; }
 
@@ -17,7 +17,7 @@ namespace Telegram.Bots.Requests.Admins
 
     public string Method { get; } = "kickChatMember";
 
-    protected KickChatMember(TChatId chatId, int userId)
+    protected KickChatMember(TChatId chatId, long userId)
     {
       ChatId = chatId;
       UserId = userId;
@@ -26,14 +26,14 @@ namespace Telegram.Bots.Requests.Admins
 
   public sealed record KickChatMember : KickChatMember<long>
   {
-    public KickChatMember(long chatId, int userId) : base(chatId, userId) { }
+    public KickChatMember(long chatId, long userId) : base(chatId, userId) { }
   }
 
   namespace Usernames
   {
     public sealed record KickChatMember : KickChatMember<string>
     {
-      public KickChatMember(string username, int userId) : base(username, userId) { }
+      public KickChatMember(string username, long userId) : base(username, userId) { }
     }
   }
 }

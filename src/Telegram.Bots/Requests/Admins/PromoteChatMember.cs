@@ -7,7 +7,7 @@ namespace Telegram.Bots.Requests.Admins
   {
     public TChatId ChatId { get; }
 
-    public int UserId { get; }
+    public long UserId { get; }
 
     public bool? IsAnonymous { get; init; }
 
@@ -33,7 +33,7 @@ namespace Telegram.Bots.Requests.Admins
 
     public string Method { get; } = "promoteChatMember";
 
-    protected PromoteChatMember(TChatId chatId, int userId)
+    protected PromoteChatMember(TChatId chatId, long userId)
     {
       ChatId = chatId;
       UserId = userId;
@@ -42,14 +42,14 @@ namespace Telegram.Bots.Requests.Admins
 
   public sealed record PromoteChatMember : PromoteChatMember<long>
   {
-    public PromoteChatMember(long chatId, int userId) : base(chatId, userId) { }
+    public PromoteChatMember(long chatId, long userId) : base(chatId, userId) { }
   }
 
   namespace Usernames
   {
     public sealed record PromoteChatMember : PromoteChatMember<string>
     {
-      public PromoteChatMember(string username, int userId) : base(username, userId) { }
+      public PromoteChatMember(string username, long userId) : base(username, userId) { }
     }
   }
 }

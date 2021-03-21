@@ -5,7 +5,7 @@ namespace Telegram.Bots.Types
 {
   public record User
   {
-    public int Id { get; init; }
+    public long Id { get; init; }
 
     public bool IsBot { get; init; }
 

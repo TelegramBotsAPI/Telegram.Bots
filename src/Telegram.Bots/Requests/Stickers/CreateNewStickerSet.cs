@@ -10,7 +10,7 @@ namespace Telegram.Bots.Requests.Stickers
 {
   public abstract record CreateNewStickerSetBase : IRequest<bool>, IUserTargetable
   {
-    public int UserId { get; }
+    public long UserId { get; }
 
     public string Name { get; }
 
@@ -24,7 +24,7 @@ namespace Telegram.Bots.Requests.Stickers
 
     public string Method { get; } = "createNewStickerSet";
 
-    protected CreateNewStickerSetBase(int userId, string name, string title, string emojis)
+    protected CreateNewStickerSetBase(long userId, string name, string title, string emojis)
     {
       UserId = userId;
       Name = name;
@@ -38,7 +38,7 @@ namespace Telegram.Bots.Requests.Stickers
     public TPngSticker Sticker { get; }
 
     protected CreateNewStickerSet(
-      int userId,
+      long userId,
       string name,
       string title,
       string emojis,
@@ -48,7 +48,7 @@ namespace Telegram.Bots.Requests.Stickers
   public sealed record CreateNewStickerSetViaCache : CreateNewStickerSet<string>
   {
     public CreateNewStickerSetViaCache(
-      int userId,
+      long userId,
       string name,
       string title,
       string emojis,
@@ -58,7 +58,7 @@ namespace Telegram.Bots.Requests.Stickers
   public sealed record CreateNewStickerSetViaUrl : CreateNewStickerSet<Uri>
   {
     public CreateNewStickerSetViaUrl(
-      int userId,
+      long userId,
       string name,
       string title,
       string emojis,
@@ -68,7 +68,7 @@ namespace Telegram.Bots.Requests.Stickers
   public sealed record CreateNewStickerSetViaFile : CreateNewStickerSet<InputFile>, IUploadable
   {
     public CreateNewStickerSetViaFile(
-      int userId,
+      long userId,
       string name,
       string title,
       string emojis,
@@ -82,7 +82,7 @@ namespace Telegram.Bots.Requests.Stickers
     public TTgsSticker Sticker { get; }
 
     protected CreateNewAnimatedStickerSet(
-      int userId,
+      long userId,
       string name,
       string title,
       string emojis,
@@ -93,7 +93,7 @@ namespace Telegram.Bots.Requests.Stickers
     IUploadable
   {
     public CreateNewAnimatedStickerSetViaFile(
-      int userId,
+      long userId,
       string name,
       string title,
       string emojis,
