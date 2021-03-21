@@ -47,7 +47,10 @@ namespace Telegram.Bots.Json.Internal
       SuccessfulPayment,
       ConnectedWebsite,
       PassportData,
-      ProximityAlertTriggered
+      ProximityAlertTriggered,
+      VoiceChatStarted,
+      VoiceChatEnded,
+      VoiceChatParticipantsInvited
     };
 
     public override bool CanWrite => false;
@@ -105,6 +108,9 @@ namespace Telegram.Bots.Json.Internal
         ConnectedWebsite => Get<ConnectedWebsiteMessage>(),
         PassportData => Get<PassportDataMessage>(),
         ProximityAlertTriggered => Get<ProximityAlertTriggeredMessage>(),
+        VoiceChatStarted => Get<VoiceChatStartedMessage>(),
+        VoiceChatEnded => Get<VoiceChatEndedMessage>(),
+        VoiceChatParticipantsInvited => Get<VoiceChatParticipantsInvitedMessage>(),
         _ => null
       };
 
@@ -152,5 +158,8 @@ namespace Telegram.Bots.Json.Internal
     public const string ConnectedWebsite = "connected_website";
     public const string PassportData = "passport_data";
     public const string ProximityAlertTriggered = "proximity_alert_triggered";
+    public const string VoiceChatStarted = "voice_chat_started";
+    public const string VoiceChatEnded = "voice_chat_ended";
+    public const string VoiceChatParticipantsInvited = "voice_chat_participants_invited";
   }
 }

@@ -226,4 +226,16 @@ namespace Telegram.Bots.Types
   {
     public ProximityAlertTriggered ProximityAlertTriggered { get; init; } = null!;
   }
+
+  public sealed record VoiceChatStartedMessage : ServiceMessage { }
+
+  public sealed record VoiceChatEndedMessage : ServiceMessage
+  {
+    public int Duration { get; init; }
+  }
+
+  public sealed record VoiceChatParticipantsInvitedMessage : ServiceMessage
+  {
+    public IReadOnlyList<User>? Users { get; init; }
+  }
 }
