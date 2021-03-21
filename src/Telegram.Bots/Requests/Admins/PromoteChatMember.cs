@@ -21,6 +21,8 @@ namespace Telegram.Bots.Requests.Admins
 
     public bool? CanDeleteMessages { get; init; }
 
+    public bool? CanManageVoiceChats { get; init; }
+
     public bool? CanInviteUsers { get; init; }
 
     public bool? CanRestrictMembers { get; init; }

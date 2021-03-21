@@ -40,6 +40,8 @@ namespace Telegram.Bots.Types
 
     public bool CanDeleteMessages { get; init; }
 
+    public bool CanManageVoiceChats { get; init; }
+
     public bool CanRestrictMembers { get; init; }
 
     public bool CanPromoteMembers { get; init; }
