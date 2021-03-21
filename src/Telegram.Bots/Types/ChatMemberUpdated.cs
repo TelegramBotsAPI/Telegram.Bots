@@ -7,15 +7,15 @@ namespace Telegram.Bots.Types
 {
   public sealed record ChatMemberUpdated
   {
-    public Chat Chat { get; init; }
+    public Chat Chat { get; init; } = null!;
 
-    public User From { get; init; }
+    public User From { get; init; } = null!;
 
     public DateTime Date { get; init; } = DateTime.UnixEpoch;
 
-    public ChatMember OldChatMember { get; init; }
+    public ChatMember OldChatMember { get; init; } = null!;
 
-    public ChatMember NewChatMember { get; init; }
+    public ChatMember NewChatMember { get; init; } = null!;
 
     public ChatInviteLink? InviteLink { get; init; }
   }
