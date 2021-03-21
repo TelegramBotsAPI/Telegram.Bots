@@ -1,5 +1,5 @@
 # Telegram.Bots
-> A .NET 5 wrapper for the Telegram Bot API 5.0.
+> A .NET 5 wrapper for the Telegram Bot API 5.1.
 
 ![Status][1] [![Nuget][2]][5] [![Downloads][3]][5] ![License][4]
 
