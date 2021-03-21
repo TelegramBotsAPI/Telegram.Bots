@@ -225,7 +225,7 @@ Response<FileInfo> response = await bot.HandleAsync("<file-id>", stream);
 
 ### License
 
-Telegram.Bots is a .NET 5 wrapper for the Telegram Bot API 5.0.  
+Telegram.Bots is a .NET 5 wrapper for the Telegram Bot API 5.1.  
 Copyright © 2020-2021  Aman Agnihotri (amanagnihotri@pm.me)
 
 Telegram.Bots is free software: you can redistribute it and/or modify
