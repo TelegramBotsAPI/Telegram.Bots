@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 namespace Telegram.Bots.Types
 {
@@ -9,8 +9,8 @@ namespace Telegram.Bots.Types
     UploadPhoto,
     RecordVideo,
     UploadVideo,
-    RecordAudio,
-    UploadAudio,
+    RecordVoice,
+    UploadVoice,
     UploadDocument,
     FindLocation,
     RecordVideoNote,
