@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System;
 using System.Collections.Generic;
@@ -25,6 +25,10 @@ namespace Telegram.Bots.Requests.Payments
     public string Currency { get; }
 
     public IEnumerable<LabeledPrice> Prices { get; }
+
+    public int? MaxTipAmount { get; init; }
+
+    public IEnumerable<int>? SuggestedTipAmounts { get; init; }
 
     public string? ProviderData { get; init; }
 
