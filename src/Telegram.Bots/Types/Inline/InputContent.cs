@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System.Collections.Generic;
+using Telegram.Bots.Types.Payments;
 
 namespace Telegram.Bots.Types.Inline
 {
-  public abstract record InputContent { }
+  public abstract record InputContent;
 
   public sealed record ContactContent : InputContent
   {
@@ -82,6 +83,65 @@ namespace Telegram.Bots.Types.Inline
       Address = address;
       Latitude = latitude;
       Longitude = longitude;
+    }
+  }
+
+  public sealed record InvoiceContent : InputContent
+  {
+    public string Title { get; }
+
+    public string Description { get; }
+
+    public string Payload { get; }
+
+    public string ProviderToken { get; }
+
+    public string Currency { get; }
+
+    public IEnumerable<LabeledPrice> Prices { get; }
+
+    public int? MaxTipAmount { get; init; }
+
+    public IEnumerable<int>? SuggestedTipAmounts { get; init; }
+
+    public string? ProviderData { get; init; }
+
+    public string? PhotoUrl { get; init; }
+
+    public int? PhotoSize { get; init; }
+
+    public int? PhotoWidth { get; init; }
+
+    public int? PhotoHeight { get; init; }
+
+    public bool? NeedName { get; init; }
+
+    public bool? NeedPhoneNumber { get; init; }
+
+    public bool? NeedEmail { get; init; }
+
+    public bool? NeedShippingAddress { get; init; }
+
+    public bool? SendPhoneNumberToProvider { get; init; }
+
+    public bool? SendEmailToProvider { get; init; }
+
+    public bool? IsFlexible { get; init; }
+
+    public InvoiceContent(
+      string title,
+      string description,
+      string payload,
+      string providerToken,
+      string currency,
+      IEnumerable<LabeledPrice> prices)
+    {
+      Title = title;
+      Description = description;
+      Payload = payload;
+      ProviderToken = providerToken;
+      Currency = currency;
+      Prices = prices;
     }
   }
 }
