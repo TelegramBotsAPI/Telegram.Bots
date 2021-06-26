@@ -184,7 +184,7 @@ namespace Telegram.Bots.Json.Tests.Units
       (@"""pre_checkout_query_id"":""", new AnswerPreCheckoutQuery("", "")),
       (@"""shipping_query_id"":""", new AnswerShippingQuery("", "")),
       (@"""photo_url"":""",
-        new SendInvoice(1, "", "", "", "", "", "", new LabeledPrice[1]) {Photo = Uri}),
+        new SendInvoice(1, "", "", "", "", "", new LabeledPrice[1]) {Photo = Uri}),
       (@"""png_sticker"":""", new AddStickerToSetViaCache(1, "", "", "")),
       (@"""png_sticker"":""", new AddStickerToSetViaUrl(1, "", "", Uri)),
       (@"""png_sticker"":""attach://", new AddStickerToSetViaFile(1, "", "", File)),

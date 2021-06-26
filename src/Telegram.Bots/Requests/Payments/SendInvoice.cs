@@ -20,8 +20,6 @@ namespace Telegram.Bots.Requests.Payments
 
     public string ProviderToken { get; }
 
-    public string StartParameter { get; }
-
     public string Currency { get; }
 
     public IEnumerable<LabeledPrice> Prices { get; }
@@ -29,6 +27,8 @@ namespace Telegram.Bots.Requests.Payments
     public int? MaxTipAmount { get; init; }
 
     public IEnumerable<int>? SuggestedTipAmounts { get; init; }
+
+    public string? StartParameter { get; init; }
 
     public string? ProviderData { get; init; }
 
@@ -68,7 +68,6 @@ namespace Telegram.Bots.Requests.Payments
       string description,
       string payload,
       string providerToken,
-      string startParameter,
       string currency,
       IEnumerable<LabeledPrice> prices)
     {
@@ -77,7 +76,6 @@ namespace Telegram.Bots.Requests.Payments
       Description = description;
       Payload = payload;
       ProviderToken = providerToken;
-      StartParameter = startParameter;
       Currency = currency;
       Prices = prices;
     }
