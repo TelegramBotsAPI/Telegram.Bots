@@ -9,12 +9,12 @@ namespace Telegram.Bots.Types.Inline
 
     public User From { get; init; } = null!;
 
-    public Location? Location { get; init; }
-
     public string Query { get; init; } = null!;
 
     public string Offset { get; init; } = null!;
 
     public ChatType? ChatType { get; init; }
+
+    public Location? Location { get; init; }
   }
 }
