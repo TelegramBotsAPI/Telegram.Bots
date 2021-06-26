@@ -48,6 +48,7 @@ namespace Telegram.Bots.Json.Tests.Units
       (@"{""connected_website"":""""}", typeof(ConnectedWebsiteMessage)),
       (@"{""passport_data"":{}}", typeof(PassportDataMessage)),
       (@"{""proximity_alert_triggered"":{}}", typeof(ProximityAlertTriggeredMessage)),
+      (@"{""voice_chat_scheduled"":{}}", typeof(VoiceChatScheduledMessage)),
       (@"{""voice_chat_started"":{}}", typeof(VoiceChatStartedMessage)),
       (@"{""voice_chat_ended"":{}}", typeof(VoiceChatEndedMessage)),
       (@"{""voice_chat_participants_invited"":{}}", typeof(VoiceChatParticipantsInvitedMessage))

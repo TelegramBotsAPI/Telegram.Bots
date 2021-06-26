@@ -136,6 +136,13 @@ namespace Telegram.Bots.Json.Internal
         {typeof(MigrateFromChatMessage), new Data {{"chat_id", "migrate_from_chat_id"}}},
         {typeof(SuccessfulPaymentMessage), new Data {{"payment", "successful_payment"}}},
         {typeof(ConnectedWebsiteMessage), new Data {{"website", "connected_website"}}},
+        {typeof(VoiceChatScheduledMessage), new Data {{"scheduled", "voice_chat_scheduled"}}},
+        {typeof(VoiceChatStartedMessage), new Data {{"started", "voice_chat_started"}}},
+        {typeof(VoiceChatEndedMessage), new Data {{"ended", "voice_chat_ended"}}},
+        {
+          typeof(VoiceChatParticipantsInvitedMessage),
+          new Data {{"participants_invited", "voice_chat_participants_invited"}}
+        },
         {
           typeof(PassportFile),
           new Data

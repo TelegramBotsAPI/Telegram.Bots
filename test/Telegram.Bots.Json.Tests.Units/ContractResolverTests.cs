@@ -137,6 +137,11 @@ namespace Telegram.Bots.Json.Tests.Units
       (@"""successful_payment"":{",
         new SuccessfulPaymentMessage {Payment = new SuccessfulPayment()}),
       (@"""connected_website"":""", new ConnectedWebsiteMessage {Website = Uri}),
+      (@"""voice_chat_scheduled"":{", new VoiceChatScheduledMessage {Scheduled = new()}),
+      (@"""voice_chat_started"":{", new VoiceChatStartedMessage {Started = new()}),
+      (@"""voice_chat_ended"":{", new VoiceChatEndedMessage {Ended = new()}),
+      (@"""voice_chat_participants_invited"":{",
+        new VoiceChatParticipantsInvitedMessage {ParticipantsInvited = new()}),
       (@"""passport_data"":{", new PassportDataMessage {PassportData = new PassportData()}),
       (@"""proximity_alert_triggered"":{",
         new ProximityAlertTriggeredMessage

@@ -227,15 +227,23 @@ namespace Telegram.Bots.Types
     public ProximityAlertTriggered ProximityAlertTriggered { get; init; } = null!;
   }
 
-  public sealed record VoiceChatStartedMessage : ServiceMessage { }
+  public sealed record VoiceChatScheduledMessage : ServiceMessage
+  {
+    public VoiceChatScheduled Scheduled { get; init; } = null!;
+  }
+
+  public sealed record VoiceChatStartedMessage : ServiceMessage
+  {
+    public VoiceChatStarted Started { get; init; } = null!;
+  }
 
   public sealed record VoiceChatEndedMessage : ServiceMessage
   {
-    public int Duration { get; init; }
+    public VoiceChatEnded Ended { get; init; } = null!;
   }
 
   public sealed record VoiceChatParticipantsInvitedMessage : ServiceMessage
   {
-    public IReadOnlyList<User>? Users { get; init; }
+    public VoiceChatParticipantsInvited ParticipantsInvited { get; init; } = null!;
   }
 }

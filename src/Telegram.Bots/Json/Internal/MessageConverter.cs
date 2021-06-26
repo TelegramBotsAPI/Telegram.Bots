@@ -48,6 +48,7 @@ namespace Telegram.Bots.Json.Internal
       ConnectedWebsite,
       PassportData,
       ProximityAlertTriggered,
+      VoiceChatScheduled,
       VoiceChatStarted,
       VoiceChatEnded,
       VoiceChatParticipantsInvited
@@ -108,6 +109,7 @@ namespace Telegram.Bots.Json.Internal
         ConnectedWebsite => Get<ConnectedWebsiteMessage>(),
         PassportData => Get<PassportDataMessage>(),
         ProximityAlertTriggered => Get<ProximityAlertTriggeredMessage>(),
+        VoiceChatScheduled => Get<VoiceChatScheduledMessage>(),
         VoiceChatStarted => Get<VoiceChatStartedMessage>(),
         VoiceChatEnded => Get<VoiceChatEndedMessage>(),
         VoiceChatParticipantsInvited => Get<VoiceChatParticipantsInvitedMessage>(),
@@ -158,6 +160,7 @@ namespace Telegram.Bots.Json.Internal
     public const string ConnectedWebsite = "connected_website";
     public const string PassportData = "passport_data";
     public const string ProximityAlertTriggered = "proximity_alert_triggered";
+    public const string VoiceChatScheduled = "voice_chat_scheduled";
     public const string VoiceChatStarted = "voice_chat_started";
     public const string VoiceChatEnded = "voice_chat_ended";
     public const string VoiceChatParticipantsInvited = "voice_chat_participants_invited";
