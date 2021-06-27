@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System.Collections.Generic;
 
@@ -18,6 +18,8 @@ namespace Telegram.Bots.Types
 
     public bool? OneTime { get; init; }
 
+    public string? InputFieldPlaceholder { get; init; }
+
     public bool? Selective { get; init; }
 
     public KeyboardMarkup(Keyboard keyboard) => Keyboard = keyboard;
@@ -33,6 +35,8 @@ namespace Telegram.Bots.Types
   public sealed record ForceReplyMarkup : ReplyMarkup
   {
     public bool ForceReply { get; } = true;
+
+    public string? InputFieldPlaceholder { get; init; }
 
     public bool? Selective { get; init; }
   }
