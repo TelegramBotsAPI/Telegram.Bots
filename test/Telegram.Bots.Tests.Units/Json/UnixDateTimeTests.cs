@@ -2,9 +2,10 @@
 // Copyright © 2020-2021 Aman Agnihotri
 
 using System;
+using Telegram.Bots.Json;
 using Xunit;
 
-namespace Telegram.Bots.Json.Tests.Units
+namespace Telegram.Bots.Tests.Units.Json
 {
   public sealed class UnixDateTimeTests : IClassFixture<Serializer>
   {

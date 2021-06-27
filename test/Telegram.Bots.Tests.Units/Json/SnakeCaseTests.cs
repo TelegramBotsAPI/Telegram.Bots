@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020-2021 Aman Agnihotri
 
+using Telegram.Bots.Json;
 using Xunit;
 
-namespace Telegram.Bots.Json.Tests.Units
+namespace Telegram.Bots.Tests.Units.Json
 {
   public sealed class SnakeCaseTests : IClassFixture<Serializer>
   {

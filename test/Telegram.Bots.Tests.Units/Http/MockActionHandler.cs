@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Telegram.Bots.Http.Tests.Units
+namespace Telegram.Bots.Tests.Units.Http
 {
   using HttpAction = Func<HttpRequestMessage, HttpResponseMessage>;
 

@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020-2021 Aman Agnihotri
 
+using Telegram.Bots.Types;
 using Xunit;
 
-namespace Telegram.Bots.Types.Tests.Units
+namespace Telegram.Bots.Tests.Units.Types
 {
   public sealed class ResponseTests
   {

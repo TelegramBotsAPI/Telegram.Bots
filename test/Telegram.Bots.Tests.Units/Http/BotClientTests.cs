@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Telegram.Bots.Requests;
 using Xunit;
 
-namespace Telegram.Bots.Http.Tests.Units
+namespace Telegram.Bots.Tests.Units.Http
 {
   public sealed class BotClientTests
   {

@@ -2,10 +2,11 @@
 // Copyright © 2020-2021 Aman Agnihotri
 
 using System;
+using Telegram.Bots.Json;
 using Telegram.Bots.Types;
 using Xunit;
 
-namespace Telegram.Bots.Json.Tests.Units
+namespace Telegram.Bots.Tests.Units.Json
 {
   public sealed class MessageTests : IClassFixture<Serializer>
   {

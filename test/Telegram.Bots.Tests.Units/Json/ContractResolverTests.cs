@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Telegram.Bots.Json;
 using Telegram.Bots.Requests;
 using Telegram.Bots.Requests.Games;
 using Telegram.Bots.Requests.Inline;
@@ -29,7 +30,7 @@ using EditText = Telegram.Bots.Requests.Inline.EditText;
 using FileInfo = Telegram.Bots.Types.FileInfo;
 using StopLiveLocation = Telegram.Bots.Requests.Inline.StopLiveLocation;
 
-namespace Telegram.Bots.Json.Tests.Units
+namespace Telegram.Bots.Tests.Units.Json
 {
   public sealed class ContractResolverTests : IClassFixture<Serializer>
   {

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2021 Aman Agnihotri
 
 using System.Net;
 using System.Net.Http;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Telegram.Bots.Http.Tests.Units
+namespace Telegram.Bots.Tests.Units.Http
 {
   public sealed class MockResponseHandler : DelegatingHandler
   {
