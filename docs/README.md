@@ -19,6 +19,25 @@ IServiceProvider provider = new ServiceCollection()
 IBotClient bot = provider.GetRequiredService<IBotClient>();
 ```
 
+#### Or Configure the Bot Client with a Web Proxy
+```c#
+using System;
+using Microsoft.Extensions.DependencyInjection;
+using Telegram.Bots;
+
+IServiceProvider provider = new ServiceCollection()
+  .AddBotClient("<bot-token>")
+  .ConfigurePrimaryHttpMessageHandler(() => new SocketsHttpHandler
+  {
+    Proxy = new WebProxy(Host: "<your-host>", Port: 1234),
+    UseProxy = true
+  })
+  .Services
+  .BuildServiceProvider();
+
+IBotClient bot = provider.GetRequiredService<IBotClient>();
+```
+
 #### Get Bot Information
 
 ```cs
