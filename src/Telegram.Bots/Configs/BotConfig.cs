@@ -12,7 +12,7 @@ namespace Telegram.Bots.Configs
 
     public string Token { get; init; } = null!;
 
-    public int Timeout { get; init; } = 90;
+    public TimeSpan Timeout { get; init; } = TimeSpan.FromSeconds(90);
 
     public int HandlerLifetime { get; init; } = 600;
 

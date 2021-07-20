@@ -38,7 +38,7 @@ namespace Telegram.Bots
       return services.AddHttpClient<IBotClient, BotClient>(client =>
         {
           client.BaseAddress = config.BaseAddress;
-          client.Timeout = TimeSpan.FromSeconds(config.Timeout);
+          client.Timeout = config.Timeout;
         })
         .SetHandlerLifetime(TimeSpan.FromSeconds(config.HandlerLifetime))
         .AddPolicyHandler(GetPolicy());
