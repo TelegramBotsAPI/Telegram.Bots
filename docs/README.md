@@ -242,6 +242,20 @@ await using var stream = System.IO.File.OpenWrite("path/to/file.extension");
 Response<FileInfo> response = await bot.HandleAsync("<file-id>", stream);
 ```
 
+#### Configuring the Serializer with ASP.NET Core
+
+```c#
+using Microsoft.Extensions.DependencyInjection;
+using Telegram.Bots.Extensions.AspNetCore;
+
+// ...
+
+IServiceCollection services = ...
+
+services.AddControllers()
+        .AddBotSerializer();
+```
+
 ### License
 
 Telegram.Bots is a .NET 5 wrapper for the Telegram Bot API 5.3.  
