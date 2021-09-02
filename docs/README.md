@@ -256,6 +256,51 @@ services.AddControllers()
         .AddBotSerializer();
 ```
 
+#### Configuring Long Polling with Telegram.Bots
+
+```cs
+using Microsoft.Extensions.DependencyInjection;
+using Telegram.Bots;
+using Telegram.Bots.Extensions.Polling;
+
+...
+
+IServiceCollection services = ...
+
+services.AddBotClient("<bot-token>");
+services.AddPolling<UpdateHandler>();
+```
+
+#### Configuring an Update Handler for Polled Updates
+
+```cs
+using Telegram.Bots.Extensions.Polling;
+using Telegram.Bots.Requests;
+using Telegram.Bots.Types;
+
+...
+
+public sealed class UpdateHandler : IUpdateHandler
+{
+  public Task HandleAsync(IBotClient bot, Update update, CancellationToken token)
+  {
+    return update switch
+    {
+      MessageUpdate u when u.Data is TextMessage message =>
+        bot.HandleAsync(new SendText(message.Chat.Id, message.Text), token),
+
+      EditedMessageUpdate u when u.Data is TextMessage message =>
+        bot.HandleAsync(new SendText(message.Chat.Id, message.Text)
+        {
+          ReplyToMessageId = message.Id
+        }, token),
+
+      _ => Task.CompletedTask
+    };
+  }
+}
+```
+
 ### License
 
 Telegram.Bots is a .NET 5 wrapper for the Telegram Bot API 5.3.  
