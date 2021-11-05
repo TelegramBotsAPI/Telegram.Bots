@@ -12,6 +12,8 @@ namespace Telegram.Bots.Requests.Admins
     public TChatId ChatId { get; }
 
     public string InviteLink { get; }
+    
+    public string? Name { get; init; }
 
     public DateTime? ExpireDate { get; init; }
 
