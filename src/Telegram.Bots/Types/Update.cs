@@ -75,4 +75,9 @@ namespace Telegram.Bots.Types
   {
     public ChatMemberUpdated Data { get; init; } = null!;
   }
+  
+  public sealed record ChatJoinRequestUpdate : Update
+  {
+    public ChatJoinRequest Data { get; init; } = null!;
+  }
 }

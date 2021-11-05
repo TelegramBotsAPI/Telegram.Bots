@@ -43,6 +43,7 @@ namespace Telegram.Bots.Json.Internal
         PollAnswer => Get<PollAnswerUpdate>(),
         MyChatMember => Get<MyChatMemberUpdate>(),
         ChatMember => Get<ChatMemberUpdate>(),
+        ChatJoinRequest => Get<ChatJoinRequestUpdate>(),
         _ => null
       };
 
@@ -68,5 +69,6 @@ namespace Telegram.Bots.Json.Internal
     public const string PollAnswer = "poll_answer";
     public const string MyChatMember = "my_chat_member";
     public const string ChatMember = "chat_member";
+    public const string ChatJoinRequest = "chat_join_request";
   }
 }

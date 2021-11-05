@@ -17,6 +17,7 @@ namespace Telegram.Bots.Types
     Poll,
     PollAnswer,
     MyChatMember,
-    ChatMember
+    ChatMember,
+    ChatJoinRequest,
   }
 }
