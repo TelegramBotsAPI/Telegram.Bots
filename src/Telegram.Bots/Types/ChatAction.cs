@@ -12,6 +12,7 @@ namespace Telegram.Bots.Types
     RecordVoice,
     UploadVoice,
     UploadDocument,
+    ChooseSticker,
     FindLocation,
     RecordVideoNote,
     UploadVideoNote
