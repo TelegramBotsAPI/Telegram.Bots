@@ -10,6 +10,8 @@ namespace Telegram.Bots.Requests.Admins
     IChatTargetable<TChatId>
   {
     public TChatId ChatId { get; }
+    
+    public string? Name { get; init; }
 
     public DateTime? ExpireDate { get; init; }
 
