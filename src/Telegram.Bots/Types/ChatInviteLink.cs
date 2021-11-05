@@ -16,6 +16,8 @@ namespace Telegram.Bots.Types
     public bool IsPrimary { get; init; }
 
     public bool IsRevoked { get; init; }
+    
+    public string? Name { get; init; }
 
     public DateTime? ExpireDate { get; init; }
 
