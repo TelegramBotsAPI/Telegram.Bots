@@ -20,5 +20,7 @@ namespace Telegram.Bots.Types
     public DateTime? ExpireDate { get; init; }
 
     public int? MemberLimit { get; init; }
+    
+    public int? PendingJoinRequestCount { get; init; }
   }
 }
