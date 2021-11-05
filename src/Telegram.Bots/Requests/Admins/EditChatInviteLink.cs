@@ -16,6 +16,8 @@ namespace Telegram.Bots.Requests.Admins
     public DateTime? ExpireDate { get; init; }
 
     public int? MemberLimit { get; init; }
+    
+    public bool? CreatesJoinRequest { get; init; }
 
     public string Method { get; } = "editChatInviteLink";
 
