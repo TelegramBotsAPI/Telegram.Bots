@@ -1,5 +1,5 @@
 # Telegram.Bots
-> A .NET 5 wrapper for the Telegram Bot API 5.3.
+> A .NET 5 wrapper for the Telegram Bot API 5.4.
 
 ![Status][1] [![Nuget][2]][5] [![Downloads][3]][5] ![License][4]
 
@@ -303,7 +303,7 @@ public sealed class UpdateHandler : IUpdateHandler
 
 ### License
 
-Telegram.Bots is a .NET 5 wrapper for the Telegram Bot API 5.3.  
+Telegram.Bots is a .NET 5 wrapper for the Telegram Bot API 5.4.  
 Copyright © 2020-2021  Aman Agnihotri (amanagnihotri@pm.me)  
 
 Telegram.Bots is free software: you can redistribute it and/or modify  
