@@ -10,6 +10,8 @@ namespace Telegram.Bots.Types
     public string InviteLink { get; init; } = null!;
 
     public User Creator { get; init; } = null!;
+    
+    public bool CreatesJoinRequest { get; init; }
 
     public bool IsPrimary { get; init; }
 
