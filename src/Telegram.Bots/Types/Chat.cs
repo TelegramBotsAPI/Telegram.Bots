@@ -34,6 +34,8 @@ namespace Telegram.Bots.Types
 
     public int SlowModeDelay { get; init; }
     
+    public bool HasPrivateForwards { get; init; }
+    
     public bool HasProtectedContent { get; init; }
 
     public string? StickerSetName { get; init; }
