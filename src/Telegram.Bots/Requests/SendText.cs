@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 using System.Collections.Generic;
 using Telegram.Bots.Types;
@@ -7,7 +7,7 @@ using Telegram.Bots.Types;
 namespace Telegram.Bots.Requests
 {
   public abstract record SendText<TChatId> : IRequest<TextMessage>, IChatTargetable<TChatId>,
-    INotifiable, IReplyable, IMarkupable
+    INotifiable, IProtectable, IReplyable, IMarkupable
   {
     public TChatId ChatId { get; }
 
@@ -20,6 +20,8 @@ namespace Telegram.Bots.Requests
     public bool? DisableWebPagePreview { get; init; }
 
     public bool? DisableNotification { get; init; }
+    
+    public bool? ProtectContent { get; init; }
 
     public int? ReplyToMessageId { get; init; }
 
