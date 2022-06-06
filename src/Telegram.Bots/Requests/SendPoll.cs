@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace Telegram.Bots.Requests
   using Options = IEnumerable<string>;
 
   public abstract record SendPoll<TChatId> : IRequest<PollMessage>,
-    IChatTargetable<TChatId>, INotifiable, IReplyable, IMarkupable
+    IChatTargetable<TChatId>, INotifiable, IProtectable, IReplyable, IMarkupable
   {
     public TChatId ChatId { get; }
 
@@ -29,6 +29,8 @@ namespace Telegram.Bots.Requests
     public bool? IsClosed { get; init; }
 
     public bool? DisableNotification { get; init; }
+    
+    public bool? ProtectContent { get; init; }
 
     public int? ReplyToMessageId { get; init; }
 
