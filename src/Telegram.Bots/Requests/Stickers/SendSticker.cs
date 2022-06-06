@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 using System;
 using System.Collections.Generic;
@@ -8,13 +8,15 @@ using Telegram.Bots.Types;
 namespace Telegram.Bots.Requests.Stickers
 {
   public abstract record SendSticker<TChatId, TSticker> : IRequest<StickerMessage>,
-    IChatTargetable<TChatId>, INotifiable, IReplyable, IMarkupable
+    IChatTargetable<TChatId>, INotifiable, IProtectable, IReplyable, IMarkupable
   {
     public TChatId ChatId { get; }
 
     public TSticker Sticker { get; }
 
     public bool? DisableNotification { get; init; }
+    
+    public bool? ProtectContent { get; init; }
 
     public int? ReplyToMessageId { get; init; }
 
