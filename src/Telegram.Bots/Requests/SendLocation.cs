@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
   public abstract record SendLocation<TChatId> : IRequest<LocationMessage>,
-    IChatTargetable<TChatId>, INotifiable, IReplyable, IMarkupable
+    IChatTargetable<TChatId>, INotifiable, IProtectable, IReplyable, IMarkupable
   {
     public TChatId ChatId { get; }
 
@@ -23,6 +23,8 @@ namespace Telegram.Bots.Requests
     public uint? ProximityAlertRadius { get; init; }
 
     public bool? DisableNotification { get; init; }
+    
+    public bool? ProtectContent { get; init; }
 
     public int? ReplyToMessageId { get; init; }
 
