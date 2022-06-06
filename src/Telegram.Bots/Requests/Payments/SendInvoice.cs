@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using Telegram.Bots.Types.Payments;
 
 namespace Telegram.Bots.Requests.Payments
 {
-  public sealed record SendInvoice : IRequest<InvoiceMessage>, IChatTargetable<long>
+  public sealed record SendInvoice : IRequest<InvoiceMessage>, IChatTargetable<long>, IProtectable
   {
     public long ChatId { get; }
 
@@ -55,6 +55,8 @@ namespace Telegram.Bots.Requests.Payments
     public bool? IsFlexible { get; init; }
 
     public bool? DisableNotification { get; init; }
+    
+    public bool? ProtectContent { get; init; }
 
     public int? ReplyToMessageId { get; init; }
 
