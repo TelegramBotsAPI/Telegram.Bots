@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
   public abstract record ForwardMessage<TChatId, TFromChatId> : IRequest<Message>,
-    IChatMessageTargetable<TChatId>, INotifiable
+    IChatMessageTargetable<TChatId>, INotifiable, IProtectable
   {
     public TChatId ChatId { get; }
 
@@ -15,6 +15,8 @@ namespace Telegram.Bots.Requests
     public int MessageId { get; }
 
     public bool? DisableNotification { get; init; }
+    
+    public bool? ProtectContent { get; init; }
 
     public string Method { get; } = "forwardMessage";
 
