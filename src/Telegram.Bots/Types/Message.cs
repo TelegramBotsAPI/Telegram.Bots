@@ -33,6 +33,8 @@ namespace Telegram.Bots.Types
     public string? ForwardSenderName { get; init; }
 
     public DateTime? ForwardDate { get; init; }
+    
+    public bool IsAutomaticForward { get; init; }
 
     public Message? ReplyToMessage { get; init; }
 
