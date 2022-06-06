@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +10,15 @@ namespace Telegram.Bots.Requests
   using IGroupableMediaList = IEnumerable<IGroupableMedia>;
 
   public abstract record SendMediaGroup<TChatId> : IRequest<IReadOnlyList<MediaGroupMessage>>,
-    IChatTargetable<TChatId>, INotifiable, IReplyable, IUploadable
+    IChatTargetable<TChatId>, INotifiable, IProtectable, IReplyable, IUploadable
   {
     public TChatId ChatId { get; }
 
     public IGroupableMediaList Media { get; }
 
     public bool? DisableNotification { get; init; }
+    
+    public bool? ProtectContent { get; init; }
 
     public int? ReplyToMessageId { get; init; }
 
