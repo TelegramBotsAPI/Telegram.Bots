@@ -1,18 +1,20 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests.Games
 {
   public sealed record SendGame : IRequest<GameMessage>,
-    IChatTargetable<long>, INotifiable, IReplyable, IInlineMarkupable
+    IChatTargetable<long>, INotifiable, IProtectable, IReplyable, IInlineMarkupable
   {
     public long ChatId { get; }
 
     public string ShortName { get; }
 
     public bool? DisableNotification { get; init; }
+    
+    public bool? ProtectContent { get; init; }
 
     public int? ReplyToMessageId { get; init; }
 
