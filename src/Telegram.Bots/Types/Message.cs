@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 using System;
 using System.Collections.Generic;
@@ -39,6 +39,8 @@ namespace Telegram.Bots.Types
     public User? ViaBot { get; init; }
 
     public DateTime? EditDate { get; init; }
+    
+    public bool HasProtectedContent { get; init; }
 
     public string? AuthorSignature { get; init; }
 
