@@ -50,7 +50,7 @@ namespace Telegram.Bots.Tests.Units.Json
       (@"{""passport_data"":{}}", typeof(PassportDataMessage)),
       (@"{""proximity_alert_triggered"":{}}", typeof(ProximityAlertTriggeredMessage)),
       (@"{""video_chat_scheduled"":{}}", typeof(VideoChatScheduledMessage)),
-      (@"{""voice_chat_started"":{}}", typeof(VoiceChatStartedMessage)),
+      (@"{""video_chat_started"":{}}", typeof(VideoChatStartedMessage)),
       (@"{""voice_chat_ended"":{}}", typeof(VoiceChatEndedMessage)),
       (@"{""voice_chat_participants_invited"":{}}", typeof(VoiceChatParticipantsInvitedMessage))
     };

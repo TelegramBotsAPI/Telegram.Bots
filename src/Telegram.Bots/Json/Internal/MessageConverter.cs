@@ -49,7 +49,7 @@ namespace Telegram.Bots.Json.Internal
       PassportData,
       ProximityAlertTriggered,
       VideoChatScheduled,
-      VoiceChatStarted,
+      VideoChatStarted,
       VoiceChatEnded,
       VoiceChatParticipantsInvited
     };
@@ -110,7 +110,7 @@ namespace Telegram.Bots.Json.Internal
         PassportData => Get<PassportDataMessage>(),
         ProximityAlertTriggered => Get<ProximityAlertTriggeredMessage>(),
         VideoChatScheduled => Get<VideoChatScheduledMessage>(),
-        VoiceChatStarted => Get<VoiceChatStartedMessage>(),
+        VideoChatStarted => Get<VideoChatStartedMessage>(),
         VoiceChatEnded => Get<VoiceChatEndedMessage>(),
         VoiceChatParticipantsInvited => Get<VoiceChatParticipantsInvitedMessage>(),
         _ => null
@@ -161,7 +161,7 @@ namespace Telegram.Bots.Json.Internal
     public const string PassportData = "passport_data";
     public const string ProximityAlertTriggered = "proximity_alert_triggered";
     public const string VideoChatScheduled = "video_chat_scheduled";
-    public const string VoiceChatStarted = "voice_chat_started";
+    public const string VideoChatStarted = "video_chat_started";
     public const string VoiceChatEnded = "voice_chat_ended";
     public const string VoiceChatParticipantsInvited = "voice_chat_participants_invited";
   }

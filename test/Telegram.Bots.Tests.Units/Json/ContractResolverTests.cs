@@ -139,7 +139,7 @@ namespace Telegram.Bots.Tests.Units.Json
         new SuccessfulPaymentMessage {Payment = new SuccessfulPayment()}),
       (@"""connected_website"":""", new ConnectedWebsiteMessage {Website = Uri}),
       (@"""video_chat_scheduled"":{", new VideoChatScheduledMessage {Scheduled = new()}),
-      (@"""voice_chat_started"":{", new VoiceChatStartedMessage {Started = new()}),
+      (@"""video_chat_started"":{", new VideoChatStartedMessage {Started = new()}),
       (@"""voice_chat_ended"":{", new VoiceChatEndedMessage {Ended = new()}),
       (@"""voice_chat_participants_invited"":{",
         new VoiceChatParticipantsInvitedMessage {ParticipantsInvited = new()}),
