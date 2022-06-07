@@ -196,6 +196,7 @@ namespace Telegram.Bots.Tests.Units.Json
       (@"""png_sticker"":""", new AddStickerToSetViaUrl(1, "", "", Uri)),
       (@"""png_sticker"":""attach://", new AddStickerToSetViaFile(1, "", "", File)),
       (@"""tgs_sticker"":""attach://", new AddAnimatedStickerToSetViaFile(1, "", "", File)),
+      (@"""webm_sticker"":""attach://", new AddVideoStickerToSetViaFile(1, "", "", File)),
       (@"""png_sticker"":""", new CreateNewStickerSetViaCache(0, "", "", "", "")),
       (@"""png_sticker"":""", new CreateNewStickerSetViaUrl(0, "", "", "", Uri)),
       (@"""png_sticker"":""attach://", new CreateNewStickerSetViaFile(0, "", "", "", File)),
