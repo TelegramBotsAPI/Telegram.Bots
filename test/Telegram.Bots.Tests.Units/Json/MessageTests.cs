@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 using System;
 using Telegram.Bots.Json;
@@ -49,7 +49,7 @@ namespace Telegram.Bots.Tests.Units.Json
       (@"{""connected_website"":""""}", typeof(ConnectedWebsiteMessage)),
       (@"{""passport_data"":{}}", typeof(PassportDataMessage)),
       (@"{""proximity_alert_triggered"":{}}", typeof(ProximityAlertTriggeredMessage)),
-      (@"{""voice_chat_scheduled"":{}}", typeof(VoiceChatScheduledMessage)),
+      (@"{""video_chat_scheduled"":{}}", typeof(VideoChatScheduledMessage)),
       (@"{""voice_chat_started"":{}}", typeof(VoiceChatStartedMessage)),
       (@"{""voice_chat_ended"":{}}", typeof(VoiceChatEndedMessage)),
       (@"{""voice_chat_participants_invited"":{}}", typeof(VoiceChatParticipantsInvitedMessage))

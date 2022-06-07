@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 using System;
 using System.Collections.Generic;
@@ -136,7 +136,7 @@ namespace Telegram.Bots.Json.Internal
         {typeof(MigrateFromChatMessage), new Data {{"chat_id", "migrate_from_chat_id"}}},
         {typeof(SuccessfulPaymentMessage), new Data {{"payment", "successful_payment"}}},
         {typeof(ConnectedWebsiteMessage), new Data {{"website", "connected_website"}}},
-        {typeof(VoiceChatScheduledMessage), new Data {{"scheduled", "voice_chat_scheduled"}}},
+        {typeof(VideoChatScheduledMessage), new Data {{"scheduled", "video_chat_scheduled"}}},
         {typeof(VoiceChatStartedMessage), new Data {{"started", "voice_chat_started"}}},
         {typeof(VoiceChatEndedMessage), new Data {{"ended", "voice_chat_ended"}}},
         {

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 using System;
 using System.Collections.Generic;
@@ -48,7 +48,7 @@ namespace Telegram.Bots.Json.Internal
       ConnectedWebsite,
       PassportData,
       ProximityAlertTriggered,
-      VoiceChatScheduled,
+      VideoChatScheduled,
       VoiceChatStarted,
       VoiceChatEnded,
       VoiceChatParticipantsInvited
@@ -109,7 +109,7 @@ namespace Telegram.Bots.Json.Internal
         ConnectedWebsite => Get<ConnectedWebsiteMessage>(),
         PassportData => Get<PassportDataMessage>(),
         ProximityAlertTriggered => Get<ProximityAlertTriggeredMessage>(),
-        VoiceChatScheduled => Get<VoiceChatScheduledMessage>(),
+        VideoChatScheduled => Get<VideoChatScheduledMessage>(),
         VoiceChatStarted => Get<VoiceChatStartedMessage>(),
         VoiceChatEnded => Get<VoiceChatEndedMessage>(),
         VoiceChatParticipantsInvited => Get<VoiceChatParticipantsInvitedMessage>(),
@@ -160,7 +160,7 @@ namespace Telegram.Bots.Json.Internal
     public const string ConnectedWebsite = "connected_website";
     public const string PassportData = "passport_data";
     public const string ProximityAlertTriggered = "proximity_alert_triggered";
-    public const string VoiceChatScheduled = "voice_chat_scheduled";
+    public const string VideoChatScheduled = "video_chat_scheduled";
     public const string VoiceChatStarted = "voice_chat_started";
     public const string VoiceChatEnded = "voice_chat_ended";
     public const string VoiceChatParticipantsInvited = "voice_chat_participants_invited";

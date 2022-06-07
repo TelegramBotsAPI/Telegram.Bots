@@ -231,9 +231,9 @@ namespace Telegram.Bots.Types
     public ProximityAlertTriggered ProximityAlertTriggered { get; init; } = null!;
   }
 
-  public sealed record VoiceChatScheduledMessage : ServiceMessage
+  public sealed record VideoChatScheduledMessage : ServiceMessage
   {
-    public VoiceChatScheduled Scheduled { get; init; } = null!;
+    public VideoChatScheduled Scheduled { get; init; } = null!;
   }
 
   public sealed record VoiceChatStartedMessage : ServiceMessage
