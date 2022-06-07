@@ -200,6 +200,7 @@ namespace Telegram.Bots.Tests.Units.Json
       (@"""png_sticker"":""", new CreateNewStickerSetViaUrl(0, "", "", "", Uri)),
       (@"""png_sticker"":""attach://", new CreateNewStickerSetViaFile(0, "", "", "", File)),
       (@"""tgs_sticker"":""attach://", new CreateNewAnimatedStickerSetViaFile(0, "", "", "", File)),
+      (@"""webm_sticker"":""attach://", new CreateNewVideoStickerSetViaFile(0, "", "", "", File)),
       (@"""png_sticker"":""", new UploadStickerFile(1, Stream.Null))
     };
 
