@@ -194,6 +194,7 @@ namespace Telegram.Bots.Json.Internal
         {typeof(AddStickerToSet<Uri>), new Data {{"sticker", "png_sticker"}}},
         {typeof(AddStickerToSet<InputFile>), new Data {{"sticker", "png_sticker"}}},
         {typeof(AddAnimatedStickerToSet<InputFile>), new Data {{"sticker", "tgs_sticker"}}},
+        {typeof(AddVideoStickerToSet<InputFile>), new Data {{"sticker", "webm_sticker"}}},
         {typeof(CreateNewStickerSet<string>), new Data {{"sticker", "png_sticker"}}},
         {typeof(CreateNewStickerSet<Uri>), new Data {{"sticker", "png_sticker"}}},
         {typeof(CreateNewStickerSet<InputFile>), new Data {{"sticker", "png_sticker"}}},
