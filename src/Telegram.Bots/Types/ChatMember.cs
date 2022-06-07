@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 using System;
 
@@ -40,7 +40,7 @@ namespace Telegram.Bots.Types
 
     public bool CanDeleteMessages { get; init; }
 
-    public bool CanManageVoiceChats { get; init; }
+    public bool CanManageVideoChats { get; init; }
 
     public bool CanRestrictMembers { get; init; }
 
