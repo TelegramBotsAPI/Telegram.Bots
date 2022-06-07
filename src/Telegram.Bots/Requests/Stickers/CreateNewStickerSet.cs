@@ -101,4 +101,29 @@ namespace Telegram.Bots.Requests.Stickers
 
     public IEnumerable<InputFile?> GetFiles() => new[] {Sticker};
   }
+  
+  public abstract record CreateNewVideoStickerSetViaFile<TWebmSticker> : CreateNewStickerSetBase
+  {
+    public TWebmSticker Sticker { get; }
+
+    protected CreateNewVideoStickerSetViaFile(
+      long userId,
+      string name,
+      string title,
+      string emojis,
+      TWebmSticker sticker) : base(userId, name, title, emojis) => Sticker = sticker;
+  }
+
+  public sealed record CreateNewVideoStickerSetViaFile : CreateNewVideoStickerSetViaFile<InputFile>,
+    IUploadable
+  {
+    public CreateNewVideoStickerSetViaFile(
+      long userId,
+      string name,
+      string title,
+      string emojis,
+      InputFile sticker) : base(userId, name, title, emojis, sticker) { }
+
+    public IEnumerable<InputFile?> GetFiles() => new[] {Sticker};
+  }
 }

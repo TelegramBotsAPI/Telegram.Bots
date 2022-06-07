@@ -200,6 +200,9 @@ namespace Telegram.Bots.Json.Internal
         {
           typeof(CreateNewAnimatedStickerSet<InputFile>), new Data {{"sticker", "tgs_sticker"}}
         },
+        {
+          typeof(CreateNewVideoStickerSetViaFile<InputFile>), new Data {{"sticker", "webm_sticker"}}
+        },
         {typeof(UploadStickerFile), new Data {{"sticker", "png_sticker"}}}
       };
 
