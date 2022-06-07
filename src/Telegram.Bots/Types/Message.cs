@@ -241,9 +241,9 @@ namespace Telegram.Bots.Types
     public VideoChatStarted Started { get; init; } = null!;
   }
 
-  public sealed record VoiceChatEndedMessage : ServiceMessage
+  public sealed record VideoChatEndedMessage : ServiceMessage
   {
-    public VoiceChatEnded Ended { get; init; } = null!;
+    public VideoChatEnded Ended { get; init; } = null!;
   }
 
   public sealed record VoiceChatParticipantsInvitedMessage : ServiceMessage

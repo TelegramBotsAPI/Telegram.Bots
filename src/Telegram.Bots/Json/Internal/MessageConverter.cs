@@ -50,7 +50,7 @@ namespace Telegram.Bots.Json.Internal
       ProximityAlertTriggered,
       VideoChatScheduled,
       VideoChatStarted,
-      VoiceChatEnded,
+      VideoChatEnded,
       VoiceChatParticipantsInvited
     };
 
@@ -111,7 +111,7 @@ namespace Telegram.Bots.Json.Internal
         ProximityAlertTriggered => Get<ProximityAlertTriggeredMessage>(),
         VideoChatScheduled => Get<VideoChatScheduledMessage>(),
         VideoChatStarted => Get<VideoChatStartedMessage>(),
-        VoiceChatEnded => Get<VoiceChatEndedMessage>(),
+        VideoChatEnded => Get<VideoChatEndedMessage>(),
         VoiceChatParticipantsInvited => Get<VoiceChatParticipantsInvitedMessage>(),
         _ => null
       };
@@ -162,7 +162,7 @@ namespace Telegram.Bots.Json.Internal
     public const string ProximityAlertTriggered = "proximity_alert_triggered";
     public const string VideoChatScheduled = "video_chat_scheduled";
     public const string VideoChatStarted = "video_chat_started";
-    public const string VoiceChatEnded = "voice_chat_ended";
+    public const string VideoChatEnded = "video_chat_ended";
     public const string VoiceChatParticipantsInvited = "voice_chat_participants_invited";
   }
 }

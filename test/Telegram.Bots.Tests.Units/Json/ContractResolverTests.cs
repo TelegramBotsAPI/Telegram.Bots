@@ -140,7 +140,7 @@ namespace Telegram.Bots.Tests.Units.Json
       (@"""connected_website"":""", new ConnectedWebsiteMessage {Website = Uri}),
       (@"""video_chat_scheduled"":{", new VideoChatScheduledMessage {Scheduled = new()}),
       (@"""video_chat_started"":{", new VideoChatStartedMessage {Started = new()}),
-      (@"""voice_chat_ended"":{", new VoiceChatEndedMessage {Ended = new()}),
+      (@"""video_chat_ended"":{", new VideoChatEndedMessage {Ended = new()}),
       (@"""voice_chat_participants_invited"":{",
         new VoiceChatParticipantsInvitedMessage {ParticipantsInvited = new()}),
       (@"""passport_data"":{", new PassportDataMessage {PassportData = new PassportData()}),

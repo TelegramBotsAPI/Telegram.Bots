@@ -138,7 +138,7 @@ namespace Telegram.Bots.Json.Internal
         {typeof(ConnectedWebsiteMessage), new Data {{"website", "connected_website"}}},
         {typeof(VideoChatScheduledMessage), new Data {{"scheduled", "video_chat_scheduled"}}},
         {typeof(VideoChatStartedMessage), new Data {{"started", "video_chat_started"}}},
-        {typeof(VoiceChatEndedMessage), new Data {{"ended", "voice_chat_ended"}}},
+        {typeof(VideoChatEndedMessage), new Data {{"ended", "video_chat_ended"}}},
         {
           typeof(VoiceChatParticipantsInvitedMessage),
           new Data {{"participants_invited", "voice_chat_participants_invited"}}

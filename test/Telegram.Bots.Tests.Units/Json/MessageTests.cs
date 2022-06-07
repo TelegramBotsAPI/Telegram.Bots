@@ -51,7 +51,7 @@ namespace Telegram.Bots.Tests.Units.Json
       (@"{""proximity_alert_triggered"":{}}", typeof(ProximityAlertTriggeredMessage)),
       (@"{""video_chat_scheduled"":{}}", typeof(VideoChatScheduledMessage)),
       (@"{""video_chat_started"":{}}", typeof(VideoChatStartedMessage)),
-      (@"{""voice_chat_ended"":{}}", typeof(VoiceChatEndedMessage)),
+      (@"{""video_chat_ended"":{}}", typeof(VideoChatEndedMessage)),
       (@"{""voice_chat_participants_invited"":{}}", typeof(VoiceChatParticipantsInvitedMessage))
     };
 
