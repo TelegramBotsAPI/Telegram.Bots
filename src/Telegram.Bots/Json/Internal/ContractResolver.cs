@@ -140,8 +140,8 @@ namespace Telegram.Bots.Json.Internal
         {typeof(VideoChatStartedMessage), new Data {{"started", "video_chat_started"}}},
         {typeof(VideoChatEndedMessage), new Data {{"ended", "video_chat_ended"}}},
         {
-          typeof(VoiceChatParticipantsInvitedMessage),
-          new Data {{"participants_invited", "voice_chat_participants_invited"}}
+          typeof(VideoChatParticipantsInvitedMessage),
+          new Data {{"participants_invited", "video_chat_participants_invited"}}
         },
         {
           typeof(PassportFile),

@@ -141,8 +141,8 @@ namespace Telegram.Bots.Tests.Units.Json
       (@"""video_chat_scheduled"":{", new VideoChatScheduledMessage {Scheduled = new()}),
       (@"""video_chat_started"":{", new VideoChatStartedMessage {Started = new()}),
       (@"""video_chat_ended"":{", new VideoChatEndedMessage {Ended = new()}),
-      (@"""voice_chat_participants_invited"":{",
-        new VoiceChatParticipantsInvitedMessage {ParticipantsInvited = new()}),
+      (@"""video_chat_participants_invited"":{",
+        new VideoChatParticipantsInvitedMessage {ParticipantsInvited = new()}),
       (@"""passport_data"":{", new PassportDataMessage {PassportData = new PassportData()}),
       (@"""proximity_alert_triggered"":{",
         new ProximityAlertTriggeredMessage

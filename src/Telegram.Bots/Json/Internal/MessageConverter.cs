@@ -51,7 +51,7 @@ namespace Telegram.Bots.Json.Internal
       VideoChatScheduled,
       VideoChatStarted,
       VideoChatEnded,
-      VoiceChatParticipantsInvited
+      VideoChatParticipantsInvited
     };
 
     public override bool CanWrite => false;
@@ -112,7 +112,7 @@ namespace Telegram.Bots.Json.Internal
         VideoChatScheduled => Get<VideoChatScheduledMessage>(),
         VideoChatStarted => Get<VideoChatStartedMessage>(),
         VideoChatEnded => Get<VideoChatEndedMessage>(),
-        VoiceChatParticipantsInvited => Get<VoiceChatParticipantsInvitedMessage>(),
+        VideoChatParticipantsInvited => Get<VideoChatParticipantsInvitedMessage>(),
         _ => null
       };
 
@@ -163,6 +163,6 @@ namespace Telegram.Bots.Json.Internal
     public const string VideoChatScheduled = "video_chat_scheduled";
     public const string VideoChatStarted = "video_chat_started";
     public const string VideoChatEnded = "video_chat_ended";
-    public const string VoiceChatParticipantsInvited = "voice_chat_participants_invited";
+    public const string VideoChatParticipantsInvited = "video_chat_participants_invited";
   }
 }
