@@ -9,7 +9,7 @@
     <Title>Telegram.Bots.Extensions.AspNetCore</Title>
     <Description>Integrate Telegram.Bots Serializer with ASP.NET Core</Description>
     <Copyright>Copyright © 2020-2022 Aman Agnihotri</Copyright>
-    <PackageVersion>5.2.0</PackageVersion>
+    <PackageVersion>5.3.0</PackageVersion>
     <PackageProjectUrl>https://github.com/TelegramBotsAPI/Telegram.Bots</PackageProjectUrl>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageIcon>icon.png</PackageIcon>
@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Telegram.Bots" Version="5.2.0" />
+    <PackageReference Include="Telegram.Bots" Version="5.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.17" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
       <PrivateAssets>all</PrivateAssets>
