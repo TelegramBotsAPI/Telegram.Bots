@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 using System;
 using Telegram.Bots.Types.Games;
@@ -25,6 +25,13 @@ namespace Telegram.Bots.Types
     public LoginUrl LoginUrl { get; }
 
     public LoginUrlButton(string text, LoginUrl loginUrl) : base(text) => LoginUrl = loginUrl;
+  }
+  
+  public sealed record WebAppButton : InlineButton
+  {
+    public WebAppInfo WebApp { get; }
+
+    public WebAppButton(string text, WebAppInfo webApp) : base(text) => WebApp = webApp;
   }
 
   public sealed record CallbackDataButton : InlineButton
