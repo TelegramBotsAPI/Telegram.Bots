@@ -185,6 +185,7 @@ namespace Telegram.Bots.Json.Internal
         {typeof(GetFile), new Data {{"id", "file_id"}}},
         {typeof(StopLiveLocation), new Data {{"message_id", "inline_message_id"}}},
         {typeof(AnswerInlineQuery), new Data {{"query_id", "inline_query_id"}}},
+        {typeof(AnswerWebAppQuery), new Data {{"query_id", "web_app_query_id"}}},
         {typeof(GetGameHighScores), new Data {{"message_id", "inline_message_id"}}},
         {typeof(SendGame), new Data {{"short_name", "game_short_name"}}},
         {typeof(SetGameScoreBase), new Data {{"disable_edit", "disable_edit_message"}}},
