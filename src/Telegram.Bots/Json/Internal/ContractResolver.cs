@@ -112,6 +112,7 @@ namespace Telegram.Bots.Json.Internal
         {typeof(InlineVoice<string>), new Data {{"voice", "voice_file_id"}}},
         {typeof(InlineVoice<Uri>), new Data {{"voice", "voice_url"}}},
         {typeof(InlineVoice), new Data {{"duration", "voice_duration"}}},
+        {typeof(SentWebAppMessage), new Data {{"message_id", "inline_message_id"}}},
         {typeof(TextContent), new Data {{"text", "message_text"}}},
         {typeof(MessageId), new Data {{"id", "message_id"}}},
         {typeof(Message), new Data {{"id", "message_id"}}},
