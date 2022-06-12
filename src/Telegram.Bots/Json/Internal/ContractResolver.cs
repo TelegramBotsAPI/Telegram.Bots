@@ -143,6 +143,7 @@ namespace Telegram.Bots.Json.Internal
           typeof(VideoChatParticipantsInvitedMessage),
           new Data {{"participants_invited", "video_chat_participants_invited"}}
         },
+        {typeof(WebAppDataMessage), new Data {{"data", "web_app_data"}}},
         {
           typeof(PassportFile),
           new Data

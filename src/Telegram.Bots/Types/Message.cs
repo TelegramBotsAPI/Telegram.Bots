@@ -250,4 +250,9 @@ namespace Telegram.Bots.Types
   {
     public VideoChatParticipantsInvited ParticipantsInvited { get; init; } = null!;
   }
+  
+  public sealed record WebAppDataMessage : ServiceMessage
+  {
+    public WebAppData Data { get; init; } = null!;
+  }
 }
