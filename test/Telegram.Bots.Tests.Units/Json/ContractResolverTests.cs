@@ -143,6 +143,7 @@ namespace Telegram.Bots.Tests.Units.Json
       (@"""video_chat_ended"":{", new VideoChatEndedMessage {Ended = new()}),
       (@"""video_chat_participants_invited"":{",
         new VideoChatParticipantsInvitedMessage {ParticipantsInvited = new()}),
+      (@"""web_app_data"":{", new WebAppDataMessage {Data = new()}),
       (@"""passport_data"":{", new PassportDataMessage {PassportData = new PassportData()}),
       (@"""proximity_alert_triggered"":{",
         new ProximityAlertTriggeredMessage

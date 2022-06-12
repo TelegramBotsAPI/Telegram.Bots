@@ -52,7 +52,8 @@ namespace Telegram.Bots.Tests.Units.Json
       (@"{""video_chat_scheduled"":{}}", typeof(VideoChatScheduledMessage)),
       (@"{""video_chat_started"":{}}", typeof(VideoChatStartedMessage)),
       (@"{""video_chat_ended"":{}}", typeof(VideoChatEndedMessage)),
-      (@"{""video_chat_participants_invited"":{}}", typeof(VideoChatParticipantsInvitedMessage))
+      (@"{""video_chat_participants_invited"":{}}", typeof(VideoChatParticipantsInvitedMessage)),
+      (@"{""web_app_data"":{}}", typeof(WebAppDataMessage)),
     };
 
     [Theory(DisplayName = "Message deserializes correctly")]
