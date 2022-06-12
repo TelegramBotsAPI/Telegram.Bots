@@ -7,9 +7,9 @@
     <Authors>Aman Agnihotri</Authors>
     <Product>Telegram.Bots</Product>
     <Title>Telegram.Bots</Title>
-    <Description>A .NET 5 wrapper for the Telegram Bot API 5.7</Description>
+    <Description>A .NET 5 wrapper for the Telegram Bot API 6.0</Description>
     <Copyright>Copyright © 2020-2022 Aman Agnihotri</Copyright>
-    <PackageVersion>5.5.0</PackageVersion>
+    <PackageVersion>5.6.0</PackageVersion>
     <PackageProjectUrl>https://github.com/TelegramBotsAPI/Telegram.Bots</PackageProjectUrl>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageIcon>icon.png</PackageIcon>
