@@ -7,7 +7,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Json.Internal
 {
-  internal class InputFileConverter : JsonConverter<InputFile?>
+  internal sealed class InputFileConverter : JsonConverter<InputFile?>
   {
     public override void WriteJson(JsonWriter writer, InputFile? value, JsonSerializer serializer)
     {
