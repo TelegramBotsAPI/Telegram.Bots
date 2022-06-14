@@ -1,25 +1,25 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
+
+namespace Telegram.Bots.Configs;
 
 using System;
 using System.Collections.Generic;
 
-namespace Telegram.Bots.Configs
+public sealed record BotConfig(string Token) : IBotConfig
 {
-  public sealed record BotConfig : IBotConfig
+  public Uri BaseAddress { get; init; } = new("https://api.telegram.org/");
+
+  public TimeSpan Timeout { get; init; } = TimeSpan.FromSeconds(90);
+
+  public int HandlerLifetime { get; init; } = 600;
+
+  public IEnumerable<int> WaitsBeforeRetry { get; init; } = new[]
   {
-    public Uri BaseAddress { get; init; } = new("https://api.telegram.org/");
+    1, 2, 5
+  };
 
-    public string Token { get; init; } = null!;
+  public int EventsAllowedBeforeBreaking { get; init; } = 3;
 
-    public TimeSpan Timeout { get; init; } = TimeSpan.FromSeconds(90);
-
-    public int HandlerLifetime { get; init; } = 600;
-
-    public IEnumerable<int> WaitsBeforeRetry { get; init; } = new[] {1, 2, 5};
-
-    public int EventsAllowedBeforeBreaking { get; init; } = 3;
-
-    public int BreakDuration { get; init; } = 30;
-  }
+  public int BreakDuration { get; init; } = 30;
 }

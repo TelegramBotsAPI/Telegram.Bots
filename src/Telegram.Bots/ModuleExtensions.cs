@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 using System;
 using System.Linq;
@@ -20,7 +20,7 @@ namespace Telegram.Bots
   public static class ModuleExtensions
   {
     public static IHttpClientBuilder AddBotClient(this IServices services, string token) =>
-      services.AddBotClient(new BotConfig {Token = token});
+      services.AddBotClient(new BotConfig(token));
 
     public static IHttpClientBuilder AddBotClient(this IServices services, IConfiguration config)
     {
