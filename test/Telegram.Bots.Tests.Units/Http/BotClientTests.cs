@@ -91,32 +91,6 @@ namespace Telegram.Bots.Tests.Units.Http
       }
     }
 
-    [Fact(DisplayName = "BotClient returns Canceled Response on TaskCanceledException")]
-    public async Task BotClientReturnsCanceledResponseOnTaskCanceledException()
-    {
-      DelegatingHandler? handler = null;
-
-      try
-      {
-        handler = new MockActionHandler(_ => throw new TaskCanceledException());
-
-        var bot = CreateClient(handler);
-
-        var response = await bot.HandleAsync(new Test()).ConfigureAwait(false);
-
-        Assert.False(response.Ok);
-        Assert.NotNull(response.Failure);
-        Assert.Equal(408, response.Failure.ErrorCode);
-        Assert.Equal("Canceled", response.Failure.Description);
-        Assert.Equal(default, response.Failure.Parameters);
-        Assert.Equal(default, response.Result);
-      }
-      finally
-      {
-        handler?.Dispose();
-      }
-    }
-
     [Fact(DisplayName = "BotClient throws on any other Exception")]
     public async Task BotClientThrowsOnAnyOtherException()
     {
