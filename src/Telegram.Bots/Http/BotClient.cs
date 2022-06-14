@@ -67,9 +67,9 @@ public sealed class BotClient : IBotClient
         ? new(_serializer.Deserialize<Success<T>>(httpContent).Result)
         : new(_serializer.Deserialize<Failure>(httpContent));
     }
-    catch (TaskCanceledException)
+    catch (TaskCanceledException e) when (e.InnerException is TimeoutException)
     {
-      return new(Canceled);
+      return new(TimedOut);
     }
     catch (OperationCanceledException)
     {
