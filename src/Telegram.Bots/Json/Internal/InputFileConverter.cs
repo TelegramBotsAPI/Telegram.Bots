@@ -1,24 +1,32 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-using System;
+namespace Telegram.Bots.Json.Internal;
+
 using Newtonsoft.Json;
-using Telegram.Bots.Types;
+using System;
+using Types;
 
-namespace Telegram.Bots.Json.Internal
+internal sealed class InputFileConverter : JsonConverter<InputFile?>
 {
-  internal sealed class InputFileConverter : JsonConverter<InputFile?>
+  public override void WriteJson(
+    JsonWriter writer,
+    InputFile? value,
+    JsonSerializer serializer)
   {
-    public override void WriteJson(JsonWriter writer, InputFile? value, JsonSerializer serializer)
+    if (value != null)
     {
-      if (value != null) writer.WriteValue($"attach://{value.Id}");
+      writer.WriteValue($"attach://{value.Id}");
     }
+  }
 
-    public override InputFile ReadJson(
-      JsonReader reader,
-      Type objectType,
-      InputFile? existingValue,
-      bool hasExistingValue,
-      JsonSerializer serializer) => throw new NotImplementedException();
+  public override InputFile ReadJson(
+    JsonReader reader,
+    Type objectType,
+    InputFile? existingValue,
+    bool hasExistingValue,
+    JsonSerializer serializer)
+  {
+    throw new NotImplementedException();
   }
 }
