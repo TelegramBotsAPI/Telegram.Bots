@@ -1,62 +1,73 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-using System;
+namespace Telegram.Bots.Json.Internal;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Telegram.Bots.Types;
+using System;
+using Types;
+using static CallbackQuerySchema;
+using static CallbackQueryFlags;
 
-namespace Telegram.Bots.Json.Internal
+internal class CallbackQueryConverter : JsonConverter
 {
-  using static CallbackQuerySchema;
-  using static CallbackQueryFlags;
+  public override bool CanWrite => false;
 
-  internal class CallbackQueryConverter : JsonConverter
+  public override void WriteJson(
+    JsonWriter writer,
+    object? value,
+    JsonSerializer serializer)
   {
-    public override bool CanWrite => false;
+    throw new NotImplementedException();
+  }
 
-    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer) =>
-      throw new NotImplementedException();
+  public override object? ReadJson(
+    JsonReader reader,
+    Type objectType,
+    object? existingValue,
+    JsonSerializer serializer)
+  {
+    JObject? data = JObject.Load(reader);
 
-    public override object? ReadJson(
-      JsonReader reader,
-      Type objectType,
-      object? existingValue,
-      JsonSerializer serializer)
+    if (data.Type == JTokenType.Null)
     {
-      var data = JObject.Load(reader);
-
-      if (data.Type == JTokenType.Null) return null;
-
-      var type = (data.ContainsKey(Data) ? HasData : None) |
-                 (data.ContainsKey(MessageId) ? IsInline : None);
-
-      return type switch
-      {
-        None => Get<GameCallbackQuery>(),
-        HasData => Get<MessageCallbackQuery>(),
-        IsInline => Get<InlineGameCallbackQuery>(),
-        HasData | IsInline => Get<InlineMessageCallbackQuery>(),
-        _ => null
-      };
-
-      T Get<T>() => data.ToObject<T>(serializer)!;
+      return null;
     }
 
-    public override bool CanConvert(Type objectType) => objectType == typeof(CallbackQuery);
+    CallbackQueryFlags type = (data.ContainsKey(Data) ? HasData : None) |
+                              (data.ContainsKey(CallbackQuerySchema.MessageId)
+                                ? IsInline
+                                : None);
+
+    return type switch
+    {
+      None => Get<GameCallbackQuery>(),
+      HasData => Get<MessageCallbackQuery>(),
+      IsInline => Get<InlineGameCallbackQuery>(),
+      HasData | IsInline => Get<InlineMessageCallbackQuery>(),
+      _ => null
+    };
+
+    T Get<T>() => data.ToObject<T>(serializer)!;
   }
 
-  [Flags]
-  internal enum CallbackQueryFlags
+  public override bool CanConvert(Type objectType)
   {
-    None = 0b00,
-    HasData = 0b01,
-    IsInline = 0b10
+    return objectType == typeof(CallbackQuery);
   }
+}
 
-  internal static class CallbackQuerySchema
-  {
-    public const string MessageId = "inline_message_id";
-    public const string Data = "data";
-  }
+[Flags]
+internal enum CallbackQueryFlags
+{
+  None = 0b00,
+  HasData = 0b01,
+  IsInline = 0b10
+}
+
+internal static class CallbackQuerySchema
+{
+  public const string MessageId = "inline_message_id";
+  public const string Data = "data";
 }
