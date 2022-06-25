@@ -1,50 +1,63 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-using System;
-using System.Linq;
+namespace Telegram.Bots.Json.Internal;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Telegram.Bots.Types;
+using System;
+using System.Linq;
+using Types;
+using static PollSchema;
 
-namespace Telegram.Bots.Json.Internal
+internal sealed class PollConverter : JsonConverter
 {
-  using static PollSchema;
+  public override bool CanWrite => false;
 
-  internal sealed class PollConverter : JsonConverter
+  public override void WriteJson(
+    JsonWriter writer,
+    object? value,
+    JsonSerializer serializer)
   {
-    public override bool CanWrite => false;
+    throw new NotImplementedException();
+  }
 
-    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer) =>
-      throw new NotImplementedException();
+  public override object? ReadJson(
+    JsonReader reader,
+    Type objectType,
+    object? existingValue,
+    JsonSerializer serializer)
+  {
+    JObject? data = JObject.Load(reader);
 
-    public override object? ReadJson(
-      JsonReader reader,
-      Type objectType,
-      object? existingValue,
-      JsonSerializer serializer)
+    if (data.Type == JTokenType.Null)
     {
-      var data = JObject.Load(reader);
-
-      if (data.Type == JTokenType.Null) return null;
-
-      return data.Properties().Single(property => property.Name == Type).Value.ToString() switch
-      {
-        Regular => Get<RegularPoll>(),
-        Quiz => Get<QuizPoll>(),
-        _ => null
-      };
-
-      T Get<T>() => data.ToObject<T>(serializer)!;
+      return null;
     }
 
-    public override bool CanConvert(Type objectType) => objectType == typeof(Poll);
+    string type = data.Properties()
+      .Single(property => property.Name == PollSchema.Type).Value
+      .ToString();
+
+    return type switch
+    {
+      Regular => Get<RegularPoll>(),
+      Quiz => Get<QuizPoll>(),
+      _ => null
+    };
+
+    T Get<T>() => data.ToObject<T>(serializer)!;
   }
 
-  internal static class PollSchema
+  public override bool CanConvert(Type objectType)
   {
-    public const string Type = "type";
-    public const string Regular = "regular";
-    public const string Quiz = "quiz";
+    return objectType == typeof(Poll);
   }
+}
+
+internal static class PollSchema
+{
+  public const string Type = "type";
+  public const string Regular = "regular";
+  public const string Quiz = "quiz";
 }
