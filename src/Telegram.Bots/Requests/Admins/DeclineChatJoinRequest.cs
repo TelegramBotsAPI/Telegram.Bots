@@ -1,36 +1,23 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2021 Aman Agnihotri
+// Copyright © 2021-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract record DeclineChatJoinRequest<TChatId> : IRequest<bool>,
-    IChatMemberTargetable<TChatId>
+  public abstract record DeclineChatJoinRequest<TChatId>(
+    TChatId ChatId,
+    long UserId) : IRequest<bool>, IChatMemberTargetable<TChatId>
   {
-    public TChatId ChatId { get; }
-
-    public long UserId { get; }
-
-    public string Method { get; } = "declineChatJoinRequest";
-
-    protected DeclineChatJoinRequest(TChatId chatId, long userId)
-    {
-      ChatId = chatId;
-      UserId = userId;
-    }
+    public string Method => "declineChatJoinRequest";
   }
 
-  public sealed record DeclineChatJoinRequest : DeclineChatJoinRequest<long>
-  {
-    public DeclineChatJoinRequest(long chatId, long userId) :
-      base(chatId, userId) { }
-  }
+  public sealed record DeclineChatJoinRequest(
+    long ChatId,
+    long UserId) : DeclineChatJoinRequest<long>(ChatId, UserId);
 
   namespace Usernames
   {
-    public sealed record DeclineChatJoinRequest : DeclineChatJoinRequest<string>
-    {
-      public DeclineChatJoinRequest(string username, long userId) :
-        base(username, userId) { }
-    }
+    public sealed record DeclineChatJoinRequest(
+      string ChatId,
+      long UserId) : DeclineChatJoinRequest<string>(ChatId, UserId);
   }
 }
