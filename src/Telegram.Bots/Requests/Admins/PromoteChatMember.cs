@@ -3,12 +3,10 @@
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract record PromoteChatMember<TChatId> : IRequest<bool>, IChatMemberTargetable<TChatId>
+  public abstract record PromoteChatMember<TChatId>(
+    TChatId ChatId,
+    long UserId) : IRequest<bool>, IChatMemberTargetable<TChatId>
   {
-    public TChatId ChatId { get; }
-
-    public long UserId { get; }
-
     public bool? IsAnonymous { get; init; }
 
     public bool? CanManageChat { get; init; }
@@ -31,25 +29,17 @@ namespace Telegram.Bots.Requests.Admins
 
     public bool? CanPromoteMembers { get; init; }
 
-    public string Method { get; } = "promoteChatMember";
-
-    protected PromoteChatMember(TChatId chatId, long userId)
-    {
-      ChatId = chatId;
-      UserId = userId;
-    }
+    public string Method => "promoteChatMember";
   }
 
-  public sealed record PromoteChatMember : PromoteChatMember<long>
-  {
-    public PromoteChatMember(long chatId, long userId) : base(chatId, userId) { }
-  }
+  public sealed record PromoteChatMember(
+    long ChatId,
+    long UserId) : PromoteChatMember<long>(ChatId, UserId);
 
   namespace Usernames
   {
-    public sealed record PromoteChatMember : PromoteChatMember<string>
-    {
-      public PromoteChatMember(string username, long userId) : base(username, userId) { }
-    }
+    public sealed record PromoteChatMember(
+      string ChatId,
+      long UserId) : PromoteChatMember<string>(ChatId, UserId);
   }
 }
