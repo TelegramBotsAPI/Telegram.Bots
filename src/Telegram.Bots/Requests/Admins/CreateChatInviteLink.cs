@@ -1,39 +1,31 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2021 Aman Agnihotri
-
-using System;
-using Telegram.Bots.Types;
+// Copyright © 2021-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract record CreateChatInviteLink<TChatId> : IRequest<ChatInviteLink>,
-    IChatTargetable<TChatId>
+  using System;
+  using Types;
+
+  public abstract record CreateChatInviteLink<TChatId>(
+    TChatId ChatId) : IRequest<ChatInviteLink>, IChatTargetable<TChatId>
   {
-    public TChatId ChatId { get; }
-    
     public string? Name { get; init; }
 
     public DateTime? ExpireDate { get; init; }
 
     public int? MemberLimit { get; init; }
-    
+
     public bool? CreatesJoinRequest { get; init; }
 
-    public string Method { get; } = "createChatInviteLink";
-
-    protected CreateChatInviteLink(TChatId chatId) => ChatId = chatId;
+    public string Method => "createChatInviteLink";
   }
 
-  public sealed record CreateChatInviteLink : CreateChatInviteLink<long>
-  {
-    public CreateChatInviteLink(long chatId) : base(chatId) { }
-  }
+  public sealed record CreateChatInviteLink(
+    long ChatId) : CreateChatInviteLink<long>(ChatId);
 
   namespace Usernames
   {
-    public sealed record CreateChatInviteLink : CreateChatInviteLink<string>
-    {
-      public CreateChatInviteLink(string username) : base(username) { }
-    }
+    public sealed record CreateChatInviteLink(
+      string ChatId) : CreateChatInviteLink<string>(ChatId);
   }
 }
