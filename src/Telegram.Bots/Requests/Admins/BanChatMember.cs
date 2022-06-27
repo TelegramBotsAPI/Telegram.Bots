@@ -1,39 +1,29 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
-
-using System;
+// Copyright © 2020-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract record BanChatMember<TChatId> : IRequest<bool>, IChatMemberTargetable<TChatId>
+  using System;
+
+  public abstract record BanChatMember<TChatId>(
+    TChatId ChatId,
+    long UserId) : IRequest<bool>, IChatMemberTargetable<TChatId>
   {
-    public TChatId ChatId { get; }
-
-    public long UserId { get; }
-
     public DateTime? UntilDate { get; init; }
 
     public bool? RevokeMessages { get; init; }
 
-    public string Method { get; } = "banChatMember";
-
-    protected BanChatMember(TChatId chatId, long userId)
-    {
-      ChatId = chatId;
-      UserId = userId;
-    }
+    public string Method => "banChatMember";
   }
 
-  public sealed record BanChatMember : BanChatMember<long>
-  {
-    public BanChatMember(long chatId, long userId) : base(chatId, userId) { }
-  }
+  public sealed record BanChatMember(
+    long ChatId,
+    long UserId) : BanChatMember<long>(ChatId, UserId);
 
   namespace Usernames
   {
-    public sealed record BanChatMember : BanChatMember<string>
-    {
-      public BanChatMember(string username, long userId) : base(username, userId) { }
-    }
+    public sealed record BanChatMember(
+      string ChatId,
+      long UserId) : BanChatMember<string>(ChatId, UserId);
   }
 }
