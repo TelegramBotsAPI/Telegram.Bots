@@ -1,27 +1,20 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract record DeleteChatStickerSet<TChatId> : IRequest<bool>, IChatTargetable<TChatId>
+  public abstract record DeleteChatStickerSet<TChatId>(
+    TChatId ChatId) : IRequest<bool>, IChatTargetable<TChatId>
   {
-    public TChatId ChatId { get; }
-
-    public string Method { get; } = "deleteChatStickerSet";
-
-    protected DeleteChatStickerSet(TChatId chatId) => ChatId = chatId;
+    public string Method => "deleteChatStickerSet";
   }
 
-  public sealed record DeleteChatStickerSet : DeleteChatStickerSet<long>
-  {
-    public DeleteChatStickerSet(long chatId) : base(chatId) { }
-  }
+  public sealed record DeleteChatStickerSet(
+    long ChatId) : DeleteChatStickerSet<long>(ChatId);
 
   namespace Usernames
   {
-    public sealed record DeleteChatStickerSet : DeleteChatStickerSet<string>
-    {
-      public DeleteChatStickerSet(string username) : base(username) { }
-    }
+    public sealed record DeleteChatStickerSet(
+      string ChatId) : DeleteChatStickerSet<string>(ChatId);
   }
 }
