@@ -1,44 +1,34 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
-
-using System;
-using Telegram.Bots.Types;
+// Copyright © 2020-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract record RestrictChatMember<TChatId> : IRequest<bool>,
+  using System;
+  using Types;
+
+  public abstract record RestrictChatMember<TChatId>(
+    TChatId ChatId,
+    long UserId,
+    ChatPermissions Permissions) : IRequest<bool>,
     IChatMemberTargetable<TChatId>
   {
-    public TChatId ChatId { get; }
-
-    public long UserId { get; }
-
-    public ChatPermissions Permissions { get; }
-
     public DateTime? UntilDate { get; init; }
 
-    public string Method { get; } = "restrictChatMember";
-
-    protected RestrictChatMember(TChatId chatId, long userId, ChatPermissions permissions)
-    {
-      ChatId = chatId;
-      UserId = userId;
-      Permissions = permissions;
-    }
+    public string Method => "restrictChatMember";
   }
 
-  public sealed record RestrictChatMember : RestrictChatMember<long>
-  {
-    public RestrictChatMember(long chatId, long userId, ChatPermissions permissions) :
-      base(chatId, userId, permissions) { }
-  }
+  public sealed record RestrictChatMember(
+    long ChatId,
+    long UserId,
+    ChatPermissions Permissions) :
+    RestrictChatMember<long>(ChatId, UserId, Permissions);
 
   namespace Usernames
   {
-    public sealed record RestrictChatMember : RestrictChatMember<string>
-    {
-      public RestrictChatMember(string username, long userId, ChatPermissions permissions) :
-        base(username, userId, permissions) { }
-    }
+    public sealed record RestrictChatMember(
+      string ChatId,
+      long UserId,
+      ChatPermissions Permissions) :
+      RestrictChatMember<string>(ChatId, UserId, Permissions);
   }
 }
