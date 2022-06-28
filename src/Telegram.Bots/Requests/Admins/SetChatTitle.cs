@@ -1,33 +1,23 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract record SetChatTitle<TChatId> : IRequest<bool>, IChatTargetable<TChatId>
+  public abstract record SetChatTitle<TChatId>(
+    TChatId ChatId,
+    string Title) : IRequest<bool>, IChatTargetable<TChatId>
   {
-    public TChatId ChatId { get; }
-
-    public string Title { get; }
-
-    public string Method { get; } = "setChatTitle";
-
-    protected SetChatTitle(TChatId chatId, string title)
-    {
-      ChatId = chatId;
-      Title = title;
-    }
+    public string Method => "setChatTitle";
   }
 
-  public sealed record SetChatTitle : SetChatTitle<long>
-  {
-    public SetChatTitle(long chatId, string title) : base(chatId, title) { }
-  }
+  public sealed record SetChatTitle(
+    long ChatId,
+    string Title) : SetChatTitle<long>(ChatId, Title);
 
   namespace Usernames
   {
-    public sealed record SetChatTitle : SetChatTitle<string>
-    {
-      public SetChatTitle(string username, string title) : base(username, title) { }
-    }
+    public sealed record SetChatTitle(
+      string ChatId,
+      string Title) : SetChatTitle<string>(ChatId, Title);
   }
 }
