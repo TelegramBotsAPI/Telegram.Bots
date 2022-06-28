@@ -1,34 +1,24 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract record SetChatStickerSet<TChatId> : IRequest<bool>, IChatTargetable<TChatId>
+  public abstract record SetChatStickerSet<TChatId>(
+    TChatId ChatId,
+    string StickerSetName) : IRequest<bool>, IChatTargetable<TChatId>
   {
-    public TChatId ChatId { get; }
-
-    public string StickerSetName { get; }
-
-    public string Method { get; } = "setChatStickerSet";
-
-    protected SetChatStickerSet(TChatId chatId, string stickerSetName)
-    {
-      ChatId = chatId;
-      StickerSetName = stickerSetName;
-    }
+    public string Method => "setChatStickerSet";
   }
 
-  public sealed record SetChatStickerSet : SetChatStickerSet<long>
-  {
-    public SetChatStickerSet(long chatId, string stickerSetName) : base(chatId, stickerSetName) { }
-  }
+  public sealed record SetChatStickerSet(
+    long ChatId,
+    string StickerSetName) : SetChatStickerSet<long>(ChatId, StickerSetName);
 
   namespace Usernames
   {
-    public sealed record SetChatStickerSet : SetChatStickerSet<string>
-    {
-      public SetChatStickerSet(string username, string stickerSetName) :
-        base(username, stickerSetName) { }
-    }
+    public sealed record SetChatStickerSet(
+      string ChatId,
+      string StickerSetName) :
+      SetChatStickerSet<string>(ChatId, StickerSetName);
   }
 }
