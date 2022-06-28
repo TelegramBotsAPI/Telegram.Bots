@@ -1,39 +1,34 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
-
-using System.Collections.Generic;
-using Telegram.Bots.Types;
+// Copyright © 2020-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract record SetChatPhoto<TChatId> : IRequest<bool>, IChatTargetable<TChatId>,
-    IUploadable
+  using System.Collections.Generic;
+  using Types;
+
+  public abstract record SetChatPhoto<TChatId>(
+    TChatId ChatId,
+    InputFile Photo) : IRequest<bool>, IChatTargetable<TChatId>, IUploadable
   {
-    public TChatId ChatId { get; }
+    public string Method => "setChatPhoto";
 
-    public InputFile Photo { get; }
-
-    public string Method { get; } = "setChatPhoto";
-
-    protected SetChatPhoto(TChatId chatId, InputFile photo)
+    public IEnumerable<InputFile?> GetFiles()
     {
-      ChatId = chatId;
-      Photo = photo;
+      return new[]
+      {
+        Photo
+      };
     }
-
-    public IEnumerable<InputFile?> GetFiles() => new[] {Photo};
   }
 
-  public sealed record SetChatPhoto : SetChatPhoto<long>
-  {
-    public SetChatPhoto(long chatId, InputFile photo) : base(chatId, photo) { }
-  }
+  public sealed record SetChatPhoto(
+    long ChatId,
+    InputFile Photo) : SetChatPhoto<long>(ChatId, Photo);
 
   namespace Usernames
   {
-    public sealed record SetChatPhoto : SetChatPhoto<string>
-    {
-      public SetChatPhoto(string username, InputFile photo) : base(username, photo) { }
-    }
+    public sealed record SetChatPhoto(
+      string ChatId,
+      InputFile Photo) : SetChatPhoto<string>(ChatId, Photo);
   }
 }
