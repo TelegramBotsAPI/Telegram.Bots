@@ -3,32 +3,21 @@
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract record UnbanChatOwner<TChatId> : IRequest<bool>, IChatOwnerTargetable<TChatId>
+  public abstract record UnbanChatOwner<TChatId>(
+    TChatId ChatId,
+    long SenderChatId) : IRequest<bool>, IChatOwnerTargetable<TChatId>
   {
-    public TChatId ChatId { get; }
-
-    public long SenderChatId { get; }
-
-    public string Method { get; } = "unbanChatSenderChat";
-
-    protected UnbanChatOwner(TChatId chatId, long senderChatId)
-    {
-      ChatId = chatId;
-      SenderChatId = senderChatId;
-    }
+    public string Method => "unbanChatSenderChat";
   }
 
-  public sealed record UnbanChatOwner : UnbanChatOwner<long>
-  {
-    public UnbanChatOwner(long chatId, long senderChatId) : base(chatId, senderChatId) { }
-  }
+  public sealed record UnbanChatOwner(
+    long ChatId,
+    long SenderChatId) : UnbanChatOwner<long>(ChatId, SenderChatId);
 
   namespace Usernames
   {
-    public sealed record UnbanChatOwner : UnbanChatOwner<string>
-    {
-      public UnbanChatOwner(string username, long senderChatId) :
-        base(username, senderChatId) { }
-    }
+    public sealed record UnbanChatOwner(
+      string ChatId,
+      long SenderChatId) : UnbanChatOwner<string>(ChatId, SenderChatId);
   }
 }
