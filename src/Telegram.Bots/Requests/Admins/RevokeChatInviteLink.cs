@@ -1,37 +1,25 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2021 Aman Agnihotri
-
-using Telegram.Bots.Types;
+// Copyright © 2021-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract record RevokeChatInviteLink<TChatId> : IRequest<ChatInviteLink>,
-    IChatTargetable<TChatId>
+  using Types;
+
+  public abstract record RevokeChatInviteLink<TChatId>(
+    TChatId ChatId,
+    string InviteLink) : IRequest<ChatInviteLink>, IChatTargetable<TChatId>
   {
-    public TChatId ChatId { get; }
-
-    public string InviteLink { get; }
-
-    public string Method { get; } = "revokeChatInviteLink";
-
-    protected RevokeChatInviteLink(TChatId chatId, string inviteLink)
-    {
-      ChatId = chatId;
-      InviteLink = inviteLink;
-    }
+    public string Method => "revokeChatInviteLink";
   }
 
-  public sealed record RevokeChatInviteLink : RevokeChatInviteLink<long>
-  {
-    public RevokeChatInviteLink(long chatId, string inviteLink) : base(chatId, inviteLink) { }
-  }
+  public sealed record RevokeChatInviteLink(
+    long ChatId,
+    string InviteLink) : RevokeChatInviteLink<long>(ChatId, InviteLink);
 
   namespace Usernames
   {
-    public sealed record RevokeChatInviteLink : RevokeChatInviteLink<string>
-    {
-      public RevokeChatInviteLink(string username, string inviteLink) :
-        base(username, inviteLink) { }
-    }
+    public sealed record RevokeChatInviteLink(
+      string ChatId,
+      string InviteLink) : RevokeChatInviteLink<string>(ChatId, InviteLink);
   }
 }
