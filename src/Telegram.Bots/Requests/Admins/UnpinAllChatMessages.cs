@@ -1,27 +1,20 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract record UnpinAllChatMessages<TChatId> : IRequest<bool>, IChatTargetable<TChatId>
+  public abstract record UnpinAllChatMessages<TChatId>(
+    TChatId ChatId) : IRequest<bool>, IChatTargetable<TChatId>
   {
-    public TChatId ChatId { get; }
-
-    public string Method { get; } = "unpinAllChatMessages";
-
-    protected UnpinAllChatMessages(TChatId chatId) => ChatId = chatId;
+    public string Method => "unpinAllChatMessages";
   }
 
-  public sealed record UnpinAllChatMessages : UnpinAllChatMessages<long>
-  {
-    public UnpinAllChatMessages(long chatId) : base(chatId) { }
-  }
+  public sealed record UnpinAllChatMessages(
+    long ChatId) : UnpinAllChatMessages<long>(ChatId);
 
   namespace Usernames
   {
-    public sealed record UnpinAllChatMessages : UnpinAllChatMessages<string>
-    {
-      public UnpinAllChatMessages(string username) : base(username) { }
-    }
+    public sealed record UnpinAllChatMessages(
+      string ChatId) : UnpinAllChatMessages<string>(ChatId);
   }
 }
