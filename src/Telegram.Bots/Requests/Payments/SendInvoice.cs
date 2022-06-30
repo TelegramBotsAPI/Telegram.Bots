@@ -1,85 +1,59 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020-2022 Aman Agnihotri
 
+namespace Telegram.Bots.Requests.Payments;
+
 using System;
 using System.Collections.Generic;
-using Telegram.Bots.Types;
-using Telegram.Bots.Types.Payments;
+using Types;
+using Types.Payments;
 
-namespace Telegram.Bots.Requests.Payments
+public sealed record SendInvoice(long ChatId,
+  string Title,
+  string Description,
+  string Payload,
+  string ProviderToken,
+  string Currency,
+  IEnumerable<LabeledPrice> Prices) : IRequest<InvoiceMessage>,
+  IChatTargetable<long>, IProtectable
 {
-  public sealed record SendInvoice : IRequest<InvoiceMessage>, IChatTargetable<long>, IProtectable
-  {
-    public long ChatId { get; }
+  public int? MaxTipAmount { get; init; }
 
-    public string Title { get; }
+  public IEnumerable<int>? SuggestedTipAmounts { get; init; }
 
-    public string Description { get; }
+  public string? StartParameter { get; init; }
 
-    public string Payload { get; }
+  public string? ProviderData { get; init; }
 
-    public string ProviderToken { get; }
+  public Uri? Photo { get; init; }
 
-    public string Currency { get; }
+  public int? PhotoSize { get; init; }
 
-    public IEnumerable<LabeledPrice> Prices { get; }
+  public int? PhotoWidth { get; init; }
 
-    public int? MaxTipAmount { get; init; }
+  public int? PhotoHeight { get; init; }
 
-    public IEnumerable<int>? SuggestedTipAmounts { get; init; }
+  public bool? NeedName { get; init; }
 
-    public string? StartParameter { get; init; }
+  public bool? NeedPhoneNumber { get; init; }
 
-    public string? ProviderData { get; init; }
+  public bool? NeedEmail { get; init; }
 
-    public Uri? Photo { get; init; }
+  public bool? NeedShippingAddress { get; init; }
 
-    public int? PhotoSize { get; init; }
+  public bool? SendPhoneNumberToProvider { get; init; }
 
-    public int? PhotoWidth { get; init; }
+  public bool? SendEmailToProvider { get; init; }
 
-    public int? PhotoHeight { get; init; }
+  public bool? IsFlexible { get; init; }
 
-    public bool? NeedName { get; init; }
+  public bool? DisableNotification { get; init; }
 
-    public bool? NeedPhoneNumber { get; init; }
+  public bool? ProtectContent { get; init; }
 
-    public bool? NeedEmail { get; init; }
+  public int? ReplyToMessageId { get; init; }
 
-    public bool? NeedShippingAddress { get; init; }
+  public InlineKeyboardMarkup? ReplyMarkup { get; init; }
 
-    public bool? SendPhoneNumberToProvider { get; init; }
-
-    public bool? SendEmailToProvider { get; init; }
-
-    public bool? IsFlexible { get; init; }
-
-    public bool? DisableNotification { get; init; }
-    
-    public bool? ProtectContent { get; init; }
-
-    public int? ReplyToMessageId { get; init; }
-
-    public InlineKeyboardMarkup? ReplyMarkup { get; init; }
-
-    public string Method { get; } = "sendInvoice";
-
-    public SendInvoice(
-      long chatId,
-      string title,
-      string description,
-      string payload,
-      string providerToken,
-      string currency,
-      IEnumerable<LabeledPrice> prices)
-    {
-      ChatId = chatId;
-      Title = title;
-      Description = description;
-      Payload = payload;
-      ProviderToken = providerToken;
-      Currency = currency;
-      Prices = prices;
-    }
-  }
+  public string Method => "sendInvoice";
 }
