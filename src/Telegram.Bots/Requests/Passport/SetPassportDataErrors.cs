@@ -1,23 +1,14 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
+
+namespace Telegram.Bots.Requests.Passport;
 
 using System.Collections.Generic;
-using Telegram.Bots.Types.Passport;
+using Types.Passport;
 
-namespace Telegram.Bots.Requests.Passport
+public sealed record SetPassportDataErrors(
+  long UserId,
+  IEnumerable<ElementError> Errors) : IRequest<bool>, IUserTargetable
 {
-  public sealed record SetPassportDataErrors : IRequest<bool>, IUserTargetable
-  {
-    public long UserId { get; }
-
-    public IEnumerable<ElementError> Errors { get; }
-
-    public string Method { get; } = "setPassportDataErrors";
-
-    public SetPassportDataErrors(long userId, IEnumerable<ElementError> errors)
-    {
-      UserId = userId;
-      Errors = errors;
-    }
-  }
+  public string Method => "setPassportDataErrors";
 }
