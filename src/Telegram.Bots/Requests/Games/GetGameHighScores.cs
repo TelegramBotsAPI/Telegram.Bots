@@ -1,49 +1,32 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
-
-using System.Collections.Generic;
-using Telegram.Bots.Types.Games;
+// Copyright © 2020-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests.Games
 {
-  public abstract record GetGameHighScoresBase : IRequest<IReadOnlyList<GameHighScore>>,
-    IUserTargetable
+  using System.Collections.Generic;
+  using Types.Games;
+
+  public abstract record GetGameHighScoresBase(
+    long UserId) : IRequest<IReadOnlyList<GameHighScore>>, IUserTargetable
   {
-    public long UserId { get; }
-
-    public string Method { get; } = "getGameHighScores";
-
-    protected GetGameHighScoresBase(long userId) => UserId = userId;
+    public string Method => "getGameHighScores";
   }
 
-  public abstract record GetGameHighScores<TChatId> : GetGameHighScoresBase,
-    IChatMessageTargetable<TChatId>
-  {
-    public TChatId ChatId { get; }
+  public abstract record GetGameHighScores<TChatId>(
+    TChatId ChatId,
+    int MessageId,
+    long UserId) : GetGameHighScoresBase(UserId),
+    IChatMessageTargetable<TChatId>;
 
-    public int MessageId { get; }
-
-    protected GetGameHighScores(TChatId chatId, int messageId, long userId) : base(userId)
-    {
-      ChatId = chatId;
-      MessageId = messageId;
-    }
-  }
-
-  public sealed record GetGameHighScores : GetGameHighScores<long>
-  {
-    public GetGameHighScores(long chatId, int messageId, long userId) :
-      base(chatId, messageId, userId) { }
-  }
+  public sealed record GetGameHighScores(
+    long ChatId,
+    int MessageId,
+    long UserId) : GetGameHighScores<long>(ChatId, MessageId, UserId);
 
   namespace Inline
   {
-    public sealed record GetGameHighScores : GetGameHighScoresBase, IInlineMessageTargetable
-    {
-      public string MessageId { get; }
-
-      public GetGameHighScores(string messageId, long userId) : base(userId) =>
-        MessageId = messageId;
-    }
+    public sealed record GetGameHighScores(
+      string MessageId,
+      long UserId) : GetGameHighScoresBase(UserId), IInlineMessageTargetable;
   }
 }
