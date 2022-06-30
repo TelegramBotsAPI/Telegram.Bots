@@ -1,129 +1,111 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
+
+namespace Telegram.Bots.Requests.Stickers;
 
 using System;
 using System.Collections.Generic;
-using Telegram.Bots.Types;
-using Telegram.Bots.Types.Stickers;
+using Types;
+using Types.Stickers;
 
-namespace Telegram.Bots.Requests.Stickers
+public abstract record CreateNewStickerSetBase(
+  long UserId,
+  string Name,
+  string Title,
+  string Emojis) : IRequest<bool>, IUserTargetable
 {
-  public abstract record CreateNewStickerSetBase : IRequest<bool>, IUserTargetable
+  public bool? ContainsMasks { get; init; }
+
+  public MaskPosition? MaskPosition { get; init; }
+
+  public string Method => "createNewStickerSet";
+}
+
+public abstract record CreateNewStickerSet<TPngSticker>(
+  long UserId,
+  string Name,
+  string Title,
+  string Emojis,
+  TPngSticker Sticker) : CreateNewStickerSetBase(UserId, Name, Title, Emojis);
+
+public sealed record CreateNewStickerSetViaCache(
+  long UserId,
+  string Name,
+  string Title,
+  string Emojis,
+  string Sticker) :
+  CreateNewStickerSet<string>(UserId, Name, Title, Emojis, Sticker);
+
+public sealed record CreateNewStickerSetViaUrl(
+  long UserId,
+  string Name,
+  string Title,
+  string Emojis,
+  Uri Sticker) : CreateNewStickerSet<Uri>(UserId, Name, Title, Emojis, Sticker);
+
+public sealed record CreateNewStickerSetViaFile(
+  long UserId,
+  string Name,
+  string Title,
+  string Emojis,
+  InputFile Sticker) :
+  CreateNewStickerSet<InputFile>(UserId, Name, Title, Emojis, Sticker),
+  IUploadable
+{
+  public IEnumerable<InputFile?> GetFiles()
   {
-    public long UserId { get; }
-
-    public string Name { get; }
-
-    public string Title { get; }
-
-    public string Emojis { get; }
-
-    public bool? ContainsMasks { get; init; }
-
-    public MaskPosition? MaskPosition { get; init; }
-
-    public string Method { get; } = "createNewStickerSet";
-
-    protected CreateNewStickerSetBase(long userId, string name, string title, string emojis)
+    return new[]
     {
-      UserId = userId;
-      Name = name;
-      Title = title;
-      Emojis = emojis;
-    }
+      Sticker
+    };
   }
+}
 
-  public abstract record CreateNewStickerSet<TPngSticker> : CreateNewStickerSetBase
+public abstract record CreateNewAnimatedStickerSet<TTgsSticker>(
+  long UserId,
+  string Name,
+  string Title,
+  string Emojis,
+  TTgsSticker Sticker) : CreateNewStickerSetBase(UserId, Name, Title, Emojis);
+
+public sealed record CreateNewAnimatedStickerSetViaFile(
+  long UserId,
+  string Name,
+  string Title,
+  string Emojis,
+  InputFile Sticker) :
+  CreateNewAnimatedStickerSet<InputFile>(UserId, Name, Title, Emojis, Sticker),
+  IUploadable
+{
+  public IEnumerable<InputFile?> GetFiles()
   {
-    public TPngSticker Sticker { get; }
-
-    protected CreateNewStickerSet(
-      long userId,
-      string name,
-      string title,
-      string emojis,
-      TPngSticker sticker) : base(userId, name, title, emojis) => Sticker = sticker;
+    return new[]
+    {
+      Sticker
+    };
   }
+}
 
-  public sealed record CreateNewStickerSetViaCache : CreateNewStickerSet<string>
+public abstract record CreateNewVideoStickerSetViaFile<TWebmSticker>(
+  long UserId,
+  string Name,
+  string Title,
+  string Emojis,
+  TWebmSticker Sticker) : CreateNewStickerSetBase(UserId, Name, Title, Emojis);
+
+public sealed record CreateNewVideoStickerSetViaFile(
+  long UserId,
+  string Name,
+  string Title,
+  string Emojis,
+  InputFile Sticker) : CreateNewVideoStickerSetViaFile<InputFile>(
+    UserId, Name, Title, Emojis, Sticker), IUploadable
+{
+  public IEnumerable<InputFile?> GetFiles()
   {
-    public CreateNewStickerSetViaCache(
-      long userId,
-      string name,
-      string title,
-      string emojis,
-      string sticker) : base(userId, name, title, emojis, sticker) { }
-  }
-
-  public sealed record CreateNewStickerSetViaUrl : CreateNewStickerSet<Uri>
-  {
-    public CreateNewStickerSetViaUrl(
-      long userId,
-      string name,
-      string title,
-      string emojis,
-      Uri sticker) : base(userId, name, title, emojis, sticker) { }
-  }
-
-  public sealed record CreateNewStickerSetViaFile : CreateNewStickerSet<InputFile>, IUploadable
-  {
-    public CreateNewStickerSetViaFile(
-      long userId,
-      string name,
-      string title,
-      string emojis,
-      InputFile sticker) : base(userId, name, title, emojis, sticker) { }
-
-    public IEnumerable<InputFile?> GetFiles() => new[] {Sticker};
-  }
-
-  public abstract record CreateNewAnimatedStickerSet<TTgsSticker> : CreateNewStickerSetBase
-  {
-    public TTgsSticker Sticker { get; }
-
-    protected CreateNewAnimatedStickerSet(
-      long userId,
-      string name,
-      string title,
-      string emojis,
-      TTgsSticker sticker) : base(userId, name, title, emojis) => Sticker = sticker;
-  }
-
-  public sealed record CreateNewAnimatedStickerSetViaFile : CreateNewAnimatedStickerSet<InputFile>,
-    IUploadable
-  {
-    public CreateNewAnimatedStickerSetViaFile(
-      long userId,
-      string name,
-      string title,
-      string emojis,
-      InputFile sticker) : base(userId, name, title, emojis, sticker) { }
-
-    public IEnumerable<InputFile?> GetFiles() => new[] {Sticker};
-  }
-  
-  public abstract record CreateNewVideoStickerSetViaFile<TWebmSticker> : CreateNewStickerSetBase
-  {
-    public TWebmSticker Sticker { get; }
-
-    protected CreateNewVideoStickerSetViaFile(
-      long userId,
-      string name,
-      string title,
-      string emojis,
-      TWebmSticker sticker) : base(userId, name, title, emojis) => Sticker = sticker;
-  }
-
-  public sealed record CreateNewVideoStickerSetViaFile : CreateNewVideoStickerSetViaFile<InputFile>,
-    IUploadable
-  {
-    public CreateNewVideoStickerSetViaFile(
-      long userId,
-      string name,
-      string title,
-      string emojis,
-      InputFile sticker) : base(userId, name, title, emojis, sticker) { }
-
-    public IEnumerable<InputFile?> GetFiles() => new[] {Sticker};
+    return new[]
+    {
+      Sticker
+    };
   }
 }
