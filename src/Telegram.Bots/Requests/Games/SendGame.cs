@@ -1,33 +1,24 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020-2022 Aman Agnihotri
 
-using Telegram.Bots.Types;
+namespace Telegram.Bots.Requests.Games;
 
-namespace Telegram.Bots.Requests.Games
+using Types;
+
+public sealed record SendGame(
+  long ChatId,
+  string ShortName) : IRequest<GameMessage>, IChatTargetable<long>,
+  INotifiable, IProtectable, IReplyable, IInlineMarkupable
 {
-  public sealed record SendGame : IRequest<GameMessage>,
-    IChatTargetable<long>, INotifiable, IProtectable, IReplyable, IInlineMarkupable
-  {
-    public long ChatId { get; }
+  public bool? DisableNotification { get; init; }
 
-    public string ShortName { get; }
+  public bool? ProtectContent { get; init; }
 
-    public bool? DisableNotification { get; init; }
-    
-    public bool? ProtectContent { get; init; }
+  public int? ReplyToMessageId { get; init; }
 
-    public int? ReplyToMessageId { get; init; }
+  public bool? AllowSendingWithoutReply { get; init; }
 
-    public bool? AllowSendingWithoutReply { get; init; }
+  public InlineKeyboardMarkup? ReplyMarkup { get; init; }
 
-    public InlineKeyboardMarkup? ReplyMarkup { get; init; }
-
-    public string Method { get; } = "sendGame";
-
-    public SendGame(long chatId, string shortName)
-    {
-      ChatId = chatId;
-      ShortName = shortName;
-    }
-  }
+  public string Method => "sendGame";
 }
