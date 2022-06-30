@@ -1,14 +1,9 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-namespace Telegram.Bots.Requests.Stickers
+namespace Telegram.Bots.Requests.Stickers;
+
+public sealed record DeleteStickerFromSet(string Sticker) : IRequest<bool>
 {
-  public sealed record DeleteStickerFromSet : IRequest<bool>
-  {
-    public string Sticker { get; }
-
-    public string Method { get; } = "deleteStickerFromSet";
-
-    public DeleteStickerFromSet(string sticker) => Sticker = sticker;
-  }
+  public string Method => "deleteStickerFromSet";
 }
