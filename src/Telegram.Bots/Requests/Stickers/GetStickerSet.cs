@@ -1,16 +1,11 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-using Telegram.Bots.Types.Stickers;
+namespace Telegram.Bots.Requests.Stickers;
 
-namespace Telegram.Bots.Requests.Stickers
+using Types.Stickers;
+
+public sealed record GetStickerSet(string Name) : IRequest<StickerSet>
 {
-  public sealed record GetStickerSet : IRequest<StickerSet>
-  {
-    public string Name { get; }
-
-    public string Method { get; } = "getStickerSet";
-
-    public GetStickerSet(string name) => Name = name;
-  }
+  public string Method => "getStickerSet";
 }
