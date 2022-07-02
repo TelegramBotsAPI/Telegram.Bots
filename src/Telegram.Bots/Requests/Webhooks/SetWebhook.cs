@@ -1,30 +1,31 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
+
+namespace Telegram.Bots.Requests.Webhooks;
 
 using System;
 using System.Collections.Generic;
-using Telegram.Bots.Types;
+using Types;
 
-namespace Telegram.Bots.Requests.Webhooks
+public sealed record SetWebhook(Uri Url) : IRequest<bool>, IUploadable
 {
-  public sealed record SetWebhook : IRequest<bool>, IUploadable
+  public InputFile? Certificate { get; init; }
+
+  public string? IpAddress { get; init; }
+
+  public uint? MaxConnections { get; init; }
+
+  public IEnumerable<UpdateType>? AllowedUpdates { get; init; }
+
+  public bool? DropPendingUpdates { get; init; }
+
+  public string Method => "setWebhook";
+
+  public IEnumerable<InputFile?> GetFiles()
   {
-    public Uri? Url { get; }
-
-    public InputFile? Certificate { get; init; }
-
-    public string? IpAddress { get; init; }
-
-    public uint? MaxConnections { get; init; }
-
-    public IEnumerable<UpdateType>? AllowedUpdates { get; init; }
-
-    public bool? DropPendingUpdates { get; init; }
-
-    public string Method { get; } = "setWebhook";
-
-    public SetWebhook(Uri? url = default) => Url = url;
-
-    public IEnumerable<InputFile?> GetFiles() => new[] {Certificate};
+    return new[]
+    {
+      Certificate
+    };
   }
 }
