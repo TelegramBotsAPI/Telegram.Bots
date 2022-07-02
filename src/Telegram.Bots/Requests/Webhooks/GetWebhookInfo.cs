@@ -1,12 +1,11 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-using Telegram.Bots.Types.Webhooks;
+namespace Telegram.Bots.Requests.Webhooks;
 
-namespace Telegram.Bots.Requests.Webhooks
+using Types.Webhooks;
+
+public sealed record GetWebhookInfo : IRequest<WebhookInfo>
 {
-  public sealed record GetWebhookInfo : IRequest<WebhookInfo>
-  {
-    public string Method { get; } = "getWebhookInfo";
-  }
+  public string Method => "getWebhookInfo";
 }
