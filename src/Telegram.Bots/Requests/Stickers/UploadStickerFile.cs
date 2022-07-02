@@ -1,25 +1,22 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
+
+namespace Telegram.Bots.Requests.Stickers;
 
 using System.Collections.Generic;
-using Telegram.Bots.Types;
+using Types;
 
-namespace Telegram.Bots.Requests.Stickers
+public sealed record UploadStickerFile(
+  long UserId,
+  InputFile Sticker) : IRequest<FileInfo>, IUserTargetable, IUploadable
 {
-  public sealed record UploadStickerFile : IRequest<FileInfo>, IUserTargetable, IUploadable
+  public string Method => "uploadStickerFile";
+
+  public IEnumerable<InputFile?> GetFiles()
   {
-    public long UserId { get; }
-
-    public InputFile Sticker { get; }
-
-    public string Method { get; } = "uploadStickerFile";
-
-    public UploadStickerFile(long userId, InputFile sticker)
+    return new[]
     {
-      UserId = userId;
-      Sticker = sticker;
-    }
-
-    public IEnumerable<InputFile?> GetFiles() => new[] {Sticker};
+      Sticker
+    };
   }
 }
