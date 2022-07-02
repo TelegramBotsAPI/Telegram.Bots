@@ -1,28 +1,19 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
+
+namespace Telegram.Bots.Requests;
 
 using System;
 
-namespace Telegram.Bots.Requests
+public sealed record AnswerCallbackQuery(
+  string QueryId,
+  string Text) : IRequest<bool>
 {
-  public sealed record AnswerCallbackQuery : IRequest<bool>
-  {
-    public string QueryId { get; }
+  public bool? ShowAlert { get; init; }
 
-    public string Text { get; }
+  public Uri? Url { get; init; }
 
-    public bool? ShowAlert { get; init; }
+  public int? CacheTime { get; init; }
 
-    public Uri? Url { get; init; }
-
-    public int? CacheTime { get; init; }
-
-    public string Method { get; } = "answerCallbackQuery";
-
-    public AnswerCallbackQuery(string queryId, string text)
-    {
-      QueryId = queryId;
-      Text = text;
-    }
-  }
+  public string Method => "answerCallbackQuery";
 }
