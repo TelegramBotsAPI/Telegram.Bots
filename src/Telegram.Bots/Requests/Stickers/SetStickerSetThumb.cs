@@ -1,42 +1,37 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
+
+namespace Telegram.Bots.Requests.Stickers;
 
 using System;
 using System.Collections.Generic;
-using Telegram.Bots.Types;
+using Types;
 
-namespace Telegram.Bots.Requests.Stickers
+public abstract record SetStickerSetThumb<TThumb>(
+  string Name,
+  TThumb Thumb) : IRequest<bool>
 {
-  public abstract record SetStickerSetThumb<TThumb> : IRequest<bool>
+  public string Method => "setStickerSetThumb";
+}
+
+public sealed record SetStickerSetThumbViaUrl(
+  string Name,
+  Uri? Thumb = default) : SetStickerSetThumb<Uri?>(Name, Thumb);
+
+public sealed record SetStickerSetThumbViaCache(
+  string Name,
+  string? Thumb = default) : SetStickerSetThumb<string?>(Name, Thumb);
+
+public sealed record SetStickerSetThumbViaFile(
+  string Name,
+  InputFile? Thumb = default) : SetStickerSetThumb<InputFile?>(Name, Thumb),
+  IUploadable
+{
+  public IEnumerable<InputFile?> GetFiles()
   {
-    public string Name { get; }
-
-    public TThumb Thumb { get; }
-
-    public string Method { get; } = "setStickerSetThumb";
-
-    protected SetStickerSetThumb(string name, TThumb thumb)
+    return new[]
     {
-      Name = name;
-      Thumb = thumb;
-    }
-  }
-
-  public sealed record SetStickerSetThumbViaUrl : SetStickerSetThumb<Uri?>
-  {
-    public SetStickerSetThumbViaUrl(string name, Uri? thumb = default) : base(name, thumb) { }
-  }
-
-  public sealed record SetStickerSetThumbViaCache : SetStickerSetThumb<string?>
-  {
-    public SetStickerSetThumbViaCache(string name, string? thumb = default) : base(name, thumb) { }
-  }
-
-  public sealed record SetStickerSetThumbViaFile : SetStickerSetThumb<InputFile?>, IUploadable
-  {
-    public SetStickerSetThumbViaFile(string name, InputFile? thumb = default) :
-      base(name, thumb) { }
-
-    public IEnumerable<InputFile?> GetFiles() => new[] {Thumb};
+      Thumb
+    };
   }
 }
