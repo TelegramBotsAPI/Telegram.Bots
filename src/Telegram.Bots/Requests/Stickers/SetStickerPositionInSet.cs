@@ -1,20 +1,11 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-namespace Telegram.Bots.Requests.Stickers
+namespace Telegram.Bots.Requests.Stickers;
+
+public sealed record SetStickerPositionInSet(
+  string Sticker,
+  uint Position) : IRequest<bool>
 {
-  public sealed record SetStickerPositionInSet : IRequest<bool>
-  {
-    public string Sticker { get; }
-
-    public uint Position { get; }
-
-    public string Method { get; } = "setStickerPositionInSet";
-
-    public SetStickerPositionInSet(string sticker, uint position)
-    {
-      Sticker = sticker;
-      Position = position;
-    }
-  }
+  public string Method => "setStickerPositionInSet";
 }
