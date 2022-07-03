@@ -1,51 +1,37 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
-
-using Telegram.Bots.Types;
+// Copyright © 2020-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests
 {
-  public abstract record EditReplyMarkupBase<TResult> : IRequest<TResult>, IInlineMarkupable
+  using Types;
+
+  public abstract record EditReplyMarkupBase<TResult> : IRequest<TResult>,
+    IInlineMarkupable
   {
     public InlineKeyboardMarkup? ReplyMarkup { get; init; }
 
-    public string Method { get; } = "editMessageReplyMarkup";
+    public string Method => "editMessageReplyMarkup";
   }
 
-  public abstract record EditReplyMarkup<TChatId> : EditReplyMarkupBase<Message>,
-    IChatMessageTargetable<TChatId>
-  {
-    public TChatId ChatId { get; }
+  public abstract record EditReplyMarkup<TChatId>(
+    TChatId ChatId,
+    int MessageId) : EditReplyMarkupBase<Message>,
+    IChatMessageTargetable<TChatId>;
 
-    public int MessageId { get; }
-
-    protected EditReplyMarkup(TChatId chatId, int messageId)
-    {
-      ChatId = chatId;
-      MessageId = messageId;
-    }
-  }
-
-  public sealed record EditReplyMarkup : EditReplyMarkup<long>
-  {
-    public EditReplyMarkup(long chatId, int messageId) : base(chatId, messageId) { }
-  }
+  public sealed record EditReplyMarkup(
+    long ChatId,
+    int MessageId) : EditReplyMarkup<long>(ChatId, MessageId);
 
   namespace Usernames
   {
-    public sealed record EditReplyMarkup : EditReplyMarkup<string>
-    {
-      public EditReplyMarkup(string username, int messageId) : base(username, messageId) { }
-    }
+    public sealed record EditReplyMarkup(
+      string ChatId,
+      int MessageId) : EditReplyMarkup<string>(ChatId, MessageId);
   }
 
   namespace Inline
   {
-    public sealed record EditReplyMarkup : EditReplyMarkupBase<bool>, IInlineMessageTargetable
-    {
-      public string MessageId { get; }
-
-      public EditReplyMarkup(string messageId) => MessageId = messageId;
-    }
+    public sealed record EditReplyMarkup(
+      string MessageId) : EditReplyMarkupBase<bool>, IInlineMessageTargetable;
   }
 }
