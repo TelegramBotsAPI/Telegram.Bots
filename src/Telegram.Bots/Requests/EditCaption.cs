@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
-
-using System.Collections.Generic;
-using Telegram.Bots.Types;
+// Copyright © 2020-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests
 {
-  public abstract record EditCaptionBase<TResult> : IRequest<TResult>, ICaptionable,
-    IInlineMarkupable
+  using System.Collections.Generic;
+  using Types;
+
+  public abstract record EditCaptionBase<TResult> : IRequest<TResult>,
+    ICaptionable, IInlineMarkupable
   {
     public string? Caption { get; init; }
 
@@ -17,43 +17,28 @@ namespace Telegram.Bots.Requests
 
     public InlineKeyboardMarkup? ReplyMarkup { get; init; }
 
-    public string Method { get; } = "editMessageCaption";
+    public string Method => "editMessageCaption";
   }
 
-  public abstract record EditCaption<TChatId> : EditCaptionBase<CaptionableMessage>,
-    IChatMessageTargetable<TChatId>
-  {
-    public TChatId ChatId { get; }
+  public abstract record EditCaption<TChatId>(
+    TChatId ChatId,
+    int MessageId) : EditCaptionBase<CaptionableMessage>,
+    IChatMessageTargetable<TChatId>;
 
-    public int MessageId { get; }
-
-    protected EditCaption(TChatId chatId, int messageId)
-    {
-      ChatId = chatId;
-      MessageId = messageId;
-    }
-  }
-
-  public sealed record EditCaption : EditCaption<long>
-  {
-    public EditCaption(long chatId, int messageId) : base(chatId, messageId) { }
-  }
+  public sealed record EditCaption(
+    long ChatId,
+    int MessageId) : EditCaption<long>(ChatId, MessageId);
 
   namespace Usernames
   {
-    public sealed record EditCaption : EditCaption<string>
-    {
-      public EditCaption(string username, int messageId) : base(username, messageId) { }
-    }
+    public sealed record EditCaption(
+      string ChatId,
+      int MessageId) : EditCaption<string>(ChatId, MessageId);
   }
 
   namespace Inline
   {
-    public sealed record EditCaption : EditCaptionBase<bool>, IInlineMessageTargetable
-    {
-      public string MessageId { get; }
-
-      public EditCaption(string messageId) => MessageId = messageId;
-    }
+    public sealed record EditCaption(
+      string MessageId) : EditCaptionBase<bool>, IInlineMessageTargetable;
   }
 }
