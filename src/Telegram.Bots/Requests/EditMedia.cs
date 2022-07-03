@@ -1,95 +1,75 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
-
-using System;
-using Telegram.Bots.Types;
+// Copyright © 2020-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests
 {
-  public abstract record EditMediaBase<TMedia, TResult> : IRequest<TResult>, IInlineMarkupable
-  {
-    public InputMedia<TMedia> Media { get; }
+  using System;
+  using Types;
 
+  public abstract record EditMediaBase<TMedia, TResult>(
+    InputMedia<TMedia> Media) : IRequest<TResult>, IInlineMarkupable
+  {
     public InlineKeyboardMarkup? ReplyMarkup { get; init; }
 
-    public string Method { get; } = "editMessageMedia";
-
-    protected EditMediaBase(InputMedia<TMedia> media) => Media = media;
+    public string Method => "editMessageMedia";
   }
 
-  public abstract record EditMedia<TChatId, TMedia> : EditMediaBase<TMedia, MediaMessage>,
-    IChatMessageTargetable<TChatId>
-  {
-    public TChatId ChatId { get; }
+  public abstract record EditMedia<TChatId, TMedia>(
+    TChatId ChatId,
+    int MessageId,
+    InputMedia<TMedia> Media) : EditMediaBase<TMedia, MediaMessage>(Media),
+    IChatMessageTargetable<TChatId>;
 
-    public int MessageId { get; }
+  public sealed record EditMediaViaCache(
+    long ChatId,
+    int MessageId,
+    InputMedia<string> Media) :
+    EditMedia<long, string>(ChatId, MessageId, Media);
 
-    protected EditMedia(TChatId chatId, int messageId, InputMedia<TMedia> media) : base(media)
-    {
-      ChatId = chatId;
-      MessageId = messageId;
-    }
-  }
+  public sealed record EditMediaViaUrl(
+    long ChatId,
+    int MessageId,
+    InputMedia<Uri> Media) : EditMedia<long, Uri>(ChatId, MessageId, Media);
 
-  public sealed record EditMediaViaCache : EditMedia<long, string>
-  {
-    public EditMediaViaCache(long chatId, int messageId, InputMedia<string> media) :
-      base(chatId, messageId, media) { }
-  }
-
-  public sealed record EditMediaViaUrl : EditMedia<long, Uri>
-  {
-    public EditMediaViaUrl(long chatId, int messageId, InputMedia<Uri> media) :
-      base(chatId, messageId, media) { }
-  }
-
-  public sealed record EditMediaViaFile : EditMedia<long, InputFile>
-  {
-    public EditMediaViaFile(long chatId, int messageId, InputMedia<InputFile> media) :
-      base(chatId, messageId, media) { }
-  }
+  public sealed record EditMediaViaFile(
+    long ChatId,
+    int MessageId,
+    InputMedia<InputFile> Media) :
+    EditMedia<long, InputFile>(ChatId, MessageId, Media);
 
   namespace Usernames
   {
-    public sealed record EditMediaViaCache : EditMedia<string, string>
-    {
-      public EditMediaViaCache(string username, int messageId, InputMedia<string> media) :
-        base(username, messageId, media) { }
-    }
+    public sealed record EditMediaViaCache(
+      string ChatId,
+      int MessageId,
+      InputMedia<string> Media) :
+      EditMedia<string, string>(ChatId, MessageId, Media);
 
-    public sealed record EditMediaViaUrl : EditMedia<string, Uri>
-    {
-      public EditMediaViaUrl(string username, int messageId, InputMedia<Uri> media) :
-        base(username, messageId, media) { }
-    }
+    public sealed record EditMediaViaUrl(
+      string ChatId,
+      int MessageId,
+      InputMedia<Uri> Media) : EditMedia<string, Uri>(ChatId, MessageId, Media);
 
-    public sealed record EditMediaViaFile : EditMedia<string, InputFile>
-    {
-      public EditMediaViaFile(string username, int messageId, InputMedia<InputFile> media) :
-        base(username, messageId, media) { }
-    }
+    public sealed record EditMediaViaFile(
+      string ChatId,
+      int MessageId,
+      InputMedia<InputFile> Media) :
+      EditMedia<string, InputFile>(ChatId, MessageId, Media);
   }
 
   namespace Inline
   {
-    public abstract record EditMedia<TMedia> : EditMediaBase<TMedia, bool>,
-      IInlineMessageTargetable
-    {
-      public string MessageId { get; }
+    public abstract record EditMedia<TMedia>(
+      string MessageId,
+      InputMedia<TMedia> Media) : EditMediaBase<TMedia, bool>(Media),
+      IInlineMessageTargetable;
 
-      protected EditMedia(string messageId, InputMedia<TMedia> media) : base(media) =>
-        MessageId = messageId;
-    }
+    public sealed record EditMediaViaCache(
+      string MessageId,
+      InputMedia<string> Media) : EditMedia<string>(MessageId, Media);
 
-    public sealed record EditMediaViaCache : EditMedia<string>
-    {
-      public EditMediaViaCache(string messageId, InputMedia<string> media) :
-        base(messageId, media) { }
-    }
-
-    public sealed record EditMediaViaUrl : EditMedia<Uri>
-    {
-      public EditMediaViaUrl(string messageId, InputMedia<Uri> media) : base(messageId, media) { }
-    }
+    public sealed record EditMediaViaUrl(
+      string MessageId,
+      InputMedia<Uri> Media) : EditMedia<Uri>(MessageId, Media);
   }
 }
