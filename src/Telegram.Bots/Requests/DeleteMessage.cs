@@ -1,33 +1,23 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests
 {
-  public abstract record DeleteMessage<TChatId> : IRequest<bool>, IChatMessageTargetable<TChatId>
+  public abstract record DeleteMessage<TChatId>(
+    TChatId ChatId,
+    int MessageId) : IRequest<bool>, IChatMessageTargetable<TChatId>
   {
-    public TChatId ChatId { get; }
-
-    public int MessageId { get; }
-
-    public string Method { get; } = "deleteMessage";
-
-    protected DeleteMessage(TChatId chatId, int messageId)
-    {
-      ChatId = chatId;
-      MessageId = messageId;
-    }
+    public string Method => "deleteMessage";
   }
 
-  public sealed record DeleteMessage : DeleteMessage<long>
-  {
-    public DeleteMessage(long chatId, int messageId) : base(chatId, messageId) { }
-  }
+  public sealed record DeleteMessage(
+    long ChatId,
+    int MessageId) : DeleteMessage<long>(ChatId, MessageId);
 
   namespace Usernames
   {
-    public sealed record DeleteMessage : DeleteMessage<string>
-    {
-      public DeleteMessage(string username, int messageId) : base(username, messageId) { }
-    }
+    public sealed record DeleteMessage(
+      string ChatId,
+      int MessageId) : DeleteMessage<string>(ChatId, MessageId);
   }
 }
