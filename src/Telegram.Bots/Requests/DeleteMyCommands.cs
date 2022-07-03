@@ -1,16 +1,15 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2021 Aman Agnihotri
+// Copyright © 2021-2022 Aman Agnihotri
 
-using Telegram.Bots.Types;
+namespace Telegram.Bots.Requests;
 
-namespace Telegram.Bots.Requests
+using Types;
+
+public sealed record DeleteMyCommands : IRequest<bool>
 {
-  public sealed record DeleteMyCommands : IRequest<bool>
-  {
-    public BotCommandScope? Scope { get; init; }
+  public BotCommandScope? Scope { get; init; }
 
-    public string? LanguageCode { get; init; }
+  public string? LanguageCode { get; init; }
 
-    public string Method { get; } = "deleteMyCommands";
-  }
+  public string Method => "deleteMyCommands";
 }
