@@ -1,31 +1,23 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
-
-using System.Collections.Generic;
-using Telegram.Bots.Types;
+// Copyright © 2020-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests
 {
-  public abstract record GetChatAdmins<TChatId> : IRequest<IReadOnlyList<PrivilegedMember>>,
+  using System.Collections.Generic;
+  using Types;
+
+  public abstract record GetChatAdmins<TChatId>(
+    TChatId ChatId) : IRequest<IReadOnlyList<PrivilegedMember>>,
     IChatTargetable<TChatId>
   {
-    public TChatId ChatId { get; }
-
-    public string Method { get; } = "getChatAdministrators";
-
-    protected GetChatAdmins(TChatId chatId) => ChatId = chatId;
+    public string Method => "getChatAdministrators";
   }
 
-  public sealed record GetChatAdmins : GetChatAdmins<long>
-  {
-    public GetChatAdmins(long chatId) : base(chatId) { }
-  }
+  public sealed record GetChatAdmins(long ChatId) : GetChatAdmins<long>(ChatId);
 
   namespace Usernames
   {
-    public sealed record GetChatAdmins : GetChatAdmins<string>
-    {
-      public GetChatAdmins(string username) : base(username) { }
-    }
+    public sealed record GetChatAdmins(
+      string ChatId) : GetChatAdmins<string>(ChatId);
   }
 }
