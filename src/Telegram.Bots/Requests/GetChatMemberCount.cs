@@ -1,27 +1,20 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests
 {
-  public abstract record GetChatMemberCount<TChatId> : IRequest<uint>, IChatTargetable<TChatId>
+  public abstract record GetChatMemberCount<TChatId>(
+    TChatId ChatId) : IRequest<uint>, IChatTargetable<TChatId>
   {
-    public TChatId ChatId { get; }
-
-    public string Method { get; } = "getChatMemberCount";
-
-    protected GetChatMemberCount(TChatId chatId) => ChatId = chatId;
+    public string Method => "getChatMemberCount";
   }
 
-  public sealed record GetChatMemberCount : GetChatMemberCount<long>
-  {
-    public GetChatMemberCount(long chatId) : base(chatId) { }
-  }
+  public sealed record GetChatMemberCount(
+    long ChatId) : GetChatMemberCount<long>(ChatId);
 
   namespace Usernames
   {
-    public sealed record GetChatMemberCount : GetChatMemberCount<string>
-    {
-      public GetChatMemberCount(string username) : base(username) { }
-    }
+    public sealed record GetChatMemberCount(
+      string ChatId) : GetChatMemberCount<string>(ChatId);
   }
 }
