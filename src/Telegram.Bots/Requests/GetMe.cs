@@ -1,12 +1,11 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-using Telegram.Bots.Types;
+namespace Telegram.Bots.Requests;
 
-namespace Telegram.Bots.Requests
+using Types;
+
+public sealed record GetMe : IRequest<MyBot>
 {
-  public sealed record GetMe : IRequest<MyBot>
-  {
-    public string Method { get; } = "getMe";
-  }
+  public string Method => "getMe";
 }
