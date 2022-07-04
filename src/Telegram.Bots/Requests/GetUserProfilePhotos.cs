@@ -1,25 +1,14 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-using Telegram.Bots.Types;
+namespace Telegram.Bots.Requests;
 
-namespace Telegram.Bots.Requests
+using Types;
+
+public sealed record GetUserProfilePhotos(
+  long UserId,
+  uint Offset,
+  uint Limit) : IRequest<UserProfilePhotos>, IUserTargetable
 {
-  public sealed record GetUserProfilePhotos : IRequest<UserProfilePhotos>, IUserTargetable
-  {
-    public long UserId { get; }
-
-    public uint Offset { get; }
-
-    public uint Limit { get; }
-
-    public string Method { get; } = "getUserProfilePhotos";
-
-    public GetUserProfilePhotos(long userId, uint offset, uint limit)
-    {
-      UserId = userId;
-      Offset = offset;
-      Limit = limit;
-    }
-  }
+  public string Method => "getUserProfilePhotos";
 }
