@@ -1,10 +1,9 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-namespace Telegram.Bots.Requests
+namespace Telegram.Bots.Requests;
+
+public interface IUserTargetable
 {
-  public interface IUserTargetable
-  {
-    long UserId { get; }
-  }
+  long UserId { get; }
 }
