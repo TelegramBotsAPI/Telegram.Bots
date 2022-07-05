@@ -1,27 +1,18 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests
 {
-  public abstract record LeaveChat<TChatId> : IRequest<bool>, IChatTargetable<TChatId>
+  public abstract record LeaveChat<TChatId>(
+    TChatId ChatId) : IRequest<bool>, IChatTargetable<TChatId>
   {
-    public TChatId ChatId { get; }
-
-    public string Method { get; } = "leaveChat";
-
-    protected LeaveChat(TChatId chatId) => ChatId = chatId;
+    public string Method => "leaveChat";
   }
 
-  public sealed record LeaveChat : LeaveChat<long>
-  {
-    public LeaveChat(long chatId) : base(chatId) { }
-  }
+  public sealed record LeaveChat(long ChatId) : LeaveChat<long>(ChatId);
 
   namespace Usernames
   {
-    public sealed record LeaveChat : LeaveChat<string>
-    {
-      public LeaveChat(string username) : base(username) { }
-    }
+    public sealed record LeaveChat(string ChatId) : LeaveChat<string>(ChatId);
   }
 }
