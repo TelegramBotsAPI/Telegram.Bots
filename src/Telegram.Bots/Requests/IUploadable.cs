@@ -1,16 +1,18 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
+
+namespace Telegram.Bots.Requests;
 
 using System.Collections.Generic;
 using System.Linq;
-using Telegram.Bots.Types;
+using Types;
 
-namespace Telegram.Bots.Requests
+public interface IUploadable
 {
-  public interface IUploadable
-  {
-    IEnumerable<InputFile?> GetFiles();
+  IEnumerable<InputFile?> GetFiles();
 
-    bool HasFiles() => GetFiles().Any(file => file != null);
+  bool HasFiles()
+  {
+    return GetFiles().Any(file => file != null);
   }
 }
