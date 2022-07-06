@@ -1,35 +1,25 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
-
-using Telegram.Bots.Types;
+// Copyright © 2020-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests
 {
-  public abstract record SendChatAction<TChatId> : IRequest<bool>, IChatTargetable<TChatId>
+  using Types;
+
+  public abstract record SendChatAction<TChatId>(
+    TChatId ChatId,
+    ChatAction Action) : IRequest<bool>, IChatTargetable<TChatId>
   {
-    public TChatId ChatId { get; }
-
-    public ChatAction Action { get; }
-
-    public string Method { get; } = "sendChatAction";
-
-    protected SendChatAction(TChatId chatId, ChatAction action)
-    {
-      ChatId = chatId;
-      Action = action;
-    }
+    public string Method => "sendChatAction";
   }
 
-  public sealed record SendChatAction : SendChatAction<long>
-  {
-    public SendChatAction(long chatId, ChatAction action) : base(chatId, action) { }
-  }
+  public sealed record SendChatAction(
+    long ChatId,
+    ChatAction Action) : SendChatAction<long>(ChatId, Action);
 
   namespace Usernames
   {
-    public sealed record SendChatAction : SendChatAction<string>
-    {
-      public SendChatAction(string username, ChatAction action) : base(username, action) { }
-    }
+    public sealed record SendChatAction(
+      string ChatId,
+      ChatAction Action) : SendChatAction<string>(ChatId, Action);
   }
 }
