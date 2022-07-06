@@ -1,13 +1,12 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020-2022 Aman Agnihotri
 
-using System;
-using System.Collections.Generic;
-using Telegram.Bots.Types;
-
 namespace Telegram.Bots.Requests
 {
-  using Options = IEnumerable<string>;
+  using System;
+  using System.Collections.Generic;
+  using Types;
+  using Options = System.Collections.Generic.IEnumerable<string>;
 
   public abstract record SendPoll<TChatId> : IRequest<PollMessage>,
     IChatTargetable<TChatId>, INotifiable, IProtectable, IReplyable, IMarkupable
@@ -29,7 +28,7 @@ namespace Telegram.Bots.Requests
     public bool? IsClosed { get; init; }
 
     public bool? DisableNotification { get; init; }
-    
+
     public bool? ProtectContent { get; init; }
 
     public int? ReplyToMessageId { get; init; }
@@ -38,9 +37,13 @@ namespace Telegram.Bots.Requests
 
     public ReplyMarkup? ReplyMarkup { get; init; }
 
-    public string Method { get; } = "sendPoll";
+    public string Method => "sendPoll";
 
-    protected SendPoll(TChatId chatId, string question, Options options, int openPeriod)
+    protected SendPoll(
+      TChatId chatId,
+      string question,
+      Options options,
+      int openPeriod)
     {
       ChatId = chatId;
       Question = question;
@@ -48,7 +51,11 @@ namespace Telegram.Bots.Requests
       OpenPeriod = openPeriod;
     }
 
-    protected SendPoll(TChatId chatId, string question, Options options, DateTime? closeDate)
+    protected SendPoll(
+      TChatId chatId,
+      string question,
+      Options options,
+      DateTime? closeDate)
     {
       ChatId = chatId;
       Question = question;
@@ -63,15 +70,17 @@ namespace Telegram.Bots.Requests
 
     public bool? AllowsMultipleAnswers { get; init; }
 
-    protected SendRegularPoll(TChatId chatId, string question, Options options, int openPeriod) :
-      base(chatId, question, options, openPeriod) { }
+    protected SendRegularPoll(
+      TChatId chatId,
+      string question,
+      Options options,
+      int openPeriod) : base(chatId, question, options, openPeriod) { }
 
     protected SendRegularPoll(
       TChatId chatId,
       string question,
       Options options,
-      DateTime? closeDate) :
-      base(chatId, question, options, closeDate) { }
+      DateTime? closeDate) : base(chatId, question, options, closeDate) { }
   }
 
   public abstract record SendQuizPoll<TChatId> : SendPoll<TChatId>
@@ -91,25 +100,35 @@ namespace Telegram.Bots.Requests
       string question,
       Options options,
       uint correctOptionId,
-      int openPeriod) :
-      base(chatId, question, options, openPeriod) => CorrectOptionId = correctOptionId;
+      int openPeriod) : base(chatId, question, options, openPeriod)
+    {
+      CorrectOptionId = correctOptionId;
+    }
 
     protected SendQuizPoll(
       TChatId chatId,
       string question,
       Options options,
       uint correctOptionId,
-      DateTime? closeDate) :
-      base(chatId, question, options, closeDate) => CorrectOptionId = correctOptionId;
+      DateTime? closeDate) : base(chatId, question, options, closeDate)
+    {
+      CorrectOptionId = correctOptionId;
+    }
   }
 
   public sealed record SendRegularPoll : SendRegularPoll<long>
   {
-    public SendRegularPoll(long chatId, string question, Options options, int openPeriod) :
-      base(chatId, question, options, openPeriod) { }
+    public SendRegularPoll(
+      long chatId,
+      string question,
+      Options options,
+      int openPeriod) : base(chatId, question, options, openPeriod) { }
 
-    public SendRegularPoll(long chatId, string question, Options options, DateTime? closeDate) :
-      base(chatId, question, options, closeDate) { }
+    public SendRegularPoll(
+      long chatId,
+      string question,
+      Options options,
+      DateTime? closeDate) : base(chatId, question, options, closeDate) { }
   }
 
   public sealed record SendQuizPoll : SendQuizPoll<long>
@@ -119,29 +138,33 @@ namespace Telegram.Bots.Requests
       string question,
       Options options,
       uint correctOptionId,
-      int openPeriod) : base(chatId, question, options, correctOptionId, openPeriod) { }
+      int openPeriod) :
+      base(chatId, question, options, correctOptionId, openPeriod) { }
 
     public SendQuizPoll(
       long chatId,
       string question,
       Options options,
       uint correctOptionId,
-      DateTime? closeDate) : base(chatId, question, options, correctOptionId, closeDate) { }
+      DateTime? closeDate) :
+      base(chatId, question, options, correctOptionId, closeDate) { }
   }
 
   namespace Usernames
   {
     public sealed record SendRegularPoll : SendRegularPoll<string>
     {
-      public SendRegularPoll(string username, string question, Options options, int openPeriod) :
-        base(username, question, options, openPeriod) { }
+      public SendRegularPoll(
+        string username,
+        string question,
+        Options options,
+        int openPeriod) : base(username, question, options, openPeriod) { }
 
       public SendRegularPoll(
         string username,
         string question,
         Options options,
-        DateTime? closeDate) :
-        base(username, question, options, closeDate) { }
+        DateTime? closeDate) : base(username, question, options, closeDate) { }
     }
 
     public sealed record SendQuizPoll : SendQuizPoll<string>
@@ -151,14 +174,16 @@ namespace Telegram.Bots.Requests
         string question,
         Options options,
         uint correctOptionId,
-        int openPeriod) : base(username, question, options, correctOptionId, openPeriod) { }
+        int openPeriod) :
+        base(username, question, options, correctOptionId, openPeriod) { }
 
       public SendQuizPoll(
         string username,
         string question,
         Options options,
         uint correctOptionId,
-        DateTime? closeDate) : base(username, question, options, correctOptionId, closeDate) { }
+        DateTime? closeDate) :
+        base(username, question, options, correctOptionId, closeDate) { }
     }
   }
 }
