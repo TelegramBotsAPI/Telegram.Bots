@@ -1,19 +1,17 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020-2022 Aman Agnihotri
 
-using System;
-using System.Collections.Generic;
-using Telegram.Bots.Types;
-
 namespace Telegram.Bots.Requests
 {
-  public abstract record SendDocument<TChatId, TDocument> : IRequest<DocumentMessage>,
-    IChatTargetable<TChatId>, ICaptionable, INotifiable, IProtectable, IReplyable, IMarkupable
+  using System;
+  using System.Collections.Generic;
+  using Types;
+
+  public abstract record SendDocument<TChatId, TDocument>(
+    TChatId ChatId,
+    TDocument Document) : IRequest<DocumentMessage>, IChatTargetable<TChatId>,
+    ICaptionable, INotifiable, IProtectable, IReplyable, IMarkupable
   {
-    public TChatId ChatId { get; }
-
-    public TDocument Document { get; }
-
     public string? Caption { get; init; }
 
     public ParseMode? ParseMode { get; init; }
@@ -21,7 +19,7 @@ namespace Telegram.Bots.Requests
     public IEnumerable<MessageEntity>? CaptionEntities { get; init; }
 
     public bool? DisableNotification { get; init; }
-    
+
     public bool? ProtectContent { get; init; }
 
     public int? ReplyToMessageId { get; init; }
@@ -30,56 +28,51 @@ namespace Telegram.Bots.Requests
 
     public ReplyMarkup? ReplyMarkup { get; init; }
 
-    public string Method { get; } = "sendDocument";
-
-    protected SendDocument(TChatId chatId, TDocument document)
-    {
-      ChatId = chatId;
-      Document = document;
-    }
+    public string Method => "sendDocument";
   }
 
-  public abstract record SendDocumentFile<TChatId> : SendDocument<TChatId, InputFile>, IUploadable
+  public abstract record SendDocumentFile<TChatId>(
+    TChatId ChatId,
+    InputFile Document) : SendDocument<TChatId, InputFile>(ChatId, Document),
+    IUploadable
   {
     public InputFile? Thumb { get; init; }
 
     public bool? DisableContentTypeDetection { get; init; }
 
-    protected SendDocumentFile(TChatId chatId, InputFile document) : base(chatId, document) { }
-
-    public IEnumerable<InputFile?> GetFiles() => new[] {Document, Thumb};
+    public IEnumerable<InputFile?> GetFiles()
+    {
+      return new[]
+      {
+        Document, Thumb
+      };
+    }
   }
 
-  public sealed record SendCachedDocument : SendDocument<long, string>
-  {
-    public SendCachedDocument(long chatId, string document) : base(chatId, document) { }
-  }
+  public sealed record SendCachedDocument(
+    long ChatId,
+    string Document) : SendDocument<long, string>(ChatId, Document);
 
-  public sealed record SendDocumentUrl : SendDocument<long, Uri>
-  {
-    public SendDocumentUrl(long chatId, Uri document) : base(chatId, document) { }
-  }
+  public sealed record SendDocumentUrl(
+    long ChatId,
+    Uri Document) : SendDocument<long, Uri>(ChatId, Document);
 
-  public sealed record SendDocumentFile : SendDocumentFile<long>
-  {
-    public SendDocumentFile(long chatId, InputFile document) : base(chatId, document) { }
-  }
+  public sealed record SendDocumentFile(
+    long ChatId,
+    InputFile Document) : SendDocumentFile<long>(ChatId, Document);
 
   namespace Usernames
   {
-    public sealed record SendCachedDocument : SendDocument<string, string>
-    {
-      public SendCachedDocument(string username, string document) : base(username, document) { }
-    }
+    public sealed record SendCachedDocument(
+      string ChatId,
+      string Document) : SendDocument<string, string>(ChatId, Document);
 
-    public sealed record SendDocumentUrl : SendDocument<string, Uri>
-    {
-      public SendDocumentUrl(string username, Uri document) : base(username, document) { }
-    }
+    public sealed record SendDocumentUrl(
+      string ChatId,
+      Uri Document) : SendDocument<string, Uri>(ChatId, Document);
 
-    public sealed record SendDocumentFile : SendDocumentFile<string>
-    {
-      public SendDocumentFile(string username, InputFile document) : base(username, document) { }
-    }
+    public sealed record SendDocumentFile(
+      string ChatId,
+      InputFile Document) : SendDocumentFile<string>(ChatId, Document);
   }
 }
