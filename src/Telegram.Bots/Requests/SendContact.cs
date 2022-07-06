@@ -1,25 +1,22 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020-2022 Aman Agnihotri
 
-using Telegram.Bots.Types;
-
 namespace Telegram.Bots.Requests
 {
-  public abstract record SendContact<TChatId> : IRequest<LocationMessage>,
-    IChatTargetable<TChatId>, INotifiable, IProtectable, IReplyable, IMarkupable
+  using Types;
+
+  public abstract record SendContact<TChatId>(
+    TChatId ChatId,
+    string PhoneNumber,
+    string FirstName) : IRequest<LocationMessage>, IChatTargetable<TChatId>,
+    INotifiable, IProtectable, IReplyable, IMarkupable
   {
-    public TChatId ChatId { get; }
-
-    public string PhoneNumber { get; }
-
-    public string FirstName { get; }
-
     public string? LastName { get; init; }
 
     public string? Vcard { get; init; }
 
     public bool? DisableNotification { get; init; }
-    
+
     public bool? ProtectContent { get; init; }
 
     public int? ReplyToMessageId { get; init; }
@@ -28,28 +25,19 @@ namespace Telegram.Bots.Requests
 
     public ReplyMarkup? ReplyMarkup { get; init; }
 
-    public string Method { get; } = "sendContact";
-
-    protected SendContact(TChatId chatId, string phoneNumber, string firstName)
-    {
-      ChatId = chatId;
-      PhoneNumber = phoneNumber;
-      FirstName = firstName;
-    }
+    public string Method => "sendContact";
   }
 
-  public sealed record SendContact : SendContact<long>
-  {
-    public SendContact(long chatId, string phoneNumber, string firstName) :
-      base(chatId, phoneNumber, firstName) { }
-  }
+  public sealed record SendContact(
+    long ChatId,
+    string PhoneNumber,
+    string FirstName) : SendContact<long>(ChatId, PhoneNumber, FirstName);
 
   namespace Usernames
   {
-    public sealed record SendContact : SendContact<string>
-    {
-      public SendContact(string username, string phoneNumber, string firstName) :
-        base(username, phoneNumber, firstName) { }
-    }
+    public sealed record SendContact(
+      string ChatId,
+      string PhoneNumber,
+      string FirstName) : SendContact<string>(ChatId, PhoneNumber, FirstName);
   }
 }
