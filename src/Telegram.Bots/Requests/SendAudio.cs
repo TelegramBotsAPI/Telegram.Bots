@@ -1,19 +1,17 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020-2022 Aman Agnihotri
 
-using System;
-using System.Collections.Generic;
-using Telegram.Bots.Types;
-
 namespace Telegram.Bots.Requests
 {
-  public abstract record SendAudio<TChatId, TAudio> : IRequest<AudioMessage>,
-    IChatTargetable<TChatId>, ICaptionable, INotifiable, IProtectable, IReplyable, IMarkupable
+  using System;
+  using System.Collections.Generic;
+  using Types;
+
+  public abstract record SendAudio<TChatId, TAudio>(
+    TChatId ChatId,
+    TAudio Audio) : IRequest<AudioMessage>, IChatTargetable<TChatId>,
+    ICaptionable, INotifiable, IProtectable, IReplyable, IMarkupable
   {
-    public TChatId ChatId { get; }
-
-    public TAudio Audio { get; }
-
     public string? Caption { get; init; }
 
     public ParseMode? ParseMode { get; init; }
@@ -21,7 +19,7 @@ namespace Telegram.Bots.Requests
     public IEnumerable<MessageEntity>? CaptionEntities { get; init; }
 
     public bool? DisableNotification { get; init; }
-    
+
     public bool? ProtectContent { get; init; }
 
     public int? ReplyToMessageId { get; init; }
@@ -30,16 +28,12 @@ namespace Telegram.Bots.Requests
 
     public ReplyMarkup? ReplyMarkup { get; init; }
 
-    public string Method { get; } = "sendAudio";
-
-    protected SendAudio(TChatId chatId, TAudio audio)
-    {
-      ChatId = chatId;
-      Audio = audio;
-    }
+    public string Method => "sendAudio";
   }
 
-  public abstract record SendAudioFile<TChatId> : SendAudio<TChatId, InputFile>, IUploadable
+  public abstract record SendAudioFile<TChatId>(
+    TChatId ChatId,
+    InputFile Audio) : SendAudio<TChatId, InputFile>(ChatId, Audio), IUploadable
   {
     public int? Duration { get; init; }
 
@@ -49,41 +43,39 @@ namespace Telegram.Bots.Requests
 
     public InputFile? Thumb { get; init; }
 
-    protected SendAudioFile(TChatId chatId, InputFile audio) : base(chatId, audio) { }
-
-    public IEnumerable<InputFile?> GetFiles() => new[] {Audio, Thumb};
+    public IEnumerable<InputFile?> GetFiles()
+    {
+      return new[]
+      {
+        Audio, Thumb
+      };
+    }
   }
 
-  public sealed record SendCachedAudio : SendAudio<long, string>
-  {
-    public SendCachedAudio(long chatId, string audio) : base(chatId, audio) { }
-  }
+  public sealed record SendCachedAudio(
+    long ChatId,
+    string Audio) : SendAudio<long, string>(ChatId, Audio);
 
-  public sealed record SendAudioUrl : SendAudio<long, Uri>
-  {
-    public SendAudioUrl(long chatId, Uri audio) : base(chatId, audio) { }
-  }
+  public sealed record SendAudioUrl(
+    long ChatId,
+    Uri Audio) : SendAudio<long, Uri>(ChatId, Audio);
 
-  public sealed record SendAudioFile : SendAudioFile<long>
-  {
-    public SendAudioFile(long chatId, InputFile audio) : base(chatId, audio) { }
-  }
+  public sealed record SendAudioFile(
+    long ChatId,
+    InputFile Audio) : SendAudioFile<long>(ChatId, Audio);
 
   namespace Usernames
   {
-    public sealed record SendCachedAudio : SendAudio<string, string>
-    {
-      public SendCachedAudio(string username, string audio) : base(username, audio) { }
-    }
+    public sealed record SendCachedAudio(
+      string ChatId,
+      string Audio) : SendAudio<string, string>(ChatId, Audio);
 
-    public sealed record SendAudioUrl : SendAudio<string, Uri>
-    {
-      public SendAudioUrl(string username, Uri audio) : base(username, audio) { }
-    }
+    public sealed record SendAudioUrl(
+      string ChatId,
+      Uri Audio) : SendAudio<string, Uri>(ChatId, Audio);
 
-    public sealed record SendAudioFile : SendAudioFile<string>
-    {
-      public SendAudioFile(string username, InputFile audio) : base(username, audio) { }
-    }
+    public sealed record SendAudioFile(
+      string ChatId,
+      InputFile Audio) : SendAudioFile<string>(ChatId, Audio);
   }
 }
