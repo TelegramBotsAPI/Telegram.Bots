@@ -1,51 +1,46 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020-2022 Aman Agnihotri
 
-using System.Collections.Generic;
-using System.Linq;
-using Telegram.Bots.Types;
-
 namespace Telegram.Bots.Requests
 {
-  using IGroupableMediaList = IEnumerable<IGroupableMedia>;
+  using System.Collections.Generic;
+  using System.Linq;
+  using Types;
+  using IGroupableMediaList =
+    System.Collections.Generic.IEnumerable<Types.IGroupableMedia>;
 
-  public abstract record SendMediaGroup<TChatId> : IRequest<IReadOnlyList<MediaGroupMessage>>,
-    IChatTargetable<TChatId>, INotifiable, IProtectable, IReplyable, IUploadable
+  public abstract record SendMediaGroup<TChatId>(
+    TChatId ChatId,
+    IEnumerable<IGroupableMedia> Media) :
+    IRequest<IReadOnlyList<MediaGroupMessage>>, IChatTargetable<TChatId>,
+    INotifiable, IProtectable, IReplyable, IUploadable
   {
-    public TChatId ChatId { get; }
-
-    public IGroupableMediaList Media { get; }
-
     public bool? DisableNotification { get; init; }
-    
+
     public bool? ProtectContent { get; init; }
 
     public int? ReplyToMessageId { get; init; }
 
     public bool? AllowSendingWithoutReply { get; init; }
 
-    public string Method { get; } = "sendMediaGroup";
+    public string Method => "sendMediaGroup";
 
-    protected SendMediaGroup(TChatId chatId, IEnumerable<IGroupableMedia> media)
+    public IEnumerable<InputFile?> GetFiles()
     {
-      ChatId = chatId;
-      Media = media;
+      return Media
+        .OfType<IUploadableMedia>()
+        .SelectMany(media => media.GetFiles());
     }
-
-    public IEnumerable<InputFile?> GetFiles() =>
-      Media.OfType<IUploadableMedia>().SelectMany(media => media.GetFiles());
   }
 
-  public sealed record SendMediaGroup : SendMediaGroup<long>
-  {
-    public SendMediaGroup(long chatId, IGroupableMediaList media) : base(chatId, media) { }
-  }
+  public sealed record SendMediaGroup(
+    long ChatId,
+    IGroupableMediaList Media) : SendMediaGroup<long>(ChatId, Media);
 
   namespace Usernames
   {
-    public sealed record SendMediaGroup : SendMediaGroup<string>
-    {
-      public SendMediaGroup(string username, IGroupableMediaList media) : base(username, media) { }
-    }
+    public sealed record SendMediaGroup(
+      string ChatId,
+      IGroupableMediaList Media) : SendMediaGroup<string>(ChatId, Media);
   }
 }
