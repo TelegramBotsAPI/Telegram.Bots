@@ -1,19 +1,17 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020-2022 Aman Agnihotri
 
-using System;
-using System.Collections.Generic;
-using Telegram.Bots.Types;
-
 namespace Telegram.Bots.Requests
 {
-  public abstract record SendPhoto<TChatId, TPhoto> : IRequest<PhotoMessage>,
-    IChatTargetable<TChatId>, ICaptionable, INotifiable, IProtectable, IReplyable, IMarkupable
+  using System;
+  using System.Collections.Generic;
+  using Types;
+
+  public abstract record SendPhoto<TChatId, TPhoto>(
+    TChatId ChatId,
+    TPhoto Photo) : IRequest<PhotoMessage>, IChatTargetable<TChatId>,
+    ICaptionable, INotifiable, IProtectable, IReplyable, IMarkupable
   {
-    public TChatId ChatId { get; }
-
-    public TPhoto Photo { get; }
-
     public string? Caption { get; init; }
 
     public ParseMode? ParseMode { get; init; }
@@ -30,52 +28,46 @@ namespace Telegram.Bots.Requests
 
     public ReplyMarkup? ReplyMarkup { get; init; }
 
-    public string Method { get; } = "sendPhoto";
+    public string Method => "sendPhoto";
+  }
 
-    protected SendPhoto(TChatId chatId, TPhoto photo)
+  public abstract record SendPhotoFile<TChatId>(
+    TChatId ChatId,
+    InputFile Photo) : SendPhoto<TChatId, InputFile>(ChatId, Photo), IUploadable
+  {
+    public IEnumerable<InputFile?> GetFiles()
     {
-      ChatId = chatId;
-      Photo = photo;
+      return new[]
+      {
+        Photo
+      };
     }
   }
 
-  public abstract record SendPhotoFile<TChatId> : SendPhoto<TChatId, InputFile>, IUploadable
-  {
-    protected SendPhotoFile(TChatId chatId, InputFile photo) : base(chatId, photo) { }
+  public sealed record SendCachedPhoto(
+    long ChatId,
+    string Photo) : SendPhoto<long, string>(ChatId, Photo);
 
-    public IEnumerable<InputFile?> GetFiles() => new[] {Photo};
-  }
+  public sealed record SendPhotoUrl(
+    long ChatId,
+    Uri Photo) : SendPhoto<long, Uri>(ChatId, Photo);
 
-  public sealed record SendCachedPhoto : SendPhoto<long, string>
-  {
-    public SendCachedPhoto(long chatId, string photo) : base(chatId, photo) { }
-  }
-
-  public sealed record SendPhotoUrl : SendPhoto<long, Uri>
-  {
-    public SendPhotoUrl(long chatId, Uri photo) : base(chatId, photo) { }
-  }
-
-  public sealed record SendPhotoFile : SendPhotoFile<long>
-  {
-    public SendPhotoFile(long chatId, InputFile photo) : base(chatId, photo) { }
-  }
+  public sealed record SendPhotoFile(
+    long ChatId,
+    InputFile Photo) : SendPhotoFile<long>(ChatId, Photo);
 
   namespace Usernames
   {
-    public sealed record SendCachedPhoto : SendPhoto<string, string>
-    {
-      public SendCachedPhoto(string username, string photo) : base(username, photo) { }
-    }
+    public sealed record SendCachedPhoto(
+      string ChatId,
+      string Photo) : SendPhoto<string, string>(ChatId, Photo);
 
-    public sealed record SendPhotoUrl : SendPhoto<string, Uri>
-    {
-      public SendPhotoUrl(string username, Uri photo) : base(username, photo) { }
-    }
+    public sealed record SendPhotoUrl(
+      string ChatId,
+      Uri Photo) : SendPhoto<string, Uri>(ChatId, Photo);
 
-    public sealed record SendPhotoFile : SendPhotoFile<string>
-    {
-      public SendPhotoFile(string username, InputFile photo) : base(username, photo) { }
-    }
+    public sealed record SendPhotoFile(
+      string ChatId,
+      InputFile Photo) : SendPhotoFile<string>(ChatId, Photo);
   }
 }
