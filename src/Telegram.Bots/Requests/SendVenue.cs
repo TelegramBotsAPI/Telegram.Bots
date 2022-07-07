@@ -1,23 +1,18 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020-2022 Aman Agnihotri
 
-using Telegram.Bots.Types;
-
 namespace Telegram.Bots.Requests
 {
-  public abstract record SendVenue<TChatId> : IRequest<LocationMessage>,
-    IChatTargetable<TChatId>, INotifiable, IProtectable, IReplyable, IMarkupable
+  using Types;
+
+  public abstract record SendVenue<TChatId>(
+    TChatId ChatId,
+    double Latitude,
+    double Longitude,
+    string Title,
+    string Address) : IRequest<LocationMessage>, IChatTargetable<TChatId>,
+    INotifiable, IProtectable, IReplyable, IMarkupable
   {
-    public TChatId ChatId { get; }
-
-    public double Latitude { get; }
-
-    public double Longitude { get; }
-
-    public string Title { get; }
-
-    public string Address { get; }
-
     public string? FoursquareId { get; init; }
 
     public string? FoursquareType { get; init; }
@@ -27,7 +22,7 @@ namespace Telegram.Bots.Requests
     public string? GooglePlaceType { get; init; }
 
     public bool? DisableNotification { get; init; }
-    
+
     public bool? ProtectContent { get; init; }
 
     public int? ReplyToMessageId { get; init; }
@@ -36,39 +31,25 @@ namespace Telegram.Bots.Requests
 
     public ReplyMarkup? ReplyMarkup { get; init; }
 
-    public string Method { get; } = "sendVenue";
-
-    protected SendVenue(
-      TChatId chatId,
-      double latitude,
-      double longitude,
-      string title,
-      string address)
-    {
-      ChatId = chatId;
-      Latitude = latitude;
-      Longitude = longitude;
-      Title = title;
-      Address = address;
-    }
+    public string Method => "sendVenue";
   }
 
-  public sealed record SendVenue : SendVenue<long>
-  {
-    public SendVenue(long chatId, double latitude, double longitude, string title, string address) :
-      base(chatId, latitude, longitude, title, address) { }
-  }
+  public sealed record SendVenue(
+    long ChatId,
+    double Latitude,
+    double Longitude,
+    string Title,
+    string Address) :
+    SendVenue<long>(ChatId, Latitude, Longitude, Title, Address);
 
   namespace Usernames
   {
-    public sealed record SendVenue : SendVenue<string>
-    {
-      public SendVenue(
-        string username,
-        double latitude,
-        double longitude,
-        string title,
-        string address) : base(username, latitude, longitude, title, address) { }
-    }
+    public sealed record SendVenue(
+      string ChatId,
+      double Latitude,
+      double Longitude,
+      string Title,
+      string Address) :
+      SendVenue<string>(ChatId, Latitude, Longitude, Title, Address);
   }
 }
