@@ -1,19 +1,17 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020-2022 Aman Agnihotri
 
-using System;
-using System.Collections.Generic;
-using Telegram.Bots.Types;
-
 namespace Telegram.Bots.Requests
 {
-  public abstract record SendVideo<TChatId, TVideo> : IRequest<VideoMessage>,
-    IChatTargetable<TChatId>, ICaptionable, INotifiable, IProtectable, IReplyable, IMarkupable
+  using System;
+  using System.Collections.Generic;
+  using Types;
+
+  public abstract record SendVideo<TChatId, TVideo>(
+    TChatId ChatId,
+    TVideo Video) : IRequest<VideoMessage>, IChatTargetable<TChatId>,
+    ICaptionable, INotifiable, IProtectable, IReplyable, IMarkupable
   {
-    public TChatId ChatId { get; }
-
-    public TVideo Video { get; }
-
     public string? Caption { get; init; }
 
     public ParseMode? ParseMode { get; init; }
@@ -30,16 +28,12 @@ namespace Telegram.Bots.Requests
 
     public ReplyMarkup? ReplyMarkup { get; init; }
 
-    public string Method { get; } = "sendVideo";
-
-    protected SendVideo(TChatId chatId, TVideo video)
-    {
-      ChatId = chatId;
-      Video = video;
-    }
+    public string Method => "sendVideo";
   }
 
-  public abstract record SendVideoFile<TChatId> : SendVideo<TChatId, InputFile>, IUploadable
+  public abstract record SendVideoFile<TChatId>(
+    TChatId ChatId,
+    InputFile Video) : SendVideo<TChatId, InputFile>(ChatId, Video), IUploadable
   {
     public bool? SupportsStreaming { get; init; }
 
@@ -51,41 +45,39 @@ namespace Telegram.Bots.Requests
 
     public InputFile? Thumb { get; init; }
 
-    protected SendVideoFile(TChatId chatId, InputFile video) : base(chatId, video) { }
-
-    public IEnumerable<InputFile?> GetFiles() => new[] {Video, Thumb};
+    public IEnumerable<InputFile?> GetFiles()
+    {
+      return new[]
+      {
+        Video, Thumb
+      };
+    }
   }
 
-  public sealed record SendCachedVideo : SendVideo<long, string>
-  {
-    public SendCachedVideo(long chatId, string video) : base(chatId, video) { }
-  }
+  public sealed record SendCachedVideo(
+    long ChatId,
+    string Video) : SendVideo<long, string>(ChatId, Video);
 
-  public sealed record SendVideoUrl : SendVideo<long, Uri>
-  {
-    public SendVideoUrl(long chatId, Uri video) : base(chatId, video) { }
-  }
+  public sealed record SendVideoUrl(
+    long ChatId,
+    Uri Video) : SendVideo<long, Uri>(ChatId, Video);
 
-  public sealed record SendVideoFile : SendVideoFile<long>
-  {
-    public SendVideoFile(long chatId, InputFile video) : base(chatId, video) { }
-  }
+  public sealed record SendVideoFile(
+    long ChatId,
+    InputFile Video) : SendVideoFile<long>(ChatId, Video);
 
   namespace Usernames
   {
-    public sealed record SendCachedVideo : SendVideo<string, string>
-    {
-      public SendCachedVideo(string username, string video) : base(username, video) { }
-    }
+    public sealed record SendCachedVideo(
+      string ChatId,
+      string Video) : SendVideo<string, string>(ChatId, Video);
 
-    public sealed record SendVideoUrl : SendVideo<string, Uri>
-    {
-      public SendVideoUrl(string username, Uri video) : base(username, video) { }
-    }
+    public sealed record SendVideoUrl(
+      string ChatId,
+      Uri Video) : SendVideo<string, Uri>(ChatId, Video);
 
-    public sealed record SendVideoFile : SendVideoFile<string>
-    {
-      public SendVideoFile(string username, InputFile video) : base(username, video) { }
-    }
+    public sealed record SendVideoFile(
+      string ChatId,
+      InputFile Video) : SendVideoFile<string>(ChatId, Video);
   }
 }
