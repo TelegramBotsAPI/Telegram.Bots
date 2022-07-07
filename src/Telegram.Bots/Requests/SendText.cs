@@ -1,18 +1,16 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020-2022 Aman Agnihotri
 
-using System.Collections.Generic;
-using Telegram.Bots.Types;
-
 namespace Telegram.Bots.Requests
 {
-  public abstract record SendText<TChatId> : IRequest<TextMessage>, IChatTargetable<TChatId>,
-    INotifiable, IProtectable, IReplyable, IMarkupable
+  using System.Collections.Generic;
+  using Types;
+
+  public abstract record SendText<TChatId>(
+    TChatId ChatId,
+    string Text) : IRequest<TextMessage>, IChatTargetable<TChatId>, INotifiable,
+    IProtectable, IReplyable, IMarkupable
   {
-    public TChatId ChatId { get; }
-
-    public string Text { get; }
-
     public ParseMode? ParseMode { get; init; }
 
     public IEnumerable<MessageEntity>? Entities { get; init; }
@@ -20,7 +18,7 @@ namespace Telegram.Bots.Requests
     public bool? DisableWebPagePreview { get; init; }
 
     public bool? DisableNotification { get; init; }
-    
+
     public bool? ProtectContent { get; init; }
 
     public int? ReplyToMessageId { get; init; }
@@ -29,25 +27,17 @@ namespace Telegram.Bots.Requests
 
     public ReplyMarkup? ReplyMarkup { get; init; }
 
-    public string Method { get; } = "sendMessage";
-
-    protected SendText(TChatId chatId, string text)
-    {
-      ChatId = chatId;
-      Text = text;
-    }
+    public string Method => "sendMessage";
   }
 
-  public sealed record SendText : SendText<long>
-  {
-    public SendText(long chatId, string text) : base(chatId, text) { }
-  }
+  public sealed record SendText(
+    long ChatId,
+    string Text) : SendText<long>(ChatId, Text);
 
   namespace Usernames
   {
-    public sealed record SendText : SendText<string>
-    {
-      public SendText(string username, string text) : base(username, text) { }
-    }
+    public sealed record SendText(
+      string ChatId,
+      string Text) : SendText<string>(ChatId, Text);
   }
 }
