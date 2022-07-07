@@ -1,21 +1,19 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020-2022 Aman Agnihotri
 
-using System;
-using System.Collections.Generic;
-using Telegram.Bots.Types;
-
 namespace Telegram.Bots.Requests
 {
-  public abstract record SendVideoNote<TChatId, TVideoNote> : IRequest<VideoNoteMessage>,
+  using System;
+  using System.Collections.Generic;
+  using Types;
+
+  public abstract record SendVideoNote<TChatId, TVideoNote>(
+    TChatId ChatId,
+    TVideoNote VideoNote) : IRequest<VideoNoteMessage>,
     IChatTargetable<TChatId>, INotifiable, IProtectable, IReplyable, IMarkupable
   {
-    public TChatId ChatId { get; }
-
-    public TVideoNote VideoNote { get; }
-
     public bool? DisableNotification { get; init; }
-    
+
     public bool? ProtectContent { get; init; }
 
     public int? ReplyToMessageId { get; init; }
@@ -24,16 +22,13 @@ namespace Telegram.Bots.Requests
 
     public ReplyMarkup? ReplyMarkup { get; init; }
 
-    public string Method { get; } = "sendVideoNote";
-
-    protected SendVideoNote(TChatId chatId, TVideoNote videoNote)
-    {
-      ChatId = chatId;
-      VideoNote = videoNote;
-    }
+    public string Method => "sendVideoNote";
   }
 
-  public abstract record SendVideoNoteFile<TChatId> : SendVideoNote<TChatId, InputFile>, IUploadable
+  public abstract record SendVideoNoteFile<TChatId>(
+    TChatId ChatId,
+    InputFile VideoNote) : SendVideoNote<TChatId, InputFile>(ChatId, VideoNote),
+    IUploadable
   {
     public int? Duration { get; init; }
 
@@ -41,41 +36,39 @@ namespace Telegram.Bots.Requests
 
     public InputFile? Thumb { get; init; }
 
-    protected SendVideoNoteFile(TChatId chatId, InputFile videoNote) : base(chatId, videoNote) { }
-
-    public IEnumerable<InputFile?> GetFiles() => new[] {VideoNote, Thumb};
+    public IEnumerable<InputFile?> GetFiles()
+    {
+      return new[]
+      {
+        VideoNote, Thumb
+      };
+    }
   }
 
-  public sealed record SendCachedVideoNote : SendVideoNote<long, string>
-  {
-    public SendCachedVideoNote(long chatId, string videoNote) : base(chatId, videoNote) { }
-  }
+  public sealed record SendCachedVideoNote(
+    long ChatId,
+    string VideoNote) : SendVideoNote<long, string>(ChatId, VideoNote);
 
-  public sealed record SendVideoNoteUrl : SendVideoNote<long, Uri>
-  {
-    public SendVideoNoteUrl(long chatId, Uri videoNote) : base(chatId, videoNote) { }
-  }
+  public sealed record SendVideoNoteUrl(
+    long ChatId,
+    Uri VideoNote) : SendVideoNote<long, Uri>(ChatId, VideoNote);
 
-  public sealed record SendVideoNoteFile : SendVideoNoteFile<long>
-  {
-    public SendVideoNoteFile(long chatId, InputFile videoNote) : base(chatId, videoNote) { }
-  }
+  public sealed record SendVideoNoteFile(
+    long ChatId,
+    InputFile VideoNote) : SendVideoNoteFile<long>(ChatId, VideoNote);
 
   namespace Usernames
   {
-    public sealed record SendCachedVideoNote : SendVideoNote<string, string>
-    {
-      public SendCachedVideoNote(string username, string videoNote) : base(username, videoNote) { }
-    }
+    public sealed record SendCachedVideoNote(
+      string ChatId,
+      string VideoNote) : SendVideoNote<string, string>(ChatId, VideoNote);
 
-    public sealed record SendVideoNoteUrl : SendVideoNote<string, Uri>
-    {
-      public SendVideoNoteUrl(string username, Uri videoNote) : base(username, videoNote) { }
-    }
+    public sealed record SendVideoNoteUrl(
+      string ChatId,
+      Uri VideoNote) : SendVideoNote<string, Uri>(ChatId, VideoNote);
 
-    public sealed record SendVideoNoteFile : SendVideoNoteFile<string>
-    {
-      public SendVideoNoteFile(string username, InputFile videoNote) : base(username, videoNote) { }
-    }
+    public sealed record SendVideoNoteFile(
+      string ChatId,
+      InputFile VideoNote) : SendVideoNoteFile<string>(ChatId, VideoNote);
   }
 }
