@@ -1,51 +1,37 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
-
-using Telegram.Bots.Types;
+// Copyright © 2020-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Requests
 {
-  public abstract record StopLiveLocationBase<TResult> : IRequest<TResult>, IInlineMarkupable
+  using Types;
+
+  public abstract record StopLiveLocationBase<TResult> : IRequest<TResult>,
+    IInlineMarkupable
   {
     public InlineKeyboardMarkup? ReplyMarkup { get; init; }
 
-    public string Method { get; } = "stopMessageLiveLocation";
+    public string Method => "stopMessageLiveLocation";
   }
 
-  public abstract record StopLiveLocation<TChatId> : StopLiveLocationBase<LocationMessage>,
-    IChatMessageTargetable<TChatId>
-  {
-    public TChatId ChatId { get; }
+  public abstract record StopLiveLocation<TChatId>(
+    TChatId ChatId,
+    int MessageId) : StopLiveLocationBase<LocationMessage>,
+    IChatMessageTargetable<TChatId>;
 
-    public int MessageId { get; }
-
-    protected StopLiveLocation(TChatId chatId, int messageId)
-    {
-      ChatId = chatId;
-      MessageId = messageId;
-    }
-  }
-
-  public sealed record StopLiveLocation : StopLiveLocation<long>
-  {
-    public StopLiveLocation(long chatId, int messageId) : base(chatId, messageId) { }
-  }
+  public sealed record StopLiveLocation(
+    long ChatId,
+    int MessageId) : StopLiveLocation<long>(ChatId, MessageId);
 
   namespace Usernames
   {
-    public sealed record StopLiveLocation : StopLiveLocation<string>
-    {
-      public StopLiveLocation(string username, int messageId) : base(username, messageId) { }
-    }
+    public sealed record StopLiveLocation(
+      string ChatId,
+      int MessageId) : StopLiveLocation<string>(ChatId, MessageId);
   }
 
   namespace Inline
   {
-    public sealed record StopLiveLocation : StopLiveLocationBase<bool>, IInlineMessageTargetable
-    {
-      public string MessageId { get; }
-
-      public StopLiveLocation(string messageId) => MessageId = messageId;
-    }
+    public sealed record StopLiveLocation(
+      string MessageId) : StopLiveLocationBase<bool>, IInlineMessageTargetable;
   }
 }
