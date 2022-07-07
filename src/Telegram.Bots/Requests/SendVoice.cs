@@ -1,19 +1,17 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020-2022 Aman Agnihotri
 
-using System;
-using System.Collections.Generic;
-using Telegram.Bots.Types;
-
 namespace Telegram.Bots.Requests
 {
-  public abstract record SendVoice<TChatId, TVoice> : IRequest<VoiceMessage>,
-    IChatTargetable<TChatId>, ICaptionable, INotifiable, IProtectable, IReplyable, IMarkupable
+  using System;
+  using System.Collections.Generic;
+  using Types;
+
+  public abstract record SendVoice<TChatId, TVoice>(
+    TChatId ChatId,
+    TVoice Voice) : IRequest<VoiceMessage>, IChatTargetable<TChatId>,
+    ICaptionable, INotifiable, IProtectable, IReplyable, IMarkupable
   {
-    public TChatId ChatId { get; }
-
-    public TVoice Voice { get; }
-
     public string? Caption { get; init; }
 
     public ParseMode? ParseMode { get; init; }
@@ -21,7 +19,7 @@ namespace Telegram.Bots.Requests
     public IEnumerable<MessageEntity>? CaptionEntities { get; init; }
 
     public bool? DisableNotification { get; init; }
-    
+
     public bool? ProtectContent { get; init; }
 
     public int? ReplyToMessageId { get; init; }
@@ -30,54 +28,48 @@ namespace Telegram.Bots.Requests
 
     public ReplyMarkup? ReplyMarkup { get; init; }
 
-    public string Method { get; } = "sendVoice";
-
-    protected SendVoice(TChatId chatId, TVoice voice)
-    {
-      ChatId = chatId;
-      Voice = voice;
-    }
+    public string Method => "sendVoice";
   }
 
-  public abstract record SendVoiceFile<TChatId> : SendVoice<TChatId, InputFile>, IUploadable
+  public abstract record SendVoiceFile<TChatId>(
+    TChatId ChatId,
+    InputFile Voice) : SendVoice<TChatId, InputFile>(ChatId, Voice), IUploadable
   {
     public int? Duration { get; init; }
 
-    protected SendVoiceFile(TChatId chatId, InputFile voice) : base(chatId, voice) { }
-
-    public IEnumerable<InputFile?> GetFiles() => new[] {Voice};
+    public IEnumerable<InputFile?> GetFiles()
+    {
+      return new[]
+      {
+        Voice
+      };
+    }
   }
 
-  public sealed record SendCachedVoice : SendVoice<long, string>
-  {
-    public SendCachedVoice(long chatId, string voice) : base(chatId, voice) { }
-  }
+  public sealed record SendCachedVoice(
+    long ChatId,
+    string Voice) : SendVoice<long, string>(ChatId, Voice);
 
-  public sealed record SendVoiceUrl : SendVoice<long, Uri>
-  {
-    public SendVoiceUrl(long chatId, Uri voice) : base(chatId, voice) { }
-  }
+  public sealed record SendVoiceUrl(
+    long ChatId,
+    Uri Voice) : SendVoice<long, Uri>(ChatId, Voice);
 
-  public sealed record SendVoiceFile : SendVoiceFile<long>
-  {
-    public SendVoiceFile(long chatId, InputFile voice) : base(chatId, voice) { }
-  }
+  public sealed record SendVoiceFile(
+    long ChatId,
+    InputFile Voice) : SendVoiceFile<long>(ChatId, Voice);
 
   namespace Usernames
   {
-    public sealed record SendCachedVoice : SendVoice<string, string>
-    {
-      public SendCachedVoice(string username, string voice) : base(username, voice) { }
-    }
+    public sealed record SendCachedVoice(
+      string ChatId,
+      string Voice) : SendVoice<string, string>(ChatId, Voice);
 
-    public sealed record SendVoiceUrl : SendVoice<string, Uri>
-    {
-      public SendVoiceUrl(string username, Uri voice) : base(username, voice) { }
-    }
+    public sealed record SendVoiceUrl(
+      string ChatId,
+      Uri Voice) : SendVoice<string, Uri>(ChatId, Voice);
 
-    public sealed record SendVoiceFile : SendVoiceFile<string>
-    {
-      public SendVoiceFile(string username, InputFile voice) : base(username, voice) { }
-    }
+    public sealed record SendVoiceFile(
+      string ChatId,
+      InputFile Voice) : SendVoiceFile<string>(ChatId, Voice);
   }
 }
