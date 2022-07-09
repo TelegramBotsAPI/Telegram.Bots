@@ -1,67 +1,59 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2020-2022 Aman Agnihotri
 
-namespace Telegram.Bots.Types
+namespace Telegram.Bots.Types;
+
+public abstract record Button(string Text)
 {
-  public abstract record Button
+  public static implicit operator Button(string text)
   {
-    public string Text { get; }
-
-    protected Button(string text) => Text = text;
-
-    public static implicit operator Button(string text) => ToButton(text);
-
-    public static Button ToButton(string text) => new TextButton(text);
+    return ToButton(text);
   }
 
-  public sealed record TextButton : Button
+  public static Button ToButton(string text)
   {
-    public TextButton(string text) : base(text) { }
-
-    public static implicit operator TextButton(string text) => ToTextButton(text);
-
-    public static TextButton ToTextButton(string text) => new(text);
-  }
-
-  public sealed record RequestContactButton : Button
-  {
-    public bool RequestContact { get; } = true;
-
-    public RequestContactButton(string text) : base(text) { }
-  }
-
-  public sealed record RequestLocationButton : Button
-  {
-    public bool RequestLocation { get; } = true;
-
-    public RequestLocationButton(string text) : base(text) { }
-  }
-
-  public sealed record RequestPollButton : Button
-  {
-    public ButtonPollType RequestPoll { get; } = ButtonPollType.AnyPoll;
-
-    public RequestPollButton(string text) : base(text) { }
-  }
-
-  public sealed record RequestRegularPollButton : Button
-  {
-    public ButtonPollType? RequestPoll { get; } = new ButtonPollType(PollType.Regular);
-
-    public RequestRegularPollButton(string text) : base(text) { }
-  }
-
-  public sealed record RequestQuizPollButton : Button
-  {
-    public ButtonPollType? RequestPoll { get; } = new ButtonPollType(PollType.Quiz);
-
-    public RequestQuizPollButton(string text) : base(text) { }
-  }
-
-  public sealed record LaunchWebAppButton : Button
-  {
-    public WebAppInfo WebApp { get; }
-
-    public LaunchWebAppButton(string text, WebAppInfo webApp) : base(text) => WebApp = webApp;
+    return new TextButton(text);
   }
 }
+
+public sealed record TextButton(string Text) : Button(Text)
+{
+  public static implicit operator TextButton(string text)
+  {
+    return ToTextButton(text);
+  }
+
+  public static TextButton ToTextButton(string text)
+  {
+    return new(text);
+  }
+}
+
+public sealed record RequestContactButton(string Text) : Button(Text)
+{
+  public bool RequestContact => true;
+}
+
+public sealed record RequestLocationButton(string Text) : Button(Text)
+{
+  public bool RequestLocation => true;
+}
+
+public sealed record RequestPollButton(string Text) : Button(Text)
+{
+  public ButtonPollType RequestPoll => ButtonPollType.AnyPoll;
+}
+
+public sealed record RequestRegularPollButton(string Text) : Button(Text)
+{
+  public ButtonPollType RequestPoll => new ButtonPollType(PollType.Regular);
+}
+
+public sealed record RequestQuizPollButton(string Text) : Button(Text)
+{
+  public ButtonPollType RequestPoll => new ButtonPollType(PollType.Quiz);
+}
+
+public sealed record LaunchWebAppButton(
+  string Text,
+  WebAppInfo WebApp) : Button(Text);
