@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2021 Aman Agnihotri
+// Copyright © 2021-2022 Aman Agnihotri
 
 namespace Telegram.Bots.Types
 {
@@ -10,37 +10,23 @@ namespace Telegram.Bots.Types
     public abstract BotCommandScopeType Type { get; }
   }
 
-  public abstract record ChatBotCommandScope<TChatId> : BotCommandScope
+  public abstract record ChatBotCommandScope<TChatId>(
+    TChatId ChatId) : BotCommandScope
   {
     public override BotCommandScopeType Type => Type.Chat;
-
-    public TChatId ChatId { get; }
-
-    protected ChatBotCommandScope(TChatId chatId) => ChatId = chatId;
   }
 
-  public abstract record ChatAdminsBotCommandScope<TChatId> : BotCommandScope
+  public abstract record ChatAdminsBotCommandScope<TChatId>(
+    TChatId ChatId) : BotCommandScope
   {
     public override BotCommandScopeType Type => Type.ChatAdministrators;
-
-    public TChatId ChatId { get; }
-
-    protected ChatAdminsBotCommandScope(TChatId chatId) => ChatId = chatId;
   }
 
-  public abstract record ChatMemberBotCommandScope<TChatId> : BotCommandScope
+  public abstract record ChatMemberBotCommandScope<TChatId>(
+    TChatId ChatId,
+    long UserId) : BotCommandScope
   {
     public override BotCommandScopeType Type => Type.ChatMember;
-
-    public TChatId ChatId { get; }
-
-    public long UserId { get; }
-
-    protected ChatMemberBotCommandScope(TChatId chatId, long userId)
-    {
-      ChatId = chatId;
-      UserId = userId;
-    }
   }
 
   public sealed record DefaultBotCommandScope : BotCommandScope
@@ -63,36 +49,26 @@ namespace Telegram.Bots.Types
     public override BotCommandScopeType Type => Type.AllChatAdministrators;
   }
 
-  public sealed record ChatBotCommandScope : ChatBotCommandScope<long>
-  {
-    public ChatBotCommandScope(long chatId) : base(chatId) { }
-  }
+  public sealed record ChatBotCommandScope(
+    long ChatId) : ChatBotCommandScope<long>(ChatId);
 
-  public sealed record ChatAdminsBotCommandScope : ChatAdminsBotCommandScope<long>
-  {
-    public ChatAdminsBotCommandScope(long chatId) : base(chatId) { }
-  }
+  public sealed record ChatAdminsBotCommandScope(
+    long ChatId) : ChatAdminsBotCommandScope<long>(ChatId);
 
-  public sealed record ChatMemberBotCommandScope : ChatMemberBotCommandScope<long>
-  {
-    public ChatMemberBotCommandScope(long chatId, long userId) : base(chatId, userId) { }
-  }
+  public sealed record ChatMemberBotCommandScope(
+    long ChatId,
+    long UserId) : ChatMemberBotCommandScope<long>(ChatId, UserId);
 
   namespace Usernames
   {
-    public sealed record ChatBotCommandScope : ChatBotCommandScope<string>
-    {
-      public ChatBotCommandScope(string chatId) : base(chatId) { }
-    }
+    public sealed record ChatBotCommandScope(
+      string ChatId) : ChatBotCommandScope<string>(ChatId);
 
-    public sealed record ChatAdminsBotCommandScope : ChatAdminsBotCommandScope<string>
-    {
-      public ChatAdminsBotCommandScope(string chatId) : base(chatId) { }
-    }
+    public sealed record ChatAdminsBotCommandScope(
+      string ChatId) : ChatAdminsBotCommandScope<string>(ChatId);
 
-    public sealed record ChatMemberBotCommandScope : ChatMemberBotCommandScope<string>
-    {
-      public ChatMemberBotCommandScope(string chatId, long userId) : base(chatId, userId) { }
-    }
+    public sealed record ChatMemberBotCommandScope(
+      string ChatId,
+      long UserId) : ChatMemberBotCommandScope<string>(ChatId, UserId);
   }
 }
