@@ -1,18 +1,6 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-namespace Telegram.Bots.Types
-{
-  public sealed record DataProperty
-  {
-    public string Name { get; }
+namespace Telegram.Bots.Types;
 
-    public string Value { get; }
-
-    public DataProperty(string name, string value)
-    {
-      Name = name;
-      Value = value;
-    }
-  }
-}
+public sealed record DataProperty(string Name, string Value);
