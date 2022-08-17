@@ -1,21 +1,22 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
+
+namespace Telegram.Bots.Types;
 
 using System;
 using System.IO;
 
-namespace Telegram.Bots.Types
+public sealed record InputFile(Stream Data)
 {
-  public sealed record InputFile
+  public string Id { get; } = Guid.NewGuid().ToString();
+
+  public static implicit operator InputFile(Stream data)
   {
-    public string Id { get; } = Guid.NewGuid().ToString();
+    return ToInputFile(data);
+  }
 
-    public Stream Data { get; }
-
-    public InputFile(Stream data) => Data = data;
-
-    public static implicit operator InputFile(Stream data) => ToInputFile(data);
-
-    public static InputFile ToInputFile(Stream data) => new(data);
+  public static InputFile ToInputFile(Stream data)
+  {
+    return new(data);
   }
 }
