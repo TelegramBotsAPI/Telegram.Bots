@@ -122,7 +122,7 @@ namespace Telegram.Bots.Tests.Units.Json
       (@"""dice"":{", new DiceMessage {Dice = new Dice()}),
       (@"""game"":{", new GameMessage {Game = new Game()}),
       (@"""poll"":{", new PollMessage {Poll = new RegularPoll()}),
-      (@"""location"":{", new LocationMessage {Location = new Location()}),
+      (@"""location"":{", new LocationMessage {Location = new Location(0, 0)}),
       (@"""new_chat_members"":[", new NewChatMembersMessage {Members = new List<User>()}),
       (@"""left_chat_member"":{", new LeftChatMemberMessage {Member = new User()}),
       (@"""new_chat_title"":""""", new NewChatTitleMessage {Title = ""}),
