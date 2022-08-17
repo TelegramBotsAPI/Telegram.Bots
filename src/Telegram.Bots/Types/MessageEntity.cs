@@ -1,22 +1,18 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
+
+namespace Telegram.Bots.Types;
 
 using System;
 
-namespace Telegram.Bots.Types
+public sealed record MessageEntity(
+  MessageEntityType Type,
+  uint Offset,
+  uint Length)
 {
-  public sealed record MessageEntity
-  {
-    public MessageEntityType Type { get; init; }
+  public Uri? Url { get; init; }
 
-    public uint Offset { get; init; }
+  public User? User { get; init; }
 
-    public uint Length { get; init; }
-
-    public Uri? Url { get; init; }
-
-    public User? User { get; init; }
-
-    public string? Language { get; init; }
-  }
+  public string? Language { get; init; }
 }
