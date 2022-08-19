@@ -1,11 +1,10 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-namespace Telegram.Bots.Types
+namespace Telegram.Bots.Types;
+
+public enum PollType
 {
-  public enum PollType
-  {
-    Regular,
-    Quiz
-  }
+  Regular,
+  Quiz
 }
