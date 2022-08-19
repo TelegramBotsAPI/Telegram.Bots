@@ -1,16 +1,15 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
+
+namespace Telegram.Bots.Types;
 
 using System.Runtime.Serialization;
 
-namespace Telegram.Bots.Types
+public enum ParseMode
 {
-  public enum ParseMode
-  {
-    Html,
-    Markdown,
+  Html,
+  Markdown,
 
-    [EnumMember(Value = "MarkdownV2")]
-    MarkdownV2
-  }
+  [EnumMember(Value = "MarkdownV2")]
+  MarkdownV2
 }
