@@ -174,7 +174,7 @@ namespace Telegram.Bots.Tests.Units.Json
       (@"""my_chat_member"":{", new MyChatMemberUpdate {Data = new ChatMemberUpdated()}),
       (@"""chat_member"":{", new ChatMemberUpdate {Data = new ChatMemberUpdated()}),
       (@"""chat_join_request"":{", new ChatJoinRequestUpdate {Data = new ChatJoinRequest()}),
-      (@"""photos"":[", new UserProfilePhotos {PhotoSets = new List<Photo[]>()}),
+      (@"""photos"":[", new UserProfilePhotos(0, new List<Photo[]>())),
       (@"""callback_query_id"":""", new AnswerCallbackQuery("", "")),
       (@"""inline_message_id"":""", new EditCaption("")),
       (@"""inline_message_id"":""", new EditLiveLocation("", 0, 0)),

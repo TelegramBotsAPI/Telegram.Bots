@@ -1,14 +1,10 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
+
+namespace Telegram.Bots.Types;
 
 using System.Collections.Generic;
 
-namespace Telegram.Bots.Types
-{
-  public sealed record UserProfilePhotos
-  {
-    public int TotalCount { get; init; }
-
-    public IReadOnlyList<IReadOnlyList<Photo>> PhotoSets { get; init; } = null!;
-  }
-}
+public sealed record UserProfilePhotos(
+  int TotalCount,
+  IReadOnlyList<IReadOnlyList<Photo>> PhotoSets);
