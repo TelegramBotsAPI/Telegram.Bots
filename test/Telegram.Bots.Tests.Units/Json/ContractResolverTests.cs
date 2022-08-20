@@ -141,7 +141,7 @@ namespace Telegram.Bots.Tests.Units.Json
       (@"""connected_website"":""", new ConnectedWebsiteMessage {Website = Uri}),
       (@"""video_chat_scheduled"":{", new VideoChatScheduledMessage {Scheduled = new()}),
       (@"""video_chat_started"":{", new VideoChatStartedMessage {Started = new()}),
-      (@"""video_chat_ended"":{", new VideoChatEndedMessage {Ended = new()}),
+      (@"""video_chat_ended"":{", new VideoChatEndedMessage {Ended = new(0)}),
       (@"""video_chat_participants_invited"":{",
         new VideoChatParticipantsInvitedMessage {ParticipantsInvited = new()}),
       (@"""web_app_data"":{", new WebAppDataMessage {Data = new()}),
