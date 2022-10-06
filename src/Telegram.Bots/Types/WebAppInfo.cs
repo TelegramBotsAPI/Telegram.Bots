@@ -1,14 +1,8 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright © 2022 Aman Agnihotri
 
+namespace Telegram.Bots.Types;
+
 using System;
 
-namespace Telegram.Bots.Types
-{
-  public sealed record WebAppInfo
-  {
-    public Uri Url { get; }
-
-    public WebAppInfo(Uri url) => Url = url;
-  }
-}
+public sealed record WebAppInfo(Uri Url);
