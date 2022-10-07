@@ -1,14 +1,6 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-namespace Telegram.Bots.Types.Games
-{
-  public sealed record GameHighScore
-  {
-    public int Position { get; init; }
+namespace Telegram.Bots.Types.Games;
 
-    public User User { get; init; } = null!;
-
-    public int Score { get; init; }
-  }
-}
+public sealed record GameHighScore(int Position, User User, int Score);
