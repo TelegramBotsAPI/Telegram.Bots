@@ -1,13 +1,12 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-namespace Telegram.Bots.Types.Stickers
+namespace Telegram.Bots.Types.Stickers;
+
+public enum MaskPositionPoint
 {
-  public enum MaskPositionPoint
-  {
-    Forehead,
-    Eyes,
-    Mouth,
-    Chin
-  }
+  Forehead,
+  Eyes,
+  Mouth,
+  Chin
 }
