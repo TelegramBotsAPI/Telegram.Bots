@@ -1,22 +1,21 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-namespace Telegram.Bots.Types.Inline
+namespace Telegram.Bots.Types.Inline;
+
+public enum ResultType
 {
-  public enum ResultType
-  {
-    Article,
-    Audio,
-    Contact,
-    Document,
-    Game,
-    Gif,
-    Location,
-    Mpeg4Gif,
-    Photo,
-    Sticker,
-    Venue,
-    Video,
-    Voice
-  }
+  Article,
+  Audio,
+  Contact,
+  Document,
+  Game,
+  Gif,
+  Location,
+  Mpeg4Gif,
+  Photo,
+  Sticker,
+  Venue,
+  Video,
+  Voice
 }
