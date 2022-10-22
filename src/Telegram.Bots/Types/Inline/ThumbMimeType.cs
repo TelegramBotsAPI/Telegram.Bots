@@ -1,19 +1,18 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
+
+namespace Telegram.Bots.Types.Inline;
 
 using System.Runtime.Serialization;
 
-namespace Telegram.Bots.Types.Inline
+public enum ThumbMimeType
 {
-  public enum ThumbMimeType
-  {
-    [EnumMember(Value = "image/jpeg")]
-    Jpeg,
+  [EnumMember(Value = "image/jpeg")]
+  Jpeg,
 
-    [EnumMember(Value = "image/gif")]
-    Gif,
+  [EnumMember(Value = "image/gif")]
+  Gif,
 
-    [EnumMember(Value = "video/mp4")]
-    Video
-  }
+  [EnumMember(Value = "video/mp4")]
+  Video
 }
