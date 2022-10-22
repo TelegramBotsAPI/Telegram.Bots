@@ -1,20 +1,19 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-namespace Telegram.Bots.Types.Inline
+namespace Telegram.Bots.Types.Inline;
+
+public sealed record InlineQuery
 {
-  public sealed record InlineQuery
-  {
-    public string Id { get; init; } = null!;
+  public string Id { get; init; } = null!;
 
-    public User From { get; init; } = null!;
+  public User From { get; init; } = null!;
 
-    public string Query { get; init; } = null!;
+  public string Query { get; init; } = null!;
 
-    public string Offset { get; init; } = null!;
+  public string Offset { get; init; } = null!;
 
-    public ChatType? ChatType { get; init; }
+  public ChatType? ChatType { get; init; }
 
-    public Location? Location { get; init; }
-  }
+  public Location? Location { get; init; }
 }
