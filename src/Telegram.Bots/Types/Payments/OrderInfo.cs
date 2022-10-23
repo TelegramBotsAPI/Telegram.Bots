@@ -1,16 +1,15 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-namespace Telegram.Bots.Types.Payments
+namespace Telegram.Bots.Types.Payments;
+
+public sealed record OrderInfo
 {
-  public sealed record OrderInfo
-  {
-    public string? Name { get; init; }
+  public string? Name { get; init; }
 
-    public string? PhoneNumber { get; init; }
+  public string? PhoneNumber { get; init; }
 
-    public string? Email { get; init; }
+  public string? Email { get; init; }
 
-    public ShippingAddress? ShippingAddress { get; init; }
-  }
+  public ShippingAddress? ShippingAddress { get; init; }
 }
