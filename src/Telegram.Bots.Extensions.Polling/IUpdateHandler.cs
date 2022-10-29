@@ -1,17 +1,16 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
+
+namespace Telegram.Bots.Extensions.Polling;
 
 using System.Threading;
 using System.Threading.Tasks;
-using Telegram.Bots.Types;
+using Types;
 
-namespace Telegram.Bots.Extensions.Polling
+public interface IUpdateHandler
 {
-  public interface IUpdateHandler
-  {
-    public Task HandleAsync(
-      IBotClient bot,
-      Update update,
-      CancellationToken token);
-  }
+  public Task HandleAsync(
+    IBotClient bot,
+    Update update,
+    CancellationToken token);
 }
