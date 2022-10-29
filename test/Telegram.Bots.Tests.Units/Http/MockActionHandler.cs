@@ -1,23 +1,28 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-using System;
+namespace Telegram.Bots.Tests.Units.Http;
+
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using HttpAction =
+  System.Func<System.Net.Http.HttpRequestMessage,
+    System.Net.Http.HttpResponseMessage>;
 
-namespace Telegram.Bots.Tests.Units.Http
+public sealed class MockActionHandler : DelegatingHandler
 {
-  using HttpAction = Func<HttpRequestMessage, HttpResponseMessage>;
+  private readonly HttpAction _action;
 
-  public sealed class MockActionHandler : DelegatingHandler
+  public MockActionHandler(HttpAction action)
   {
-    private readonly HttpAction _action;
+    _action = action;
+  }
 
-    public MockActionHandler(HttpAction action) => _action = action;
-
-    protected override Task<HttpResponseMessage> SendAsync(
-      HttpRequestMessage request,
-      CancellationToken cancellationToken) => Task.FromResult(_action(request));
+  protected override Task<HttpResponseMessage> SendAsync(
+    HttpRequestMessage request,
+    CancellationToken cancellationToken)
+  {
+    return Task.FromResult(_action(request));
   }
 }
