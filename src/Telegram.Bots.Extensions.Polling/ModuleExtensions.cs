@@ -1,33 +1,34 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
+namespace Telegram.Bots.Extensions.Polling;
+
+using Configs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Telegram.Bots.Extensions.Polling.Configs;
-using Telegram.Bots.Extensions.Polling.Services;
+using Services;
+using IServices = Microsoft.Extensions.DependencyInjection.IServiceCollection;
 
-namespace Telegram.Bots.Extensions.Polling
+public static class ModuleExtensions
 {
-  using IServices = IServiceCollection;
-
-  public static class ModuleExtensions
+  public static IServices AddPolling<T>(
+    this IServices services,
+    IConfiguration? config = null)
+    where T : class, IUpdateHandler
   {
-    public static IServices AddPolling<T>(
-      this IServices services,
-      IConfiguration? config = null)
-      where T : class, IUpdateHandler
-    {
-      var pollingConfig = config is null
-        ? new PollingConfig()
-        : config.GetSection("Polling").Get<PollingConfig>();
+    PollingConfig? pollingConfig = config is null
+      ? new PollingConfig()
+      : config.GetSection("Polling").Get<PollingConfig>();
 
-      return services.AddPolling<T>(pollingConfig);
-    }
+    return services.AddPolling<T>(pollingConfig);
+  }
 
-    public static IServices AddPolling<T>(
-      this IServices services,
-      PollingConfig config)
-      where T : class, IUpdateHandler => services
+  public static IServices AddPolling<T>(
+    this IServices services,
+    PollingConfig config)
+    where T : class, IUpdateHandler
+  {
+    return services
       .AddSingleton(config)
       .AddSingleton<IUpdateHandler, T>()
       .AddHostedService<PollingService>();
