@@ -1,31 +1,34 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
+namespace Telegram.Bots.Tests.Units.Json;
+
+using Bots.Json;
+using Bots.Types;
 using System;
-using Telegram.Bots.Json;
-using Telegram.Bots.Types;
 using Xunit;
 
-namespace Telegram.Bots.Tests.Units.Json
+public sealed class PollTests : IClassFixture<Serializer>
 {
-  public sealed class PollTests : IClassFixture<Serializer>
+  private readonly Serializer _serializer;
+
+  public PollTests(Serializer serializer)
   {
-    private readonly Serializer _serializer;
+    _serializer = serializer;
+  }
 
-    public PollTests(Serializer serializer) => _serializer = serializer;
+  public static TheoryData<(string, Type)> DeserializationData => new()
+  {
+    (@"{""type"":""regular""}", typeof(RegularPoll)),
+    (@"{""type"":""quiz""}", typeof(QuizPoll))
+  };
 
-    public static TheoryData<(string, Type)> DeserializationData => new()
-    {
-      (@"{""type"":""regular""}", typeof(RegularPoll)), (@"{""type"":""quiz""}", typeof(QuizPoll))
-    };
+  [Theory(DisplayName = "Poll deserializes correctly")]
+  [MemberData(nameof(DeserializationData))]
+  public void PollDeserializesCorrectly((string, Type) tuple)
+  {
+    (string value, Type type) = tuple;
 
-    [Theory(DisplayName = "Poll deserializes correctly")]
-    [MemberData(nameof(DeserializationData))]
-    public void PollDeserializesCorrectly((string, Type) tuple)
-    {
-      var (value, type) = tuple;
-
-      Assert.IsAssignableFrom(type, _serializer.Deserialize<Poll>(value));
-    }
+    Assert.IsAssignableFrom(type, _serializer.Deserialize<Poll>(value));
   }
 }
