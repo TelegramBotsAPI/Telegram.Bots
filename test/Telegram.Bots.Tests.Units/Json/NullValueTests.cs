@@ -1,48 +1,55 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-using Telegram.Bots.Json;
+namespace Telegram.Bots.Tests.Units.Json;
+
+using Bots.Json;
 using Xunit;
 
-namespace Telegram.Bots.Tests.Units.Json
+public sealed class NullValueTests : IClassFixture<Serializer>
 {
-  public sealed class NullValueTests : IClassFixture<Serializer>
+  private readonly Serializer _serializer;
+
+  public NullValueTests(Serializer serializer)
   {
-    private readonly Serializer _serializer;
+    _serializer = serializer;
+  }
 
-    public NullValueTests(Serializer serializer) => _serializer = serializer;
+  [Fact(DisplayName = "Serialization ignores null values")]
+  public void SerializationIgnoresNullValues()
+  {
+    Assert.Equal("{}", _serializer.Serialize(new NullData()));
+  }
 
-    [Fact(DisplayName = "Serialization ignores null values")]
-    public void SerializationIgnoresNullValues() =>
-      Assert.Equal("{}", _serializer.Serialize(new NullData()));
+  [Fact(DisplayName = "Serialization does not ignore non-null values")]
+  public void SerializationDoesNotIgnoreNonNullValues()
+  {
+    const string json = @"{""file_id"":0,""first_name"":"""",""is_bot"":false}";
 
-    [Fact(DisplayName = "Serialization does not ignore non-null values")]
-    public void SerializationDoesNotIgnoreNonNullValues()
+    NullData value = new()
     {
-      const string json = @"{""file_id"":0,""first_name"":"""",""is_bot"":false}";
+      FileId = 0, FirstName = "", IsBot = false
+    };
 
-      var value = new NullData {FileId = 0, FirstName = "", IsBot = false};
+    Assert.Equal(json, _serializer.Serialize(value));
+  }
 
-      Assert.Equal(json, _serializer.Serialize(value));
-    }
+  [Fact(DisplayName = "Deserialization retains null values")]
+  public void DeserializationRetainsNullValues()
+  {
+    NullData value = _serializer.Deserialize<NullData>("{}");
 
-    [Fact(DisplayName = "Deserialization retains null values")]
-    public void DeserializationRetainsNullValues()
-    {
-      NullData value = _serializer.Deserialize<NullData>("{}");
+    Assert.Null(value.FileId);
+    Assert.Null(value.FirstName);
+    Assert.Null(value.IsBot);
+  }
 
-      Assert.Null(value.FileId);
-      Assert.Null(value.FirstName);
-      Assert.Null(value.IsBot);
-    }
+  private sealed record NullData
+  {
+    public int? FileId { get; init; }
 
-    private sealed record NullData
-    {
-      public int? FileId { get; init; }
+    public string? FirstName { get; init; }
 
-      public string? FirstName { get; init; }
-
-      public bool? IsBot { get; init; }
-    }
+    public bool? IsBot { get; init; }
   }
 }
