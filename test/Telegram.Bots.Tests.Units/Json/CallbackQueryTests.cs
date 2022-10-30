@@ -1,34 +1,42 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
+namespace Telegram.Bots.Tests.Units.Json;
+
+using Bots.Json;
+using Bots.Types;
 using System;
-using Telegram.Bots.Json;
-using Telegram.Bots.Types;
 using Xunit;
 
-namespace Telegram.Bots.Tests.Units.Json
+public sealed class CallbackQueryTests : IClassFixture<Serializer>
 {
-  public sealed class CallbackQueryTests : IClassFixture<Serializer>
+  private readonly Serializer _serializer;
+
+  public CallbackQueryTests(Serializer serializer)
   {
-    private readonly Serializer _serializer;
+    _serializer = serializer;
+  }
 
-    public CallbackQueryTests(Serializer serializer) => _serializer = serializer;
+  public static TheoryData<(string, Type)> DeserializationData => new()
+  {
+    (@"{""message"":{""text"":""""},""game_short_name"":""""}",
+      typeof(GameCallbackQuery)),
+    (@"{""message"":{""text"":""""},""data"":""""}",
+      typeof(MessageCallbackQuery)),
+    (@"{""inline_message_id"":"""",""game_short_name"":""""}",
+      typeof(InlineGameCallbackQuery)),
+    (@"{""inline_message_id"":"""",""data"":""""}",
+      typeof(InlineMessageCallbackQuery))
+  };
 
-    public static TheoryData<(string, Type)> DeserializationData => new()
-    {
-      (@"{""message"":{""text"":""""},""game_short_name"":""""}", typeof(GameCallbackQuery)),
-      (@"{""message"":{""text"":""""},""data"":""""}", typeof(MessageCallbackQuery)),
-      (@"{""inline_message_id"":"""",""game_short_name"":""""}", typeof(InlineGameCallbackQuery)),
-      (@"{""inline_message_id"":"""",""data"":""""}", typeof(InlineMessageCallbackQuery))
-    };
+  [Theory(DisplayName = "CallbackQuery deserializes correctly")]
+  [MemberData(nameof(DeserializationData))]
+  public void CallbackQueryDeserializesCorrectly((string, Type) tuple)
+  {
+    (string value, Type type) = tuple;
 
-    [Theory(DisplayName = "CallbackQuery deserializes correctly")]
-    [MemberData(nameof(DeserializationData))]
-    public void CallbackQueryDeserializesCorrectly((string, Type) tuple)
-    {
-      var (value, type) = tuple;
+    CallbackQuery query = _serializer.Deserialize<CallbackQuery>(value);
 
-      Assert.IsAssignableFrom(type, _serializer.Deserialize<CallbackQuery>(value));
-    }
+    Assert.IsAssignableFrom(type, query);
   }
 }
