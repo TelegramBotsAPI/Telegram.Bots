@@ -1,20 +1,24 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
-using Telegram.Bots.Json;
-using Telegram.Bots.Types;
+namespace Telegram.Bots.Tests.Units.Json;
+
+using Bots.Json;
+using Bots.Types;
 using Xunit;
 
-namespace Telegram.Bots.Tests.Units.Json
+public sealed class TextButtonTests : IClassFixture<Serializer>
 {
-  public sealed class TextButtonTests : IClassFixture<Serializer>
+  private readonly Serializer _serializer;
+
+  public TextButtonTests(Serializer serializer)
   {
-    private readonly Serializer _serializer;
+    _serializer = serializer;
+  }
 
-    public TextButtonTests(Serializer serializer) => _serializer = serializer;
-
-    [Fact(DisplayName = "Serialization uses Text property")]
-    public void SerializationUsesTextProperty() =>
-      Assert.Equal(@"""Test""", _serializer.Serialize(new TextButton("Test")));
+  [Fact(DisplayName = "Serialization uses Text property")]
+  public void SerializationUsesTextProperty()
+  {
+    Assert.Equal(@"""Test""", _serializer.Serialize(new TextButton("Test")));
   }
 }
