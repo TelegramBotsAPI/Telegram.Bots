@@ -1,44 +1,50 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// Copyright © 2020-2021 Aman Agnihotri
+// Copyright © 2020-2022 Aman Agnihotri
 
+namespace Telegram.Bots.Tests.Units.Json;
+
+using Bots.Json;
 using System;
-using Telegram.Bots.Json;
 using Xunit;
 
-namespace Telegram.Bots.Tests.Units.Json
+public sealed class UnixDateTimeTests : IClassFixture<Serializer>
 {
-  public sealed class UnixDateTimeTests : IClassFixture<Serializer>
+  private readonly Serializer _serializer;
+
+  private const string Json = @"{""unix_date"":749008680,""date"":749008680}";
+
+  private static readonly UnixDateTimeData Value = new()
   {
-    private readonly Serializer _serializer;
+    UnixDate = 749008680L,
+    Date = new DateTime(1993, 9, 26, 1, 58, 0, DateTimeKind.Utc)
+  };
 
-    private const string Json = @"{""unix_date"":749008680,""date"":749008680}";
+  public UnixDateTimeTests(Serializer serializer)
+  {
+    _serializer = serializer;
+  }
 
-    private static readonly UnixDateTimeData Value = new()
-    {
-      UnixDate = 749008680L,
-      Date = new DateTime(1993, 9, 26, 1, 58, 0, DateTimeKind.Utc)
-    };
+  [Fact(DisplayName =
+    "Serialization converts DateTime to integer-based unix value")]
+  public void SerializationConvertsDateTimeToUnixValue()
+  {
+    Assert.Equal(Json, _serializer.Serialize(Value));
+  }
 
-    public UnixDateTimeTests(Serializer serializer) => _serializer = serializer;
+  [Fact(DisplayName =
+    "Deserialization converts integer-based unix value to DateTime")]
+  public void DeserializationConvertsUnixValueToDateTime()
+  {
+    UnixDateTimeData value = _serializer.Deserialize<UnixDateTimeData>(Json);
 
-    [Fact(DisplayName = "Serialization converts DateTime to integer-based unix value")]
-    public void SerializationConvertsDateTimeToUnixValue() =>
-      Assert.Equal(Json, _serializer.Serialize(Value));
+    Assert.Equal(Value.UnixDate, value.UnixDate);
+    Assert.Equal(Value.Date, value.Date);
+  }
 
-    [Fact(DisplayName = "Deserialization converts integer-based unix value to DateTime")]
-    public void DeserializationConvertsUnixValueToDateTime()
-    {
-      var value = _serializer.Deserialize<UnixDateTimeData>(Json);
+  private sealed record UnixDateTimeData
+  {
+    public long UnixDate { get; init; }
 
-      Assert.Equal(Value.UnixDate, value.UnixDate);
-      Assert.Equal(Value.Date, value.Date);
-    }
-
-    private sealed record UnixDateTimeData
-    {
-      public long UnixDate { get; init; }
-
-      public DateTime Date { get; init; }
-    }
+    public DateTime Date { get; init; }
   }
 }
