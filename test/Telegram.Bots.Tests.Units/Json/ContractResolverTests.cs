@@ -512,6 +512,11 @@ public sealed class ContractResolverTests : IClassFixture<Serializer>
       {
         Photo = Uri
       }),
+    (@"""photo_url"":""",
+      new CreateInvoiceLink("", "", "", "", "", new LabeledPrice[1])
+      {
+        Photo = Uri
+      }),
     (@"""png_sticker"":""", new AddStickerToSetViaCache(1, "", "", "")),
     (@"""png_sticker"":""", new AddStickerToSetViaUrl(1, "", "", Uri)),
     (@"""png_sticker"":""attach://",
