@@ -36,6 +36,8 @@ public sealed record ChatInfo : Chat
 
   public bool HasPrivateForwards { get; init; }
 
+  public bool JoinToSendMessages { get; init; }
+
   public bool HasProtectedContent { get; init; }
 
   public string? StickerSetName { get; init; }
