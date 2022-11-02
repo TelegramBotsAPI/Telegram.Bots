@@ -18,6 +18,8 @@ public record User
   public string? Username { get; init; }
 
   public string? LanguageCode { get; init; }
+
+  public bool AddedToAttachmentMenu { get; init; }
 }
 
 public sealed record MyBot : User
