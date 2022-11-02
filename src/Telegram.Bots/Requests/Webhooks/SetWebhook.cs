@@ -19,6 +19,8 @@ public sealed record SetWebhook(Uri Url) : IRequest<bool>, IUploadable
 
   public bool? DropPendingUpdates { get; init; }
 
+  public string? SecretToken { get; init; }
+
   public string Method => "setWebhook";
 
   public IEnumerable<InputFile?> GetFiles()
