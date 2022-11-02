@@ -19,5 +19,7 @@ public sealed record Sticker : File
 
   public string? SetName { get; init; }
 
+  public File? PremiumAnimation { get; init; }
+
   public MaskPosition? MaskPosition { get; init; }
 }
