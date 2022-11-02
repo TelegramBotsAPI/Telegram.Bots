@@ -962,6 +962,14 @@ internal sealed class ContractResolver : DefaultContractResolver
         }
       },
       {
+        typeof(CreateInvoiceLink), new Data
+        {
+          {
+            "photo", "photo_url"
+          }
+        }
+      },
+      {
         typeof(AddStickerToSet<string>), new Data
         {
           {
