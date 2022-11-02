@@ -9,6 +9,8 @@ public record User
 
   public bool IsBot { get; init; }
 
+  public bool IsPremium { get; init; }
+
   public string FirstName { get; init; } = null!;
 
   public string? LastName { get; init; }
