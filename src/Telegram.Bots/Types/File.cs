@@ -9,7 +9,7 @@ public abstract record File
 
   public string UniqueId { get; init; } = null!;
 
-  public int? Size { get; init; }
+  public long? Size { get; init; }
 }
 
 public sealed record FileInfo : File
