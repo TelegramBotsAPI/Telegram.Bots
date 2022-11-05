@@ -3,6 +3,8 @@
 
 namespace Telegram.Bots.Types;
 
+using System.Collections.Generic;
+
 public record Chat
 {
   public long Id { get; init; }
@@ -21,6 +23,8 @@ public record Chat
 public sealed record ChatInfo : Chat
 {
   public ChatPhoto? Photo { get; init; }
+
+  public IReadOnlyList<string>? ActiveUsernames { get; init; }
 
   public string? EmojiStatusCustomEmojiId { get; init; }
 
