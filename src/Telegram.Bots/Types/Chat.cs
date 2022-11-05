@@ -18,6 +18,8 @@ public record Chat
   public string? FirstName { get; init; }
 
   public string? LastName { get; init; }
+
+  public bool IsForum { get; init; }
 }
 
 public sealed record ChatInfo : Chat
