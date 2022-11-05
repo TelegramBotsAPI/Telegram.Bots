@@ -36,6 +36,8 @@ public sealed record ChatInfo : Chat
 
   public bool HasPrivateForwards { get; init; }
 
+  public bool HasRestrictedVoiceAndVideoMessages { get; init; }
+
   public bool JoinToSendMessages { get; init; }
 
   public bool JoinByRequest { get; init; }
