@@ -11,6 +11,8 @@ public sealed record StickerSet
 
   public string Title { get; init; } = null!;
 
+  public StickerType StickerType { get; init; }
+
   public bool IsAnimated { get; init; }
 
   public bool IsVideo { get; init; }
