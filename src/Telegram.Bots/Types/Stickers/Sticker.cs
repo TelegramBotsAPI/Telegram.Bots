@@ -5,6 +5,8 @@ namespace Telegram.Bots.Types.Stickers;
 
 public sealed record Sticker : File
 {
+  public StickerType Type { get; init; }
+
   public int Width { get; init; }
 
   public int Height { get; init; }
