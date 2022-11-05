@@ -24,4 +24,6 @@ public sealed record Sticker : File
   public File? PremiumAnimation { get; init; }
 
   public MaskPosition? MaskPosition { get; init; }
+
+  public string? CustomEmojiId { get; init; }
 }
