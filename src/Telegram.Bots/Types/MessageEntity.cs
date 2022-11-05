@@ -15,4 +15,6 @@ public sealed record MessageEntity(
   public User? User { get; init; }
 
   public string? Language { get; init; }
+
+  public string? CustomEmojiId { get; init; }
 }
