@@ -22,6 +22,8 @@ public sealed record ChatInfo : Chat
 {
   public ChatPhoto? Photo { get; init; }
 
+  public string? EmojiStatusCustomEmojiId { get; init; }
+
   public string? Bio { get; init; }
 
   public string? Description { get; init; }
