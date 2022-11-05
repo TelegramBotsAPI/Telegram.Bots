@@ -14,6 +14,7 @@ public abstract record CreateNewStickerSetBase(
   string Title,
   string Emojis) : IRequest<bool>, IUserTargetable
 {
+  [System.Obsolete("Use StickerType.")]
   public bool? ContainsMasks { get; init; }
 
   public StickerType? StickerType { get; init; }
