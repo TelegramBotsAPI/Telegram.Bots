@@ -16,6 +16,8 @@ public abstract record CreateNewStickerSetBase(
 {
   public bool? ContainsMasks { get; init; }
 
+  public StickerType? StickerType { get; init; }
+
   public MaskPosition? MaskPosition { get; init; }
 
   public string Method => "createNewStickerSet";
