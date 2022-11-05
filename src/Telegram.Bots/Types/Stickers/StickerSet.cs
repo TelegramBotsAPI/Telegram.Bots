@@ -17,6 +17,7 @@ public sealed record StickerSet
 
   public bool IsVideo { get; init; }
 
+  [System.Obsolete("Use StickerType.")]
   public bool ContainsMasks { get; init; }
 
   public IReadOnlyList<Sticker> Stickers { get; init; } = null!;
