@@ -9,6 +9,7 @@ public enum MessageEntityType
   BotCommand,
   Cashtag,
   Code,
+  CustomEmoji,
   Email,
   Hashtag,
   Italic,
