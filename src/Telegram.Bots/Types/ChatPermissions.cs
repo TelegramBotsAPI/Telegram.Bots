@@ -20,4 +20,6 @@ public sealed record ChatPermissions
   public bool? CanInviteUsers { get; init; }
 
   public bool? CanPinMessages { get; init; }
+
+  public bool? CanManageTopics { get; init; }
 }
