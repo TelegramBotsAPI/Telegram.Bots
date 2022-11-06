@@ -233,6 +233,10 @@ public sealed class ContractResolverTests : IClassFixture<Serializer>
     {
       Id = 1
     }),
+    (@"""message_thread_id"":1", new TextMessage
+    {
+      ThreadId = 1
+    }),
     (@"""animation"":{", new AnimationMessage
     {
       Animation = new Animation()

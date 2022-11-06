@@ -474,6 +474,9 @@ internal sealed class ContractResolver : DefaultContractResolver
         {
           {
             "id", "message_id"
+          },
+          {
+            "thread_id", "message_thread_id"
           }
         }
       },

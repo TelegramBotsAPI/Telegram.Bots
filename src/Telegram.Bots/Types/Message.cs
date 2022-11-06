@@ -14,6 +14,8 @@ public abstract record Message
 {
   public int Id { get; init; }
 
+  public int? ThreadId { get; init; }
+
   public User? From { get; init; }
 
   public Chat? SenderChat { get; init; }
