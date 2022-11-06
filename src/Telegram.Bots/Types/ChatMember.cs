@@ -50,6 +50,8 @@ public sealed record Administrator : PrivilegedMember
   public bool CanInviteUsers { get; init; }
 
   public bool CanPinMessages { get; init; }
+
+  public bool CanManageTopics { get; init; }
 }
 
 public sealed record NormalMember : ChatMember
