@@ -29,6 +29,8 @@ namespace Telegram.Bots.Requests.Admins
 
     public bool? CanPromoteMembers { get; init; }
 
+    public bool? CanManageTopics { get; init; }
+
     public string Method => "promoteChatMember";
   }
 
