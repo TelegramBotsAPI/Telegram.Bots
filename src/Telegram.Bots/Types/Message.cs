@@ -36,6 +36,8 @@ public abstract record Message
 
   public DateTime? ForwardDate { get; init; }
 
+  public bool IsTopicMessage { get; init; }
+
   public bool IsAutomaticForward { get; init; }
 
   public Message? ReplyToMessage { get; init; }
