@@ -26,4 +26,6 @@ public sealed record ChatAdminRights
   public bool? CanEditMessages { get; init; }
 
   public bool? CanPinMessages { get; init; }
+
+  public bool? CanManageTopics { get; init; }
 }
