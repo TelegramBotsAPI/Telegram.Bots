@@ -71,6 +71,8 @@ public sealed record RestrictedMember : ChatMember
 
   public bool CanPinMessages { get; init; }
 
+  public bool CanManageTopics { get; init; }
+
   public bool IsMember { get; init; }
 
   public bool CanSendMessages { get; init; }
