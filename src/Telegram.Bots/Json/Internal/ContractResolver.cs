@@ -1092,6 +1092,24 @@ internal sealed class ContractResolver : DefaultContractResolver
         typeof(SendAnimation<string, InputFile>), ThreadData
       },
       {
+        typeof(SendAudio<long, string>), ThreadData
+      },
+      {
+        typeof(SendAudio<string, string>), ThreadData
+      },
+      {
+        typeof(SendAudio<long, Uri>), ThreadData
+      },
+      {
+        typeof(SendAudio<string, Uri>), ThreadData
+      },
+      {
+        typeof(SendAudio<long, InputFile>), ThreadData
+      },
+      {
+        typeof(SendAudio<string, InputFile>), ThreadData
+      },
+      {
         typeof(SendPhoto<long, string>), ThreadData
       },
       {

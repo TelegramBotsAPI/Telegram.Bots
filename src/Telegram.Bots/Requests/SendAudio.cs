@@ -10,8 +10,11 @@ namespace Telegram.Bots.Requests
   public abstract record SendAudio<TChatId, TAudio>(
     TChatId ChatId,
     TAudio Audio) : IRequest<AudioMessage>, IChatTargetable<TChatId>,
-    ICaptionable, INotifiable, IProtectable, IReplyable, IMarkupable
+    IThreadable, ICaptionable, INotifiable, IProtectable, IReplyable,
+    IMarkupable
   {
+    public int? ThreadId { get; init; }
+
     public string? Caption { get; init; }
 
     public ParseMode? ParseMode { get; init; }
