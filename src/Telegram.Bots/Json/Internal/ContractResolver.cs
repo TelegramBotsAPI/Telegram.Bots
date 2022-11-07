@@ -29,6 +29,13 @@ using StopLiveLocation = Requests.Inline.StopLiveLocation;
 
 internal sealed class ContractResolver : DefaultContractResolver
 {
+  private static readonly Data ThreadData = new()
+  {
+    {
+      "thread_id", "message_thread_id"
+    }
+  };
+
   private static readonly IReadOnlyDictionary<Type, InfoMap> Map =
     new Dictionary<Type, InfoMap>
     {
@@ -1059,6 +1066,12 @@ internal sealed class ContractResolver : DefaultContractResolver
             "sticker", "png_sticker"
           }
         }
+      },
+      {
+        typeof(SendText<long>), ThreadData
+      },
+      {
+        typeof(SendText<string>), ThreadData
       }
     };
 

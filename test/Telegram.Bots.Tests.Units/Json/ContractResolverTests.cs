@@ -537,7 +537,15 @@ public sealed class ContractResolverTests : IClassFixture<Serializer>
       new CreateNewAnimatedStickerSetViaFile(0, "", "", "", File)),
     (@"""webm_sticker"":""attach://",
       new CreateNewVideoStickerSetViaFile(0, "", "", "", File)),
-    (@"""png_sticker"":""", new UploadStickerFile(1, Stream.Null))
+    (@"""png_sticker"":""", new UploadStickerFile(1, Stream.Null)),
+    (@"""message_thread_id"":1", new SendText(1, "")
+    {
+      ThreadId = 1
+    }),
+    (@"""message_thread_id"":1", new Requests.Usernames.SendText("1", "")
+    {
+      ThreadId = 1
+    })
   };
 
   [Theory(DisplayName = "ContractResolver resolves properties correctly")]

@@ -8,9 +8,11 @@ namespace Telegram.Bots.Requests
 
   public abstract record SendText<TChatId>(
     TChatId ChatId,
-    string Text) : IRequest<TextMessage>, IChatTargetable<TChatId>, INotifiable,
-    IProtectable, IReplyable, IMarkupable
+    string Text) : IRequest<TextMessage>, IChatTargetable<TChatId>, IThreadable,
+    INotifiable, IProtectable, IReplyable, IMarkupable
   {
+    public int? ThreadId { get; init; }
+
     public ParseMode? ParseMode { get; init; }
 
     public IEnumerable<MessageEntity>? Entities { get; init; }
