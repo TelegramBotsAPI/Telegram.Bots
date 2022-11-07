@@ -546,6 +546,33 @@ public sealed class ContractResolverTests : IClassFixture<Serializer>
     {
       ThreadId = 1
     }),
+    (@"""message_thread_id"":1", new SendCachedAnimation(1, "")
+    {
+      ThreadId = 1
+    }),
+    (@"""message_thread_id"":1",
+      new Requests.Usernames.SendCachedAnimation("1", "")
+      {
+        ThreadId = 1
+      }),
+    (@"""message_thread_id"":1", new SendAnimationUrl(1, Uri)
+    {
+      ThreadId = 1
+    }),
+    (@"""message_thread_id"":1",
+      new Requests.Usernames.SendAnimationUrl("1", Uri)
+      {
+        ThreadId = 1
+      }),
+    (@"""message_thread_id"":1", new SendAnimationFile(1, File)
+    {
+      ThreadId = 1
+    }),
+    (@"""message_thread_id"":1",
+      new Requests.Usernames.SendAnimationFile("1", File)
+      {
+        ThreadId = 1
+      }),
     (@"""message_thread_id"":1", new SendCachedPhoto(1, "")
     {
       ThreadId = 1

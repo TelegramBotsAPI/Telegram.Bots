@@ -10,9 +10,11 @@ namespace Telegram.Bots.Requests
   public abstract record SendAnimation<TChatId, TAnimation>(
     TChatId ChatId,
     TAnimation Animation) : IRequest<AnimationMessage>,
-    IChatTargetable<TChatId>, ICaptionable, INotifiable, IProtectable,
-    IReplyable, IMarkupable
+    IChatTargetable<TChatId>, IThreadable, ICaptionable, INotifiable,
+    IProtectable, IReplyable, IMarkupable
   {
+    public int? ThreadId { get; init; }
+
     public string? Caption { get; init; }
 
     public ParseMode? ParseMode { get; init; }
