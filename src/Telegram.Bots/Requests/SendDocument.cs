@@ -10,8 +10,11 @@ namespace Telegram.Bots.Requests
   public abstract record SendDocument<TChatId, TDocument>(
     TChatId ChatId,
     TDocument Document) : IRequest<DocumentMessage>, IChatTargetable<TChatId>,
-    ICaptionable, INotifiable, IProtectable, IReplyable, IMarkupable
+    IThreadable, ICaptionable, INotifiable, IProtectable, IReplyable,
+    IMarkupable
   {
+    public int? ThreadId { get; init; }
+
     public string? Caption { get; init; }
 
     public ParseMode? ParseMode { get; init; }
