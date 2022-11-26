@@ -11,7 +11,7 @@ public sealed record Contact
 
   public string? LastName { get; init; }
 
-  public int? UserId { get; init; }
+  public long? UserId { get; init; }
 
   public string? Vcard { get; init; }
 }
