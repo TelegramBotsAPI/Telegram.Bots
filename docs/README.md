@@ -321,7 +321,7 @@ along with Telegram.Bots.  If not, see [GNU Licenses](https://www.gnu.org/licens
 
 ---
 
-[1]: https://img.shields.io/github/workflow/status/TelegramBotsAPI/Telegram.Bots/.NET%205?style=for-the-badge
+[1]: https://img.shields.io/github/actions/workflow/status/TelegramBotsAPI/Telegram.Bots/dotnet.yml?branch=master&style=for-the-badge
 [2]: https://img.shields.io/nuget/v/Telegram.Bots?style=for-the-badge
 [3]: https://img.shields.io/nuget/dt/Telegram.Bots?style=for-the-badge
 [4]: https://img.shields.io/github/license/TelegramBotsAPI/Telegram.Bots?style=for-the-badge
