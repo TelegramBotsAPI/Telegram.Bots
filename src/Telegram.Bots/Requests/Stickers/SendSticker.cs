@@ -10,8 +10,10 @@ namespace Telegram.Bots.Requests.Stickers
   public abstract record SendSticker<TChatId, TSticker>(
     TChatId ChatId,
     TSticker Sticker) : IRequest<StickerMessage>, IChatTargetable<TChatId>,
-    INotifiable, IProtectable, IReplyable, IMarkupable
+    IThreadable, INotifiable, IProtectable, IReplyable, IMarkupable
   {
+    public int? ThreadId { get; init; }
+
     public bool? DisableNotification { get; init; }
 
     public bool? ProtectContent { get; init; }

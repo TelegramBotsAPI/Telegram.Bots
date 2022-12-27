@@ -671,7 +671,34 @@ public sealed class ContractResolverTests : IClassFixture<Serializer>
     (@"""message_thread_id"":1", new Requests.Usernames.SendVideoFile("1", File)
     {
       ThreadId = 1
-    })
+    }),
+    (@"""message_thread_id"":1", new SendCachedSticker(1, "")
+    {
+      ThreadId = 1
+    }),
+    (@"""message_thread_id"":1",
+      new Requests.Stickers.Usernames.SendCachedSticker("1", "")
+      {
+        ThreadId = 1
+      }),
+    (@"""message_thread_id"":1", new SendStickerUrl(1, Uri)
+    {
+      ThreadId = 1
+    }),
+    (@"""message_thread_id"":1",
+      new Requests.Stickers.Usernames.SendStickerUrl("1", Uri)
+      {
+        ThreadId = 1
+      }),
+    (@"""message_thread_id"":1", new SendStickerFile(1, File)
+    {
+      ThreadId = 1
+    }),
+    (@"""message_thread_id"":1",
+      new Requests.Stickers.Usernames.SendStickerFile("1", File)
+      {
+        ThreadId = 1
+      })
   };
 
   [Theory(DisplayName = "ContractResolver resolves properties correctly")]

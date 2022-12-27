@@ -1162,6 +1162,24 @@ internal sealed class ContractResolver : DefaultContractResolver
       },
       {
         typeof(SendVideo<string, InputFile>), ThreadData
+      },
+      {
+        typeof(SendSticker<long, string>), ThreadData
+      },
+      {
+        typeof(SendSticker<string, string>), ThreadData
+      },
+      {
+        typeof(SendSticker<long, Uri>), ThreadData
+      },
+      {
+        typeof(SendSticker<string, Uri>), ThreadData
+      },
+      {
+        typeof(SendSticker<long, InputFile>), ThreadData
+      },
+      {
+        typeof(SendSticker<string, InputFile>), ThreadData
       }
     };
 
