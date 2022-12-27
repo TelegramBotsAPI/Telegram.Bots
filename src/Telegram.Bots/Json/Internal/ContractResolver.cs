@@ -1180,6 +1180,24 @@ internal sealed class ContractResolver : DefaultContractResolver
       },
       {
         typeof(SendSticker<string, InputFile>), ThreadData
+      },
+      {
+        typeof(SendVideoNote<long, string>), ThreadData
+      },
+      {
+        typeof(SendVideoNote<string, string>), ThreadData
+      },
+      {
+        typeof(SendVideoNote<long, Uri>), ThreadData
+      },
+      {
+        typeof(SendVideoNote<string, Uri>), ThreadData
+      },
+      {
+        typeof(SendVideoNote<long, InputFile>), ThreadData
+      },
+      {
+        typeof(SendVideoNote<string, InputFile>), ThreadData
       }
     };
 

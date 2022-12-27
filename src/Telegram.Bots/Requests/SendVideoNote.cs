@@ -10,8 +10,11 @@ namespace Telegram.Bots.Requests
   public abstract record SendVideoNote<TChatId, TVideoNote>(
     TChatId ChatId,
     TVideoNote VideoNote) : IRequest<VideoNoteMessage>,
-    IChatTargetable<TChatId>, INotifiable, IProtectable, IReplyable, IMarkupable
+    IChatTargetable<TChatId>, IThreadable, INotifiable, IProtectable,
+    IReplyable, IMarkupable
   {
+    public int? ThreadId { get; init; }
+
     public bool? DisableNotification { get; init; }
 
     public bool? ProtectContent { get; init; }

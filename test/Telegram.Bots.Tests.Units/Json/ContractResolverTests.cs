@@ -698,6 +698,33 @@ public sealed class ContractResolverTests : IClassFixture<Serializer>
       new Requests.Stickers.Usernames.SendStickerFile("1", File)
       {
         ThreadId = 1
+      }),
+    (@"""message_thread_id"":1", new SendCachedVideoNote(1, "")
+    {
+      ThreadId = 1
+    }),
+    (@"""message_thread_id"":1",
+      new Requests.Usernames.SendCachedVideoNote("1", "")
+      {
+        ThreadId = 1
+      }),
+    (@"""message_thread_id"":1", new SendVideoNoteUrl(1, Uri)
+    {
+      ThreadId = 1
+    }),
+    (@"""message_thread_id"":1",
+      new Requests.Usernames.SendVideoNoteUrl("1", Uri)
+      {
+        ThreadId = 1
+      }),
+    (@"""message_thread_id"":1", new SendVideoNoteFile(1, File)
+    {
+      ThreadId = 1
+    }),
+    (@"""message_thread_id"":1",
+      new Requests.Usernames.SendVideoNoteFile("1", File)
+      {
+        ThreadId = 1
       })
   };
 
