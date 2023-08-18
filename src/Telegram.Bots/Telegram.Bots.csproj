@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <LangVersion>default</LangVersion>
     <Nullable>enable</Nullable>
     <Authors>Aman Agnihotri</Authors>
     <Product>Telegram.Bots</Product>
     <Title>Telegram.Bots</Title>
-    <Description>A .NET 6 wrapper for the Telegram Bot API 6.2</Description>
-    <Copyright>Copyright © 2020-2022 Aman Agnihotri</Copyright>
-    <PackageVersion>5.9.0</PackageVersion>
+    <Description>A .NET Standard 2.1 wrapper for the Telegram Bot API 6.2</Description>
+    <Copyright>Copyright © 2020-2023 Aman Agnihotri</Copyright>
+    <PackageVersion>6.0.0</PackageVersion>
     <PackageProjectUrl>https://github.com/TelegramBotsAPI/Telegram.Bots</PackageProjectUrl>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageIcon>icon.png</PackageIcon>

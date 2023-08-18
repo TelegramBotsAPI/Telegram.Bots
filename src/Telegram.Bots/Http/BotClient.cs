@@ -60,7 +60,7 @@ public sealed class BotClient : IBotClient
         .SendAsync(httpRequest, ResponseHeadersRead, token)
         .ConfigureAwait(false);
 
-      Stream httpContent = await httpResponse.Content.ReadAsStreamAsync(token)
+      Stream httpContent = await httpResponse.Content.ReadAsStreamAsync()
         .ConfigureAwait(false);
 
       return httpResponse.IsSuccessStatusCode
@@ -139,7 +139,7 @@ public sealed class BotClient : IBotClient
         .ConfigureAwait(false);
 
       await using Stream httpContent = await httpResponse.Content
-        .ReadAsStreamAsync(token)
+        .ReadAsStreamAsync()
         .ConfigureAwait(false);
 
       if (!httpResponse.IsSuccessStatusCode)
